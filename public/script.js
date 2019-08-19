@@ -14,35 +14,57 @@ var firestore = firebase.firestore();
 const docRef = firestore.collection("posts").doc("1bu1KXFOMUHwSSOOkBlf");
 
 window.onload = function() {
-  console.log("Reached the Beginning.");
   var mainDocData = null;
   docRef.get().then(function (doc) {
-    console.log("Reached the Beginning.1.");
     if (doc && doc.exists){
-      console.log("Reached the Beginning.2.");
       mainDocData = doc.data();
-      console.log("Printing:" + mainDocData);
 
       if (mainDocData != null) {
-        console.log("Reached the start of the function.");
         var element = document.createElement("div");
         element.setAttribute("class", "blog-post");
+
+        //HEADER
         var header1 = document.createElement("h2");
         header1.setAttribute("class", "blog-post-title");
         header1.innerHTML = mainDocData.header;
+
+        //AUTHORING
+        var metaStuff = document.createElement("p");
+        metaStuff.setAttribute("class", "blog-post-meta");
+        var linkName = document.createElement("a");
+        //User
+        var user = firestore.collection("users").doc(mainDocData.user).get().data();
+        //var mail = "mailto:" + user.E-mail;
+        //linkName.setAttribute("href", mail);
+        linkName.innerHTML = user.Username;
+        metaStuff.innerHTML = "TODO: DATUM";
+        metaStuff.appendChild(linkName);
+
+        //TAG ROW
+        var divElement = document.createElement("div");
+        divElement.setAttribute("class", "row");
+
+        //ZWISCHENZEILE
+        var zeile = document.createElement("hr /");
+
+        //INHALT
+        var inhalt = document.createElement("p");
+        inhalt.innerHTML = mainDocData.content;
+
         element.appendChild(header1);
+        element.appendChild(metaStuff);
+        element.appendChild(divElement);
+        element.appendChild(zeile);
+        element.appendChild(inhalt);
+
         var theDiv = document.getElementById("output");
-        theDiv.appendChild(element);
-        console.log("Reached the end of the function.");
-        console.log("Printing2:" + mainDocData);
+        theDiv.insertBefore(element,theDiv.firstChild);
       }
 
     }
   }).catch(function (error) {
     console.log("Error: ", error);
   });
-  console.log("Reached the Beginning.3.");
-  console.log("hmm:" + mainDocData);
 };
 
 function signIn() {
