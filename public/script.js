@@ -33,10 +33,17 @@ window.onload = function() {
         metaStuff.setAttribute("class", "blog-post-meta");
         var linkName = document.createElement("a");
         //User
-        var user = firestore.collection("users").doc(mainDocData.user).get().data();
+        var userRef = firestore.collection("users").doc(mainDocData.user);
+        userRef.get().then(function (smh) {
+          var user = null;
+          if (smh && smh.exists) {
+            user = smh.data();
+            linkName.innerHTML = user.Username;
+          }
+        };
         //var mail = "mailto:" + user.E-mail;
         //linkName.setAttribute("href", mail);
-        linkName.innerHTML = user.Username;
+        //linkName.innerHTML = user.Username;
         metaStuff.innerHTML = "TODO: DATUM";
         metaStuff.appendChild(linkName);
 
