@@ -1,3 +1,5 @@
+var firebase = require("firebase");
+
 const firebaseConfig = {
   apiKey: "AIzaSyCR21vYC-VOPIqipke-DrTXy_rWM5JwRag",
   authDomain: "foundingbuddies-8f157.firebaseapp.com",
@@ -12,20 +14,34 @@ firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
 
-const docRef = firestore.doc("users/15");
-const output = document.querySelector("#output");
-const btn = document.querySelector("#UploadBtn");
+var posts = db.collection('posts');
 
-btn.addEventListener("click", function() {
-  docRef.get().then(function (doc) {
-    if (doc && doc.exists) {
-      const myData = doc.data();
-      output.innerText = myData.name;
-    }
-  }).catch(function (error) {
-    console.log("Error: ", error);
-  })
-});
+var einPost = posts.getElementById('1bu1KXFOMUHwSSOOkBlf');
+
+var element = document.createElement("div")
+element.setAttribute("class", "blog-post");
+var header1 = document.createElement("h2")
+header1.setAttribute("class", "blog-post-title");
+header1.appendChild(einPost.header)
+element.appendChild(header1)
+
+var theDiv = document.getElementById("output");
+theDiv.appendChild(element):
+
+//const docRef = firestore.doc("users/15");
+//const output = document.querySelector("#output");
+//const btn = document.querySelector("#UploadBtn");
+
+//btn.addEventListener("click", function() {
+//  docRef.get().then(function (doc) {
+//    if (doc && doc.exists) {
+//      const myData = doc.data();
+//      output.innerText = myData.name;
+//    }
+//  }).catch(function (error) {
+//    console.log("Error: ", error);
+//  })
+//});
 
 /**
      * Handles the sign in button press.
