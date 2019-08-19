@@ -56,26 +56,26 @@ window.onload = function() {
           }
         });
 
-        //TAG ROW
-        var divElement = document.createElement("div");
-        divElement.setAttribute("class", "row");
-        console.log("-6-");
-
-        //ZWISCHENZEILE
-        var zeile = document.createElement("hr");
-        console.log("-7-");
-
-        //INHALT
-        var inhalt = document.createElement("p");
-        inhalt.innerHTML = mainDocData.content;
-        console.log("-8-");
-
-        element.appendChild(divElement);
-        element.appendChild(zeile);
-        element.appendChild(inhalt);
-        console.log("-9-");
-
         setTimeout(function(){
+          //TAG ROW
+          var divElement = document.createElement("div");
+          divElement.setAttribute("class", "row");
+          console.log("-6-");
+
+          //ZWISCHENZEILE
+          var zeile = document.createElement("hr");
+          console.log("-7-");
+
+          //INHALT
+          var inhalt = document.createElement("p");
+          inhalt.innerHTML = mainDocData.content;
+          console.log("-8-");
+
+          element.appendChild(divElement);
+          element.appendChild(zeile);
+          element.appendChild(inhalt);
+          console.log("-9-");
+
           var theDiv = document.getElementById("output");
           theDiv.insertBefore(element,theDiv.firstChild);
           console.log("-10-");
