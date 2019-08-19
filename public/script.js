@@ -14,6 +14,7 @@ var firestore = firebase.firestore();
 const docRef = firestore.collection("posts").doc("1bu1KXFOMUHwSSOOkBlf");
 
 window.onload = function() {
+  console.log("Reached the Beginning.");
   var mainDocData = null;
   docRef.get().then(function (doc) {
     if (doc && doc.exists){
@@ -24,6 +25,7 @@ window.onload = function() {
   });
 
   if (mainDocData != null) {
+    console.log("Reached the start of the function.");
     var element = document.createElement("div");
     element.setAttribute("class", "blog-post");
     var header1 = document.createElement("h2");
@@ -32,7 +34,7 @@ window.onload = function() {
     element.appendChild(header1);
     var theDiv = document.getElementById("output");
     theDiv.appendChild(element);
-    console.log("Reached the end of the function.")
+    console.log("Reached the end of the function.");
   }
 };
 
