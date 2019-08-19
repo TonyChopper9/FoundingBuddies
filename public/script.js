@@ -9,9 +9,9 @@ var firebaseConfig = {
   messagingSenderId: "762592768507",
   appId: "1:762592768507:web:a151988d7a9cb394"
 };
+firebase.initializeApp(firebaseConfig);
 
 window.onload = function() {
-  firebase.initializeApp(firebaseConfig);
   const posts = firebase.firestore().collection('posts').get();
   var einPost = posts.getElementById('1bu1KXFOMUHwSSOOkBlf');
   var element = document.createElement("div");
