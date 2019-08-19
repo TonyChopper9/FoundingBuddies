@@ -51,7 +51,7 @@ window.onload = function() {
           var user = null;
           if (smh && smh.exists) {
             user = smh.data();
-            metaStuff.firstChild.innerHTML = user.Username;
+            metaStuff.lastChild.innerHTML = user.Username;
             console.log("-4-");
           }
         });
