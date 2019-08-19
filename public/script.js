@@ -20,10 +20,10 @@ window.onload = function() {
     console.log("Reached the Beginning.1.");
     if (doc && doc.exists){
       console.log("Reached the Beginning.2.");
-      mainDocData = doc.data()
+      mainDocData = doc.data();
     }
   }).catch(function (error) {
-    console.log("Error: ", error)
+    console.log("Error: ", error);
   });
   console.log("Reached the Beginning.3.");
   console.log("hmm:" + mainDocData);
