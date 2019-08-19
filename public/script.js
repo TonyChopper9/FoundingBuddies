@@ -26,7 +26,7 @@ header1.appendChild(einPost.header)
 element.appendChild(header1)
 
 var theDiv = document.getElementById("output");
-theDiv.appendChild(element):
+theDiv.appendChild(element);
 
 //const docRef = firestore.doc("users/15");
 //const output = document.querySelector("#output");
