@@ -40,7 +40,9 @@ window.onload = function() {
             user = smh.data();
             linkName.innerHTML = user.Username;
           }
-        };
+        }).catch(function (error) {
+          console.log("Error: ", error);
+        });
         //var mail = "mailto:" + user.E-mail;
         //linkName.setAttribute("href", mail);
         //linkName.innerHTML = user.Username;
