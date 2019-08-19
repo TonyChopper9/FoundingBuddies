@@ -17,13 +17,15 @@ window.onload = function() {
   console.log("Reached the Beginning.");
   var mainDocData = null;
   docRef.get().then(function (doc) {
+    console.log("Reached the Beginning.1.");
     if (doc && doc.exists){
+      console.log("Reached the Beginning.2.");
       mainDocData = doc.data()
     }
   }).catch(function (error) {
     console.log("Error: ", error)
   });
-
+  console.log("Reached the Beginning.3.");
   if (mainDocData != null) {
     console.log("Reached the start of the function.");
     var element = document.createElement("div");
