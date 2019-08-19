@@ -60,3 +60,10 @@ function getUserName() {
 function isUserSignedIn() {
   return !!firebase.auth().currentUser;
 }
+
+if (isUserSignedIn() == true ){
+  document.getElementById("loginBtn").innerHTML = "Logout";
+}
+else {
+  document.getElementById("loginBtn").innerHTML = "Login";
+}
