@@ -34,6 +34,7 @@ window.onload = function() {
         var metaStuff = document.createElement("p");
         metaStuff.setAttribute("class", "blog-post-meta");
         var linkName = document.createElement("a");
+        linkName.setAttribute("href", "#");
         console.log("-3-");
         //User
         var userRef = firestore.collection("users").doc(mainDocData.user);
@@ -41,9 +42,9 @@ window.onload = function() {
           var user = null;
           if (smh && smh.exists) {
             user = smh.data();
-            linkName.innerHTML = user.Username;
+            element.metaStuff.linkName.innerHTML = user.Username;
+            console.log("-4-");
           }
-          console.log("-4-");
         });
         //var mail = "mailto:" + user.E-mail;
         //linkName.setAttribute("href", mail);
