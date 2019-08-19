@@ -75,9 +75,11 @@ window.onload = function() {
         element.appendChild(inhalt);
         console.log("-9-");
 
-        var theDiv = document.getElementById("output");
-        theDiv.insertBefore(element,theDiv.firstChild);
-        console.log("-10-");
+        setTimeout(function(){
+          var theDiv = document.getElementById("output");
+          theDiv.insertBefore(element,theDiv.firstChild);
+          console.log("-10-");
+        }, 2000);
       }
 
     }
