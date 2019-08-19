@@ -28,7 +28,7 @@ window.onload = function() {
     element.setAttribute("class", "blog-post");
     var header1 = document.createElement("h2");
     header1.setAttribute("class", "blog-post-title");
-    header1.appendChild(mainDocData.header);
+    header1.innerHTML = mainDocData.header;
     element.appendChild(header1);
     var theDiv = document.getElementById("output");
     theDiv.appendChild(element);
