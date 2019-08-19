@@ -21,6 +21,7 @@ window.onload = function() {
     if (doc && doc.exists){
       console.log("Reached the Beginning.2.");
       mainDocData = doc.data();
+      console.log("Printing:" + mainDocData);
     }
   }).catch(function (error) {
     console.log("Error: ", error);
