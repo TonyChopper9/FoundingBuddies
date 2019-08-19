@@ -38,7 +38,7 @@ window.onload = function() {
         linkName.setAttribute("href", "#");
         console.log("-3-");
         //User
-        var userRef = firestore.collection("users").doc(mainDocData.user);
+        const userRef = firestore.collection("users").doc(mainDocData.user);
         //var mail = "mailto:" + user.E-mail;
         //linkName.setAttribute("href", mail);
         //linkName.innerHTML = user.Username;
@@ -47,8 +47,8 @@ window.onload = function() {
         console.log("-5-");
         element.appendChild(metaStuff);
 
+        var user = null;
         userRef.get().then(function (smh) {
-          var user = null;
           if (smh && smh.exists) {
             user = smh.data();
             metaStuff.lastChild.innerHTML = user.Username;
