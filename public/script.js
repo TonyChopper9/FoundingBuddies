@@ -46,6 +46,7 @@ window.onload = function() {
         metaStuff.appendChild(linkName);
         console.log("-5-");
         element.appendChild(metaStuff);
+        console.log(metaStuff.lastChild);
 
         var user = null;
         userRef.get().then(function (smh) {
