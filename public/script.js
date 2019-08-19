@@ -61,9 +61,11 @@ function isUserSignedIn() {
   return !!firebase.auth().currentUser;
 }
 
+function authStateObserver(){
 if (isUserSignedIn() == true ){
   document.getElementById("loginBtn").innerHTML = "Logout";
 }
 else {
   document.getElementById("loginBtn").innerHTML = "Login";
+}
 }
