@@ -10,23 +10,23 @@ const firebaseConfig = {
   appId: "1:762592768507:web:a151988d7a9cb394"
 };
 
-firebase.initializeApp(firebaseConfig);
-
 var db = firebase.firestore();
 
 var posts = db.collection('posts');
 
-var einPost = posts.getElementById('1bu1KXFOMUHwSSOOkBlf');
+window.onload = function() {
+  firebase.initializeApp(firebaseConfig);
+  var einPost = posts.getElementById('1bu1KXFOMUHwSSOOkBlf');
+  var element = document.createElement("div");
+  element.setAttribute("class", "blog-post");
+  var header1 = document.createElement("h2");
+  header1.setAttribute("class", "blog-post-title");
+  header1.appendChild(einPost.header);
+  element.appendChild(header1);
+  var theDiv = document.getElementById("output");
+  theDiv.appendChild(element);
 
-var element = document.createElement("div")
-element.setAttribute("class", "blog-post");
-var header1 = document.createElement("h2")
-header1.setAttribute("class", "blog-post-title");
-header1.appendChild(einPost.header)
-element.appendChild(header1)
-
-var theDiv = document.getElementById("output");
-theDiv.appendChild(element);
+};
 
 //const docRef = firestore.doc("users/15");
 //const output = document.querySelector("#output");
