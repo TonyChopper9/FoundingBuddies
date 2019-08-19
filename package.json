@@ -1,0 +1,22 @@
+{
+  "name": "foundingbuddies",
+  "version": "1.0.0",
+  "description": "i dont know",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TonyChopper9/FoundingBuddies.git"
+  },
+  "author": "me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TonyChopper9/FoundingBuddies/issues"
+  },
+  "homepage": "https://github.com/TonyChopper9/FoundingBuddies#readme",
+  "dependencies": {
+    "firebase": "^6.4.0"
+  }
+}
