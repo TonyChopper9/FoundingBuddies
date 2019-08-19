@@ -26,6 +26,7 @@ window.onload = function() {
     console.log("Error: ", error)
   });
   console.log("Reached the Beginning.3.");
+  console.log("hmm:" + mainDocData);
   if (mainDocData != null) {
     console.log("Reached the start of the function.");
     var element = document.createElement("div");
