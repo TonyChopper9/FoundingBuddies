@@ -10,9 +10,7 @@ const firebaseConfig = {
   appId: "1:762592768507:web:a151988d7a9cb394"
 };
 
-var db = firebase.firestore();
-
-var posts = db.collection('posts');
+const posts = firebase.firestore().collection('posts').get();
 
 window.onload = function() {
   firebase.initializeApp(firebaseConfig);
@@ -25,7 +23,7 @@ window.onload = function() {
   element.appendChild(header1);
   var theDiv = document.getElementById("output");
   theDiv.appendChild(element);
-
+  console.log("Reached the end of the function.")
 };
 
 //const docRef = firestore.doc("users/15");
