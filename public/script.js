@@ -22,16 +22,19 @@ window.onload = function() {
       if (mainDocData != null) {
         var element = document.createElement("div");
         element.setAttribute("class", "blog-post");
+        console.log("-1-");
 
         //HEADER
         var header1 = document.createElement("h2");
         header1.setAttribute("class", "blog-post-title");
         header1.innerHTML = mainDocData.header;
+        console.log("-2-");
 
         //AUTHORING
         var metaStuff = document.createElement("p");
         metaStuff.setAttribute("class", "blog-post-meta");
         var linkName = document.createElement("a");
+        console.log("-3-");
         //User
         var userRef = firestore.collection("users").doc(mainDocData.user);
         userRef.get().then(function (smh) {
@@ -40,32 +43,39 @@ window.onload = function() {
             user = smh.data();
             linkName.innerHTML = user.Username;
           }
+          console.log("-4-");
         });
         //var mail = "mailto:" + user.E-mail;
         //linkName.setAttribute("href", mail);
         //linkName.innerHTML = user.Username;
         metaStuff.innerHTML = "TODO: DATUM";
         metaStuff.appendChild(linkName);
+        console.log("-5-");
 
         //TAG ROW
         var divElement = document.createElement("div");
         divElement.setAttribute("class", "row");
+        console.log("-6-");
 
         //ZWISCHENZEILE
         var zeile = document.createElement("hr /");
+        console.log("-7-");
 
         //INHALT
         var inhalt = document.createElement("p");
         inhalt.innerHTML = mainDocData.content;
+        console.log("-8-");
 
         element.appendChild(header1);
         element.appendChild(metaStuff);
         element.appendChild(divElement);
         element.appendChild(zeile);
         element.appendChild(inhalt);
+        console.log("-9-");
 
         var theDiv = document.getElementById("output");
         theDiv.insertBefore(element,theDiv.firstChild);
+        console.log("-10-");
       }
 
     }
