@@ -28,6 +28,7 @@ window.onload = function() {
         var header1 = document.createElement("h2");
         header1.setAttribute("class", "blog-post-title");
         header1.innerHTML = mainDocData.header;
+        element.appendChild(header1);
         console.log("-2-");
 
         //AUTHORING
@@ -38,20 +39,22 @@ window.onload = function() {
         console.log("-3-");
         //User
         var userRef = firestore.collection("users").doc(mainDocData.user);
-        userRef.get().then(function (smh) {
-          var user = null;
-          if (smh && smh.exists) {
-            user = smh.data();
-            element.metaStuff.linkName.innerHTML = user.Username;
-            console.log("-4-");
-          }
-        });
         //var mail = "mailto:" + user.E-mail;
         //linkName.setAttribute("href", mail);
         //linkName.innerHTML = user.Username;
         metaStuff.innerHTML = "TODO: DATUM";
         metaStuff.appendChild(linkName);
         console.log("-5-");
+        element.appendChild(metaStuff);
+
+        userRef.get().then(function (smh) {
+          var user = null;
+          if (smh && smh.exists) {
+            user = smh.data();
+            linkName.innerHTML = user.Username;
+            console.log("-4-");
+          }
+        });
 
         //TAG ROW
         var divElement = document.createElement("div");
@@ -67,8 +70,6 @@ window.onload = function() {
         inhalt.innerHTML = mainDocData.content;
         console.log("-8-");
 
-        element.appendChild(header1);
-        element.appendChild(metaStuff);
         element.appendChild(divElement);
         element.appendChild(zeile);
         element.appendChild(inhalt);
