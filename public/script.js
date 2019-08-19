@@ -1,6 +1,6 @@
-import * as firebase from "firebase/app";
+//Hier sollte vielleicht irgendwas stehen aber kein Plan
 
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyCR21vYC-VOPIqipke-DrTXy_rWM5JwRag",
   authDomain: "foundingbuddies-8f157.firebaseapp.com",
   databaseURL: "https://foundingbuddies-8f157.firebaseio.com",
@@ -10,10 +10,9 @@ const firebaseConfig = {
   appId: "1:762592768507:web:a151988d7a9cb394"
 };
 
-const posts = firebase.firestore().collection('posts').get();
-
 window.onload = function() {
   firebase.initializeApp(firebaseConfig);
+  const posts = firebase.firestore().collection('posts').get();
   var einPost = posts.getElementById('1bu1KXFOMUHwSSOOkBlf');
   var element = document.createElement("div");
   element.setAttribute("class", "blog-post");
