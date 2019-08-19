@@ -23,7 +23,14 @@
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
             <button id="signupBtn" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised" disabled id="quickstart-verify-email" name="verify-email">Send Email Verification</button>
+
         </form>
+        <div class="quickstart-user-details-container">
+           Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+           <div>Firebase auth <code>currentUser</code> object value:</div>
+           <pre><code id="quickstart-account-details">null</code></pre>
+         </div>
         <!-- Bootstrap core JavaScript
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->

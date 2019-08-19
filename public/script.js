@@ -159,7 +159,7 @@ theDiv.appendChild(element);
       // [START authstatelistener]
       firebase.auth().onAuthStateChanged(function(user) {
         // [START_EXCLUDE silent]
-        //document.getElementById('quickstart-verify-email').disabled = true;
+        document.getElementById('quickstart-verify-email').disabled = true;
         // [END_EXCLUDE]
         if (user) {
           // User is signed in.
@@ -171,29 +171,29 @@ theDiv.appendChild(element);
           var uid = user.uid;
           var providerData = user.providerData;
           // [START_EXCLUDE]
-          //document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-          //document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-          //document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-          //if (!emailVerified) {
-          //  document.getElementById('quickstart-verify-email').disabled = false;
-          //}
+          document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+          document.getElementById("loginBtn").textContent = 'Log-out';
+          document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+          if (!emailVerified) {
+            document.getElementById('quickstart-verify-email').disabled = false;
+          }
           // [END_EXCLUDE]
         } else {
           // User is signed out.
           // [START_EXCLUDE]
-          //document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-          //document.getElementById('quickstart-sign-in').textContent = 'Sign in';
-          //document.getElementById('quickstart-account-details').textContent = 'null';
+          document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+          document.getElementById("loginBtn").textContent = 'Login';
+          document.getElementById('quickstart-account-details').textContent = 'null';
           // [END_EXCLUDE]
         }
         // [START_EXCLUDE silent]
-        //document.getElementById('quickstart-sign-in').disabled = false;
+        document.getElementById("loginBtn").disabled = false;
         // [END_EXCLUDE]
       });
       // [END authstatelistener]
       document.getElementById("loginBtn").addEventListener('click', toggleSignIn, false);
       document.getElementById("signupBtn").addEventListener('click', handleSignUp, false);
-      //document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
+      document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
       //document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
     }
     window.onload = function() {
