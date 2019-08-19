@@ -49,6 +49,3 @@ function getUserName() {
 function isUserSignedIn() {
   return !!firebase.auth().currentUser;
 }
-
-initFirebaseAuth();
-console.log("Login Status: " + isUserSignedIn());
