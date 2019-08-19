@@ -6,4 +6,4 @@ script:
 install:
   - npm install -g firebase-tools
 after_success:
-  - firebase deploy --project foundingbuddies-8f157 --token 1/OCMxXBls8bdelkut3jEtBsCzel2gVNw-NYv4KC1ZF-k
+  - firebase deploy --project foundingbuddies-8f157 --token "1/OCMxXBls8bdelkut3jEtBsCzel2gVNw-NYv4KC1ZF-k"
