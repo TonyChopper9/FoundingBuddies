@@ -58,7 +58,7 @@ window.onload = function() {
         console.log("-6-");
 
         //ZWISCHENZEILE
-        var zeile = document.createElement("hr /");
+        var zeile = document.createElement("hr");
         console.log("-7-");
 
         //INHALT
