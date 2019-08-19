@@ -10,19 +10,30 @@ var firebaseConfig = {
   appId: "1:762592768507:web:a151988d7a9cb394"
 };
 firebase.initializeApp(firebaseConfig);
+var firestore = firebase.firestore();
+const docRef = firestore.collection("posts").doc("1bu1KXFOMUHwSSOOkBlf");
 
 window.onload = function() {
-  const posts = firebase.firestore().collection('posts').get();
-  var einPost = posts.getElementById('1bu1KXFOMUHwSSOOkBlf');
-  var element = document.createElement("div");
-  element.setAttribute("class", "blog-post");
-  var header1 = document.createElement("h2");
-  header1.setAttribute("class", "blog-post-title");
-  header1.appendChild(einPost.header);
-  element.appendChild(header1);
-  var theDiv = document.getElementById("output");
-  theDiv.appendChild(element);
-  console.log("Reached the end of the function.")
+  var mainDocData = null;
+  docRef.get().then(function (doc) {
+    if (doc && doc.exists){
+      mainDocData = doc.data()
+    }
+  }).catch(function (error) {
+    console.log("Error: ", error)
+  });
+
+  if (mainDocData != null) {
+    var element = document.createElement("div");
+    element.setAttribute("class", "blog-post");
+    var header1 = document.createElement("h2");
+    header1.setAttribute("class", "blog-post-title");
+    header1.appendChild(mainDocData.header);
+    element.appendChild(header1);
+    var theDiv = document.getElementById("output");
+    theDiv.appendChild(element);
+    console.log("Reached the end of the function.")
+  }
 };
 
 function signIn() {
