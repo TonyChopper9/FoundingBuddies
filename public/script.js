@@ -51,35 +51,33 @@ window.onload = function() {
           var user = null;
           if (smh && smh.exists) {
             user = smh.data();
-            linkName.innerHTML = user.Username;
+            metaStuff.firstChild.innerHTML = user.Username;
             console.log("-4-");
           }
         });
 
-        setTimeout(function(){
-          //TAG ROW
-          var divElement = document.createElement("div");
-          divElement.setAttribute("class", "row");
-          console.log("-6-");
+        //TAG ROW
+        var divElement = document.createElement("div");
+        divElement.setAttribute("class", "row");
+        console.log("-6-");
 
-          //ZWISCHENZEILE
-          var zeile = document.createElement("hr");
-          console.log("-7-");
+        //ZWISCHENZEILE
+        var zeile = document.createElement("hr");
+        console.log("-7-");
 
-          //INHALT
-          var inhalt = document.createElement("p");
-          inhalt.innerHTML = mainDocData.content;
-          console.log("-8-");
+        //INHALT
+        var inhalt = document.createElement("p");
+        inhalt.innerHTML = mainDocData.content;
+        console.log("-8-");
 
-          element.appendChild(divElement);
-          element.appendChild(zeile);
-          element.appendChild(inhalt);
-          console.log("-9-");
+        element.appendChild(divElement);
+        element.appendChild(zeile);
+        element.appendChild(inhalt);
+        console.log("-9-");
 
-          var theDiv = document.getElementById("output");
-          theDiv.insertBefore(element,theDiv.firstChild);
-          console.log("-10-");
-        }, 2000);
+        var theDiv = document.getElementById("output");
+        theDiv.insertBefore(element,theDiv.firstChild);
+        console.log("-10-");
       }
 
     }
