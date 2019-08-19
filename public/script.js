@@ -22,24 +22,27 @@ window.onload = function() {
       console.log("Reached the Beginning.2.");
       mainDocData = doc.data();
       console.log("Printing:" + mainDocData);
+
+      if (mainDocData != null) {
+        console.log("Reached the start of the function.");
+        var element = document.createElement("div");
+        element.setAttribute("class", "blog-post");
+        var header1 = document.createElement("h2");
+        header1.setAttribute("class", "blog-post-title");
+        header1.innerHTML = mainDocData.header;
+        element.appendChild(header1);
+        var theDiv = document.getElementById("output");
+        theDiv.appendChild(element);
+        console.log("Reached the end of the function.");
+        console.log("Printing2:" + mainDocData);
+      }
+
     }
   }).catch(function (error) {
     console.log("Error: ", error);
   });
   console.log("Reached the Beginning.3.");
   console.log("hmm:" + mainDocData);
-  if (mainDocData != null) {
-    console.log("Reached the start of the function.");
-    var element = document.createElement("div");
-    element.setAttribute("class", "blog-post");
-    var header1 = document.createElement("h2");
-    header1.setAttribute("class", "blog-post-title");
-    header1.innerHTML = mainDocData.header;
-    element.appendChild(header1);
-    var theDiv = document.getElementById("output");
-    theDiv.appendChild(element);
-    console.log("Reached the end of the function.");
-  }
 };
 
 function signIn() {
