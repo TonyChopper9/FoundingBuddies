@@ -1,7 +1,8 @@
 language: node_js
 node_js: 10
-before_deploy: "echo 'ready?'"
-deploy:
-  provider: firebase
-  token: $FIREBASE_TOKEN
-  project: "foundingbuddies-8f157"
+
+before_script:
+  - npm install firebase-tools -g
+
+script:
+  - firebase deploy --only hosting --token "1/OCMxXBls8bdelkut3jEtBsCzel2gVNw-NYv4KC1ZF-k"
