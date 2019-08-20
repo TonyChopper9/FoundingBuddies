@@ -168,12 +168,11 @@ function authStateObserver(user) {
     // Show user's profile and sign-out button.
     userNameElement.removeAttribute('hidden');
     userPicElement.style.display = "";
-    signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
-    loginPageButton.style.display = "";
+    loginPageButton.style.display = "none";
     // Show sign-out button.
-    signOutButtonElement.style.display = "none";
+    signOutButtonElement.style.display = "";
 
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
@@ -181,12 +180,11 @@ function authStateObserver(user) {
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
     userPicElement.style.display = "none";
-    signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
-    loginPageButton.style.display = "none";
+    loginPageButton.style.display = "";
     //Hide sign-out Button
-    signOutButtonElement.style.display = "";
+    signOutButtonElement.style.display = "none";
   }
 }
 
