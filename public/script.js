@@ -118,11 +118,7 @@ function prevPage(){
 
 }
 
-function signInWithGoogle() {
-  // Sign into Firebase using popup auth & Google as the identity provider.
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
-}
+
 function signOut() {
   // Sign out of Firebase.
   firebase.auth().signOut();
@@ -171,61 +167,38 @@ function authStateObserver(user) {
 
     // Show user's profile and sign-out button.
     userNameElement.removeAttribute('hidden');
-    userPicElement.style.display = "";
+    userPicElement.style.display = "none";
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
     loginButton.setAttribute('hidden', 'true');
+    // Show sign-out button.
+    signOutButtonElement.removeAttribute('hidden');
 
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
-    userPicElement.style.display = "none";
+    userPicElement.style.display = "";
     signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
     loginButton.removeAttribute('hidden');
+    //Hide sign-out Button
+    signOutButtonElement.setAttribute('hidden', "true");
   }
 }
 
-function signUp(email, password){
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-        // [END_EXCLUDE]
-      });
-}
 
-function signInWithEmail(email, password){
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // log error
-  console.console.log(error);
-});
 
-}
+
 
 
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
-var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
-var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
-var signUpButtonElement = document.getElementById('signUpBtn');
 var loginPageButton = document.getElementById("LoginPageBtn");
-
 var signOutButtonElement = document.getElementById('sign-out');
 
 // Add Listener
