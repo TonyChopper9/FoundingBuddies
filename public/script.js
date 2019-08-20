@@ -108,7 +108,7 @@ function nextPage(){
 
 }
 
-function signIn() {
+function signInWithGoogle() {
   // Sign into Firebase using popup auth & Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
@@ -165,7 +165,7 @@ function authStateObserver(user) {
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
-    signInButtonElement.setAttribute('hidden', 'true');
+    signInButtonWithGoogleElement.setAttribute('hidden', 'true');
 
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
@@ -176,11 +176,11 @@ function authStateObserver(user) {
     signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
-    signInButtonElement.removeAttribute('hidden');
+    signInButtonWithGoogleElement.removeAttribute('hidden');
   }
 }
 
-function signup(){
+function signUp(){
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -200,11 +200,17 @@ function signup(){
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
-var signInButtonElement = document.getElementById('sign-in');
+var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
+var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
+var signUpButtonElement = document.getElementById('signUpBtn');
+
+
 var signOutButtonElement = document.getElementById('sign-out');
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
-signInButtonElement.addEventListener('click', signIn);
+signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
+signInButtonWithEmailElement.addEventListener("click", signInWithEmail);
+signUpButtonElement.addEventListener("click", signUp)
 
 initFirebaseAuth();
