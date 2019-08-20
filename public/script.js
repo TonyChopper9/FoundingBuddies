@@ -14,6 +14,7 @@ var firestore = firebase.firestore();
 
 window.onload = function() {
   addDocument("1bu1KXFOMUHwSSOOkBlf");
+  addDocument("BBiabkJhFIa2C48fap0P");
 };
 
 function addDocument(docId) {
