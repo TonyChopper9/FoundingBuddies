@@ -16,7 +16,7 @@ function signUp(){
   firebase.auth().createUserWithEmailAndPassword(email, password).then((user)=>{
     if(user){
       user.updateProfile({
-        displayName: username;
+        displayName: username
         //photoURL:
       });
       user.sendEmailVerification().then(function() {
