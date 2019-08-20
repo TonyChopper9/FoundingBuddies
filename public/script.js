@@ -116,7 +116,6 @@ function addDocument(docId, visibility, number) {
 }
 
 function nextPage(){
-  console.log(document.querySelector('[id2="2"]') + "<--");
   page++;
   if(page >= 4){
     firestore.collection("posts").get().then(function (list) {
