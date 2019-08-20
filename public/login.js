@@ -40,9 +40,7 @@ function signUp(){
         }
         console.log(error);
         // [END_EXCLUDE]
-      })
-
-    );
+      });
 }
 
 function signInWithEmail(){
