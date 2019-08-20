@@ -53,9 +53,10 @@ window.onload = function() {
           element.appendChild(metaStuff);
 
           console.log(smh + "<--smh");
+          console.log(smh);
 
           console.log("-mhhh-");
-          console.log(metaStuff.lastChild + "<--LastChild");
+          console.log(linkName + "<--LastChild");
           user = smh.data();
           console.log(user + "<--USER");
           console.log(user.Username + "<--USERNAME");
