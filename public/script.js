@@ -72,9 +72,15 @@ window.onload = function() {
           element.appendChild(inhalt);
           console.log("-8-");
 
+          //INHALT
+          var mailZeile = document.createElement("p");
+          mailZeile.innerHTML = user.E-mail;
+          element.appendChild(mailZeile);
+          console.log("-9-");
+
           var theDiv = document.getElementById("output");
           theDiv.insertBefore(element,theDiv.firstChild);
-          console.log("-9-");
+          console.log("-10-");
 
         }).catch(function (error) {
           console.log("Error: ", error);
