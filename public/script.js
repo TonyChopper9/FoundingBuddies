@@ -14,8 +14,10 @@ var firestore = firebase.firestore();
 
 window.onload = function() {
   firestore.collection("posts").get().then(function (list) {
+    var i = 0;
     list.forEach((doc) => {
-      addDocument(doc.id);
+      i++;
+      if (i <= 10) {addDocument(doc.id)}
     })
   });
   //addDocument("1bu1KXFOMUHwSSOOkBlf");
