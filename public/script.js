@@ -11,20 +11,20 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
+var page = 0;
 
 window.onload = function() {
   firestore.collection("posts").get().then(function (list) {
     var i = 0;
     list.forEach((doc) => {
       i++;
-      if (i <= 10) {addDocument(doc.id)}
+      if (i <= 10) {addDocument(doc.id, true)}
+      else {addDocument(doc.id, false)}
     })
   });
-  //addDocument("1bu1KXFOMUHwSSOOkBlf");
-  //addDocument("BBiabkJhFIa2C48fap0P");
 };
 
-function addDocument(docId) {
+function addDocument(docId, visibility) {
   const docRef = firestore.collection("posts").doc(docId);
   var mainDocData = null;
   docRef.get().then(function (doc) {
@@ -35,6 +35,7 @@ function addDocument(docId) {
         var element = document.createElement("div");
         element.setAttribute("class", "blog-post");
         element.setAttribute("id", docId);
+        if(!visibility){element.setAttribute("style", "display: none;")}
         console.log("-1-");
 
         //HEADER
@@ -101,6 +102,10 @@ function addDocument(docId) {
   }).catch(function (error) {
     console.log("Error: ", error);
   });
+}
+
+function nextPage(){
+
 }
 
 function signIn() {
