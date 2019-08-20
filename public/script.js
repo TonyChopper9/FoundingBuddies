@@ -33,7 +33,6 @@ window.onload = function() {
 
         //AUTHORING
         const userRef = firestore.collection("users").doc(mainDocData.user);
-        console.log(mainDocData.user + "<-- User");
         var user = null;
 
         userRef.get().then(function (smh) {
@@ -44,22 +43,14 @@ window.onload = function() {
           linkName.setAttribute("href", "#");
           console.log("-3-");
           //User
+          user = smh.data();
             //var mail = "mailto:" + user.E-mail;
             //linkName.setAttribute("href", mail);
             //linkName.innerHTML = user.Username;
-          metaStuff.innerHTML = "TODO: DATUM";
+          metaStuff.innerHTML = user.Date + " by ";
           metaStuff.appendChild(linkName);
           console.log("-4-");
           element.appendChild(metaStuff);
-
-          console.log(smh + "<--smh");
-          console.log(smh);
-
-          console.log("-mhhh-");
-          console.log(linkName + "<--LastChild");
-          user = smh.data();
-          console.log(user + "<--USER");
-          console.log(user.Username + "<--USERNAME");
           metaStuff.lastChild.innerHTML = user.Username;
           console.log("-5-");
 
