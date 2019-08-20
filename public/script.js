@@ -162,9 +162,9 @@ function authStateObserver(user) {
     var profilePicUrl = getProfilePicUrl();
     var userName = getUserName();
 
-    if (profilePicUrl == "") {
-      profilePicUrl = "media/usericon.png";
-    }
+    //if (profilePicUrl == "") {
+    //  profilePicUrl = "media/usericon.png";
+    //}
 
     // Set the user's profile pic and name.
     userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
