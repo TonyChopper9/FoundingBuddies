@@ -18,7 +18,6 @@ window.onload = function() {
   total = 0;
   firestore.collection("posts").get().then(function (list) {
     total = list.size;
-    console.log(total);
     var i = 0;
     list.forEach((doc) => {
       i++;
@@ -29,7 +28,8 @@ window.onload = function() {
           addDocument(doc.id, false, i)
         }
       }
-    })
+    });
+    console.log(document.querySelector('[id2="' + total + '"]') + "<--");
   });
 };
 
@@ -46,7 +46,7 @@ function addDocument(docId, visibility, number) {
         element.setAttribute("id", docId);
         //Potentially problematic
         //TODO: "DELETE" USE CASE
-        element.setAttribute("id", number);
+        element.setAttribute("id2", number);
         if(!visibility){element.setAttribute("style", "display: none;")}
         console.log("-1-");
 
@@ -124,7 +124,7 @@ function nextPage(){
       list.forEach((doc) => {
         i++;
         if(i>30){
-          addDocument(doc.id, false)
+          addDocument(doc.id, false, i)
         }
       })
     });
