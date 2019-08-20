@@ -9,7 +9,9 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-function signUp(email, password){
+function signUp(){
+  var email = document.getElementById("inputSignUpEmail").value;
+  var password = document.getElementById("inputSignUpPassword").value;
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -25,7 +27,9 @@ function signUp(email, password){
       });
 }
 
-function signInWithEmail(email, password){
+function signInWithEmail(){
+  var email = document.getElementById("inputLoginEmail").value;
+  var password = document.getElementById("inputLoginPassword").value;
   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
@@ -59,7 +63,7 @@ var signUpButtonElement = document.getElementById('signUpBtn');
 
 //Add Listener
 signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
-signInButtonWithEmailElement.addEventListener("click", signInWithEmail(document.getElementById("inputLoginEmail").value, document.getElementById("inputLoginPassword").value));
-signUpButtonElement.addEventListener("click", signUp(document.getElementById("inputSignUpEmail").value, document.getElementById("inputSignUpPassword").value))
+signInButtonWithEmailElement.addEventListener("click", signInWithEmail);
+signUpButtonElement.addEventListener("click", signUp)
 
 initFirebaseAuth();
