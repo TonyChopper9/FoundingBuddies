@@ -17,12 +17,7 @@ window.onload = function() {
     console.log("|-- Liste");
     console.log(list);
     list.forEach((doc) => {
-      console.log("|-- Doc");
-      console.log(doc);
-      console.log(doc.id);
-      console.log("|-- DocData");
-      console.log(doc.data());
-      addDocument(doc);
+      addDocument(doc.id);
     })
   });
   //addDocument("1bu1KXFOMUHwSSOOkBlf");
