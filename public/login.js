@@ -34,3 +34,8 @@ function signInWithGoogle() {
 var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
 var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
 var signUpButtonElement = document.getElementById('signUpBtn');
+
+//Add Listener
+signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
+signInButtonWithEmailElement.addEventListener("click", signInWithEmail(document.getElementById("inputLoginEmail"), document.getElementById("inputLoginPassword")));
+signUpButtonElement.addEventListener("click", signUp(document.getElementById("inputSignUpEmail"), document.getElementById("inputSignUpPassword")))

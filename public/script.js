@@ -203,8 +203,5 @@ var signOutButtonElement = document.getElementById('sign-out');
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
-signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
-signInButtonWithEmailElement.addEventListener("click", signInWithEmail(document.getElementById("inputLoginEmail"), document.getElementById("inputLoginPassword")));
-signUpButtonElement.addEventListener("click", signUp(document.getElementById("inputSignUpEmail"), document.getElementById("inputSignUpPassword")))
 
 initFirebaseAuth();
