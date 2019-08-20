@@ -45,7 +45,7 @@ window.onload = function() {
 
           //User
           user = smh.data();
-          var dateDate = new Date(mainDocData.Date*1000);
+          var dateDate = mainDocData.Date.toDate();
           metaStuff.innerHTML = dateDate + " by ";
           metaStuff.appendChild(linkName);
           console.log("-4-");
