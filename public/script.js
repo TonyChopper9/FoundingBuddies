@@ -105,6 +105,10 @@ function addDocument(docId, visibility) {
 }
 
 function nextPage(){
+  console.log("next page worx")
+}
+
+function prevPage(){
 
 }
 
