@@ -32,27 +32,31 @@ window.onload = function() {
         console.log("-2-");
 
         //AUTHORING
-        var metaStuff = document.createElement("p");
-        metaStuff.setAttribute("class", "blog-post-meta");
-        var linkName = document.createElement("a");
-        linkName.setAttribute("href", "#");
-        console.log("-3-");
-        //User
         const userRef = firestore.collection("users").doc(mainDocData.user);
-        //var mail = "mailto:" + user.E-mail;
-        //linkName.setAttribute("href", mail);
-        //linkName.innerHTML = user.Username;
-        metaStuff.innerHTML = "TODO: DATUM";
-        metaStuff.appendChild(linkName);
-        console.log("-5-");
-        element.appendChild(metaStuff);
+        console.log(mainDocData.user);
         var user = null;
+
         userRef.get().then(function (smh) {
+          var metaStuff = document.createElement("p");
+          metaStuff.setAttribute("class", "blog-post-meta");
+          var linkName = document.createElement("a");
+          linkName.setAttribute("href", "#");
+          console.log("-3-");
+          //User
+            //var mail = "mailto:" + user.E-mail;
+            //linkName.setAttribute("href", mail);
+            //linkName.innerHTML = user.Username;
+          metaStuff.innerHTML = "TODO: DATUM";
+          metaStuff.appendChild(linkName);
+          console.log("-5-");
+          element.appendChild(metaStuff);
+
           console.log(smh);
           if (smh.exists) {
-            console.log(metaStuff.lastChild);
+            console.log("-mhhh-");
+            console.log(metaStuff.lastChild + "<--");
             user = smh.data();
-            console.log(user.Username);
+            console.log(user.Username + "<--USERNAME");
             metaStuff.lastChild.innerHTML = user.Username;
             console.log("-4-");
           }
