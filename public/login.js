@@ -27,6 +27,18 @@ function signUp(){
         // [END_EXCLUDE]
       });
 
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          user.updateProfile({
+          displayName: username
+          //photoURL: // some photo url
+      }).then(function() {
+        window.location.href = "index.html";
+      });
+
+        }
+      });
+
 }
 
 
@@ -40,15 +52,28 @@ function signInWithEmail(){
   // log error
   console.console.log(error);
 });
+//redirect after sign in
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    window.location.href = "index.html";
+  }
+});
 }
 
 function signInWithGoogle() {
   // Sign into Firebase using popup auth & Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
+
+  //Redirect after Sign in
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      window.location.href = "index.html";
+    }
+  });
 }
 
-function initFirebaseAuth() {
+/*function initFirebaseAuth() {
   // Listen to auth state changes.
   firebase.auth().onAuthStateChanged(authStateObserver);
 }
@@ -58,7 +83,7 @@ function authStateObserver(user) {
     window.location.href = "index.html";
   }
 }
-
+*/
 //Shortcuts
 var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
 var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
