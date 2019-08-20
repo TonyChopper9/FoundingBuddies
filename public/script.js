@@ -29,7 +29,7 @@ window.onload = function() {
         }
       }
     });
-    console.log(document.querySelector('[id2="' + total + '"]') + "<--");
+    console.log(document.querySelector('[id2="2"]') + "<--");
   });
 };
 
