@@ -14,14 +14,14 @@ var firestore = firebase.firestore();
 
 window.onload = function() {
   firestore.collection("posts").get().then(function (list) {
-    console.log(list);
+    console.log(list + "<-- Liste");
     list.forEach((doc) => {
-      console.log(doc);
+      console.log(doc + "<-- Doc");
       addDocument(doc);
     })
   });
-  addDocument("1bu1KXFOMUHwSSOOkBlf");
-  addDocument("BBiabkJhFIa2C48fap0P");
+  //addDocument("1bu1KXFOMUHwSSOOkBlf");
+  //addDocument("BBiabkJhFIa2C48fap0P");
 };
 
 function addDocument(docId) {
