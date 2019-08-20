@@ -149,7 +149,7 @@ function authStateObserver(user) {
 
     // Show user's profile and sign-out button.
     userNameElement.removeAttribute('hidden');
-    userPicElement.removeAttribute('hidden');
+    userPicElement.style.display = "none";
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
@@ -160,7 +160,7 @@ function authStateObserver(user) {
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
-    userPicElement.setAttribute('hidden', 'true');
+    userPicElement.style.display = ""; 
     signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
