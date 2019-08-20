@@ -14,8 +14,6 @@ var firestore = firebase.firestore();
 
 window.onload = function() {
   firestore.collection("posts").get().then(function (list) {
-    console.log("|-- Liste");
-    console.log(list);
     list.forEach((doc) => {
       addDocument(doc.id);
     })
