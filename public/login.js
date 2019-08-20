@@ -1,3 +1,14 @@
+var firebaseConfig = {
+  apiKey: "AIzaSyCR21vYC-VOPIqipke-DrTXy_rWM5JwRag",
+  authDomain: "foundingbuddies-8f157.firebaseapp.com",
+  databaseURL: "https://foundingbuddies-8f157.firebaseio.com",
+  projectId: "foundingbuddies-8f157",
+  storageBucket: "foundingbuddies-8f157.appspot.com",
+  messagingSenderId: "762592768507",
+  appId: "1:762592768507:web:a151988d7a9cb394"
+};
+firebase.initializeApp(firebaseConfig);
+
 function signUp(email, password){
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
