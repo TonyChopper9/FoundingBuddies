@@ -47,14 +47,12 @@ function addDocument(docId, visibility, number) {
         //TODO: "DELETE" USE CASE
         element.setAttribute("id2", number);
         if(!visibility){element.setAttribute("style", "display: none;")}
-        console.log("-1-");
 
         //HEADER
         var header1 = document.createElement("h2");
         header1.setAttribute("class", "blog-post-title");
         header1.innerHTML = mainDocData.header;
         element.appendChild(header1);
-        console.log("-2-");
 
         //AUTHORING
         const userRef = firestore.collection("users").doc(mainDocData.user);
@@ -66,44 +64,36 @@ function addDocument(docId, visibility, number) {
           metaStuff.setAttribute("class", "blog-post-meta");
           var linkName = document.createElement("a");
           linkName.setAttribute("href", "#");
-          console.log("-3-");
 
           //User
           user = smh.data();
           var dateDate = mainDocData.Date.toDate();
           metaStuff.innerHTML = dateDate.getDate() + "." + dateDate.getMonth() + "." + dateDate.getFullYear() + " by ";
           metaStuff.appendChild(linkName);
-          console.log("-4-");
           element.appendChild(metaStuff);
           metaStuff.lastChild.innerHTML = user.Username;
-          console.log("-5-");
 
           //TAG ROW
           var divElement = document.createElement("div");
           divElement.setAttribute("class", "row");
           element.appendChild(divElement);
-          console.log("-6-");
 
           //ZWISCHENZEILE
           var zeile = document.createElement("hr");
           element.appendChild(zeile);
-          console.log("-7-");
 
           //INHALT
           var inhalt = document.createElement("p");
           inhalt.innerHTML = mainDocData.content;
           element.appendChild(inhalt);
-          console.log("-8-");
 
           //MAIL ZEILE
           var mailZeile = document.createElement("p");
           mailZeile.innerHTML = "More Information under: " + user.mail;
           element.appendChild(mailZeile);
-          console.log("-9-");
 
           var theDiv = document.getElementById("output");
           theDiv.insertBefore(element,theDiv.firstChild);
-          console.log("-10-");
 
         }).catch(function (error) {
           console.log("Error: ", error);
@@ -115,42 +105,46 @@ function addDocument(docId, visibility, number) {
   });
 }
 
-function nextPage(){
-  page++;
-  if(page >= 4){
-    firestore.collection("posts").get().then(function (list) {
-      var i = 0;
-      list.forEach((doc) => {
-        i++;
-        if(i>30){
-          addDocument(doc.id, false, i)
-        }
-      })
-    });
-  }
-  var x = 1;
-  for (x = 1; x <= 10; x++){
-    var id2a = ((page-1)*10)+x;
-    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
-  }
-  var y = 1;
-  for (y = 1; y <= 10; y++){
-    var id2n = (page*10)+y;
-    document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+function nextPage() {
+  if (page >= total / 10 + 1) {
+    page++;
+    if (page >= 4) {
+      firestore.collection("posts").get().then(function (list) {
+        var i = 0;
+        list.forEach((doc) => {
+          i++;
+          if (i > 30) {
+            addDocument(doc.id, false, i)
+          }
+        })
+      });
+    }
+    var x = 1;
+    for (x = 1; x <= 10; x++) {
+      var id2a = ((page - 1) * 10) + x;
+      document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+    }
+    var y = 1;
+    for (y = 1; y <= 10; y++) {
+      var id2n = (page * 10) + y;
+      document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+    }
   }
 }
 
-function prevPage(){
-  page--;
-  var x2 = 1;
-  for (x2 = 1; x2 <= 10; x2++){
-    var id2a = ((page+1)*10)+x2;
-    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
-  }
-  var y2 = 1;
-  for (y2 = 1; y2 <= 10; y2++){
-    var id2n = (page*10)+y2;
-    document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+function prevPage() {
+  if (page > 1) {
+    page--;
+    var x2 = 1;
+    for (x2 = 1; x2 <= 10; x2++) {
+      var id2a = ((page + 1) * 10) + x2;
+      document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+    }
+    var y2 = 1;
+    for (y2 = 1; y2 <= 10; y2++) {
+      var id2n = (page * 10) + y2;
+      document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+    }
   }
 }
 
