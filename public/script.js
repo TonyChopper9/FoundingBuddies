@@ -44,6 +44,7 @@ window.onload = function() {
           console.log("-3-");
 
           //User
+          console.log(smh);
           user = smh.data();
           metaStuff.innerHTML = mainDocData.Date + " by ";
           metaStuff.appendChild(linkName);
