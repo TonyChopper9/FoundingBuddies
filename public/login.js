@@ -41,6 +41,17 @@ function signInWithGoogle() {
   firebase.auth().signInWithPopup(provider);
 }
 
+function initFirebaseAuth() {
+  // Listen to auth state changes.
+  firebase.auth().onAuthStateChanged(authStateObserver);
+}
+
+function authStateObserver(user) {
+  if (user) { // User is signed in!
+    window.location.href = "index.html";
+  }
+}
+
 //Shortcuts
 var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
 var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
@@ -48,5 +59,7 @@ var signUpButtonElement = document.getElementById('signUpBtn');
 
 //Add Listener
 signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
-signInButtonWithEmailElement.addEventListener("click", signInWithEmail(document.getElementById("inputLoginEmail"), document.getElementById("inputLoginPassword")));
-signUpButtonElement.addEventListener("click", signUp(document.getElementById("inputSignUpEmail"), document.getElementById("inputSignUpPassword")))
+signInButtonWithEmailElement.addEventListener("click", signInWithEmail(document.getElementById("inputLoginEmail").value, document.getElementById("inputLoginPassword").value));
+signUpButtonElement.addEventListener("click", signUp(document.getElementById("inputSignUpEmail").value, document.getElementById("inputSignUpPassword").value))
+
+initFirebaseAuth();
