@@ -19,6 +19,7 @@ window.onload = function() {
     list.forEach((doc) => {
       console.log("|-- Doc");
       console.log(doc);
+      console.log(doc.id);
       console.log("|-- DocData");
       console.log(doc.data());
       addDocument(doc);
