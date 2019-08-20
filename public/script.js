@@ -129,8 +129,16 @@ function nextPage(){
       })
     });
   }
-  var x = 0;
-
+  var x = 1;
+  for (x = 1; x <= 10; x++){
+    var id2a = ((page-1)*10)+x;
+    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+  }
+  var y = 1;
+  for (y = 1; y <= 10; y++){
+    var id2n = (page*10)+y;
+    document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+  }
 }
 
 function prevPage(){
