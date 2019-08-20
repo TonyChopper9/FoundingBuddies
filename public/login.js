@@ -94,4 +94,4 @@ signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
 signInButtonWithEmailElement.addEventListener("click", signInWithEmail);
 signUpButtonElement.addEventListener("click", signUp)
 
-initFirebaseAuth();
+//initFirebaseAuth();
