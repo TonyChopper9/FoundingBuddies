@@ -24,16 +24,16 @@ window.onload = function() {
       i++;
       if (i <= 30) {
         if (i <= 10) {
-          addDocument(doc.id, true)
+          addDocument(doc.id, true, i)
         } else {
-          addDocument(doc.id, false)
+          addDocument(doc.id, false, i)
         }
       }
     })
   });
 };
 
-function addDocument(docId, visibility) {
+function addDocument(docId, visibility, number) {
   const docRef = firestore.collection("posts").doc(docId);
   var mainDocData = null;
   docRef.get().then(function (doc) {
@@ -44,6 +44,9 @@ function addDocument(docId, visibility) {
         var element = document.createElement("div");
         element.setAttribute("class", "blog-post");
         element.setAttribute("id", docId);
+        //Potentially problematic
+        //TODO: "DELETE" USE CASE
+        element.setAttribute("id", number);
         if(!visibility){element.setAttribute("style", "display: none;")}
         console.log("-1-");
 
