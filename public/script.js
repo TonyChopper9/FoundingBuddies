@@ -33,7 +33,7 @@ window.onload = function() {
 
         //AUTHORING
         const userRef = firestore.collection("users").doc(mainDocData.user);
-        console.log(mainDocData.user);
+        console.log(mainDocData.user + "<-- User");
         var user = null;
 
         userRef.get().then(function (smh) {
@@ -49,18 +49,19 @@ window.onload = function() {
             //linkName.innerHTML = user.Username;
           metaStuff.innerHTML = "TODO: DATUM";
           metaStuff.appendChild(linkName);
-          console.log("-5-");
+          console.log("-4-");
           element.appendChild(metaStuff);
 
           console.log(smh + "<--smh");
-          if (smh.exists) {
-            console.log("-mhhh-");
-            console.log(metaStuff.lastChild + "<--");
-            user = smh.data();
-            console.log(user.Username + "<--USERNAME");
-            metaStuff.lastChild.innerHTML = user.Username;
-            console.log("-4-");
-          }
+
+          console.log("-mhhh-");
+          console.log(metaStuff.lastChild + "<--LastChild");
+          user = smh.data();
+          console.log(user + "<--USER");
+          console.log(user.Username + "<--USERNAME");
+          metaStuff.lastChild.innerHTML = user.Username;
+          console.log("-5-");
+
 
           //TAG ROW
           var divElement = document.createElement("div");
