@@ -11,9 +11,9 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
-const docRef = firestore.collection("posts").doc("1bu1KXFOMUHwSSOOkBlf");
 
 window.onload = function() {
+  const docRef = firestore.collection("posts").doc("1bu1KXFOMUHwSSOOkBlf");
   var mainDocData = null;
   docRef.get().then(function (doc) {
     if (doc && doc.exists){
@@ -22,6 +22,7 @@ window.onload = function() {
       if (mainDocData != null) {
         var element = document.createElement("div");
         element.setAttribute("class", "blog-post");
+        element.setAttribute("id", "1bu1KXFOMUHwSSOOkBlf");
         console.log("-1-");
 
         //HEADER
