@@ -12,11 +12,14 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 var page = 0;
+var total = 0;
 
 window.onload = function() {
+  total = 0;
   firestore.collection("posts").get().then(function (list) {
     var i = 0;
     list.forEach((doc) => {
+      total++;
       i++;
       if (i <= 10) {addDocument(doc.id, true)}
       else {addDocument(doc.id, false)}
@@ -105,7 +108,10 @@ function addDocument(docId, visibility) {
 }
 
 function nextPage(){
-  console.log("next page worx")
+  var x = 0;
+  while (x != total){
+
+  }
 }
 
 function prevPage(){
