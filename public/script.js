@@ -47,7 +47,7 @@ window.onload = function() {
             //var mail = "mailto:" + user.E-mail;
             //linkName.setAttribute("href", mail);
             //linkName.innerHTML = user.Username;
-          metaStuff.innerHTML = user.Date + " by ";
+          metaStuff.innerHTML = mainDocData.Date + " by ";
           metaStuff.appendChild(linkName);
           console.log("-4-");
           element.appendChild(metaStuff);
