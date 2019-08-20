@@ -134,11 +134,7 @@ function prevPage(){
 
 }
 
-function signInWithGoogle() {
-  // Sign into Firebase using popup auth & Google as the identity provider.
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
-}
+
 function signOut() {
   // Sign out of Firebase.
   firebase.auth().signOut();
@@ -178,8 +174,13 @@ function addSizeToGoogleProfilePic(url) {
 function authStateObserver(user) {
   if (user) { // User is signed in!
     // Get the signed-in user's profile pic and name.
+
     var profilePicUrl = getProfilePicUrl();
     var userName = getUserName();
+
+    //if (profilePicUrl == "") {
+    //  profilePicUrl = "media/usericon.png";
+    //}
 
     // Set the user's profile pic and name.
     userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
@@ -188,10 +189,11 @@ function authStateObserver(user) {
     // Show user's profile and sign-out button.
     userNameElement.removeAttribute('hidden');
     userPicElement.style.display = "";
-    signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
-    signInButtonWithGoogleElement.setAttribute('hidden', 'true');
+    loginPageButton.style.display = "none";
+    // Show sign-out button.
+    signOutButtonElement.style.display = "";
 
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
@@ -199,44 +201,29 @@ function authStateObserver(user) {
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
     userPicElement.style.display = "none";
-    signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
-    signInButtonWithGoogleElement.removeAttribute('hidden');
+    loginPageButton.style.display = "";
+    //Hide sign-out Button
+    signOutButtonElement.style.display = "none";
   }
 }
 
-function signUp(){
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-        // [END_EXCLUDE]
-      });
+function loginPage(){
+  window.location.href = "login.html";
 }
+
+
 
 
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
-var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
-var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
-var signUpButtonElement = document.getElementById('signUpBtn');
-
-
+var loginPageButton = document.getElementById("LoginPageBtn");
 var signOutButtonElement = document.getElementById('sign-out');
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
-signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
-signInButtonWithEmailElement.addEventListener("click", signInWithEmail);
-signUpButtonElement.addEventListener("click", signUp)
+loginPageButton.addEventListener("click", loginPage)
 
 initFirebaseAuth();

@@ -152,3 +152,27 @@ h6 {
 .blog-footer p:last-child {
     margin-bottom: 0;
 }
+
+.LoginButton {
+	background-color:#44c767;
+	-moz-border-radius:19px;
+	-webkit-border-radius:19px;
+	border-radius:19px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	font-weight:bold;
+	padding:8px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.LoginButton:hover {
+	background-color:#5cbf2a;
+}
+.LoginButton:active {
+	position:relative;
+	top:1px;
+}
