@@ -13,7 +13,7 @@ function signUp(){
   var username = document.getElementById("inputSignUpUsername").value;
   var email = document.getElementById("inputSignUpEmail").value;
   var password = document.getElementById("inputSignUpPassword").value;
-  firebase.auth().createUserWithEmailAndPassword(email, password).then((user)=>{
+  firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
     if(user){
       user.updateProfile({
         displayName: username
