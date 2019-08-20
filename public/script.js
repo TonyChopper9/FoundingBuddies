@@ -144,7 +144,7 @@ function authStateObserver(user) {
     var userName = getUserName();
 
     // Set the user's profile pic and name.
-    userPicElement.src(addSizeToGoogleProfilePic(profilePicUrl));
+    userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
     userNameElement.textContent = userName;
 
     // Show user's profile and sign-out button.
