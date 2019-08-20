@@ -74,7 +74,7 @@ window.onload = function() {
 
           //MAIL ZEILE
           var mailZeile = document.createElement("p");
-          mailZeile.innerHTML = user.E-mail;
+          mailZeile.innerHTML = user.mail;
           element.appendChild(mailZeile);
           console.log("-9-");
 
