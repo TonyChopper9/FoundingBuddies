@@ -44,14 +44,11 @@ window.onload = function() {
           console.log("-3-");
 
           //User
-          console.log(smh);
           user = smh.data();
-          metaStuff.innerHTML = mainDocData.Date + " by ";
+          var dateDate = new Date(mainDocData.Date*1000);
+          metaStuff.innerHTML = dateDate + " by ";
           metaStuff.appendChild(linkName);
           console.log("-4-");
-          console.log(user);
-          console.log(user.Username);
-          console.log(user.mail);
           element.appendChild(metaStuff);
           metaStuff.lastChild.innerHTML = user.Username;
           console.log("-5-");
