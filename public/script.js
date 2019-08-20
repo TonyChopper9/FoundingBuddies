@@ -17,12 +17,18 @@ var total = 0;
 window.onload = function() {
   total = 0;
   firestore.collection("posts").get().then(function (list) {
+    total = list.size;
+    console.log(total);
     var i = 0;
     list.forEach((doc) => {
-      total++;
       i++;
-      if (i <= 10) {addDocument(doc.id, true)}
-      else {addDocument(doc.id, false)}
+      if (i <= 30) {
+        if (i <= 10) {
+          addDocument(doc.id, true)
+        } else {
+          addDocument(doc.id, false)
+        }
+      }
     })
   });
 };
@@ -108,10 +114,20 @@ function addDocument(docId, visibility) {
 }
 
 function nextPage(){
-  var x = 0;
-  while (x != total){
-
+  page++;
+  if(page >= 4){
+    firestore.collection("posts").get().then(function (list) {
+      var i = 0;
+      list.forEach((doc) => {
+        i++;
+        if(i>30){
+          addDocument(doc.id, false)
+        }
+      })
+    });
   }
+  var x = 0;
+
 }
 
 function prevPage(){
