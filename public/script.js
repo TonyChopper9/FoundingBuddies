@@ -167,30 +167,32 @@ function authStateObserver(user) {
 
     // Show user's profile and sign-out button.
     userNameElement.removeAttribute('hidden');
-    userPicElement.style.display = "none";
+    userPicElement.style.display = "";
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
-    loginButton.setAttribute('hidden', 'true');
+    loginButton.style.display = "";
     // Show sign-out button.
-    signOutButtonElement.removeAttribute('hidden');
+    signOutButtonElement.style.display = "none";
 
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
-    userPicElement.style.display = "";
+    userPicElement.style.display = "none";
     signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
-    loginButton.removeAttribute('hidden');
+    loginButton.style.display = "none";
     //Hide sign-out Button
-    signOutButtonElement.setAttribute('hidden', "true");
+    signOutButtonElement.style.display = "";
   }
 }
 
-
+function loginPage(){
+  window.location.href = "login.html";
+}
 
 
 
@@ -203,5 +205,6 @@ var signOutButtonElement = document.getElementById('sign-out');
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
+loginPageButton.addEventListener("click", loginPage)
 
 initFirebaseAuth();
