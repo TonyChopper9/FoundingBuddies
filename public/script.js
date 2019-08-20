@@ -132,7 +132,7 @@ function getUserName() {
 
 function addSizeToGoogleProfilePic(url) {
   if (url.indexOf('googleusercontent.com') !== -1 && url.indexOf('?') === -1) {
-    return url + '?sz=150';
+    return url + '?sz=25';
   }
   return url;
 }
@@ -149,7 +149,7 @@ function authStateObserver(user) {
 
     // Show user's profile and sign-out button.
     userNameElement.removeAttribute('hidden');
-    userPicElement.style.display = "none";
+    userPicElement.style.display = "";
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
@@ -160,7 +160,7 @@ function authStateObserver(user) {
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
-    userPicElement.style.display = ""; 
+    userPicElement.style.display = "none";
     signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
