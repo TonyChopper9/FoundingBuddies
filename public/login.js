@@ -27,22 +27,6 @@ function signUp(){
         // [END_EXCLUDE]
       });
 
-    var user = firebase.auth.currentUser();
-    if(user){
-      user.updateProfile({
-        displayName: username
-        //photoURL:
-      }).catch(function(error) {
-        console.log(error);
-    // An error happened.
-      });
-    user.sendEmailVerification().then(function() {
-      // Email sent.
-    }).catch(function(error) {
-      console.log(error);
-  // An error happened.
-    });
-  }
 }
 
 
