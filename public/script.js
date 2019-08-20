@@ -49,13 +49,13 @@ window.onload = function() {
 
         var user = null;
         userRef.get().then(function (smh) {
-          console.log("blabla");
-          if (smh && smh.exists) {
+          console.log(smh);
+          //if (smh && smh.exists) {
             console.log(metaStuff.lastChild);
             user = smh.data();
             metaStuff.lastChild.innerHTML = user.Username;
             console.log("-4-");
-          }
+          //}
         });
 
         //TAG ROW
