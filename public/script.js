@@ -12,14 +12,12 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 const docRef = firestore.collection("posts").doc("1bu1KXFOMUHwSSOOkBlf");
-const userDB = firestore.collection("users").data();
 
 window.onload = function() {
   var mainDocData = null;
   docRef.get().then(function (doc) {
     if (doc && doc.exists){
       mainDocData = doc.data();
-      console.log(userDB);
 
       if (mainDocData != null) {
         var element = document.createElement("div");
