@@ -13,23 +13,7 @@ function signUp(){
   var username = document.getElementById("inputSignUpUsername").value;
   var email = document.getElementById("inputSignUpEmail").value;
   var password = document.getElementById("inputSignUpPassword").value;
-  firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
-    var user = firebase.auth.currentUser();
-    if(user){
-      user.updateProfile({
-        displayName: username
-        //photoURL:
-      });
-      user.sendEmailVerification().then(function() {
-  // Email sent.
-}).catch(function(error) {
-  console.log(error);
-  // An error happened.
-});
-    }
-
-
-  }).catch(function(error) {
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -42,7 +26,25 @@ function signUp(){
         console.log(error);
         // [END_EXCLUDE]
       });
+
+    var user = firebase.auth.currentUser();
+    if(user){
+      user.updateProfile({
+        displayName: username
+        //photoURL:
+      }).catch(function(error) {
+        console.log(error);
+    // An error happened.
+      });
+    user.sendEmailVerification().then(function() {
+      // Email sent.
+    }).catch(function(error) {
+      console.log(error);
+  // An error happened.
+    });
+  }
 }
+
 
 function signInWithEmail(){
   var email = document.getElementById("inputLoginEmail").value;
