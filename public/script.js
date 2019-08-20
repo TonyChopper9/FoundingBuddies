@@ -46,17 +46,18 @@ window.onload = function() {
         metaStuff.appendChild(linkName);
         console.log("-5-");
         element.appendChild(metaStuff);
-
         var user = null;
         userRef.get().then(function (smh) {
           console.log(smh);
-          //if (smh && smh.exists) {
+          if (smh.exists) {
             console.log(metaStuff.lastChild);
             user = smh.data();
-          console.log(user.Username);
+            console.log(user.Username);
             metaStuff.lastChild.innerHTML = user.Username;
             console.log("-4-");
-          //}
+          }
+        }).catch(function (error) {
+          console.log("Error: ", error);
         });
 
         //TAG ROW
