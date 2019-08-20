@@ -13,7 +13,11 @@ firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 
 window.onload = function() {
-  const docRef = firestore.collection("posts").doc("1bu1KXFOMUHwSSOOkBlf");
+  addDocument("1bu1KXFOMUHwSSOOkBlf")
+};
+
+function addDocument(docId) {
+  const docRef = firestore.collection("posts").doc(docId);
   var mainDocData = null;
   docRef.get().then(function (doc) {
     if (doc && doc.exists){
@@ -22,7 +26,7 @@ window.onload = function() {
       if (mainDocData != null) {
         var element = document.createElement("div");
         element.setAttribute("class", "blog-post");
-        element.setAttribute("id", "1bu1KXFOMUHwSSOOkBlf");
+        element.setAttribute("id", docId);
         console.log("-1-");
 
         //HEADER
@@ -89,7 +93,7 @@ window.onload = function() {
   }).catch(function (error) {
     console.log("Error: ", error);
   });
-};
+}
 
 function signIn() {
   // Sign into Firebase using popup auth & Google as the identity provider.
