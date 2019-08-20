@@ -72,7 +72,7 @@ window.onload = function() {
           element.appendChild(inhalt);
           console.log("-8-");
 
-          //INHALT
+          //MAIL ZEILE
           var mailZeile = document.createElement("p");
           mailZeile.innerHTML = user.E-mail;
           element.appendChild(mailZeile);
