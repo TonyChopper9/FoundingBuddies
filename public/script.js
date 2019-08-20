@@ -37,6 +37,7 @@ window.onload = function() {
         var user = null;
 
         userRef.get().then(function (smh) {
+
           var metaStuff = document.createElement("p");
           metaStuff.setAttribute("class", "blog-post-meta");
           var linkName = document.createElement("a");
@@ -51,7 +52,7 @@ window.onload = function() {
           console.log("-5-");
           element.appendChild(metaStuff);
 
-          console.log(smh);
+          console.log(smh + "<--smh");
           if (smh.exists) {
             console.log("-mhhh-");
             console.log(metaStuff.lastChild + "<--");
@@ -64,25 +65,23 @@ window.onload = function() {
           //TAG ROW
           var divElement = document.createElement("div");
           divElement.setAttribute("class", "row");
+          element.appendChild(divElement);
           console.log("-6-");
 
           //ZWISCHENZEILE
           var zeile = document.createElement("hr");
+          element.appendChild(zeile);
           console.log("-7-");
 
           //INHALT
           var inhalt = document.createElement("p");
           inhalt.innerHTML = mainDocData.content;
-          console.log("-8-");
-
-          element.appendChild(divElement);
-          element.appendChild(zeile);
           element.appendChild(inhalt);
-          console.log("-9-");
+          console.log("-8-");
 
           var theDiv = document.getElementById("output");
           theDiv.insertBefore(element,theDiv.firstChild);
-          console.log("-10-");
+          console.log("-9-");
 
         }).catch(function (error) {
           console.log("Error: ", error);
