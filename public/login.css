@@ -52,7 +52,7 @@ body{
 }
 body{
   background-color:#b46f20;
-  background-image:url(https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-image: url("media/loginBackground.jpg");
   background-repeat:repeat;
   background-position:left top;
   background-attachment:scroll;
