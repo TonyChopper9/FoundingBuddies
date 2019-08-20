@@ -42,18 +42,18 @@ window.onload = function() {
           var linkName = document.createElement("a");
           linkName.setAttribute("href", "#");
           console.log("-3-");
+
           //User
           user = smh.data();
-            //var mail = "mailto:" + user.E-mail;
-            //linkName.setAttribute("href", mail);
-            //linkName.innerHTML = user.Username;
           metaStuff.innerHTML = mainDocData.Date + " by ";
           metaStuff.appendChild(linkName);
           console.log("-4-");
+          console.log(user);
+          console.log(user.Username);
+          console.log(user.mail);
           element.appendChild(metaStuff);
           metaStuff.lastChild.innerHTML = user.Username;
           console.log("-5-");
-
 
           //TAG ROW
           var divElement = document.createElement("div");
