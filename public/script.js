@@ -53,6 +53,7 @@ window.onload = function() {
           //if (smh && smh.exists) {
             console.log(metaStuff.lastChild);
             user = smh.data();
+          console.log(user.Username);
             metaStuff.lastChild.innerHTML = user.Username;
             console.log("-4-");
           //}
