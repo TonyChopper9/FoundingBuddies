@@ -13,6 +13,13 @@ firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 
 window.onload = function() {
+  firestore.collection("posts").get().then(function (list) {
+    console.log(list);
+    list.forEach((doc) => {
+      console.log(doc);
+      addDocument(doc);
+    })
+  });
   addDocument("1bu1KXFOMUHwSSOOkBlf");
   addDocument("BBiabkJhFIa2C48fap0P");
 };
