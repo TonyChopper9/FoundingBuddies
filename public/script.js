@@ -171,7 +171,7 @@ function authStateObserver(user) {
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
-    loginButton.style.display = "";
+    loginPageButton.style.display = "";
     // Show sign-out button.
     signOutButtonElement.style.display = "none";
 
@@ -184,7 +184,7 @@ function authStateObserver(user) {
     signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
-    loginButton.style.display = "none";
+    loginPageButton.style.display = "none";
     //Hide sign-out Button
     signOutButtonElement.style.display = "";
   }
