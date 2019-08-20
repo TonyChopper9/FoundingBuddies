@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 
 window.onload = function() {
-  addDocument("1bu1KXFOMUHwSSOOkBlf")
+  addDocument("1bu1KXFOMUHwSSOOkBlf");
 };
 
 function addDocument(docId) {
