@@ -175,7 +175,7 @@ function authStateObserver(user) {
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
-    signInButtonWithGoogleElement.setAttribute('hidden', 'true');
+    loginButton.setAttribute('hidden', 'true');
 
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
@@ -186,11 +186,11 @@ function authStateObserver(user) {
     signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
-    signInButtonWithGoogleElement.removeAttribute('hidden');
+    loginButton.removeAttribute('hidden');
   }
 }
 
-function signUp(){
+function signUp(email, password){
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -206,6 +206,17 @@ function signUp(){
       });
 }
 
+function signInWithEmail(email, password){
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // log error
+  console.console.log(error);
+});
+
+}
+
 
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
@@ -213,14 +224,14 @@ var userNameElement = document.getElementById('user-name');
 var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
 var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
 var signUpButtonElement = document.getElementById('signUpBtn');
-
+var loginPageButton = document.getElementById("LoginPageBtn");
 
 var signOutButtonElement = document.getElementById('sign-out');
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
-signInButtonWithEmailElement.addEventListener("click", signInWithEmail);
-signUpButtonElement.addEventListener("click", signUp)
+signInButtonWithEmailElement.addEventListener("click", signInWithEmail(document.getElementById("inputLoginEmail"), document.getElementById("inputLoginPassword")));
+signUpButtonElement.addEventListener("click", signUp(document.getElementById("inputSignUpEmail"), document.getElementById("inputSignUpPassword")))
 
 initFirebaseAuth();
