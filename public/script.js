@@ -221,7 +221,7 @@ function authStateObserver(user) {
     var userName = getUserName();
 
     //load chat Messages
-    loadMessages();
+    //loadMessages();
 
     //if (profilePicUrl == "") {
     //  profilePicUrl = "media/usericon.png";
@@ -281,7 +281,7 @@ function saveMessage() {
 
 function loadMessages() {
   // Create the query to load the last 12 messages and listen for new ones.
-  firestore.collection('messages').where("people", "array-contains", getUserId)
+  firestore.collection("messages").where("people", "array-contains", getUserId)
                   //.orderBy('timestamp', 'desc')
                   .get().catch(function(error){
                     console.log(error);
