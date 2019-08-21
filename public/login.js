@@ -13,6 +13,8 @@ function signUp(){
   var username = document.getElementById("inputSignUpUsername").value;
   var email = document.getElementById("inputSignUpEmail").value;
   var password = document.getElementById("inputSignUpPassword").value;
+
+
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -30,14 +32,20 @@ function signUp(){
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           user.updateProfile({
-          displayName: username
-          //photoURL: // some photo url
-      }).then(function() {
-        window.location.href = "index.html";
-      });
+            displayName: username
+            //photoURL: // some photo url
+          }).then(function() {
+            window.location.href = "index.html";
+          });
 
+          firebase.firestore().collection("users").doc(user.uid).set({
+              Username: username,
+              mail: email
+          });
         }
       });
+
+
 
 }
 
@@ -69,6 +77,10 @@ function signInWithGoogle() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       window.location.href = "index.html";
+      firebase.firestore().collection("users").doc(user.uid).set({
+          Username: user.displayName,
+          mail: user.email
+      });
     }
   });
 }
