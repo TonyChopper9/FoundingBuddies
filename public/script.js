@@ -161,6 +161,9 @@ function prevPage() {
 
 function upload() {
   console.log(getUserId());
+  console.log(firestore.Timestamp.now());
+  console.log(firebase.firestore.Timestamp.fromDate(new Date()));
+
   const postRef = firestore.collection("posts");
   const inputHeader = document.querySelector("#uploadTitleInput");
   const inputContent = document.querySelector("#uploadContentInput");
