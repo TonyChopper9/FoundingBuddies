@@ -311,12 +311,12 @@ var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var signOutButtonElement = document.getElementById('sign-out');
-//var sendMessageBtn = document.getElementById("sendMessageBtn");
-//var chatInput = document.getElementById("chatInput");
+var sendMessageBtn = document.getElementById("sendMessageBtn");
+var chatInput = document.getElementById("chatInput");
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 loginPageButton.addEventListener("click", loginPage);
-//sendMessageBtn.addEventListener("click", saveMessage);
+sendMessageBtn.addEventListener("click", saveMessage);
 
 initFirebaseAuth();
