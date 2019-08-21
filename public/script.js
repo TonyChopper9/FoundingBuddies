@@ -105,7 +105,7 @@ function addDocument(docId, visibility, number) {
 
 function nextPage() {
 
-  firebase.firestore().collection("users").doc("JdoPIotw749ypjnmC0am").set({
+  firebase.firestore().collection("users").doc("JdoPIotw749yojnmC0am").add({
     Username: "testusername",
     mail: "email"
   }).catch(function (error){console.log(error)});
