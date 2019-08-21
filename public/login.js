@@ -77,7 +77,7 @@ function signInWithGoogle() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       window.location.href = "index.html";
-      console.log(user.uid);
+      //console.log(user.uid);
       firebase.firestore().collection("users").doc(user.uid).set({
           Username: user.displayName,
           mail: user.email
