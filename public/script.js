@@ -251,6 +251,24 @@ function loginPage(){
   window.location.href = "login.html";
 }
 
+function saveMessage() {
+  //Get message
+  var messageText = chatInput.value;
+  // Add a new message entry to the Firebase database.
+  return firebase.firestore().collection('messages').add({
+    name: getUserName(),
+    text: messageText,
+    //profilePicUrl: getProfilePicUrl(),
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function(){
+    //clear chatinputfield
+    chatInput.value = "";
+  })
+  .catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+}
+
 
 
 
@@ -259,9 +277,12 @@ var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var signOutButtonElement = document.getElementById('sign-out');
+var sendMessageBtn = document.getElementById("sendMessageBtn");
+var chatInput = document.getElementById("chatInput");
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 loginPageButton.addEventListener("click", loginPage);
+sendMessageBtn.addEventListener("click", saveMessage);
 
 initFirebaseAuth();
