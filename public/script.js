@@ -144,12 +144,16 @@ function prevPage() {
     var x2 = 1;
     for (x2 = 1; x2 <= 10; x2++) {
       var id2a = ((page + 1) * 10) + x2;
-      document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+      if (id2a <= total) {
+        document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+      }
     }
     var y2 = 1;
     for (y2 = 1; y2 <= 10; y2++) {
       var id2n = (page * 10) + y2;
-      document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+      if (id2n <= total) {
+        document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+      }
     }
   }
 }
