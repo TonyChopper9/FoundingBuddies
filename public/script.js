@@ -166,7 +166,7 @@ function upload() {
   const inputContent = document.querySelector("#uploadContentInput");
   //const inputButton = document.querySelector("#createButton");
   const inpData = {
-    Date: Date.now().getTime(),
+    Date: firestore.Timestamp.now(),
     content: inputContent.value,
     header: inputHeader.value,
     user: getUserId()
