@@ -31,6 +31,10 @@ function signUp(){
 
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            firebase.firestore().collection("users").doc(user.uid).set({
+                Username: username,
+                mail: email
+            }).catch(function (error){console.log(error)});
           user.updateProfile({
             displayName: username
             //photoURL: // some photo url
@@ -38,10 +42,7 @@ function signUp(){
             window.location.href = "index.html";
           });
 
-          firebase.firestore().collection("users").doc(user.uid).set({
-              Username: username,
-              mail: email
-          }).catch(function (error){console.log(error)});
+
         }
       });
 
