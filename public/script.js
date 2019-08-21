@@ -159,6 +159,20 @@ function prevPage() {
   }
 }
 
+function upload() {
+  const postRef = firestore.collection("posts");
+  const inputHeader = document.querySelector("#uploadTitleInput");
+  const inputContent = document.querySelector("#uploadContentInput");
+  //const inputButton = document.querySelector("#createButton");
+  const inpData = {
+    Date: Date.now().getTime(),
+    content: inputContent.value,
+    header: inputHeader.value,
+    user: 
+  };
+  postRef.doc().set
+
+}
 
 function signOut() {
   // Sign out of Firebase.
