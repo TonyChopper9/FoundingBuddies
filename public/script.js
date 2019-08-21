@@ -264,7 +264,7 @@ function saveMessage() {
   //Get message
   var messageText = chatInput.value;
   // Add a new message entry to the Firebase database.
-  return firebase.firestore().collection('messages').add({
+  return firebase.firestore().collection('MessagesF').add({
     from: getUserId(),
     //to:
     text: messageText,
@@ -282,7 +282,7 @@ function saveMessage() {
 function loadMessages() {
   // Create the query to load the last 12 messages and listen for new ones.
   var query = firebase.firestore()
-                  .collection('MessagesFrom' + getUserId)
+                  .collection('messages').where("people", "array-contains", getUserId)
                   //.orderBy('timestamp', 'desc')
                   .get().then(function(snap) {
                     snap.forEach(function(doc){
