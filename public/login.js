@@ -41,7 +41,7 @@ function signUp(){
           firebase.firestore().collection("users").doc(user.uid).set({
               Username: username,
               mail: email
-          }).catch(function (error){console.log(error)});
+          });//.catch(function (error){console.log(error)});
         }
       });
 
