@@ -256,7 +256,8 @@ function saveMessage() {
   var messageText = chatInput.value;
   // Add a new message entry to the Firebase database.
   return firebase.firestore().collection('messages').add({
-    name: getUserName(),
+    from: getUserId(),
+    //to:
     text: messageText,
     //profilePicUrl: getProfilePicUrl(),
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -283,6 +284,6 @@ var chatInput = document.getElementById("chatInput");
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 loginPageButton.addEventListener("click", loginPage);
-sendMessageBtn.addEventListener("click", saveMessage);
+//sendMessageBtn.addEventListener("click", saveMessage);
 
 initFirebaseAuth();
