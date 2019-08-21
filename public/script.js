@@ -107,7 +107,7 @@ function addDocument(docId, visibility, number) {
 
 function nextPage() {
   console.log(page + "<--");
-  console.log(total + "<--");
+  console.log(total / 10 + "<--");
   if (page < total / 10) {
     page++;
     if (page >= 3) {
@@ -261,16 +261,16 @@ var uploadClose = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 uploadBtn.onclick = function() {
   modal.style.display = "block";
-}
+};
 
 // When the user clicks on <span> (x), close the modal
 uploadClose.onclick = function() {
   modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+};
