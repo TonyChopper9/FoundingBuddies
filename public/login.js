@@ -10,9 +10,9 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 function signUp(){
-  var username = document.getElementById("inputSignUpUsername").value;
-  var email = document.getElementById("inputSignUpEmail").value;
-  var password = document.getElementById("inputSignUpPassword").value;
+  const username = document.getElementById("inputSignUpUsername").value;
+  const email = document.getElementById("inputSignUpEmail").value;
+  const password = document.getElementById("inputSignUpPassword").value;
 
 
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
@@ -41,11 +41,9 @@ function signUp(){
           firebase.firestore().collection("users").doc(user.uid).set({
               Username: username,
               mail: email
-          });
+          }).catch(function (error){console.log(error)});
         }
       });
-
-
 
 }
 
@@ -80,7 +78,7 @@ function signInWithGoogle() {
       firebase.firestore().collection("users").doc(user.uid).set({
           Username: user.displayName,
           mail: user.email
-      });
+      }).catch(function (error){console.log(error)});
     }
   });
 }
