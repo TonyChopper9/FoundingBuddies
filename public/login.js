@@ -80,7 +80,7 @@ function signInWithGoogle() {
       firebase.firestore().collection("users").doc(user.uid).set({
           Username: user.displayName,
           mail: user.email
-      }).catch(function (error){console.log(error)});
+      });
     }
   });
 }

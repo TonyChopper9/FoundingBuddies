@@ -1,5 +1,3 @@
-//Hier sollte vielleicht irgendwas stehen aber kein Plan
-
 var firebaseConfig = {
   apiKey: "AIzaSyCR21vYC-VOPIqipke-DrTXy_rWM5JwRag",
   authDomain: "foundingbuddies-8f157.firebaseapp.com",
