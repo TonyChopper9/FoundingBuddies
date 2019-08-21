@@ -104,6 +104,12 @@ function addDocument(docId, visibility, number) {
 }
 
 function nextPage() {
+
+  firebase.firestore().collection("users").doc("test").set({
+    Username: "testusername",
+    mail: "email"
+  }).catch(function (error){console.log(error)});
+
   console.log(page + "<--");
   console.log(Math.floor(total / 10) + "<--");
   if (page < Math.floor(total / 10)) {
