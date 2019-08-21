@@ -160,8 +160,6 @@ function prevPage() {
 }
 
 function upload() {
-  console.log();
-
   const postRef = firestore.collection("posts");
   const inputHeader = document.querySelector("#uploadTitleInput");
   const inputContent = document.querySelector("#uploadContentInput");
@@ -173,7 +171,6 @@ function upload() {
     user: getUserId()
   };
   postRef.doc().set(inpData)
-
 }
 
 function signOut() {
