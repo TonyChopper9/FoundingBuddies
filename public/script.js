@@ -260,50 +260,7 @@ function loginPage(){
   window.location.href = "login.html";
 }
 
-function saveMessage() {
-  //Get message
-  var messageText = chatInput.value;
-  // Add a new message entry to the Firebase database.
-  return firebase.firestore().collection('messages').add({
-    people: getUserId(),
-    //to:
-    text: messageText,
-    //profilePicUrl: getProfilePicUrl(),
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function(){
-    //clear chatinputfield
-    chatInput.value = "";
-  })
-  .catch(function(error) {
-    console.error('Error writing new message to Firebase Database', error);
-  });
-}
 
-function loadMessages() {
-  // Create the query to load the last 12 messages and listen for new ones.
-  firestore.collection("messages").where("people", "array-contains", getUserId)
-                  //.orderBy('timestamp', 'desc')
-                  .get().catch(function(error){
-                    console.log(error);
-                  }).then(function(snap) {
-                    snap.forEach(function(doc){
-                      console.log(doc.id, " => ", doc.data());
-                    })
-                  });
-
-  // Start listening to the query.
-  /*query.onSnapshot(function(snapshot) {
-    snapshot.docChanges().forEach(function(change) {
-      if (change.type === 'removed') {
-        deleteMessage(change.doc.id);
-      } else {
-        var message = change.doc.data();
-        displayMessage(change.doc.id, message.timestamp, message.name,
-                       message.text, message.profilePicUrl, message.imageUrl);
-      }
-    });
-  });*/
-}
 
 
 
@@ -312,12 +269,9 @@ var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var signOutButtonElement = document.getElementById('sign-out');
-var sendMessageBtn = document.getElementById("sendMessageBtn");
-var chatInput = document.getElementById("chatInput");
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 loginPageButton.addEventListener("click", loginPage);
-sendMessageBtn.addEventListener("click", saveMessage);
 
 initFirebaseAuth();
