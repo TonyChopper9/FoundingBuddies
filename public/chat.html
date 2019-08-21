@@ -23,6 +23,7 @@
         <script defer src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
     </head>
     <body>
+
       <div class="container">
         <div class="row">
           <h3>Chat</h3>
@@ -43,21 +44,27 @@
             </div>
           </div>
           <div class="col-8">
-            <div class="container">
-              <div class="container">
+            <div style=" height: 200px" class="mb-3 container border border-primary">
                 <div class="tab-content" id="nav-tabContent">
                   <div class="tab-pane fade" id="" role="tabpanel">...</div>
-                  <div class="tab-pane fade" id="BatmanChat" role="tabpanel">I bims... Batman</div>
+                  <div class="tab-pane fade" id="BatmanChat" role="tabpanel">
+
+                      <div class="border col-8">messagefromBatman</div>
+                      <div align="right" class="row justify-content-end"><div class="border col-8">messagefromme</div></div>
+
+
+                  </div>
                   <div class="tab-pane fade" id="" role="tabpanel">...</div>
                   <div class="tab-pane fade" id="" role="tabpanel">...</div>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <input id="chatInput" type="text" class="form-control" placeholder="Type message...">
-                <div class="input-group-append">
-                  <button id="sendMessageBtn" class="btn btn-outline-secondary" type="button">Send</button>
-                </div>
-              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-end">
+          <div class="col-8 input-group mb-3">
+            <input id="chatInput" type="text" class="form-control" placeholder="Type message...">
+            <div class="input-group-append">
+              <button id="sendMessageBtn" class="btn btn-outline-secondary" type="button">Send</button>
             </div>
           </div>
         </div>
