@@ -281,8 +281,7 @@ function saveMessage() {
 
 function loadMessages() {
   // Create the query to load the last 12 messages and listen for new ones.
-  var query = firebase.firestore()
-                  .collection('messages').where("people", "array-contains", getUserId)
+  firestore.collection('messages').where("people", "array-contains", getUserId)
                   //.orderBy('timestamp', 'desc')
                   .get().then(function(snap) {
                     snap.forEach(function(doc){
