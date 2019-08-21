@@ -264,8 +264,8 @@ function saveMessage() {
   //Get message
   var messageText = chatInput.value;
   // Add a new message entry to the Firebase database.
-  return firebase.firestore().collection('MessagesF').add({
-    from: getUserId(),
+  return firebase.firestore().collection('messages').add({
+    people: getUserId(),
     //to:
     text: messageText,
     //profilePicUrl: getProfilePicUrl(),
