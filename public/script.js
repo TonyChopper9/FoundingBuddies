@@ -168,7 +168,6 @@ function upload() {
     Date: Date.now().getTime(),
     content: inputContent.value,
     header: inputHeader.value,
-    user: 
   };
   postRef.doc().set
 
