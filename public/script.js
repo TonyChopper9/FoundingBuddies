@@ -107,7 +107,7 @@ function addDocument(docId, visibility, number) {
 
 function nextPage() {
   console.log(page);
-  if (page <= total / 10) {
+  if (page < total / 10) {
     page++;
     if (page >= 3) {
       firestore.collection("posts").get().then(function (list) {
@@ -123,6 +123,7 @@ function nextPage() {
     var x = 1;
     for (x = 1; x <= 10; x++) {
       var id2a = ((page - 1) * 10) + x;
+      if(id2a <= total)
       document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
     }
     var y = 1;
