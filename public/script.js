@@ -262,6 +262,6 @@ var signOutButtonElement = document.getElementById('sign-out');
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
-loginPageButton.addEventListener("click", loginPage)
+loginPageButton.addEventListener("click", loginPage);
 
 initFirebaseAuth();
