@@ -31,6 +31,7 @@ function signUp(){
 
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            console.log("hallo");
             firebase.firestore().collection("users").doc(user.uid).set({
                 Username: username,
                 mail: email
@@ -41,8 +42,6 @@ function signUp(){
           }).then(function() {
             window.location.href = "index.html";
           });
-
-
         }
       });
 
