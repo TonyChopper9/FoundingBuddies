@@ -41,7 +41,7 @@ function signUp(){
           firebase.firestore().collection("users").doc(user.uid).set({
               Username: username,
               mail: email
-          });
+          }).catch(function (error){console.log(error)});
         }
       });
 
@@ -77,6 +77,7 @@ function signInWithGoogle() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       window.location.href = "index.html";
+      console.log(user.uid);
       firebase.firestore().collection("users").doc(user.uid).set({
           Username: user.displayName,
           mail: user.email
