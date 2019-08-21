@@ -220,6 +220,9 @@ function authStateObserver(user) {
     var profilePicUrl = getProfilePicUrl();
     var userName = getUserName();
 
+    //load chat Messages
+    loadMessages();
+
     //if (profilePicUrl == "") {
     //  profilePicUrl = "media/usericon.png";
     //}
@@ -262,7 +265,7 @@ function saveMessage() {
   var messageText = chatInput.value;
   // Add a new message entry to the Firebase database.
   return firebase.firestore().collection('messages').add({
-    from: getUserId(),
+    people: getUserId(),
     //to:
     text: messageText,
     //profilePicUrl: getProfilePicUrl(),
@@ -276,6 +279,31 @@ function saveMessage() {
   });
 }
 
+function loadMessages() {
+  // Create the query to load the last 12 messages and listen for new ones.
+  firestore.collection('messages').where("people", "array-contains", getUserId)
+                  //.orderBy('timestamp', 'desc')
+                  .get().catch(function(error){
+                    console.log(error);
+                  }).then(function(snap) {
+                    snap.forEach(function(doc){
+                      console.log(doc.id, " => ", doc.data());
+                    })
+                  });
+
+  // Start listening to the query.
+  /*query.onSnapshot(function(snapshot) {
+    snapshot.docChanges().forEach(function(change) {
+      if (change.type === 'removed') {
+        deleteMessage(change.doc.id);
+      } else {
+        var message = change.doc.data();
+        displayMessage(change.doc.id, message.timestamp, message.name,
+                       message.text, message.profilePicUrl, message.imageUrl);
+      }
+    });
+  });*/
+}
 
 
 
@@ -284,12 +312,12 @@ var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var signOutButtonElement = document.getElementById('sign-out');
-//var sendMessageBtn = document.getElementById("sendMessageBtn");
-//var chatInput = document.getElementById("chatInput");
+var sendMessageBtn = document.getElementById("sendMessageBtn");
+var chatInput = document.getElementById("chatInput");
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 loginPageButton.addEventListener("click", loginPage);
-//sendMessageBtn.addEventListener("click", saveMessage);
+sendMessageBtn.addEventListener("click", saveMessage);
 
 initFirebaseAuth();
