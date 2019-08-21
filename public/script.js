@@ -106,7 +106,8 @@ function addDocument(docId, visibility, number) {
 }
 
 function nextPage() {
-  console.log(page);
+  console.log(page + "<--");
+  console.log(total + "<--");
   if (page < total / 10) {
     page++;
     if (page >= 3) {
@@ -123,17 +124,18 @@ function nextPage() {
     var x = 1;
     for (x = 1; x <= 10; x++) {
       var id2a = ((page - 1) * 10) + x;
-      if(id2a <= total){
+      if (id2a <= total) {
         document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
       }
     }
     var y = 1;
     for (y = 1; y <= 10; y++) {
       var id2n = (page * 10) + y;
-      if(id2n <= total){
+      if (id2n <= total) {
         document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
       }
     }
+  }
 }
 
 function prevPage() {
