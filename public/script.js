@@ -220,6 +220,9 @@ function authStateObserver(user) {
     var profilePicUrl = getProfilePicUrl();
     var userName = getUserName();
 
+    //load chat Messages
+    loadMessages();
+
     //if (profilePicUrl == "") {
     //  profilePicUrl = "media/usericon.png";
     //}
@@ -278,23 +281,14 @@ function saveMessage() {
 
 function loadMessages() {
   // Create the query to load the last 12 messages and listen for new ones.
-  /*var query = firebase.firestore()
-                  .collection('MessagesBetweenBatmanAndMe')
-                  .orderBy('timestamp', 'desc')
-                  .limit(12);
-  */
-  var docRef = firestore.collection("MessagesBetweenBatmanAndMe").doc("azD5tSV7vMwI3kZUj8r8");
-
-  docRef.get().then(function(doc) {
-      if (doc.exists) {
-          console.log("Document data:", doc.data());
-      } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-      }
-  }).catch(function(error) {
-      console.log("Error getting document:", error);
-  });
+  var query = firebase.firestore()
+                  .collection('MessagesFrom' + getUserId)
+                  //.orderBy('timestamp', 'desc')
+                  .get().then(function(snap) {
+                    snap.forEach(function(doc){
+                      console.log(doc.id, " => ", doc.data());
+                    })
+                  });
 
   // Start listening to the query.
   /*query.onSnapshot(function(snapshot) {
@@ -326,4 +320,3 @@ loginPageButton.addEventListener("click", loginPage);
 //sendMessageBtn.addEventListener("click", saveMessage);
 
 initFirebaseAuth();
-loadMessages();
