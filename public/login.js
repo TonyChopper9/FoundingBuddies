@@ -35,7 +35,7 @@ function signUp(){
             firebase.firestore().collection("users").doc(user.uid).set({
                 Username: username,
                 mail: email
-            }),then(function() {
+            }).then(function() {
               console.log("Added User!!!")
             }).catch(function (error){console.log(error)});
           user.updateProfile({
