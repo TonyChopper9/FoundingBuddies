@@ -276,6 +276,39 @@ function saveMessage() {
   });
 }
 
+function loadMessages() {
+  // Create the query to load the last 12 messages and listen for new ones.
+  /*var query = firebase.firestore()
+                  .collection('MessagesBetweenBatmanAndMe')
+                  .orderBy('timestamp', 'desc')
+                  .limit(12);
+  */
+  var docRef = firestore.collection("MessagesBetweenBatmanAndMe").doc("azD5tSV7vMwI3kZUj8r8");
+
+  docRef.get().then(function(doc) {
+      if (doc.exists) {
+          console.log("Document data:", doc.data());
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
+  });
+
+  // Start listening to the query.
+  /*query.onSnapshot(function(snapshot) {
+    snapshot.docChanges().forEach(function(change) {
+      if (change.type === 'removed') {
+        deleteMessage(change.doc.id);
+      } else {
+        var message = change.doc.data();
+        displayMessage(change.doc.id, message.timestamp, message.name,
+                       message.text, message.profilePicUrl, message.imageUrl);
+      }
+    });
+  });*/
+}
 
 
 
@@ -293,3 +326,4 @@ loginPageButton.addEventListener("click", loginPage);
 //sendMessageBtn.addEventListener("click", saveMessage);
 
 initFirebaseAuth();
+loadMessages();
