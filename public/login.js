@@ -15,7 +15,20 @@ function signUp(){
   const password = document.getElementById("inputSignUpPassword").value;
 
 
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then(function(user){
+    firebase.firestore().collection("users").doc(user.uid).set({
+        Username: username,
+        mail: email
+    }).then(function() {
+      console.log("Added User!!!")
+    }).catch(function(error){console.log(error)})
+    //user.updateProfile({
+    //displayName: username
+    //photoURL: // some photo url
+    //})
+  })
+  .catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -29,21 +42,7 @@ function signUp(){
         // [END_EXCLUDE]
       });
 
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            console.log("hallo " + user.uid + "__" + username + email);
-            firebase.firestore().collection("users").doc(user.uid + "").set({
-                Username: username + "",
-                mail: email + ""
-            }).catch(function (error){console.log(error)});
-          user.updateProfile({
-            displayName: username
-            //photoURL: // some photo url
-          }).then(function() {
-            window.location.href = "index.html";
-          });
-        }
-      });
+
 
 }
 
@@ -58,42 +57,22 @@ function signInWithEmail(){
   // log error
   console.console.log(error);
 });
-//redirect after sign in
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    window.location.href = "index.html";
-  }
-});
+
 }
 
 function signInWithGoogle() {
   // Sign into Firebase using popup auth & Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
-
-  //Redirect after Sign in
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      window.location.href = "index.html";
-      firebase.firestore().collection("users").doc(user.uid).set({
-          Username: user.displayName,
-          mail: user.email
-      }).catch(function (error){console.log(error)});
-    }
-  });
 }
 
-/*function initFirebaseAuth() {
-  // Listen to auth state changes.
-  firebase.auth().onAuthStateChanged(authStateObserver);
-}
 
-function authStateObserver(user) {
-  if (user) { // User is signed in!
+//redirect after sign in
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
     window.location.href = "index.html";
   }
-}
-*/
+});
 //Shortcuts
 var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
 var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
