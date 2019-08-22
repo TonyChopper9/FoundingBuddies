@@ -8,7 +8,12 @@
     <meta name="author" content="">
     <title>Login</title>
     <!-- Bootstrap core CSS -->
-    <link href="login.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="form.css" rel="stylesheet">
+    <!-- Material Style Links, used in Login/LogoutButtons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script defer src="https://www.gstatic.com/firebasejs/6.4.0/firebase.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
@@ -17,99 +22,63 @@
     <script defer src="login.js"></script>
 </head>
 <body>
-
-
-<div id="i9msgm">
-  <b draggable="true" id="ij2m8m-2">
-    <u draggable="true" id="i1yokl-2">FoundingBuddies
-    </u>
-  </b>
-</div>
-<div class="row" id="ibfg6i">
-  <div class="cell">
-    <div id="ig7dpk">
-      <span draggable="true" id="i9cw51-2-2-2-2-2"><b draggable="true" id="i0fveq-2-2-2">Sign-Up
-        </b></span>
+  <header class="border-bottom pt-3 pb-3">
+      <div class="row justify-content-between align-items-center">
+          <div class="text-center col-5">
+              <h1 class="text-dark" href="#">FoundingBuddies</h1>
+          </div>
+      </div>
+  </header>
+  <div class="container border rounded mt-3">
+    <div class="row mt-3">
+      <div class="col-6">
+        <h2 align="center">Sign-Up</h2>
+      </div>
+      <div class="col-6">
+        <h2 align="center">Login</h2>
+      </div>
     </div>
-    <form class="form">
-      <div class="form-group">
-        <label class="label"><b draggable="true" id="i5d5ib-2">Username:
-          </b></label>
-        <input id="inputSignUpUsername" placeholder="Type here your name" type="text" required class="input"/>
-      </div>
-      <div class="form-group">
-        <label class="label"><b draggable="true" id="imuz84-2">Email:
-          </b></label>
-        <input id="inputSignUpEmail" type="email" placeholder="Type here your email" required class="input"/>
-      </div>
-      <div class="form-group">
-        <label class="label"><b draggable="true" id="ixjab9-2">Password:
-          </b></label>
-      </div>
-      <input id="inputSignUpPassword" type="password" placeholder="Type here your password" required class="input"/>
-      <div class="form-group">
-        <button id="signUpBtn" type="button" class="button">Sign-Up</button>
-      </div>
-    </form>
-  </div>
-  <div class="cell" id="itzuvr">
-    <div id="i14des">
-      <span draggable="true" id="ig0eds-2-2-2"><b draggable="true" id="i9ooob-2">Login
-        </b></span>
-    </div>
-    <form class="form">
-      <label class="label"><b draggable="true" id="ikehfk-2">Email:
-        </b></label>
-      <div class="form-group">
-        <input id="inputLoginEmail" placeholder="Type here your Email" required type="email" class="input"/>
-      </div>
-      <div class="form-group">
-        <label class="label"><b draggable="true" id="imu275-2">Password:
-          </b></label>
-        <input id="inputLoginPassword" type="password" placeholder="Type here your password" required class="input"/>
-      </div>
-      <div class="form-group">
-      </div>
-      <div class="form-group">
-      </div>
-    </form>
     <div class="row">
-      <div class="cell" id="imi10g">
-        <form class="form">
-          <div class="form-group">
-          </div>
-          <div class="form-group">
-          </div>
-          <div class="form-group">
-          </div>
-          <div class="form-group">
-          </div>
-          <div class="form-group">
-            <button id="signInWithEmailBtn" type="button" class="button">Login</button>
-          </div>
-        </form>
-      </div>
-      <div class="cell" id="i2ntcn">
-        <div id="ixsjel">or
+      <div class="col-6">
+        <div class="form-group">
+          <label class="label">Username:</label>
+          <input id="inputSignUpUsername" placeholder="Type your name here" type="text" required class="form-control">
         </div>
+        <div class="form-group">
+          <label class="label">Email:</label>
+          <input id="inputSignUpEmail" type="email" placeholder="Type your E-mail here" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="label">Password:</label>
+          <input id="inputSignUpPassword" type="password" placeholder="Type your password here" required class="form-control">
+        </div>
+
       </div>
-      <div class="cell">
-        <form class="form">
-          <div class="form-group">
-          </div>
-          <div class="form-group">
-          </div>
-          <div class="form-group">
-          </div>
-          <div class="form-group">
-          </div>
-          <div class="form-group">
-            <button id="signInWithGoogleBtn" type="button" class="button">Login with Google</button>
-          </div>
-        </form>
+      <div class="col-6">
+        <div class="form-group">
+          <label class="label">Email:</label>
+          <input id="inputLoginEmail" placeholder="Type your E-mail here" required type="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="label">Password:</label>
+          <input id="inputLoginPassword" type="password" placeholder="Type your password here" required class="form-control">
+        </div>
+        <div class="form-group">
+          <button id="signInWithEmailBtn" type="button" class="btn btn-primary btn-block">Login</button>
+        </div>
+        <p class="m-3" align="center">or</p>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-6">
+        <button id="signUpBtn" type="button" class="btn btn-primary btn-block">Sign-Up</button>
+      </div>
+      <div class="col-6">
+        <button id="signInWithGoogleBtn" type="button" class="btn btn-primary btn-block">Login with Google</button>
       </div>
     </div>
   </div>
-</div>
+
+
 </body>
 </html>
