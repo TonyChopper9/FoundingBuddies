@@ -17,6 +17,8 @@ function signUp(){
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((user) => {
+      console.log(user);
+      console.log("lulululu");
     firebase.firestore().collection("users").doc(user.user.uid).set({
         Username: "" + username,
         mail: "" + email
