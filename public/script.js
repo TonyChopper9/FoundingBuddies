@@ -174,6 +174,7 @@ function upload() {
     header: inputHeader.value,
     user: getUserId()
   };
+  //TODO: Close Modal on SUBMIT
   postRef.doc().set(inpData).then(function () {
     ("#uploadModal").modal("hide");
   })
