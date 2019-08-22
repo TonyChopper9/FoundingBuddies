@@ -174,7 +174,9 @@ function upload() {
     header: inputHeader.value,
     user: getUserId()
   };
-  postRef.doc().set(inpData)
+  postRef.doc().set(inpData).then(function () {
+    ("#uploadModal").modal("hide");
+  })
 }
 
 function signOut() {
