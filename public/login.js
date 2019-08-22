@@ -74,7 +74,6 @@ firebase.auth().onAuthStateChanged(function(user) {
           if(flag){
               flag = false;
               window.location.href = "index.html";
-              break;
           }
       }, 500);
   }
