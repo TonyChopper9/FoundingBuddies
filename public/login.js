@@ -24,7 +24,7 @@ function signUp(){
       console.log(username);
       console.log(email);
       console.log("lulululu");
-    let smh = firebase.firestore().collection("users").doc("PEter").set().then(function() {
+    let smh = firebase.firestore().collection("users").doc("PEter").add().then(function() {
       console.log("Added User!!!")
     }).catch(function(error){
       console.error("Error writing doc: ", error);
