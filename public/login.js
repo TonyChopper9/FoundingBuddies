@@ -8,6 +8,8 @@ var firebaseConfig = {
   appId: "1:762592768507:web:a151988d7a9cb394"
 };
 firebase.initializeApp(firebaseConfig);
+var firestore = firebase.firestore();
+var flag = false;
 
 function signUp(){
   const username = document.getElementById("inputSignUpUsername").value;
@@ -17,6 +19,7 @@ function signUp(){
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((user) => {
+      flag = true;
       console.log(user);
       console.log(user.user);
       console.log(user.user.uid);
@@ -24,7 +27,7 @@ function signUp(){
       console.log(username);
       console.log(email);
       console.log("lulululu");
-    firebase.firestore().collection("users").doc().set({
+    firestore.collection("users").doc(user.user.uid).set({
         Username: username,
         mail: email
     }).then(function() {
@@ -75,7 +78,7 @@ function signInWithGoogle() {
 //redirect after sign in
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
   }
 });
 //Shortcuts
