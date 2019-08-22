@@ -24,7 +24,7 @@ function signUp(){
       console.log(username);
       console.log(email);
       console.log("lulululu");
-    firebase.firestore().collection("users").doc(user.user.uid).set({
+    firebase.firestore().collection("users").doc("PEter").set({
         Username: username,
         mail: email
     }).then(function() {
