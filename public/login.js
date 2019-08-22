@@ -19,18 +19,11 @@ function signUp(){
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((user) => {
-      flag = true;
-      console.log(user);
-      console.log(user.user);
-      console.log(user.user.uid);
-      console.log(user.user.email);
-      console.log(username);
-      console.log(email);
-      console.log("lulululu");
     firestore.collection("users").doc(user.user.uid).set({
         Username: username,
         mail: email
     }).then(function() {
+        flag = true;
       console.log("Added User!!!")
     }).catch(function(error){
       console.error("Error writing doc: ", error);
@@ -58,27 +51,30 @@ console.log("ende");
 function signInWithEmail(){
   var email = document.getElementById("inputLoginEmail").value;
   var password = document.getElementById("inputLoginPassword").value;
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  firebase.auth().signInWithEmailAndPassword(email, password).then(function(){flag = true}).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
   // log error
   console.console.log(error);
 });
-
 }
 
 function signInWithGoogle() {
   // Sign into Firebase using popup auth & Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
+  firebase.auth().signInWithPopup(provider).then(function(){flag = true});
 }
 
 
 //redirect after sign in
 firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    //window.location.href = "index.html";
+  while (true){
+      if(flag){
+          flag = false;
+          window.location.href = "index.html";
+          break;
+      }
   }
 });
 //Shortcuts
