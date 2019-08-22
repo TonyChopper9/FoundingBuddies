@@ -32,9 +32,9 @@ function signUp(){
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log("hallo " + user.uid + "__" + username + email);
-            firebase.firestore().collection("users").doc(user.uid).set({
-                Username: username,
-                mail: email
+            firebase.firestore().collection("users").doc(user.uid + "").set({
+                Username: username + "",
+                mail: email + ""
             }).catch(function (error){console.log(error)});
           user.updateProfile({
             displayName: username
