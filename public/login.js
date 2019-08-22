@@ -79,12 +79,17 @@ function signInWithGoogle() {
 }
 
 function redirectHome() {
+    console.log("aiaiai dios mio!");
     if(flag1 && flag2){
         flag1 = false;
         flag2 = false;
         window.location.href = "index.html";
     }
 }
+
+firebase.auth().onAuthStateChanged(function(user) {
+    redirectHome();
+});
 
 //Shortcuts
 var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
