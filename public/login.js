@@ -9,7 +9,8 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
-var flag = false;
+var flag1 = false;
+var flag2 = false;
 
 function signUp(){
   const username = document.getElementById("inputSignUpUsername").value;
@@ -23,11 +24,14 @@ function signUp(){
         Username: username,
         mail: email
     }).then(function() {
-        flag = true;
-      console.log("Added User!!!")
+        flag1 = true;
+      console.log("Added User!!!");
+        redirectHome();
     }).catch(function(error){
       console.error("Error writing doc: ", error);
     });
+    flag2 = true;
+    redirectHome();
   })
   .catch(function(error) {
         // Handle Errors here.
@@ -51,7 +55,11 @@ console.log("ende");
 function signInWithEmail(){
   var email = document.getElementById("inputLoginEmail").value;
   var password = document.getElementById("inputLoginPassword").value;
-  firebase.auth().signInWithEmailAndPassword(email, password).then(function(){flag = true}).catch(function(error) {
+  firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
+      flag1 = true;
+      flag2 = true;
+      redirectHome()
+  }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -63,21 +71,21 @@ function signInWithEmail(){
 function signInWithGoogle() {
   // Sign into Firebase using popup auth & Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function(){flag = true});
+  firebase.auth().signInWithPopup(provider).then(function(){
+      flag1 = true;
+      flag2 = true;
+      redirectHome()
+  });
 }
 
+function redirectHome() {
+    if(flag1 && flag2){
+        flag1 = false;
+        flag2 = false;
+        window.location.href = "index.html";
+    }
+}
 
-//redirect after sign in
-firebase.auth().onAuthStateChanged(function(user) {
-  while (true){
-      setTimeout(function () {
-          if(flag){
-              flag = false;
-              window.location.href = "index.html";
-          }
-      }, 500);
-  }
-});
 //Shortcuts
 var signInButtonWithGoogleElement = document.getElementById('signInWithGoogleBtn');
 var signInButtonWithEmailElement = document.getElementById('signInWithEmailBtn');
@@ -86,6 +94,6 @@ var signUpButtonElement = document.getElementById('signUpBtn');
 //Add Listener
 signInButtonWithGoogleElement.addEventListener('click', signInWithGoogle);
 signInButtonWithEmailElement.addEventListener("click", signInWithEmail);
-signUpButtonElement.addEventListener("click", signUp)
+signUpButtonElement.addEventListener("click", signUp);
 
 //initFirebaseAuth();
