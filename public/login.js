@@ -8,6 +8,7 @@ var firebaseConfig = {
   appId: "1:762592768507:web:a151988d7a9cb394"
 };
 firebase.initializeApp(firebaseConfig);
+var firestore = firebase.firestore();
 
 function signUp(){
   const username = document.getElementById("inputSignUpUsername").value;
@@ -24,7 +25,7 @@ function signUp(){
       console.log(username);
       console.log(email);
       console.log("lulululu");
-    firebase.firestore().collection("users").doc().set({
+    firestore.collection("users").doc(user.user.uid).set({
         Username: username,
         mail: email
     }).then(function() {
