@@ -9,6 +9,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
+var flag = false;
 
 function signUp(){
   const username = document.getElementById("inputSignUpUsername").value;
@@ -18,6 +19,7 @@ function signUp(){
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((user) => {
+      flag = true;
       console.log(user);
       console.log(user.user);
       console.log(user.user.uid);
@@ -76,7 +78,7 @@ function signInWithGoogle() {
 //redirect after sign in
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
   }
 });
 //Shortcuts
