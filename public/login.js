@@ -70,11 +70,13 @@ function signInWithGoogle() {
 //redirect after sign in
 firebase.auth().onAuthStateChanged(function(user) {
   while (true){
-      if(flag){
-          flag = false;
-          window.location.href = "index.html";
-          break;
-      }
+      setTimeout(function () {
+          if(flag){
+              flag = false;
+              window.location.href = "index.html";
+              break;
+          }
+      }, 500);
   }
 });
 //Shortcuts
