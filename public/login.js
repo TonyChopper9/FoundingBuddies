@@ -24,14 +24,15 @@ function signUp(){
       console.log(username);
       console.log(email);
       console.log("lulululu");
-    firebase.firestore().collection("users").doc("PEter").set({
+    let smh = firebase.firestore().collection("users").doc("PEter").set({
         Username: username,
         mail: email
     }).then(function() {
       console.log("Added User!!!")
     }).catch(function(error){
       console.error("Error writing doc: ", error);
-  })
+    });
+      console.log(smh);
     //user.updateProfile({
     //displayName: username
     //photoURL: // some photo url
