@@ -22,7 +22,7 @@ function signUp(){
         mail: email
     }).then(function() {
       console.log("Added User!!!")
-    }).catch(function (error){console.log(error)});
+    }).catch(function(error){console.log(error)})
     //user.updateProfile({
     //displayName: username
     //photoURL: // some photo url
