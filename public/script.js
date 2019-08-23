@@ -46,6 +46,19 @@ function addDocument(docId, visibility, number) {
         element.setAttribute("id2", number);
         if(!visibility){element.setAttribute("style", "display: none;")}
 
+        /* So soll ein Post aussehen
+        <div class="card mb-3 w-100">
+          <div class="card-body">
+            <h5 class="mb-0 card-title">Creative manufacturing</h5>
+            <p class="mb-2 card-text"><small class="text-muted">January 1, 2014 by <a href="#">Hans</a></small></p>
+            <p class="card-text">With suppafgag juhegftkjhegtf lkjehtfkleh kjeghkijehag hikkgaelihorting text below as a natural lead-in to additional content.</p>
+            <div class="row justify-content-end">
+              <a href="#" class="mr-3 btn btn-primary">Contact</a>
+            </div>
+          </div>
+        </div>
+        */
+
         //HEADER
         var header1 = document.createElement("h2");
         header1.setAttribute("class", "blog-post-title");
