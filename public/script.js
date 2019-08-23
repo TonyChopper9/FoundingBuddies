@@ -51,7 +51,7 @@ function addDocument(docId, visibility, number) {
           <div class="card-body">
             <h5 class="mb-0 card-title">Creative manufacturing</h5>
             <p class="mb-2 card-text"><small class="text-muted">January 1, 2014 by <a href="#">Hans</a></small></p> <--<a>Hans</a> kann eigl raus da wir ja nicht das Profil verlinken wollen, wir haben ja keine Profile
-            <p class="card-text">With suppafgag juhegftkjhegtf lkjehtfkleh kjeghkijehag hikkgaelihorting text below as a natural lead-in to additional content.</p>
+            <p class="text-brake card-text">With suppafgag juhegftkjhegtf lkjehtfkleh kjeghkijehag hikkgaelihorting text below as a natural lead-in to additional content.</p>
             <div class="row justify-content-end">
               <a class="mr-3 btn btn-primary">Contact</a>
             </div>
