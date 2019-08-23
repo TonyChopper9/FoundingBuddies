@@ -14,7 +14,7 @@ var total = 0;
 
 window.onload = function() {
   total = 0;
-  firestore.collection("posts").get().then(function (list) {
+  firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
     total = list.size;
     var i = 0;
     list.forEach((doc) => {
