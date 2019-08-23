@@ -188,9 +188,7 @@ function upload() {
     user: getUserId()
   };
   //TODO: Close Modal on SUBMIT
-  postRef.doc().set(inpData).then(function () {
-    ("#uploadModal").modal("hide");
-  })
+  postRef.doc().set(inpData);
 }
 
 function signOut() {
