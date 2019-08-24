@@ -10,7 +10,7 @@ admin.initializeApp();
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'foundingbuddies@gmail.com',
+        user: 'FoundingBuddies@gmail.com',
         pass: 'BingPot!99'
     }
 });
@@ -22,7 +22,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
         const dest = req.query.dest;
 
         const mailOptions = {
-            from: 'Your Account Name <yourgmailaccount@gmail.com>', // Something like: Jane Doe <janedoe@gmail.com>
+            from: 'FoundingBuddies@gmail.com', // Something like: Jane Doe <janedoe@gmail.com>
             to: dest,
             subject: 'I\'M A PICKLE!!!', // email subject
             html: `<p style="font-size: 16px;">Pickle Riiiiiiiiiiiiiiiick!!</p>
@@ -34,6 +34,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
         // returning result
         return transporter.sendMail(mailOptions, (erro, info) => {
             if(erro){
+              console.log("Error!");
                 return res.send(erro.toString());
             }
             return res.send('Sended');
