@@ -288,20 +288,39 @@ function loginPage(){
   window.location.href = "login.html";
 }
 
+function notificationsPage(){
+  window.location.href = "notifications.html";
+}
+
 function contact(postId) {
   refPost.value = postId;
 }
 
 function sendEmail() {
   var sendTestMail = firebase.functions().httpsCallable('sendMail');
-  var user = firebase.auth().currentUser;
+  const docRef = firestore.collection("posts").doc(refPost.value);
+  var mainDocData = null;
+  docRef.get().then(function (doc) {
+    if (doc && doc.exists){
+      mainDocData = doc.data();
+
+      if (mainDocData != null) {
+        const userRef = firestore.collection("users").doc(mainDocData.user);
+        var user = null;
+        userRef.get().then(function (smh) {
+          user = smh.data();
+          var sendUserName = user.Username;
+          var sendUserEmail = user.mail;
+        }
+    }
+  }
   var data = {
-    from: user.displayName,
-    to: ,
+    fromName: getUserName,
+    to: sendUserEmail,
     subject: emailSubjectInput,
     content: emailContentInput
   }
-  sendTestMail({email: "hansolovader@gmail.com"}).then(function(result) {
+  sendTestMail(data).then(function(result) {
     // Read result of the Cloud Function.
     console.log(result);
     // ...
@@ -318,9 +337,11 @@ var signOutButtonElement = document.getElementById('sign-out');
 var emailContentInput = document.getElementById('emailContentInput');
 var emailSubjectInput = document.getElementById('emailSubjectInput');
 var refPostEmail = document.getElementById("refPostEmail");
+var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 loginPageButton.addEventListener("click", loginPage);
+notificationsPageBtn.addEventListener("click", notificationsPage);
 
 initFirebaseAuth();
