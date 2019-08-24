@@ -322,10 +322,7 @@ function sendMessage(postId) {
   authorMessages.get().then(function(postalBox){
     console.log(postalBox);
     console.log(postalBox + "<-- postal");
-    var box = postalBox.data();
-    console.log(box);
-    console.log(box + "<-- box");
-    box.doc().set({
+    postalBox.doc().set({
       content: document.getElementById("emailContentInput").value,
       header: document.getElementById("emailSubjectInput").value,
       sender: firebase.auth().currentUser.uid
