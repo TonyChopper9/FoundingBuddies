@@ -9,6 +9,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
+var functions = firebase.functions();
 var page = 0;
 var total = 0;
 
@@ -294,6 +295,13 @@ function contact(email) {
 function sendEmail() {
 
 }
+
+var sendTestMail = firebase.functions().httpsCallable('sendEmail');
+sendTestMail("hansolovader@gmail.com", "Peter").then(function(result) {
+  // Read result of the Cloud Function.
+  console.log(result);
+  // ...
+});
 
 
 //Shortcuts to Document Elements
