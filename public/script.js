@@ -39,12 +39,15 @@ function addDocument(docId, visibility, number) {
 
       if (mainDocData != null) {
         var element = document.createElement("div");
-        element.setAttribute("class", "blog-post");
+        element.setAttribute("class", "card mb-3 w-100");
         element.setAttribute("id", docId);
         //Potentially problematic
         //TODO: "DELETE" USE CASE
         element.setAttribute("id2", number);
         if(!visibility){element.setAttribute("style", "display: none;")}
+
+        var innerElement = document.createElement("div");
+        innerElement.setAttribute("class", "card-body");
 
         /* So soll ein Post aussehen
         <div class="card mb-3 w-100">
@@ -60,10 +63,10 @@ function addDocument(docId, visibility, number) {
         */
 
         //HEADER
-        var header1 = document.createElement("h2");
-        header1.setAttribute("class", "blog-post-title");
+        var header1 = document.createElement("h5");
+        header1.setAttribute("class", "mb-0 card-title");
         header1.innerHTML = mainDocData.header;
-        element.appendChild(header1);
+        innerElement.appendChild(header1);
 
         //AUTHORING
         const userRef = firestore.collection("users").doc(mainDocData.user);
@@ -72,36 +75,43 @@ function addDocument(docId, visibility, number) {
         userRef.get().then(function (smh) {
 
           var metaStuff = document.createElement("p");
-          metaStuff.setAttribute("class", "blog-post-meta");
-          var linkName = document.createElement("a");
-          linkName.setAttribute("href", "#");
+          metaStuff.setAttribute("class", "mb-2 card-text");
+          var small = document.createElement("small");
+          small.setAttribute("class", "text-muted");
+          //var linkName = document.createElement("a");
+          //linkName.setAttribute("href", "#");
 
           //User
           user = smh.data();
           var dateDate = mainDocData.Date.toDate();
-          metaStuff.innerHTML = dateDate.getDate() + "." + dateDate.getMonth() + "." + dateDate.getFullYear() + " by ";
-          metaStuff.appendChild(linkName);
-          element.appendChild(metaStuff);
-          metaStuff.lastChild.innerHTML = user.Username;
+          small.innerHTML = dateDate.getDate() + "." + dateDate.getMonth() + "." + dateDate.getFullYear() + " by " + user.Username;
+          metaStuff.appendChild(small);
+          innerElement.appendChild(metaStuff);
 
           //TAG ROW
+          /*
           var divElement = document.createElement("div");
           divElement.setAttribute("class", "row");
           element.appendChild(divElement);
-
-          //ZWISCHENZEILE
-          var zeile = document.createElement("hr");
-          element.appendChild(zeile);
+           */
 
           //INHALT
           var inhalt = document.createElement("p");
+          inhalt.setAttribute("class", "text-brake card-text");
           inhalt.innerHTML = mainDocData.content;
-          element.appendChild(inhalt);
+          innerElement.appendChild(inhalt);
 
           //MAIL ZEILE
-          var mailZeile = document.createElement("p");
-          mailZeile.innerHTML = "More Information under: " + user.mail;
-          element.appendChild(mailZeile);
+          var mailZeile = document.createElement("div");
+          mailZeile.setAttribute("class", "row justify-content-end");
+          var contactB = document.createElement("a");
+          contactB.setAttribute("class", "mr-3 btn btn-primary");
+          contactB.setAttribute("onclick", "contact(" + user.mail + ")");
+          contactB.innerHTML = "Contact";
+          mailZeile.appendChild(contactB);
+          innerElement.appendChild(mailZeile);
+
+          element.appendChild(innerElement);
 
           var theDiv = document.getElementById("output");
           theDiv.insertBefore(element,theDiv.firstChild);
@@ -274,7 +284,9 @@ function loginPage(){
   window.location.href = "login.html";
 }
 
-
+function contact(email) {
+  
+}
 
 
 
