@@ -300,6 +300,11 @@ function notificationsPage(){
 }
 
 function contact(postId) {
+  console.log(document.getElementById("messagedddSendButton"));
+
+  if(document.getElementById("messageSendButton") != undefined){
+    document.getElementById("messageSendButton").remove()
+  }
   var but1 = document.createElement("button");
   but1.setAttribute("type", "button");
   but1.setAttribute("data-dismiss", "modal");
