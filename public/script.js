@@ -108,7 +108,7 @@ function addDocument(docId, visibility, number) {
           var contactB = document.createElement("button");
           contactB.setAttribute("class", "mr-3 btn btn-primary");
           contactB.setAttribute("data-toggle", "modal");
-          contactB.setAttribute("data-target", "#emailModal");
+          contactB.setAttribute("data-target", "#messageModal");
           contactB.setAttribute("onclick", "contact('" + mainDocData.id + "')");
           contactB.innerHTML = "Contact";
           mailZeile.appendChild(contactB);
