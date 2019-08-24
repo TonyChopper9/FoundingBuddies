@@ -144,6 +144,18 @@
                           <button class="btn btn-danger nav-link" onclick="signOut()">Logout</button>
                         </li>
                       </ul>
+
+                      <div id="smallMenu" style="display: none" class="container menuicon dropleft" data-toggle="dropdown" onclick="menuicon(this)">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                      </div>
+                      <div class="dropdown-menu">
+                        <button type="button" data-toggle="modal" data-target="#uploadModal" class="dropdown-item">Upload</button>
+                        <button type="button" class="dropdown-item">Notifications</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item">Logout</button>
+                      </div>
                       <!-- old menu
                         <img class="ml-2" id="user-pic" style="display: none" alt="Profile Picture"></img>
                         <div class="ml-2" id="user-name" style="display: none"></div>
