@@ -93,7 +93,7 @@ function addDocument(docId, visibility, number) {
           contactB.setAttribute("class", "mr-3 btn btn-primary");
           contactB.setAttribute("data-toggle", "modal");
           contactB.setAttribute("data-target", "#messageModal");
-          contactB.setAttribute("onclick", "contact('" + mainDocData.id + "')");
+          contactB.setAttribute("onclick", "contact('" + mainDocData.user + "')");
           contactB.innerHTML = "Contact";
           mailZeile.appendChild(contactB);
           innerElement.appendChild(mailZeile);
@@ -300,6 +300,11 @@ function notificationsPage(){
 }
 
 function contact(postId) {
+  console.log(document.getElementById("messagedddSendButton"));
+
+  if(document.getElementById("messageSendButton") != null){
+    document.getElementById("messageSendButton").remove()
+  }
   var but1 = document.createElement("button");
   but1.setAttribute("type", "button");
   but1.setAttribute("data-dismiss", "modal");
@@ -362,7 +367,7 @@ function menuicon(x) {
 
 window.onclick = function(event) {
   openDropdown.classList.remove('show');
-}
+};
 
 //Shortcuts to Document Elements
 //var userPicElement = document.getElementById('user-pic');
