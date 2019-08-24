@@ -277,7 +277,6 @@ function authStateObserver(user) {
     uploadBtn.style.display = "";
 
     // We save the Firebase Messaging Device token and enable notifications.
-    */
   } else { // User is signed out!
     //Hide user's profile and sign-out button.
     //userNameElement.style.display = "none";
@@ -288,7 +287,6 @@ function authStateObserver(user) {
     //Hide sign-out Button
     logoutButtonElement.style.display = "none";
     uploadBtn.style.display = "none";
-    */
   }
 }
 
@@ -322,14 +320,13 @@ function sendMessage(postId) {
   authorMessages.get().then(function(postalBox){
     console.log(postalBox);
     console.log(postalBox + "<-- postal");
-    var box = postalBox.data();
-    console.log(box);
-    console.log(box + "<-- box");
-    box.doc().set({
+    postalBox.doc().set({
       content: document.getElementById("emailContentInput").value,
       header: document.getElementById("emailSubjectInput").value,
       sender: firebase.auth().currentUser.uid
     })
+  }).catch(function(error){
+    console.log(error);
   })
 }
 
