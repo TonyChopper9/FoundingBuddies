@@ -208,8 +208,8 @@ function upload() {
     header: inputHeader.value,
     user: getUserId()
   };
-  //TODO: Close Modal on SUBMIT
   postRef.doc().set(inpData);
+  postRef.doc()
 }
 
 function signOut() {
@@ -319,16 +319,10 @@ function contact(postId) {
 function sendMessage(postId) {
   console.log(postId + "<-- postId");
   const authorMessages = firestore.collection("users").doc(postId).collection("ReceivedMessages");
-  authorMessages.get().then(function(postalBox){
-    console.log(postalBox);
-    console.log(postalBox + "<-- postal");
-    postalBox.doc().set({
-      content: document.getElementById("emailContentInput").value,
-      header: document.getElementById("emailSubjectInput").value,
-      sender: firebase.auth().currentUser.uid
-    })
-  }).catch(function(error){
-    console.log(error);
+  authorMessages.doc().set({
+    content: document.getElementById("emailContentInput").value,
+    header: document.getElementById("emailSubjectInput").value,
+    sender: firebase.auth().currentUser.uid
   })
 }
 
