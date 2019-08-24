@@ -300,11 +300,28 @@ function notificationsPage(){
 }
 
 function contact(postId) {
-  refPost.value = postId;
+  var but1 = document.createElement("button");
+  but1.setAttribute("type", "button");
+  but1.setAttribute("data-dismiss", "modal");
+  but1.setAttribute("class", "btn btn-success");
+  but1.setAttribute("onclick", "sendMessage('" + postId + "')");
+  but1.setAttribute("id", "messageSendButton");
+  but1.innerHTML = "Send";
+
+  var insert = document.getElementById("buttonInput");
+  insert.appendChild(but1);
 }
 
-function sendMessage() {
-
+function sendMessage(postId) {
+  const authorMessages = firestore.collection("users").doc(postId.user).collection("ReceivedMessages");
+  authorMessages.get().then(function(postalBox){
+    var box = postalBox.data();
+    box.doc().set({
+      content: document.getElementById("emailContentInput").value,
+      header: document.getElementById("emailSubjectInput").value,
+      sender: firebase.auth().currentUser.uid
+    })
+  })
 }
 
 /*
