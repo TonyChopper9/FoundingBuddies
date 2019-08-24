@@ -318,8 +318,8 @@ function contact(postId) {
 }
 
 function sendMessage(postId) {
-  console.log(postId.user);
-  const authorMessages = firestore.collection("users").doc(postId.user).collection("ReceivedMessages");
+  console.log(postId);
+  const authorMessages = firestore.collection("users").doc(postId).collection("ReceivedMessages");
   authorMessages.get().then(function(postalBox){
     var box = postalBox.data();
     box.doc().set({
