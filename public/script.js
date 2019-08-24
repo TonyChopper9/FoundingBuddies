@@ -332,7 +332,7 @@ function contact(postId) {
 }
 
 function sendMessage() {
-  
+
 }
 
 /*
@@ -367,7 +367,9 @@ function sendEmail() {
   });
 }
 */
-
+function menuicon(x) {
+  x.classList.toggle("change");
+}
 
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
