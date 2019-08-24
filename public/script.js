@@ -369,6 +369,7 @@ var emailContentInput = document.getElementById('emailContentInput');
 var emailSubjectInput = document.getElementById('emailSubjectInput');
 var refPostEmail = document.getElementById("refPostEmail");
 var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
+var signOutButtonElement = document.getElementById("sign-out");
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
