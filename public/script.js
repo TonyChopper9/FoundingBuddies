@@ -302,7 +302,7 @@ function notificationsPage(){
 function contact(postId) {
   console.log(document.getElementById("messagedddSendButton"));
 
-  if(document.getElementById("messageSendButton") != undefined){
+  if(document.getElementById("messageSendButton") != null){
     document.getElementById("messageSendButton").remove()
   }
   var but1 = document.createElement("button");
