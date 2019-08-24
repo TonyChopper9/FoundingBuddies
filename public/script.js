@@ -103,6 +103,7 @@ function addDocument(docId, visibility, number) {
           var theDiv = document.getElementById("output");
           theDiv.appendChild(element);
 
+          /*
           if (number %= 0) {
           var pageTurner = document.createElement("nav");
           pageTurner.setAttribute("class", "blog-pagination");
@@ -119,6 +120,7 @@ function addDocument(docId, visibility, number) {
 
           theDiv.appendChild(pageTurner);
           }
+          */
 
           //add close Button if user is authorized
           if(user.id == mainDocData.user){
