@@ -288,16 +288,19 @@ function loginPage(){
   window.location.href = "login.html";
 }
 
-function contact(email) {
-  emailSubjectInput.value = email;
+function contact(postId) {
+  refPost.value = postId;
 }
 
 function sendEmail() {
-
-}
-
-function test() {
   var sendTestMail = firebase.functions().httpsCallable('sendMail');
+  var user = firebase.auth().currentUser;
+  var data = {
+    from: user.displayName,
+    to: ,
+    subject: emailSubjectInput,
+    content: emailContentInput
+  }
   sendTestMail({email: "hansolovader@gmail.com"}).then(function(result) {
     // Read result of the Cloud Function.
     console.log(result);
@@ -312,8 +315,9 @@ var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var signOutButtonElement = document.getElementById('sign-out');
-var emailModal = document.getElementById('emailModal');
+var emailContentInput = document.getElementById('emailContentInput');
 var emailSubjectInput = document.getElementById('emailSubjectInput');
+var refPostEmail = document.getElementById("refPostEmail");
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
