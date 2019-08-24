@@ -266,7 +266,7 @@ function authStateObserver(user) {
     userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
     userNameElement.textContent = userName;
 
-    // Show user's profile and sign-out button.
+    /* Show user's profile and sign-out button.
     userNameElement.style.display = "";
     userPicElement.style.display = "";
 
@@ -277,9 +277,9 @@ function authStateObserver(user) {
     //uploadBtn.style.display = "";
 
     // We save the Firebase Messaging Device token and enable notifications.
-    //saveMessagingDeviceToken();
+    */
   } else { // User is signed out!
-    // Hide user's profile and sign-out button.
+    /* Hide user's profile and sign-out button.
     userNameElement.style.display = "none";
     userPicElement.style.display = "none";
 
@@ -288,6 +288,7 @@ function authStateObserver(user) {
     //Hide sign-out Button
     menuButtonElement.style.display = "none";
     //uploadBtn.style.display = "none";
+    */
   }
 }
 
