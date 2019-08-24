@@ -285,7 +285,9 @@ function loginPage(){
 }
 
 function contact(email) {
-  
+  emailModal.find('#emailSubjectInput').text(email);
+  emailModal.modal();
+
 }
 
 
@@ -295,6 +297,7 @@ var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var signOutButtonElement = document.getElementById('sign-out');
+var emailModal = document.getElementById('emailModal');
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
