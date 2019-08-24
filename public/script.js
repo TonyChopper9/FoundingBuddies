@@ -300,8 +300,6 @@ function notificationsPage(){
 }
 
 function contact(postId) {
-  console.log(document.getElementById("messagedddSendButton"));
-
   if(document.getElementById("messageSendButton") != null){
     document.getElementById("messageSendButton").remove()
   }
@@ -318,7 +316,8 @@ function contact(postId) {
 }
 
 function sendMessage(postId) {
-  const authorMessages = firestore.collection("users").doc(postId.user).collection("ReceivedMessages");
+  console.log(postId + "<-- postId");
+  const authorMessages = firestore.collection("users").doc(postId).collection("ReceivedMessages");
   authorMessages.get().then(function(postalBox){
     var box = postalBox.data();
     box.doc().set({

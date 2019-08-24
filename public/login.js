@@ -21,7 +21,8 @@ function signUp(){
   .then((user) => {
     firestore.collection("users").doc(user.user.uid).set({
         Username: username,
-        mail: email
+        mail: email,
+        confirmed: false
     }).then(function() {
         firestore.collection("users").doc(user.user.uid).collection("ReceivedMessages").doc().set({
             content: "",
