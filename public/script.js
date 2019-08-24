@@ -275,6 +275,7 @@ function authStateObserver(user) {
     // Show sign-out button.
     logoutButtonElement.style.display = "";
     uploadBtn.style.display = "";
+    notificationsPageBtn.style.display = "";
 
     // We save the Firebase Messaging Device token and enable notifications.
   } else { // User is signed out!
@@ -287,6 +288,7 @@ function authStateObserver(user) {
     //Hide sign-out Button
     logoutButtonElement.style.display = "none";
     uploadBtn.style.display = "none";
+    notificationsPageBtn.style.display = "none";
   }
 }
 

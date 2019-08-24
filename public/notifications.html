@@ -24,6 +24,26 @@
     </head>
     <body>
       <script defer src="notifications.js"></script>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      ...
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+              </div>
+          </div>
+      </div>
       <div class="sticky-top container" style="background-color: white">
           <header class="border-bottom pt-3 pb-3">
               <div class="row justify-content-between align-items-center">
@@ -42,11 +62,37 @@
         <main role="main" class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h3><br></h3>
+                    <h3>Your messages:</h3>
                 </div>
             </div>
             <div class="row">
-                <div id="output" class="blog-main col-9">
+                <div id="output" class="col-9">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">From</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+
+                        </tr>
+                        <tr data-toggle="modal" data-target="#exampleModal">
+                            <td>2</td>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                        <tr>
+                            <td>3</td>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <!-- /.blog-main -->
 
