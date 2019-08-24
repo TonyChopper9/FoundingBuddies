@@ -1,48 +1,42 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
-// Configure the email transport using the default SMTP transport and a GMail account.
-// For Gmail, enable these:
-// 1. https://www.google.com/settings/security/lesssecureapps
-// 2. https://accounts.google.com/DisplayUnlockCaptcha
-// For other types of transports such as Sendgrid see https://nodemailer.com/transports/
-// TODO: Configure the `gmail.email` and `gmail.password` Google Cloud environment variables.
-//const gmailEmail = functions.config().gmail.email;
-//const gmailPassword = functions.config().gmail.password;
-const mailTransport = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: "foundingbuddies@gmail.com",
-    pass: "BingPot!99",
-  },
+const cors = require('cors')({origin: true});
+admin.initializeApp();
+
+/**
+* Here we're using Gmail to send
+*/
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'foundingbuddies@gmail.com',
+        pass: 'BingPot!99'
+    }
 });
 
-const APP_NAME = 'FB GbR';
+exports.sendMail = functions.https.onRequest((req, res) => {
+    cors(req, res, () => {
 
+        // getting dest email by query string
+        const dest = req.query.dest;
 
+        const mailOptions = {
+            from: 'Your Account Name <yourgmailaccount@gmail.com>', // Something like: Jane Doe <janedoe@gmail.com>
+            to: dest,
+            subject: 'I\'M A PICKLE!!!', // email subject
+            html: `<p style="font-size: 16px;">Pickle Riiiiiiiiiiiiiiiick!!</p>
+                <br />
+                <img src="https://images.prod.meredith.com/product/fc8754735c8a9b4aebb786278e7265a5/1538025388228/l/rick-and-morty-pickle-rick-sticker" />
+            ` // email content in HTML
+        };
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
+        // returning result
+        return transporter.sendMail(mailOptions, (erro, info) => {
+            if(erro){
+                return res.send(erro.toString());
+            }
+            return res.send('Sended');
+        });
+    });
 });
-
-exports.sendEmail = functions.https.onCall((email, name) => {
-  // [START eventAttributes]
-  //const email = user.email; // The email of the user.
-  //const displayName = user.displayName; // The display name of the user.
-  // [END eventAttributes]
-
-  return sendWelcomeEmail(email, name);
-});
-
-async function sendWelcomeEmail(email, displayName) {
-  const mailOptions = {
-    from: `${APP_NAME} <noreply@firebase.com>`,
-    to: email,
-  };
-
-  // The user subscribed to the newsletter.
-  mailOptions.subject = `Welcome to ${APP_NAME}!`;
-  mailOptions.text = `Hey ${displayName || ''}! Welcome to ${APP_NAME}. I hope you will enjoy our service.`;
-  await mailTransport.sendMail(mailOptions);
-  console.log('New welcome email sent to:', email);
-  return null;
-}
