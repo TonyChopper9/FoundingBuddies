@@ -133,11 +133,37 @@
                         <h1 class="text-dark" href="#">FoundingBuddies</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <img class="ml-2" id="user-pic" style="display: none" alt="Profile Picture"></img>
-                        <div class="ml-2" id="user-name"></div>
-                        <button  id="LoginPageBtn" class="btn btn-primary">Login</button>
+                      <ul id="bigMenu" class="nav">
+                        <li class="m-2 nav-item">
+                          <button class="btn btn-info nav-link" data-toggle="modal" data-target="#uploadModal">Upload</button>
+                        </li>
+                        <li class="m-2 nav-item">
+                          <button class="btn btn-info nav-link" onclick="notificationsPage()">Messages</button>
+                        </li>
+                        <li class="m-2 nav-item">
+                          <button class="btn btn-danger nav-link" onclick="signOut()">Logout</button>
+                        </li>
+                      </ul>
 
-                        <div id="menu" style="display: none" class="container menuicon" data-toggle="dropdown" onclick="menuicon(this)">
+                      <div id="smallMenu" style="display: none" class="container menuicon dropleft" data-toggle="dropdown" onclick="menuicon(this)">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                      </div>
+                      <div class="dropdown-menu">
+                        <button type="button" data-toggle="modal" data-target="#uploadModal" class="dropdown-item">Upload</button>
+                        <button type="button" class="dropdown-item">Notifications</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item">Logout</button>
+                      </div>
+                      <!-- old menu
+                        <img class="ml-2" id="user-pic" style="display: none" alt="Profile Picture"></img>
+                        <div class="ml-2" id="user-name" style="display: none"></div>
+                        <button  id="LoginPageBtn" class="btn btn-primary">Login</button>
+                      -->
+
+                        <!-- hamburgermenu
+                        <div id="menu" style="display: none" class="container menuicon dropleft" data-toggle="dropdown" onclick="menuicon(this)">
                           <div class="bar1"></div>
                           <div class="bar2"></div>
                           <div class="bar3"></div>
@@ -148,6 +174,7 @@
                           <div class="dropdown-divider"></div>
                           <button  id="sign-out" class="btn-danger dropdown-item">Logout</button>
                         </div>
+                      -->
 
                     </div>
                 </div>

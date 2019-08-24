@@ -267,7 +267,7 @@ function authStateObserver(user) {
     userNameElement.textContent = userName;
 
     // Show user's profile and sign-out button.
-    userNameElement.removeAttribute('hidden');
+    userNameElement.style.display = "";
     userPicElement.style.display = "";
 
     // Hide sign-in button.
@@ -280,7 +280,7 @@ function authStateObserver(user) {
     //saveMessagingDeviceToken();
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
-    userNameElement.setAttribute('hidden', 'true');
+    userNameElement.style.display = "none";
     userPicElement.style.display = "none";
 
     // Show sign-in button.
@@ -371,19 +371,19 @@ window.onclick = function(event) {
 };
 
 //Shortcuts to Document Elements
-var userPicElement = document.getElementById('user-pic');
-var userNameElement = document.getElementById('user-name');
-var loginPageButton = document.getElementById("LoginPageBtn");
-var menuButtonElement = document.getElementById('menu');
-var emailContentInput = document.getElementById('emailContentInput');
-var emailSubjectInput = document.getElementById('emailSubjectInput');
-var refPostEmail = document.getElementById("refPostEmail");
-var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
-var signOutButtonElement = document.getElementById("sign-out");
+//var userPicElement = document.getElementById('user-pic');
+//var userNameElement = document.getElementById('user-name');
+//var loginPageButton = document.getElementById("LoginPageBtn");
+//var menuButtonElement = document.getElementById('menu');
+//var emailContentInput = document.getElementById('emailContentInput');
+//var emailSubjectInput = document.getElementById('emailSubjectInput');
+//var refPostEmail = document.getElementById("refPostEmail");
+//var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
+//var signOutButtonElement = document.getElementById("sign-out");
 
 // Add Listener
-signOutButtonElement.addEventListener('click', signOut);
-loginPageButton.addEventListener("click", loginPage);
-notificationsPageBtn.addEventListener("click", notificationsPage);
+//signOutButtonElement.addEventListener('click', signOut);
+//loginPageButton.addEventListener("click", loginPage);
+//notificationsPageBtn.addEventListener("click", notificationsPage);
 
 initFirebaseAuth();
