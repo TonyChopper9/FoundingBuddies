@@ -114,7 +114,7 @@ function addDocument(docId, visibility, number) {
           element.appendChild(innerElement);
 
           var theDiv = document.getElementById("output");
-          theDiv.insertBefore(element,theDiv.firstChild);
+          theDiv.appendChild(element);
 
         }).catch(function (error) {
           console.log("Error: ", error);
