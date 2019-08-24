@@ -281,8 +281,8 @@ function authStateObserver(user) {
     // Hide sign-in button.
     loginPageButton.style.display = "none";
     // Show sign-out button.
-    signOutButtonElement.style.display = "";
-    uploadBtn.style.display = "";
+    menuButtonElement.style.display = "";
+    //uploadBtn.style.display = "";
 
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
@@ -294,8 +294,8 @@ function authStateObserver(user) {
     // Show sign-in button.
     loginPageButton.style.display = "";
     //Hide sign-out Button
-    signOutButtonElement.style.display = "none";
-    uploadBtn.style.display = "none";
+    menuButtonElement.style.display = "none";
+    //uploadBtn.style.display = "none";
   }
 }
 
@@ -355,7 +355,7 @@ function menuicon(x) {
 var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
-var signOutButtonElement = document.getElementById('sign-out');
+var menuButtonElement = document.getElementById('menu');
 var emailContentInput = document.getElementById('emailContentInput');
 var emailSubjectInput = document.getElementById('emailSubjectInput');
 var refPostEmail = document.getElementById("refPostEmail");
