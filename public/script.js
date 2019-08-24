@@ -93,6 +93,9 @@ function addDocument(docId, visibility, number) {
           contactB.setAttribute("class", "mr-3 btn btn-primary");
           contactB.setAttribute("data-toggle", "modal");
           contactB.setAttribute("data-target", "#messageModal");
+          console.log(mainDocData.id + "<-- id");
+          console.log(mainDocData.uid + "<-- uid");
+          console.log(mainDocData);
           contactB.setAttribute("onclick", "contact('" + mainDocData.id + "')");
           contactB.innerHTML = "Contact";
           mailZeile.appendChild(contactB);
