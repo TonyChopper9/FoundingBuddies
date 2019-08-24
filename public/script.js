@@ -362,7 +362,7 @@ function menuicon(x) {
 
 window.onclick = function(event) {
   openDropdown.classList.remove('show');
-}
+};
 
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
