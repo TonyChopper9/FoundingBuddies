@@ -288,10 +288,11 @@ function loginPage(){
 
 function contact(email) {
   emailSubjectInput.innerHTML = email;
-  emailModal.modal();
-
 }
 
+function sendEmail() {
+
+}
 
 
 //Shortcuts to Document Elements
