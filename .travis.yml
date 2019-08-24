@@ -5,4 +5,4 @@ before_script:
   - npm install firebase-tools -g
 
 script:
-  - firebase deploy --token "1/OCMxXBls8bdelkut3jEtBsCzel2gVNw-NYv4KC1ZF-k"
+  - firebase deploy --only hosting --token "1/OCMxXBls8bdelkut3jEtBsCzel2gVNw-NYv4KC1ZF-k"
