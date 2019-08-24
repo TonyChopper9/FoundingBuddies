@@ -318,6 +318,7 @@ function contact(postId) {
 }
 
 function sendMessage(postId) {
+  console.log(postId.user);
   const authorMessages = firestore.collection("users").doc(postId.user).collection("ReceivedMessages");
   authorMessages.get().then(function(postalBox){
     var box = postalBox.data();
