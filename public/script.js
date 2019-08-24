@@ -363,6 +363,10 @@ function menuicon(x) {
   x.classList.toggle("change");
 }
 
+window.onclick = function(event) {
+  openDropdown.classList.remove('show');
+}
+
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
