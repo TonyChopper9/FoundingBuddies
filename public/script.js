@@ -42,29 +42,11 @@ function addDocument(docId, visibility, number) {
         var element = document.createElement("div");
         element.setAttribute("class", "card mb-3 w-100");
         element.setAttribute("id", docId);
-        //Potentially problematic
-        //TODO: "DELETE" USE CASE
         element.setAttribute("id2", number);
         if(!visibility){element.setAttribute("style", "display: none;")}
 
         var innerElement = document.createElement("div");
         innerElement.setAttribute("class", "card-body");
-
-        /* So soll ein Post aussehen
-        <div class="card mb-3 w-100">
-          <div class="card-body">
-            <h5 class="mb-0 card-title">Creative manufacturing</h5>
-            <p class="mb-2 card-text"><small class="text-muted">January 1, 2014 by <a href="#">Hans</a></small></p> <--<a>Hans</a> kann eigl raus da wir ja nicht das Profil verlinken wollen, wir haben ja keine Profile
-            <p class="text-brake card-text">With suppafgag juhegftkjhegtf lkjehtfkleh kjeghkijehag hikkgaelihorting text below as a natural lead-in to additional content.</p>
-            <div class="row justify-content-end">
-              <a class="mr-3 btn btn-primary">Contact</a>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="close" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        */
 
         //HEADER
         var header1 = document.createElement("h5");
@@ -98,13 +80,6 @@ function addDocument(docId, visibility, number) {
           metaStuff.appendChild(small);
           innerElement.appendChild(metaStuff);
 
-          //TAG ROW
-          /*
-          var divElement = document.createElement("div");
-          divElement.setAttribute("class", "row");
-          element.appendChild(divElement);
-           */
-
           //INHALT
           var inhalt = document.createElement("p");
           inhalt.setAttribute("class", "text-brake card-text");
@@ -128,12 +103,29 @@ function addDocument(docId, visibility, number) {
           var theDiv = document.getElementById("output");
           theDiv.appendChild(element);
 
+          /*
+          if (number %= 0) {
+          var pageTurner = document.createElement("nav");
+          pageTurner.setAttribute("class", "blog-pagination");
+          var older = document.createElement("a");
+          older.setAttribute("class", "btn btn-outline-primary");
+          older.setAttribute("onclick", "nextPage()");
+          older.innerHTML = "Older";
+          var newer = document.createElement("a");
+          newer.setAttribute("class", "btn btn-outline-primary");
+          newer.setAttribute("onclick", "prevPage()");
+          newer.innerHTML = "Newer";
+          pageTurner.appendChild(older);
+          pageTurner.appendChild(newer);
+
+          theDiv.appendChild(pageTurner);
+          }
+          */
+
           //add close Button if user is authorized
           if(user.id == mainDocData.user){
             header1.appendChild(closeBtn);
           }
-
-          //lululu
 
         }).catch(function (error) {
           console.log("Error: ", error);
