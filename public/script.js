@@ -104,7 +104,7 @@ function addDocument(docId, visibility, number) {
           //MAIL ZEILE
           var mailZeile = document.createElement("div");
           mailZeile.setAttribute("class", "row justify-content-end");
-          var contactB = document.createElement("a");
+          var contactB = document.createElement("button");
           contactB.setAttribute("class", "mr-3 btn btn-primary");
           contactB.setAttribute("onclick", "contact(" + user.mail + ")");
           contactB.innerHTML = "Contact";
