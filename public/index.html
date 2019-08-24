@@ -176,14 +176,23 @@
 
         </main>
         <!-- /.container -->
+        <nav>
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <button class="page-link" onclick="prevPage()">Previous</button>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <button class="page-link" onclick="nextPage()">Next</button>
+            </li>
+          </ul>
+        </nav>
 
 
         <div class="container bg-white">
           <footer class="border-top pt-3 pb-3">
-              <nav class="blog-pagination">
-                  <a class="btn btn-outline-primary" onclick="nextPage()">Older</a>
-                  <a class="btn btn-outline-primary" onclick="prevPage()">Newer</a>
-              </nav>
             <div class="row justify-content-center">
               <a href="#" class="text-secondary">Back to top</a>
             </div>
