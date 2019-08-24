@@ -70,8 +70,8 @@
           </div>
         </div>
       </div>
-      <!-- Email form Modal -->
-      <div class="modal fade" id="emailModal" tabindex="-1" role="dialog">
+      <!-- Message form Modal -->
+      <div class="modal fade" id="messageModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -93,7 +93,7 @@
             <div class="modal-footer">
               <div class="d-flex flex-row-reverse bd-highlight">
                 <div class="p-2 bd-highlight">
-                  <button type="button" data-dismiss="modal" class="btn btn-success" onclick="sendEmail()" id="emailSendButton">Send</button>
+                  <button type="button" data-dismiss="modal" class="btn btn-success" onclick="sendMessage()" id="messageSendButton">Send</button>
                 </div>
                 <div class="p-2 bd-highlight">
                   <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
@@ -116,7 +116,7 @@
             <div class="modal-footer">
               <div class="d-flex flex-row-reverse bd-highlight">
                 <div class="p-2 bd-highlight">
-                  <button type="button" data-dismiss="modal" class="btn btn-danger" onclick="" id="deleteButton">Send</button>
+                  <button type="button" data-dismiss="modal" class="btn btn-danger" onclick="" id="deleteButton">Delete</button>
                 </div>
                 <div class="p-2 bd-highlight">
                   <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
@@ -136,6 +136,7 @@
                         <img class="ml-2" id="user-pic" style="display: none" alt="Profile Picture"></img>
                         <div class="ml-2" id="user-name"></div>
                         <button type="button" data-toggle="modal" data-target="#uploadModal" id="uploadBtn" class="ml-2 btn btn-primary" style="display: none">Upload</button>
+                        <button  id="NotificationsPageBtn" class="btn btn-primary">Notifications</button>
                         <button  id="LoginPageBtn" class="btn btn-primary">Login</button>
                         <button  id="sign-out" style="display: none" class="ml-2 btn btn-primary">Logout</button>
 
@@ -151,38 +152,6 @@
             </div>
             <div class="row">
                 <div id="output" class="blog-main col-9">
-
-                    <!--<div class="blog-post">
-                        <h2 class="blog-post-title">Engineering Student</h2>
-                        <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-                        <div class="row">
-                            <p class="btn btn-light bg-info ml-3">Engineering</p>
-                            <button type="button" class="btn btn-light bg-info ml-2">CAD</button>
-                            <button type="button" class="btn btn-light bg-info ml-2">Master</button>
-                            <button type="button" class="btn btn-light bg-info ml-2">Automotive</button>
-                        </div>
-                        <hr>
-                        <p>Hi, my Name is Mark, I am a Management Student trying to disrupt predictive maintenance.</p>
-                        <p>More Information under: mark.webber@gmail.com</p>
-                    </div>-->
-
-                    <!--<div class="blog-post">
-                        <h2 class="blog-post-title">Computer Science Student</h2>
-                        <p class="blog-post-meta">January 1, 2014 by <a href="#">Hans</a></p>
-                        <div class="row">
-                            <button type="button" class="btn btn-light bg-info ml-3">Informatics</button>
-                            <button type="button" class="btn btn-light bg-info ml-2">Java</button>
-                            <button type="button" class="btn btn-light bg-info ml-2">Bachelor</button>
-                            <button type="button" class="btn btn-light bg-info ml-2">Backend</button>
-                        </div>
-                        <hr>
-                        <p>Hi, my Name is Hans, I am a Management Student and my Team of 4 needs a good coder for my Startup.</p>
-                        <p>More Information under: mark.webber@gmail.com</p>
-                    </div>-->
-
-                    <!-- /.blog-post -->
-                    <!-- /.blog-post -->
-                    <!-- /.blog-post -->
                     <nav class="blog-pagination">
                         <a class="btn btn-outline-primary" onclick="nextPage()">Older</a>
                         <a class="btn btn-outline-primary" onclick="prevPage()">Newer</a>
@@ -214,7 +183,7 @@
             <div class="row justify-content-center">
               <p>FoundingBuddies GbR</p>
             </div>
-            <button type="button" class="btn btn-success" onclick="test()">test</button>
+            <!--<button type="button" class="btn btn-success" onclick="test()">test</button>-->
           </footer>
         </div>
         <!-- Bootstrap core JavaScript

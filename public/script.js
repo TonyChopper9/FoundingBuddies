@@ -61,12 +61,21 @@ function addDocument(docId, visibility, number) {
             </div>
           </div>
         </div>
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         */
 
         //HEADER
         var header1 = document.createElement("h5");
         header1.setAttribute("class", "mb-0 card-title");
         header1.innerHTML = mainDocData.header;
+        var closeBtn = document.createElement("button");
+        closeBtn. setAttribute("type", "button");
+        closeBtn. setAttribute("class", "close");
+        var closeBtnText = document.createElement("span");
+        closeBtnText.innerHTML = "&times;";
+        closeBtn.appendChild(closeBtnText);
         innerElement.appendChild(header1);
 
         //AUTHORING
@@ -108,7 +117,7 @@ function addDocument(docId, visibility, number) {
           var contactB = document.createElement("button");
           contactB.setAttribute("class", "mr-3 btn btn-primary");
           contactB.setAttribute("data-toggle", "modal");
-          contactB.setAttribute("data-target", "#emailModal");
+          contactB.setAttribute("data-target", "#messageModal");
           contactB.setAttribute("onclick", "contact('" + mainDocData.id + "')");
           contactB.innerHTML = "Contact";
           mailZeile.appendChild(contactB);
@@ -118,6 +127,12 @@ function addDocument(docId, visibility, number) {
 
           var theDiv = document.getElementById("output");
           theDiv.appendChild(element);
+
+          //add close Button if user is authorized
+          if(user.id == mainDocData.user){
+            header1.appendChild(closeBtn);
+          }
+
           //lululu
 
         }).catch(function (error) {
@@ -288,26 +303,50 @@ function loginPage(){
   window.location.href = "login.html";
 }
 
+function notificationsPage(){
+  window.location.href = "notifications.html";
+}
+
 function contact(postId) {
   refPost.value = postId;
 }
 
+function sendMessage() {
+  
+}
+
+/*
 function sendEmail() {
   var sendTestMail = firebase.functions().httpsCallable('sendMail');
-  var user = firebase.auth().currentUser;
+  const docRef = firestore.collection("posts").doc(refPost.value);
+  var mainDocData = null;
+  docRef.get().then(function (doc) {
+    if (doc && doc.exists){
+      mainDocData = doc.data();
+
+      if (mainDocData != null) {
+        const userRef = firestore.collection("users").doc(mainDocData.user);
+        var user = null;
+        userRef.get().then(function (smh) {
+          user = smh.data();
+          var sendUserName = user.Username;
+          var sendUserEmail = user.mail;
+        });
+    }
+  }
   var data = {
-    from: user.displayName,
-    to: ,
+    fromName: getUserName,
+    to: sendUserEmail,
     subject: emailSubjectInput,
     content: emailContentInput
   }
-  sendTestMail({email: "hansolovader@gmail.com"}).then(function(result) {
+  sendTestMail(data).then(function(result) {
     // Read result of the Cloud Function.
     console.log(result);
     // ...
   });
 }
-
+*/
 
 
 //Shortcuts to Document Elements
@@ -318,9 +357,11 @@ var signOutButtonElement = document.getElementById('sign-out');
 var emailContentInput = document.getElementById('emailContentInput');
 var emailSubjectInput = document.getElementById('emailSubjectInput');
 var refPostEmail = document.getElementById("refPostEmail");
+var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 loginPageButton.addEventListener("click", loginPage);
+notificationsPageBtn.addEventListener("click", notificationsPage);
 
 initFirebaseAuth();

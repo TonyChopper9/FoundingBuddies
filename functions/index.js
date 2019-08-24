@@ -18,10 +18,13 @@ let transporter = nodemailer.createTransport({
 exports.sendMail = functions.https.onCall((data, context) => {
 
         // getting dest email by query string
-        const dest = data.email;
+        const fromName = data.fromName;
+        const dest = data.to;
+        const subject = data.subject;
+        const content = data.subject;
 
         const mailOptions = {
-            from: 'FoundingBuddies@gmail.com', // Something like: Jane Doe <janedoe@gmail.com>
+            from: 'FoundingBuddies@gmail.com',
             to: dest,
             subject: 'I\'M A PICKLE!!!', // email subject
             html: `<p style="font-size: 16px;">Pickle Riiiiiiiiiiiiiiiick!!</p>
