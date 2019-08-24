@@ -325,6 +325,8 @@ function sendMessage(postId) {
       header: document.getElementById("emailSubjectInput").value,
       sender: firebase.auth().currentUser.uid
     })
+  }).catch(function(error){
+    console.log(error);
   })
 }
 
