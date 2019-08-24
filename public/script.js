@@ -76,7 +76,6 @@ function addDocument(docId, visibility, number) {
         var closeBtnText = document.createElement("span");
         closeBtnText.innerHTML = "&times;";
         closeBtn.appendChild(closeBtnText);
-        header1.appendChild(closeBtn);
         innerElement.appendChild(header1);
 
         //AUTHORING
@@ -128,6 +127,12 @@ function addDocument(docId, visibility, number) {
 
           var theDiv = document.getElementById("output");
           theDiv.appendChild(element);
+
+          //add close Button if user is authorized
+          if(user.id == mainDocData.user){
+            header1.appendChild(closeBtn);
+          }
+
           //lululu
 
         }).catch(function (error) {
