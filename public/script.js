@@ -128,12 +128,32 @@ function addDocument(docId, visibility, number) {
           var theDiv = document.getElementById("output");
           theDiv.appendChild(element);
 
+          /*
+          <nav class="blog-pagination">
+            <a class="btn btn-outline-primary" onclick="nextPage()">Older</a>
+            <a class="btn btn-outline-primary" onclick="prevPage()">Newer</a>
+          </nav>
+          */
+
+          var pageTurner = document.createElement("nav");
+          pageTurner.setAttribute("class", "blog-pagination");
+          var older = document.createElement("a");
+          older.setAttribute("class", "btn btn-outline-primary");
+          older.setAttribute("onclick", "nextPage()");
+          older.innerHTML = "Older";
+          var newer = document.createElement("a");
+          newer.setAttribute("class", "btn btn-outline-primary");
+          newer.setAttribute("onclick", "prevPage()");
+          newer.innerHTML = "Newer";
+          pageTurner.appendChild(older);
+          pageTurner.appendChild(newer);
+
+          theDiv.appendChild(pageTurner);
+
           //add close Button if user is authorized
           if(user.id == mainDocData.user){
             header1.appendChild(closeBtn);
           }
-
-          //lululu
 
         }).catch(function (error) {
           console.log("Error: ", error);
