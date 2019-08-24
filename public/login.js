@@ -23,7 +23,11 @@ function signUp(){
         Username: username,
         mail: email
     }).then(function() {
-        firestore.collection("users").doc(user.user.uid).collection("ReceivedMessages").set().then(function () {
+        firestore.collection("users").doc(user.user.uid).collection("ReceivedMessages").doc().set({
+            content: "",
+            header: "",
+            sender: ""
+        }).then(function () {
             flag1 = true;
             console.log("Added User!!!");
             redirectHome();
