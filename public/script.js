@@ -117,6 +117,7 @@ function addDocument(docId, visibility, number) {
 
           var theDiv = document.getElementById("output");
           theDiv.appendChild(element);
+          //lululu
 
         }).catch(function (error) {
           console.log("Error: ", error);
