@@ -311,6 +311,11 @@ function contact(postId) {
   refPost.value = postId;
 }
 
+function sendMessage() {
+  
+}
+
+/*
 function sendEmail() {
   var sendTestMail = firebase.functions().httpsCallable('sendMail');
   const docRef = firestore.collection("posts").doc(refPost.value);
@@ -326,7 +331,7 @@ function sendEmail() {
           user = smh.data();
           var sendUserName = user.Username;
           var sendUserEmail = user.mail;
-        }
+        });
     }
   }
   var data = {
@@ -341,7 +346,7 @@ function sendEmail() {
     // ...
   });
 }
-
+*/
 
 
 //Shortcuts to Document Elements
