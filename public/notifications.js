@@ -13,6 +13,24 @@ var functions = firebase.functions();
 var page = 0;
 var total = 0;
 
+window.onload = function(){
+    const goal = document.getElementById("output");
+    const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
+    userRef.collection("ReceivedMessages").get().then(function (userColl) {
+        userColl.forEach(message => {
+            const mData = message.data();
+            const header = mData.header;
+            const content = mData.constant;
+            firestore.collection("users").doc(mData.sender)
+            const sender = mData.sender;
+        })
+    }).catch(function(error){console.log(error)})
+};
+
+function addMessage() {
+
+}
+
 function signOut() {
   // Sign out of Firebase.
   firebase.auth().signOut();
