@@ -287,7 +287,7 @@ function loginPage(){
 }
 
 function contact(email) {
-  emailSubjectInput.innerHTML = email;
+  emailSubjectInput.value = email;
 }
 
 function sendEmail() {
