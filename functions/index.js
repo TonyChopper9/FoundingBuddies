@@ -33,9 +33,11 @@ exports.sendMail = functions.https.onCall((data, context) => {
         // returning result
         transporter.sendMail(mailOptions, (erro, info) => {
             if(erro){
-              console.log("Error!");
-                return res.send(erro.toString());
+              return res.send(erro.toString());
             }
-            return res.send('Sended');
+            else {
+              return res.send('Sended');
+            }
+
         });
 });
