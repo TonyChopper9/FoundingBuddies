@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
-const cors = require('cors')({origin: true});
+//const cors = require('cors')({origin: true});
 admin.initializeApp();
 
 /**
@@ -15,11 +15,10 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-exports.sendMail = functions.https.onRequest((req, res) => {
-    cors(req, res, () => {
+exports.sendMail = functions.https.onCall((data, context) => {
 
         // getting dest email by query string
-        const dest = req.query.dest;
+        const dest = data.email;
 
         const mailOptions = {
             from: 'FoundingBuddies@gmail.com', // Something like: Jane Doe <janedoe@gmail.com>
@@ -39,5 +38,4 @@ exports.sendMail = functions.https.onRequest((req, res) => {
             }
             return res.send('Sended');
         });
-    });
 });

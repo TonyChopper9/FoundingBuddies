@@ -297,8 +297,8 @@ function sendEmail() {
 }
 
 function test() {
-  var sendTestMail = firebase.functions().httpsCallable('sendEmail');
-  sendTestMail("hansolovader@gmail.com", "Peter").then(function(result) {
+  var sendTestMail = firebase.functions().httpsCallable('sendMail');
+  sendTestMail({email: "hansolovader@gmail.com"}).then(function(result) {
     // Read result of the Cloud Function.
     console.log(result);
     // ...
