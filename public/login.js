@@ -17,16 +17,17 @@ function signUp(){
   const email = document.getElementById("inputSignUpEmail").value;
   const password = document.getElementById("inputSignUpPassword").value;
 
-
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((user) => {
     firestore.collection("users").doc(user.user.uid).set({
         Username: username,
         mail: email
     }).then(function() {
-        flag1 = true;
-      console.log("Added User!!!");
-        redirectHome();
+        firestore.collection("users").doc(user.user.uid).collection("ReceivedMessages").set().then(function () {
+            flag1 = true;
+            console.log("Added User!!!");
+            redirectHome();
+        });
     }).catch(function(error){
       console.error("Error writing doc: ", error);
     });
@@ -46,7 +47,6 @@ function signUp(){
         console.log(error);
         // [END_EXCLUDE]
       });
-
 
 console.log("ende");
 }
