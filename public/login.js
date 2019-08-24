@@ -19,6 +19,11 @@ function signUp(){
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((user) => {
+    user.sendEmailVerification().then(function() {
+      // Email sent.
+    }).catch(function(error) {
+      // An error happened.
+    });
     firestore.collection("users").doc(user.user.uid).set({
         Username: username,
         mail: email,

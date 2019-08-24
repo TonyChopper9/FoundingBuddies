@@ -263,31 +263,31 @@ function authStateObserver(user) {
     //}
 
     // Set the user's profile pic and name.
-    userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
-    userNameElement.textContent = userName;
+    //userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
+    //userNameElement.textContent = userName;
 
-    /* Show user's profile and sign-out button.
-    userNameElement.style.display = "";
-    userPicElement.style.display = "";
+    //Show user's profile and sign-out button.
+    //userNameElement.style.display = "";
+    //userPicElement.style.display = "";
 
     // Hide sign-in button.
     loginPageButton.style.display = "none";
     // Show sign-out button.
-    menuButtonElement.style.display = "";
-    //uploadBtn.style.display = "";
+    logoutButtonElement.style.display = "";
+    uploadBtn.style.display = "";
 
     // We save the Firebase Messaging Device token and enable notifications.
     */
   } else { // User is signed out!
-    /* Hide user's profile and sign-out button.
-    userNameElement.style.display = "none";
-    userPicElement.style.display = "none";
+    //Hide user's profile and sign-out button.
+    //userNameElement.style.display = "none";
+    //userPicElement.style.display = "none";
 
     // Show sign-in button.
     loginPageButton.style.display = "";
     //Hide sign-out Button
-    menuButtonElement.style.display = "none";
-    //uploadBtn.style.display = "none";
+    logoutButtonElement.style.display = "none";
+    uploadBtn.style.display = "none";
     */
   }
 }
@@ -368,15 +368,16 @@ function menuicon(x) {
 
 
 //Shortcuts to Document Elements
-var userPicElement = document.getElementById('user-pic');
-var userNameElement = document.getElementById('user-name');
+//var userPicElement = document.getElementById('user-pic');
+//var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
-var menuButtonElement = document.getElementById('menu');
+var menuButtonElement = document.getElementById('smallMenu');
 //var emailContentInput = document.getElementById('emailContentInput');
 //var emailSubjectInput = document.getElementById('emailSubjectInput');
 //var refPostEmail = document.getElementById("refPostEmail");
-//var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
-//var signOutButtonElement = document.getElementById("sign-out");
+var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
+var logoutButtonElement = document.getElementById("sign-out");
+var uploadBtn = document.getElementById("uploadBtn");
 
 // Add Listener
 //signOutButtonElement.addEventListener('click', signOut);
