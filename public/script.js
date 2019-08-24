@@ -106,6 +106,8 @@ function addDocument(docId, visibility, number) {
           mailZeile.setAttribute("class", "row justify-content-end");
           var contactB = document.createElement("button");
           contactB.setAttribute("class", "mr-3 btn btn-primary");
+          contactB.setAttribute("data-toggle", "modal");
+          contactB.setAttribute("data-target", "#emailModal");
           contactB.setAttribute("onclick", "contact('" + user.mail + "')");
           contactB.innerHTML = "Contact";
           mailZeile.appendChild(contactB);
@@ -285,9 +287,12 @@ function loginPage(){
 }
 
 function contact(email) {
-  
+  emailSubjectInput.innerHTML = email;
 }
 
+function sendEmail() {
+
+}
 
 
 //Shortcuts to Document Elements
@@ -295,6 +300,8 @@ var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var signOutButtonElement = document.getElementById('sign-out');
+var emailModal = document.getElementById('emailModal');
+var emailSubjectInput = document.getElementById('emailSubjectInput');
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
