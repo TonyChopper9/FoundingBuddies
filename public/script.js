@@ -61,12 +61,22 @@ function addDocument(docId, visibility, number) {
             </div>
           </div>
         </div>
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         */
 
         //HEADER
         var header1 = document.createElement("h5");
         header1.setAttribute("class", "mb-0 card-title");
         header1.innerHTML = mainDocData.header;
+        var closeBtn = document.createElement("button");
+        closeBtn. setAttribute("type", "button");
+        closeBtn. setAttribute("class", "close");
+        var closeBtnText = document.createElement("span");
+        closeBtnText.innerHTML = "&times;";
+        closeBtn.appendChild(closeBtnText);
+        header1.appendChild(closeBtn);
         innerElement.appendChild(header1);
 
         //AUTHORING
