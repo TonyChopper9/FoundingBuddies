@@ -21,9 +21,9 @@ window.onload = async function() {
         console.log(list.docs[0]);
         for(x = 0; x < 30; x++){
             if (x < 10) {
-                addDocument(list.docs[x].id, true, i)
+                addDocument(list.docs[x].id, true, x)
             } else {
-                addDocument(list.docs[x].id, false, i)
+                addDocument(list.docs[x].id, false, x)
             }
         }
         /*
