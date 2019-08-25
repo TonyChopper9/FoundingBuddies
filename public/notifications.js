@@ -63,6 +63,8 @@ function loadMessages() {
                 card.appendChild(colla);
 
                 goal.appendChild(card);
+            }).catch(function (error){
+                console.log(error);
             })
         })
     }).catch(function (error) {
