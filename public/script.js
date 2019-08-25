@@ -375,7 +375,6 @@ function menuicon(x) {
     x.classList.toggle("change");
 }
 
-
 //Shortcuts to Document Elements
 //var userPicElement = document.getElementById('user-pic');
 //var userNameElement = document.getElementById('user-name');
