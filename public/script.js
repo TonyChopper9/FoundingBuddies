@@ -24,14 +24,14 @@ async function loadPage(list) {
     total = list.size;
     for (x = 0; x <= 30; x++) {
         if (x < 10) {
-            await addDocument(list.docs[x].id, true, x + 1)
+            await addDocument(function () {console.log("done" + x)},list.docs[x].id, true, x + 1)
         } else {
-            await addDocument(list.docs[x].id, false, x + 1)
+            await addDocument(function () {console.log("done" + x)},list.docs[x].id, false, x + 1)
         }
     }
 }
 
-async function addDocument(docId, visibility, number) {
+async function addDocument(callback, docId, visibility, number) {
     const docRef = firestore.collection("posts").doc(docId);
     var mainDocData = null;
     docRef.get().then(function (doc) {
@@ -120,6 +120,7 @@ async function addDocument(docId, visibility, number) {
     }).catch(function (error) {
         console.log("Error: ", error);
     });
+    callback();
     return;
 }
 
