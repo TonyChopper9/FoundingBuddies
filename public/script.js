@@ -127,9 +127,6 @@ function addDocument(docId, visibility, number) {
 }
 
 function nextPage() {
-
-    console.log(page + "<--");
-    console.log(Math.floor(total / 10) + "<--");
     if (page < Math.floor(total / 10)) {
         page++;
         if (page >= 3) {
@@ -154,7 +151,7 @@ function nextPage() {
         for (y = 1; y <= 10; y++) {
             var id2n = (page * 10) + y;
             if (id2n <= total) {
-                document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+                document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
             }
         }
     }
