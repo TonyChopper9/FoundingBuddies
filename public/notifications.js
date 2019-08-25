@@ -74,10 +74,6 @@ function loadMessages() {
     })
 }
 
-function addMessage() {
-
-}
-
 function signOut() {
     // Sign out of Firebase.
     firebase.auth().signOut();
@@ -178,11 +174,7 @@ function menuicon(x) {
 }
 
 function homepage() {
-    console.log(isUserSignedIn());
-    console.log(firebase.auth().currentUser);
-    console.log(firebase.auth().currentUser.uid);
-    console.log(!!firebase.auth().currentUser);
-    //window.location.href = "index.html";
+    window.location.href = "index.html";
 }
 
 function getUserId() {

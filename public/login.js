@@ -62,7 +62,6 @@ function signUp() {
     console.log("ende");
 }
 
-
 function signInWithEmail() {
     var email = document.getElementById("inputLoginEmail").value;
     var password = document.getElementById("inputLoginPassword").value;
