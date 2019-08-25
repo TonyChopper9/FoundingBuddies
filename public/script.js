@@ -224,7 +224,13 @@ function initFirebaseAuth() {
 
 // Returns the signed-in user's userid
 function getUserId() {
-  return firebase.auth().currentUser.uid;
+  if (firebase.auth().currentUser != null) {
+    return firebase.auth().currentUser.uid;
+  }
+  else{
+    //Possibly subject to change
+    return "error"
+  }
 }
 
 // Returns true if a user is signed-in.

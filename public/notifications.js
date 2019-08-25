@@ -13,6 +13,7 @@ var functions = firebase.functions();
 
 window.onload = function(){
     const goal = document.getElementById("output");
+    console.log(isUserSignedIn());
     console.log(firebase.auth().currentUser);
     console.log(firebase.auth().currentUser.uid);
     console.log(!!firebase.auth().currentUser);
@@ -176,7 +177,11 @@ function menuicon(x) {
 }
 
 function homepage() {
-  window.location.href = "index.html";
+    console.log(isUserSignedIn());
+    console.log(firebase.auth().currentUser);
+    console.log(firebase.auth().currentUser.uid);
+    console.log(!!firebase.auth().currentUser);
+  //window.location.href = "index.html";
 }
 
 function getUserId() {
