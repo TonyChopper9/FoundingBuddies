@@ -16,22 +16,16 @@ var total = 0;
 window.onload = function () {
     total = 0;
     firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
-        loadPage(list);
+        total = list.size;
+        addDocument(list.docs, true, 0);
     });
 };
-
-function loadPage(list) {
-    total = list.size;
-    addDocument(list.docs, true, 0);
-}
 
 function addDocument(docs, visibility, number) {
         const doc = docs[number];
         var mainDocData = null;
         if (doc && doc.exists) {
             mainDocData = doc.data();
-            console.log(mainDocData);
-            console.log(docs[number].data());
             if (mainDocData != null) {
                 var element = document.createElement("div");
                 element.setAttribute("class", "card mb-3 w-100");
