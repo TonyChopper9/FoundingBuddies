@@ -22,9 +22,11 @@ window.onload = function () {
             i++;
             if (i <= 30) {
                 if (i <= 10) {
-                    addDocument(doc.id, true, i)
+                    const post = new Promise((s) => {addDocument(doc.id, true, i)});
+                    post.then().catch((error) => {console.log(error)})
                 } else {
-                    addDocument(doc.id, false, i)
+                    const post = new Promise((s) => {addDocument(doc.id, false, i)});
+                    post.then().catch((error) => {console.log(error)})
                 }
             }
         });
@@ -122,6 +124,8 @@ function addDocument(docId, visibility, number) {
     }).catch(function (error) {
         console.log("Error: ", error);
     });
+
+    return "1";
 }
 
 function nextPage() {
