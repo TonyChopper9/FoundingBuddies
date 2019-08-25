@@ -218,7 +218,9 @@ function upload() {
 function clearUploadModal() {
   document.getElementById("uploadTitleInput").value = "";
   document.getElementById("uploadContentInput").value = "";
-  //TODO: clear Tags
+  while (tagList.firstChild) {
+      tagList.removeChild(tagList.firstChild);
+  }
 }
 
 function signOut() {
@@ -400,6 +402,7 @@ var menuButtonElement = document.getElementById('smallMenu');
 var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
 var logoutButtonElement = document.getElementById("sign-out");
 var uploadBtn = document.getElementById("uploadBtn");
+var tagList = document.getElementById("tagList");
 
 // Add Listener
 //signOutButtonElement.addEventListener('click', signOut);
