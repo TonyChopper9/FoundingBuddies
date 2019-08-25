@@ -10,8 +10,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 var functions = firebase.functions();
-var page = 0;
-var total = 0;
 
 window.onload = function(){
     const goal = document.getElementById("output");
