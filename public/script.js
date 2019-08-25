@@ -248,26 +248,24 @@ function addSizeToGoogleProfilePic(url) {
     return url;
 }
 
+function getUserMail() {
+  return firebase.auth().currentUser.email;
+}
+
 function authStateObserver(user) {
     if (user) { // User is signed in!
         // Get the signed-in user's profile pic and name.
 
         var profilePicUrl = getProfilePicUrl();
         var userName = getUserName();
+        var userMail = getUserMail();
 
-        //load chat Messages
-        //loadMessages();
-
-        //if (profilePicUrl == "") {
-        //  profilePicUrl = "media/usericon.png";
-        //}
-
-        // Set the user's profile pic and name.
+        // Set the user's profile pic and name and mail and show.
         //userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
-        //userNameElement.textContent = userName;
-
-        //Show user's profile and sign-out button.
-        //userNameElement.style.display = "";
+        userNameElement.innerHTML = userName;
+        userNameElement.style.display = "";
+        userMailElement.innerHTML = userMail;
+        userMailElement.style.display = "";
         //userPicElement.style.display = "";
 
         // Hide sign-in button.
@@ -280,7 +278,8 @@ function authStateObserver(user) {
         // We save the Firebase Messaging Device token and enable notifications.
     } else { // User is signed out!
         //Hide user's profile and sign-out button.
-        //userNameElement.style.display = "none";
+        userNameElement.style.display = "none";
+        userMailElement.style.display = "none";
         //userPicElement.style.display = "none";
 
         // Show sign-in button.
@@ -393,7 +392,8 @@ function deletePost(docId) {
 
 //Shortcuts to Document Elements
 //var userPicElement = document.getElementById('user-pic');
-//var userNameElement = document.getElementById('user-name');
+var userNameElement = document.getElementById('user-name');
+var userMailElement = document.getElementById('user-mail');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var menuButtonElement = document.getElementById('smallMenu');
 //var emailContentInput = document.getElementById('emailContentInput');
@@ -404,6 +404,8 @@ var logoutButtonElement = document.getElementById("sign-out");
 var uploadBtn = document.getElementById("uploadBtn");
 var tagList = document.getElementById("tagList");
 var dropDownMenu = document.getElementById("sf");
+var profileDiv = document.getElementById("profileDiv");
+var profileData = document.getElementById("profileData");
 
 // Add Listener
 //signOutButtonElement.addEventListener('click', signOut);
