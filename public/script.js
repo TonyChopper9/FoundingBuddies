@@ -405,7 +405,11 @@ function openDeleteModal(docId) {
 function deletePost(docId) {
 
     //TODO: delete docId
-    console.log("Deleting post: " + docId);
+    firestore.collection("posts").doc(docId).delete().then(function() {
+        console.log("Post deleted");
+    }).catch(function(error) {
+        console.error("Error deleting post: " + error);
+    });
     //clear Modal
     document.getElementById("deleteButton").setAttribute("data-postid", "");
 }
