@@ -13,17 +13,17 @@ var functions = firebase.functions();
 var page = 0;
 var total = 0;
 
-window.onload = async function() {
+window.onload = function() {
     total = 0;
-    firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
+    firestore.collection("posts").orderBy("Date", "desc").get().then(async function (list) {
         total = list.size;
         var i = 0;
         console.log(list.docs[0]);
         for(x = 0; x < 30; x++){
             if (x < 10) {
-                addDocument(list.docs[x].id, true, x)
+                await addDocument(list.docs[x].id, true, x + 1)
             } else {
-                addDocument(list.docs[x].id, false, x)
+                await addDocument(list.docs[x].id, false, x + 1)
             }
         }
         /*
