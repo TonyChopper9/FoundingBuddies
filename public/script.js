@@ -147,7 +147,6 @@ function nextPage() {
     }
 }
 
-//TODO: FIX
 function prevPage() {
     if (page > 0) {
         page--;
