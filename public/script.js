@@ -111,7 +111,7 @@ async function addDocument(callback, docId, visibility, number) {
                     if (getUserId() == mainDocData.user) {
                         header1.appendChild(closeBtn);
                     }
-                    //callback();
+                    callback();
                     console.log(number);
                     return;
                 }).catch(function (error) {
