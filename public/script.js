@@ -53,6 +53,9 @@ function addDocument(docId, visibility, number) {
                 var header1 = document.createElement("h5");
                 header1.setAttribute("class", "mb-0 card-title");
                 header1.innerHTML = mainDocData.header;
+                innerElement.appendChild(header1);
+
+                //CLOSE BUTTON
                 var closeBtn = document.createElement("button");
                 closeBtn.setAttribute("type", "button");
                 closeBtn.setAttribute("class", "close");
@@ -62,7 +65,6 @@ function addDocument(docId, visibility, number) {
                 var closeBtnText = document.createElement("span");
                 closeBtnText.innerHTML = "&times;";
                 closeBtn.appendChild(closeBtnText);
-                innerElement.appendChild(header1);
 
                 //AUTHORING
                 const userRef = firestore.collection("users").doc(mainDocData.user);
@@ -107,29 +109,12 @@ function addDocument(docId, visibility, number) {
                     var theDiv = document.getElementById("output");
                     theDiv.appendChild(element);
 
-                    /*
-                    if (number %= 0) {
-                    var pageTurner = document.createElement("nav");
-                    pageTurner.setAttribute("class", "blog-pagination");
-                    var older = document.createElement("a");
-                    older.setAttribute("class", "btn btn-outline-primary");
-                    older.setAttribute("onclick", "nextPage()");
-                    older.innerHTML = "Older";
-                    var newer = document.createElement("a");
-                    newer.setAttribute("class", "btn btn-outline-primary");
-                    newer.setAttribute("onclick", "prevPage()");
-                    newer.innerHTML = "Newer";
-                    pageTurner.appendChild(older);
-                    pageTurner.appendChild(newer);
-
-                    theDiv.appendChild(pageTurner);
-                    }
-                    */
-
                     //add close Button if user is authorized
                     if (getUserId() == mainDocData.user) {
                         header1.appendChild(closeBtn);
                     }
+
+                    console.log(number);
 
                 }).catch(function (error) {
                     console.log("Error: ", error);
@@ -142,13 +127,6 @@ function addDocument(docId, visibility, number) {
 }
 
 function nextPage() {
-
-    firebase.firestore().collection("users").doc("JHANSotw749yojnmC0am").set({
-        Username: "testusername",
-        mail: "email"
-    }).catch(function (error) {
-        console.log(error)
-    });
 
     console.log(page + "<--");
     console.log(Math.floor(total / 10) + "<--");
