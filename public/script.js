@@ -22,17 +22,20 @@ window.onload = function () {
 
 function loadPage(list) {
     total = list.size;
+    /*
     for (x = 0; x <= 30; x++) {
         if (x < 10) {
-            addDocument(function () {console.log("done")},list.docs[x].id, true, x + 1)
+            addDocument(list.docs[x].id, true, x + 1)
         } else {
-            addDocument(function () {console.log("done")},list.docs[x].id, false, x + 1)
+            addDocument(list.docs[x].id, false, x + 1)
         }
     }
+    */
+    addDocument(list.docs, true, 0);
 }
 
-function addDocument(callback, docId, visibility, number) {
-    const docRef = firestore.collection("posts").doc(docId);
+function addDocument(docs, visibility, number) {
+    const docRef = firestore.collection("posts").doc(docs[number].id);
     var mainDocData = null;
     docRef.get().then(function (doc) {
         if (doc && doc.exists) {
@@ -40,7 +43,7 @@ function addDocument(callback, docId, visibility, number) {
             if (mainDocData != null) {
                 var element = document.createElement("div");
                 element.setAttribute("class", "card mb-3 w-100");
-                element.setAttribute("id", docId);
+                element.setAttribute("id", docs[number].id);
                 element.setAttribute("id2", number);
                 if (!visibility) {
                     element.setAttribute("style", "display: none;")
@@ -61,7 +64,7 @@ function addDocument(callback, docId, visibility, number) {
                 closeBtn.setAttribute("class", "close");
                 closeBtn.setAttribute("data-toggle", "modal");
                 closeBtn.setAttribute("data-target", "#deleteModal");
-                closeBtn.setAttribute("onclick", "openDeleteModal('" + docId + "')");
+                closeBtn.setAttribute("onclick", "openDeleteModal('" + docs[number].id + "')");
                 var closeBtnText = document.createElement("span");
                 closeBtnText.innerHTML = "&times;";
                 closeBtn.appendChild(closeBtnText);
@@ -111,9 +114,17 @@ function addDocument(callback, docId, visibility, number) {
                     if (getUserId() == mainDocData.user) {
                         header1.appendChild(closeBtn);
                     }
-                    callback();
                     console.log(number);
-                    return;
+
+                    if(number < 30){
+                        if (number < 10){
+                            addDocument(docs,true, number + 1)
+                        } else {
+                            addDocument(docs,false, number + 1)
+                        }
+                    }
+
+
                 }).catch(function (error) {
                     console.log("Error: ", error);
                 });
