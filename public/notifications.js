@@ -25,9 +25,39 @@ window.onload = function(){
             firestore.collection("users").doc(mData.sender).get().then(function (senderU){
                sender = senderU.data().Username;
 
-               var element = document.createElement("div");
-               element.setAttribute("class", "card");
+               var card = document.createElement("div");
+               card.setAttribute("class", "card");
+               var col = document.createElement("div");
+               col.setAttribute("class", "row text-center card-header");
+               col.setAttribute("id", "headingOne");
+               var colI = document.createElement("div");
+               colI.setAttribute("class", "col-4");
+               var but = document.createElement("button");
+               but.setAttribute("class", "btn btn-link collapsed");
+               but.setAttribute("type", "button");
+               but.setAttribute("data-toggle", "collapse");
+               but.setAttribute("data-target", "#collapseOne");
+               but.innerHTML = header;
+               var colII = document.createElement("div");
+               colII.setAttribute("class", "col-4");
+               colII.innerHTML = sender;
+               colI.appendChild(but);
+               col.appendChild(colI);
+               col.appendChild(colII);
 
+               var colla = document.createElement("div");
+               colla.setAttribute("class", "collapse");
+               colla.setAttribute("id", "collapseOne");
+               colla.setAttribute("data-parent","#accordionExample");
+               var collab = document.createElement("div");
+               collab.setAttribute("class", "card-body");
+               collab.innerHTML = content;
+               colla.appendChild(collab);
+
+               card.appendChild(col);
+               card.appendChild(colla);
+
+               goal.appendChild(card);
             });
 
         })
