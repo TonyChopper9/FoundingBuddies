@@ -136,10 +136,10 @@
             <div id="sf" class="col d-flex flex-row-reverse align-items-center dropleft">
                 <ul id="bigMenu" class="nav">
                     <li class="m-2 nav-item">
-                        <button id="uploadBtn" style="display: none" class="btn btn-info nav-link" data-toggle="modal" data-target="#uploadModal">Upload</button>
+                        <button id="uploadBtn" style="display: none" class="btn btn-success nav-link" data-toggle="modal" data-target="#uploadModal">Upload</button>
                     </li>
                     <li class="m-2 nav-item">
-                        <button id="NotificationsPageBtn" style="display: none" class="btn btn-info nav-link" onclick="notificationsPage()">Messages</button>
+                        <button id="NotificationsPageBtn" style="display: none" class="btn btn-primary nav-link" onclick="notificationsPage()">Messages</button>
                     </li>
                     <li class="m-2 nav-item">
                         <button id="sign-out" style="display: none" class="btn btn-danger nav-link" onclick="signOut()">Logout</button>
@@ -155,10 +155,11 @@
                     <div class="bar3"></div>
                 </div>
                 <div class="dropdown-menu" id="drpMenu">
-                    <button type="button" data-toggle="modal" data-target="#uploadModal" class="dropdown-item">Upload</button>
-                    <button type="button" class="dropdown-item">Notifications</button>
+                    <button id="uploadBtnDrpMenu" type="button" data-toggle="modal" data-target="#uploadModal" class="dropdown-item">Upload</button>
+                    <button id="NotificationsPageBtnDrpMenu" type="button" class="dropdown-item" onclick="notificationsPage()">Notifications</button>
                     <div class="dropdown-divider"></div>
-                    <button class="dropdown-item">Logout</button>
+                    <button id="sign-outDrpMenu" class="dropdown-item" onclick="signOut()">Logout</button>
+                    <button id="LoginPageBtnDrpMenu" class="dropdown-item" onclick="loginPage()">Login</button>
                 </div>
                 <!-- old menu
                   <img class="ml-2" id="user-pic" style="display: none" alt="Profile Picture"></img>
