@@ -20,7 +20,7 @@ function loadMessages() {
             const mData = message.data();
             const header = mData.header;
             const content = mData.content;
-            const date = mData.timestamp;
+            const tmstmp = mData.timestamp;
             var sender = "";
             firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
                 sender = senderU.data().Username;
@@ -43,7 +43,7 @@ function loadMessages() {
                 colII.innerHTML = sender;
                 var colIII = document.createElement("div");
                 colIII.setAttribute("class", "col-4");
-                var dateDate = date.Date.toDate();
+                var dateDate = tmstmp.toDate();
                 colIII.innerHTML = dateDate.getDate() + "." + dateDate.getMonth() + "." + dateDate.getFullYear();
                 colI.appendChild(but);
                 col.appendChild(colI);
