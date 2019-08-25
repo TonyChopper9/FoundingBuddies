@@ -30,12 +30,17 @@ function loadMessages() {
                 var card = document.createElement("div");
                 card.setAttribute("class", "card");
                 var col = document.createElement("div");
-                col.setAttribute("class", "row text-center card-header");
+                if (thisCounter % 2 == 0){
+                  col.setAttribute("class", "bg-light row text-center card-header");
+                } else {
+                  col.setAttribute("class", "row text-center card-header");
+                }
+
                 col.setAttribute("id", "heading" + thisCounter);
                 var colI = document.createElement("div");
                 colI.setAttribute("class", "col-4");
                 var but = document.createElement("button");
-                but.setAttribute("class", "btn btn-link collapsed");
+                but.setAttribute("class", "btn collapsed");
                 but.setAttribute("type", "button");
                 but.setAttribute("data-toggle", "collapse");
                 but.setAttribute("data-target", "#collapse" + thisCounter);
@@ -60,6 +65,13 @@ function loadMessages() {
                 collab.setAttribute("class", "card-body");
                 collab.innerHTML = content;
                 colla.appendChild(collab);
+
+                //Add reply Button
+                var repBtn = document.createElement("button");
+                repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-primary");
+                repBtn.setAttribute("data-replyto", senderU.data().mail);
+                repBtn.innerHTML = "Reply";
+                colla.appendChild(repBtn);
 
                 card.appendChild(col);
                 card.appendChild(colla);
