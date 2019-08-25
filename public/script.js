@@ -269,10 +269,14 @@ function authStateObserver(user) {
 
         // Hide sign-in button.
         loginPageButton.style.display = "none";
+        loginPageButtonDrpMenu.style.display = "none";
         // Show sign-out button.
         logoutButtonElement.style.display = "";
         uploadBtn.style.display = "";
         notificationsPageBtn.style.display = "";
+        logoutButtonElementDrpMenu.style.display = "";
+        uploadBtnDrpMenu.style.display = "";
+        notificationsPageBtnDrpMenu.style.display = "";
 
         // We save the Firebase Messaging Device token and enable notifications.
     } else { // User is signed out!
@@ -283,10 +287,14 @@ function authStateObserver(user) {
 
         // Show sign-in button.
         loginPageButton.style.display = "";
+        loginPageButtonDrpMenu.style.display = "";
         //Hide sign-out Button
         logoutButtonElement.style.display = "none";
         uploadBtn.style.display = "none";
         notificationsPageBtn.style.display = "none";
+        logoutButtonElementDrpMenu.style.display = "none";
+        uploadBtnDrpMenu.style.display = "none";
+        notificationsPageBtnDrpMenu.style.display = "none";
     }
 }
 
@@ -392,9 +400,6 @@ var userNameElement = document.getElementById('user-name');
 var userMailElement = document.getElementById('user-mail');
 var loginPageButton = document.getElementById("LoginPageBtn");
 var menuButtonElement = document.getElementById('smallMenu');
-//var emailContentInput = document.getElementById('emailContentInput');
-//var emailSubjectInput = document.getElementById('emailSubjectInput');
-//var refPostEmail = document.getElementById("refPostEmail");
 var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
 var logoutButtonElement = document.getElementById("sign-out");
 var uploadBtn = document.getElementById("uploadBtn");
@@ -403,9 +408,9 @@ var dropDownMenu = document.getElementById("sf");
 var profileDiv = document.getElementById("profileDiv");
 var profileData = document.getElementById("profileData");
 
-// Add Listener
-//signOutButtonElement.addEventListener('click', signOut);
-//loginPageButton.addEventListener("click", loginPage);
-//notificationsPageBtn.addEventListener("click", notificationsPage);
+var notificationsPageBtnDrpMenu = document.getElementById("NotificationsPageBtnDrpMenu");
+var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
+var uploadBtnDrpMenu = document.getElementById("uploadBtnDrpMenu");
+var loginPageButtonDrpMenu = document.getElementById("LoginPageBtnDrpMenu");
 
 initFirebaseAuth();
