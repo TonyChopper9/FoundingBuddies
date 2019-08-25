@@ -21,8 +21,15 @@ window.onload = function(){
             const mData = message.data();
             const header = mData.header;
             const content = mData.constant;
-            firestore.collection("users").doc(mData.sender)
-            const sender = mData.sender;
+            var sender = "";
+            firestore.collection("users").doc(mData.sender).get().then(function (senderU){
+               sender = senderU.data().Username;
+
+               var element = document.createElement("div");
+               element.setAttribute("class", "card");
+
+            });
+
         })
     }).catch(function(error){console.log(error)})
 };
