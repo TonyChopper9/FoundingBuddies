@@ -37,7 +37,6 @@ function addDocument(docId, visibility, number) {
     docRef.get().then(function (doc) {
         if (doc && doc.exists) {
             mainDocData = doc.data();
-
             if (mainDocData != null) {
                 var element = document.createElement("div");
                 element.setAttribute("class", "card mb-3 w-100");
@@ -213,7 +212,6 @@ function upload() {
         user: getUserId()
     };
     postRef.doc().set(inpData);
-    postRef.doc()
 }
 
 function signOut() {

@@ -13,17 +13,14 @@ var functions = firebase.functions();
 
 function loadMessages() {
     const goal = document.getElementById("output");
-    console.log(isUserSignedIn());
-    console.log(firebase.auth().currentUser);
-    console.log(firebase.auth().currentUser.uid);
-    console.log(!!firebase.auth().currentUser);
 
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").get().then(function (userColl) {
         userColl.forEach(message => {
             const mData = message.data();
             const header = mData.header;
-            const content = mData.constant;
+            const content = mData.content;
+            const date = mData.timestamp;
             var sender = "";
             firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
                 sender = senderU.data().Username;
@@ -44,9 +41,14 @@ function loadMessages() {
                 var colII = document.createElement("div");
                 colII.setAttribute("class", "col-4");
                 colII.innerHTML = sender;
+                var colIII = document.createElement("div");
+                colIII.setAttribute("class", "col-4");
+                var dateDate = date.Date.toDate();
+                colIII.innerHTML = dateDate.getDate() + "." + dateDate.getMonth() + "." + dateDate.getFullYear();
                 colI.appendChild(but);
                 col.appendChild(colI);
                 col.appendChild(colII);
+                col.appendChild(colIII);
 
                 var colla = document.createElement("div");
                 colla.setAttribute("class", "collapse");
