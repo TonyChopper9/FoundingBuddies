@@ -172,7 +172,7 @@ function prevPage() {
         for (y2 = 1; y2 <= 10; y2++) {
             var id2n = (page * 10) + y2;
             if (id2n <= total) {
-                document.querySelector('[id2="' + id2n + '"]').setAttribute("style", "display: inline;")
+                document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
             }
         }
     }
