@@ -11,7 +11,7 @@ firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 var functions = firebase.functions();
 
-window.onload = function(){
+function loadMessages(){
     const goal = document.getElementById("output");
     console.log(isUserSignedIn());
     console.log(firebase.auth().currentUser);
@@ -71,7 +71,7 @@ window.onload = function(){
             console.log("No user is signed in ATM");
         }
 
-};
+}
 
 function addMessage() {
 
@@ -100,11 +100,13 @@ function authStateObserver(user) {
   if (user) { // User is signed in!
     // Get the signed-in user's profile pic and name.
 
+
+
     var profilePicUrl = getProfilePicUrl();
     var userName = getUserName();
 
     //load chat Messages
-    //loadMessages();
+    loadMessages();
 
     //if (profilePicUrl == "") {
     //  profilePicUrl = "media/usericon.png";
