@@ -15,7 +15,10 @@ var total = 0;
 
 window.onload = function(){
     const goal = document.getElementById("output");
-    const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
+    getUserId().then(function (uid) {
+        const userRef = firestore.collection("users").doc(uid);                            //Alternative zu der Zeile drunter, glaube da könnte der Fehler liegen
+    });
+    //const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").get().then(function (userColl) {
         userColl.forEach(message => {
             const mData = message.data();
@@ -159,6 +162,10 @@ function menuicon(x) {
 
 function homepage() {
   window.location.href = "index.html";
+}
+
+function getUserId() {
+    return firebase.auth().currentUser.uid;
 }
 
 //Shortcuts to Document Elements
