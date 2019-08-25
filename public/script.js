@@ -31,7 +31,8 @@ function addDocument(docs, visibility, number) {
     docRef.get().then(function (doc) {
         if (doc && doc.exists) {
             mainDocData = doc.data();
-            console.log(mainDocData == docs[number].data());
+            console.log(mainDocData);
+            console.log(docs[number].data());
             if (mainDocData != null) {
                 var element = document.createElement("div");
                 element.setAttribute("class", "card mb-3 w-100");
