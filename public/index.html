@@ -133,7 +133,7 @@
             <div class="text-center col-5">
                 <h1 class="text-dark" href="#">FoundingBuddies</h1>
             </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
+            <div id="sf" class="col-4 d-flex justify-content-end align-items-center">
                 <ul id="bigMenu" class="nav">
                     <li class="m-2 nav-item">
                         <button id="uploadBtn" style="display: none" class="btn btn-info nav-link" data-toggle="modal" data-target="#uploadModal">Upload</button>
@@ -149,12 +149,12 @@
                     </li>
                 </ul>
 
-                <div id="smallMenu" style="display: none" class="container menuicon dropleft" data-toggle="dropdown" onclick="menuicon(this)">
+                <div id="smallMenu" class="container menuicon dropleft" onclick="menuicon(this)" data-toggle="dropdown">
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                     <div class="bar3"></div>
                 </div>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" id="drpMenu">
                     <button type="button" data-toggle="modal" data-target="#uploadModal" class="dropdown-item">Upload</button>
                     <button type="button" class="dropdown-item">Notifications</button>
                     <div class="dropdown-divider"></div>
@@ -166,7 +166,7 @@
                   <button  id="LoginPageBtn" class="btn btn-primary">Login</button>
                 -->
 
-                <!-- hamburgermenu
+
                 <div id="menu" style="display: none" class="container menuicon dropleft" data-toggle="dropdown" onclick="menuicon(this)">
                   <div class="bar1"></div>
                   <div class="bar2"></div>
@@ -178,7 +178,7 @@
                   <div class="dropdown-divider"></div>
                   <button  id="sign-out" class="btn-danger dropdown-item">Logout</button>
                 </div>
-              -->
+
 
             </div>
         </div>

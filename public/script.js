@@ -401,6 +401,7 @@ var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
 var logoutButtonElement = document.getElementById("sign-out");
 var uploadBtn = document.getElementById("uploadBtn");
 var tagList = document.getElementById("tagList");
+var dropDownMenu = document.getElementById("sf");
 
 // Add Listener
 //signOutButtonElement.addEventListener('click', signOut);
