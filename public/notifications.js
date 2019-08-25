@@ -13,8 +13,9 @@ var functions = firebase.functions();
 
 window.onload = function(){
     const goal = document.getElementById("output");
+    console.log(firebase.auth().currentUser.uid);
+    console.log(!!firebase.auth().currentUser.uid);
     if (isUserSignedIn()) {
-        console.log(firebase.auth().currentUser.uid);
         const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
         userRef.collection("ReceivedMessages").get().then(function (userColl) {
             userColl.forEach(message => {
