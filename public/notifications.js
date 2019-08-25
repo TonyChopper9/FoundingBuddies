@@ -51,7 +51,7 @@ function loadMessages() {
                 var colIII = document.createElement("div");
                 colIII.setAttribute("class", "col-4");
                 var dateDate = tmstmp.toDate();
-                colIII.innerHTML = dateDate.getDate() + "." + dateDate.getMonth() + "." + dateDate.getFullYear();
+                colIII.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear();
                 colI.appendChild(but);
                 col.appendChild(colI);
                 col.appendChild(colII);

@@ -109,8 +109,6 @@ function addDocument(docs, visibility, number) {
                         addDocument(docs, false, number + 1)
                     }
                 }
-
-
             }).catch(function (error) {
                 console.log("Error: ", error);
             });
