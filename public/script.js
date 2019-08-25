@@ -358,9 +358,6 @@ function sendEmail() {
   });
 }
 */
-function menuicon(x) {
-    x.classList.toggle("change");
-}
 
 function addTag() {
     var tagValue = document.getElementById("uploadTagInput").value;
