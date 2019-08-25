@@ -16,11 +16,13 @@ function loadMessages() {
 
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").get().then(function (userColl) {
+        var counter = 0;
         userColl.forEach(message => {
+            counter++;
             const mData = message.data();
             const header = mData.header;
             const content = mData.content;
-            const date = mData.timestamp;
+            const tmstmp = mData.timestamp;
             var sender = "";
             firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
                 sender = senderU.data().Username;
@@ -29,21 +31,21 @@ function loadMessages() {
                 card.setAttribute("class", "card");
                 var col = document.createElement("div");
                 col.setAttribute("class", "row text-center card-header");
-                col.setAttribute("id", "headingOne");
+                col.setAttribute("id", "heading" + counter);
                 var colI = document.createElement("div");
                 colI.setAttribute("class", "col-4");
                 var but = document.createElement("button");
                 but.setAttribute("class", "btn btn-link collapsed");
                 but.setAttribute("type", "button");
                 but.setAttribute("data-toggle", "collapse");
-                but.setAttribute("data-target", "#collapseOne");
+                but.setAttribute("data-target", "#collapse" + counter);
                 but.innerHTML = header;
                 var colII = document.createElement("div");
                 colII.setAttribute("class", "col-4");
                 colII.innerHTML = sender;
                 var colIII = document.createElement("div");
                 colIII.setAttribute("class", "col-4");
-                var dateDate = date.Date.toDate();
+                var dateDate = tmstmp.toDate();
                 colIII.innerHTML = dateDate.getDate() + "." + dateDate.getMonth() + "." + dateDate.getFullYear();
                 colI.appendChild(but);
                 col.appendChild(colI);
@@ -52,7 +54,7 @@ function loadMessages() {
 
                 var colla = document.createElement("div");
                 colla.setAttribute("class", "collapse");
-                colla.setAttribute("id", "collapseOne");
+                colla.setAttribute("id", "collapse" + counter);
                 colla.setAttribute("data-parent", "#accordionExample");
                 var collab = document.createElement("div");
                 collab.setAttribute("class", "card-body");
