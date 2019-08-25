@@ -18,6 +18,15 @@ window.onload = async function() {
     firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
         total = list.size;
         var i = 0;
+        console.log(list.docs[0]);
+        for(x = 0; x < 30; x++){
+            if (x < 10) {
+                addDocument(list.docs[x].id, true, i)
+            } else {
+                addDocument(list.docs[x].id, false, i)
+            }
+        }
+        /*
         list.forEach(function (doc) {
             i++;
             if (i <= 30) {
@@ -28,6 +37,7 @@ window.onload = async function() {
                 }
             }
         });
+        */
     });
 };
 
