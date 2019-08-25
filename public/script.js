@@ -17,16 +17,15 @@ window.onload = function () {
     total = 0;
     firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
         total = list.size;
+        var postNo = 1;
         var i = 0;
         list.forEach((doc) => {
             i++;
-            if (i <= 30) {
+            if (i <= 30 && postNo == i) {
                 if (i <= 10) {
-                    const post = new Promise((s) => {addDocument(doc.id, true, i)});
-                    post.then().catch((error) => {console.log(error)})
+                    postNo = addDocument(doc.id, true, i)
                 } else {
-                    const post = new Promise((s) => {addDocument(doc.id, false, i)});
-                    post.then().catch((error) => {console.log(error)})
+                    postNo = addDocument(doc.id, false, i)
                 }
             }
         });
@@ -125,7 +124,7 @@ function addDocument(docId, visibility, number) {
         console.log("Error: ", error);
     });
 
-    return "1";
+    return number + 1;
 }
 
 function nextPage() {
@@ -238,7 +237,10 @@ function getProfilePicUrl() {
 
 // Returns the signed-in user's display name.
 function getUserName() {
-    return firebase.auth().currentUser.displayName;
+    const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
+    userRef.get().then(function (user) {
+        return firebase.auth().currentUser.displayName;
+    }).catch(function (error) {console.log(error)});
 }
 
 function addSizeToGoogleProfilePic(url) {
