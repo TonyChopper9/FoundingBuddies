@@ -76,13 +76,11 @@ function addDocument(docId, visibility, number) {
                     metaStuff.setAttribute("class", "mb-2 card-text");
                     var small = document.createElement("small");
                     small.setAttribute("class", "text-muted");
-                    //var linkName = document.createElement("a");
-                    //linkName.setAttribute("href", "#");
 
                     //User
                     user = smh.data();
                     var dateDate = mainDocData.Date.toDate();
-                    small.innerHTML = dateDate.getDate() + "." + dateDate.getMonth() + "." + dateDate.getFullYear() + " by " + user.Username;
+                    small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear() + " by " + user.Username;
                     metaStuff.appendChild(small);
                     innerElement.appendChild(metaStuff);
 
