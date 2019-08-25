@@ -26,9 +26,8 @@ function loadPage(list) {
 }
 
 function addDocument(docs, visibility, number) {
-    const docRef = firestore.collection("posts").doc(docs[number].id);
-    var mainDocData = null;
-    docRef.get().then(function (doc) {
+        const doc = docs[number];
+        var mainDocData = null;
         if (doc && doc.exists) {
             mainDocData = doc.data();
             console.log(mainDocData);
@@ -123,9 +122,6 @@ function addDocument(docs, visibility, number) {
                 });
             }
         }
-    }).catch(function (error) {
-        console.log("Error: ", error);
-    });
 }
 
 function nextPage() {
