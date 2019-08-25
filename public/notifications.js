@@ -85,8 +85,8 @@ function authStateObserver(user) {
   if (user) { // User is signed in!
     // Get the signed-in user's profile pic and name.
 
-    //var profilePicUrl = getProfilePicUrl();
-    //var userName = getUserName();
+    var profilePicUrl = getProfilePicUrl();
+    var userName = getUserName();
 
     //load chat Messages
     //loadMessages();
@@ -96,12 +96,12 @@ function authStateObserver(user) {
     //}
 
     // Set the user's profile pic and name.
-   // userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
-    //userNameElement.textContent = userName;
+    userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
+    userNameElement.textContent = userName;
 
     // Show user's profile and sign-out button.
-    //userNameElement.removeAttribute('hidden');
-    //userPicElement.style.display = "";
+    userNameElement.style.display = "";
+    userPicElement.style.display = "";
 
     // Hide sign-in button.
     //loginPageButton.style.display = "none";
@@ -112,6 +112,7 @@ function authStateObserver(user) {
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
   } else { // User is signed out!
+      window.location.href = "index.html";
     // Hide user's profile and sign-out button.
     //userNameElement.setAttribute('hidden', 'true');
     //userPicElement.style.display = "none";
@@ -169,8 +170,8 @@ function getUserId() {
 }
 
 //Shortcuts to Document Elements
-//var userPicElement = document.getElementById('user-pic');
-//var userNameElement = document.getElementById('user-name');
+var userPicElement = document.getElementById('user-pic');
+var userNameElement = document.getElementById('user-name');
 //var menuButtonElement = document.getElementById('menu');
 var signOutButtonElement = document.getElementById("sign-out");
 
