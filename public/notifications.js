@@ -15,56 +15,60 @@ var total = 0;
 
 window.onload = function(){
     const goal = document.getElementById("output");
-    getUserId().then(function (uid) {
-        const userRef = firestore.collection("users").doc(uid);                            //Alternative zu der Zeile drunter, glaube da könnte der Fehler liegen
-    });
-    //const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
-    userRef.collection("ReceivedMessages").get().then(function (userColl) {
-        userColl.forEach(message => {
-            const mData = message.data();
-            const header = mData.header;
-            const content = mData.constant;
-            var sender = "";
-            firestore.collection("users").doc(mData.sender).get().then(function (senderU){
-               sender = senderU.data().Username;
+    if (isUserSignedIn()) {
+        const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
+        userRef.collection("ReceivedMessages").get().then(function (userColl) {
+            userColl.forEach(message => {
+                const mData = message.data();
+                const header = mData.header;
+                const content = mData.constant;
+                var sender = "";
+                firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
+                    sender = senderU.data().Username;
 
-               var card = document.createElement("div");
-               card.setAttribute("class", "card");
-               var col = document.createElement("div");
-               col.setAttribute("class", "row text-center card-header");
-               col.setAttribute("id", "headingOne");
-               var colI = document.createElement("div");
-               colI.setAttribute("class", "col-4");
-               var but = document.createElement("button");
-               but.setAttribute("class", "btn btn-link collapsed");
-               but.setAttribute("type", "button");
-               but.setAttribute("data-toggle", "collapse");
-               but.setAttribute("data-target", "#collapseOne");
-               but.innerHTML = header;
-               var colII = document.createElement("div");
-               colII.setAttribute("class", "col-4");
-               colII.innerHTML = sender;
-               colI.appendChild(but);
-               col.appendChild(colI);
-               col.appendChild(colII);
+                    var card = document.createElement("div");
+                    card.setAttribute("class", "card");
+                    var col = document.createElement("div");
+                    col.setAttribute("class", "row text-center card-header");
+                    col.setAttribute("id", "headingOne");
+                    var colI = document.createElement("div");
+                    colI.setAttribute("class", "col-4");
+                    var but = document.createElement("button");
+                    but.setAttribute("class", "btn btn-link collapsed");
+                    but.setAttribute("type", "button");
+                    but.setAttribute("data-toggle", "collapse");
+                    but.setAttribute("data-target", "#collapseOne");
+                    but.innerHTML = header;
+                    var colII = document.createElement("div");
+                    colII.setAttribute("class", "col-4");
+                    colII.innerHTML = sender;
+                    colI.appendChild(but);
+                    col.appendChild(colI);
+                    col.appendChild(colII);
 
-               var colla = document.createElement("div");
-               colla.setAttribute("class", "collapse");
-               colla.setAttribute("id", "collapseOne");
-               colla.setAttribute("data-parent","#accordionExample");
-               var collab = document.createElement("div");
-               collab.setAttribute("class", "card-body");
-               collab.innerHTML = content;
-               colla.appendChild(collab);
+                    var colla = document.createElement("div");
+                    colla.setAttribute("class", "collapse");
+                    colla.setAttribute("id", "collapseOne");
+                    colla.setAttribute("data-parent", "#accordionExample");
+                    var collab = document.createElement("div");
+                    collab.setAttribute("class", "card-body");
+                    collab.innerHTML = content;
+                    colla.appendChild(collab);
 
-               card.appendChild(col);
-               card.appendChild(colla);
+                    card.appendChild(col);
+                    card.appendChild(colla);
 
-               goal.appendChild(card);
-            });
-
+                    goal.appendChild(card);
+                })
+            })
+        }).catch(function (error) {
+            console.log(error)
         })
-    }).catch(function(error){console.log(error)})
+    }
+        else {
+            console.log("No user is signed in ATM");
+        }
+
 };
 
 function addMessage() {
@@ -167,6 +171,10 @@ function homepage() {
 
 function getUserId() {
     return firebase.auth().currentUser.uid;
+}
+
+function isUserSignedIn() {
+    return !!firebase.auth().currentUser;
 }
 
 //Shortcuts to Document Elements

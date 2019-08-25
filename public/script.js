@@ -123,7 +123,7 @@ function addDocument(docId, visibility, number) {
           */
 
           //add close Button if user is authorized
-          if(user.id == mainDocData.user){
+          if(getUserId() == mainDocData.user){
             header1.appendChild(closeBtn);
           }
 
