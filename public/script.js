@@ -13,19 +13,23 @@ var functions = firebase.functions();
 var page = 0;
 var total = 0;
 
-window.onload = function() {
+window.onload = function () {
     total = 0;
-    firestore.collection("posts").orderBy("Date", "desc").get().then(async function (list) {
-        total = list.size;
-        for(x = 0; x <= 30; x++){
-            if (x <= 10) {
-                await addDocument(list.docs[x].id, true, x + 1)
-            } else {
-                await addDocument(list.docs[x].id, false, x + 1)
-            }
-        }
+    firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
+        loadPage(list);
     });
 };
+
+async function loadPage(list) {
+    total = list.size;
+    for (x = 0; x <= 30; x++) {
+        if (x <= 10) {
+            await addDocument(list.docs[x].id, true, x + 1)
+        } else {
+            await addDocument(list.docs[x].id, false, x + 1)
+        }
+    }
+}
 
 function addDocument(docId, visibility, number) {
     const docRef = firestore.collection("posts").doc(docId);
@@ -57,7 +61,7 @@ function addDocument(docId, visibility, number) {
                 closeBtn.setAttribute("class", "close");
                 closeBtn.setAttribute("data-toggle", "modal");
                 closeBtn.setAttribute("data-target", "#deleteModal");
-                closeBtn.setAttribute("onclick","openDeleteModal('" + docId + "')");
+                closeBtn.setAttribute("onclick", "openDeleteModal('" + docId + "')");
                 var closeBtnText = document.createElement("span");
                 closeBtnText.innerHTML = "&times;";
                 closeBtn.appendChild(closeBtnText);
@@ -190,14 +194,14 @@ function upload() {
 }
 
 function clearUploadModal() {
-  document.getElementById("uploadTitleInput").value = "";
-  document.getElementById("uploadContentInput").value = "";
-  while (tagList.firstChild) {
-      tagList.removeChild(tagList.firstChild);
-  }
-  var e = document.getElementById("uploadTagInput");
-  e.options[e.selectedIndex].removeAttribute("selected");
-  e.options[0].selected = true;
+    document.getElementById("uploadTitleInput").value = "";
+    document.getElementById("uploadContentInput").value = "";
+    while (tagList.firstChild) {
+        tagList.removeChild(tagList.firstChild);
+    }
+    var e = document.getElementById("uploadTagInput");
+    e.options[e.selectedIndex].removeAttribute("selected");
+    e.options[0].selected = true;
 
 }
 
@@ -235,7 +239,9 @@ function getUserName() {
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.get().then(function (user) {
         return user.data().Username;
-    }).catch(function (error) {console.log(error)});
+    }).catch(function (error) {
+        console.log(error)
+    });
 }
 
 function addSizeToGoogleProfilePic(url) {
@@ -246,7 +252,7 @@ function addSizeToGoogleProfilePic(url) {
 }
 
 function getUserMail() {
-  return firebase.auth().currentUser.email;
+    return firebase.auth().currentUser.email;
 }
 
 function authStateObserver(user) {
