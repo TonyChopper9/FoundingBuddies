@@ -30,9 +30,10 @@ function signUp() {
                 confirmed: false
             }).then(function () {
                 firestore.collection("users").doc(user.user.uid).collection("ReceivedMessages").doc().set({
-                    content: "",
-                    header: "",
-                    sender: ""
+                    content: "This will be your personal message Space!!",
+                    header: "Welcome to FoundingBuddies!",
+                    sender: "9p78wKqLdoSgyHMG6uG5GHtObm33",
+                    timestamp: firebase.firestore.Timestamp.fromDate(new Date())
                 }).then(function () {
                     flag1 = true;
                     console.log("Added User!!!");
