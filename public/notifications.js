@@ -16,6 +16,7 @@ var total = 0;
 window.onload = function(){
     const goal = document.getElementById("output");
     if (isUserSignedIn()) {
+        console.log(firebase.auth().currentUser.uid);
         const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
         userRef.collection("ReceivedMessages").get().then(function (userColl) {
             userColl.forEach(message => {
