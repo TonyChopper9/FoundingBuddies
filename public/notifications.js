@@ -101,7 +101,7 @@ function authStateObserver(user) {
         var userName = getUserName();
 
         //load chat Messages
-        loadMessages();
+        //loadMessages();
 
         //if (profilePicUrl == "") {
         //  profilePicUrl = "media/usericon.png";
