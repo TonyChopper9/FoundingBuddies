@@ -22,15 +22,6 @@ window.onload = function () {
 
 function loadPage(list) {
     total = list.size;
-    /*
-    for (x = 0; x <= 30; x++) {
-        if (x < 10) {
-            addDocument(list.docs[x].id, true, x + 1)
-        } else {
-            addDocument(list.docs[x].id, false, x + 1)
-        }
-    }
-    */
     addDocument(list.docs, true, 0);
 }
 
@@ -40,6 +31,7 @@ function addDocument(docs, visibility, number) {
     docRef.get().then(function (doc) {
         if (doc && doc.exists) {
             mainDocData = doc.data();
+            console.log(mainDocData == docs[number].data());
             if (mainDocData != null) {
                 var element = document.createElement("div");
                 element.setAttribute("class", "card mb-3 w-100");
