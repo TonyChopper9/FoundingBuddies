@@ -56,6 +56,9 @@ function addDocument(docId, visibility, number) {
                 var closeBtn = document.createElement("button");
                 closeBtn.setAttribute("type", "button");
                 closeBtn.setAttribute("class", "close");
+                closeBtn.setAttribute("data-toggle", "modal");
+                closeBtn.setAttribute("data-target", "#deleteModal");
+                closeBtn.setAttribute("onclick","openDeleteModal('" + docId + "')");
                 var closeBtnText = document.createElement("span");
                 closeBtnText.innerHTML = "&times;";
                 closeBtn.appendChild(closeBtnText);
@@ -221,6 +224,10 @@ function clearUploadModal() {
   while (tagList.firstChild) {
       tagList.removeChild(tagList.firstChild);
   }
+  var e = document.getElementById("uploadTagInput");
+  e.options[e.selectedIndex].removeAttribute("selected");
+  e.options[0].selected = true;
+
 }
 
 function signOut() {
@@ -389,6 +396,22 @@ function addTag() {
     }
 
 
+}
+
+function openDeleteModal(docId) {
+    document.getElementById("deleteButton").setAttribute("data-postid", docId);
+}
+
+function deletePost(docId) {
+    console.log(docId);
+    //TODO: delete docId
+    /*firestore.collection("posts").doc(docId).delete().then(function() {
+        console.log("Post deleted");
+    }).catch(function(error) {
+        console.error("Error deleting post: " + error);
+    });*/
+    //clear Modal
+    document.getElementById("deleteButton").setAttribute("data-postid", "");
 }
 
 //Shortcuts to Document Elements
