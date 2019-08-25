@@ -55,7 +55,7 @@ function loadMessages() {
                 var colla = document.createElement("div");
                 colla.setAttribute("class", "collapse");
                 colla.setAttribute("id", "collapse" + counter);
-                colla.setAttribute("data-parent", "#accordionExample");
+                colla.setAttribute("data-parent", "#output");
                 var collab = document.createElement("div");
                 collab.setAttribute("class", "card-body");
                 collab.innerHTML = content;
@@ -101,7 +101,7 @@ function authStateObserver(user) {
         var userName = getUserName();
 
         //load chat Messages
-        //loadMessages();
+        loadMessages();
 
         //if (profilePicUrl == "") {
         //  profilePicUrl = "media/usericon.png";
