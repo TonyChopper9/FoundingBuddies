@@ -399,7 +399,7 @@ function addTag() {
 }
 
 function openDeleteModal(docId) {
-    document.getElementById("deleteButton").setAttribute("data", docId);
+    document.getElementById("deleteButton").setAttribute("data-postid", docId);
 }
 
 function deletePost(docId) {
@@ -411,7 +411,7 @@ function deletePost(docId) {
         console.error("Error deleting post: " + error);
     });*/
     //clear Modal
-    document.getElementById("deleteButton").setAttribute("data", "");
+    document.getElementById("deleteButton").setAttribute("data-postid", "");
 }
 
 //Shortcuts to Document Elements
