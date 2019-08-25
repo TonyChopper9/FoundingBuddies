@@ -212,6 +212,12 @@ function upload() {
         user: getUserId()
     };
     postRef.doc().set(inpData);
+    clearUploadModal();
+}
+
+function clearUploadModal() {
+  document.getElementById("uploadTitleInput").value = "";
+  document.getElementById("uploadContentInput").value = "";
 }
 
 function signOut() {
