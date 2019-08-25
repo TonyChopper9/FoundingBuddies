@@ -187,6 +187,13 @@ function isUserSignedIn() {
     return !!firebase.auth().currentUser;
 }
 
+function addSizeToGoogleProfilePic(url) {
+    if (url.indexOf('googleusercontent.com') !== -1 && url.indexOf('?') === -1) {
+        return url + '?sz=25';
+    }
+    return url;
+}
+
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');

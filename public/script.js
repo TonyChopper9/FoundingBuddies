@@ -216,6 +216,11 @@ function upload() {
     postRef.doc()
 }
 
+function clearUploadModal() {
+  document.getElementById("uploadTitleInput").value = "";
+  document.getElementById("uploadContentInput").value = "";
+}
+
 function signOut() {
     // Sign out of Firebase.
     firebase.auth().signOut();
