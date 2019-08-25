@@ -218,6 +218,7 @@ function upload() {
 function clearUploadModal() {
   document.getElementById("uploadTitleInput").value = "";
   document.getElementById("uploadContentInput").value = "";
+  //TODO: clear Tags
 }
 
 function signOut() {
@@ -375,6 +376,18 @@ function menuicon(x) {
     x.classList.toggle("change");
 }
 
+function addTag() {
+    var tagValue = document.getElementById("uploadTagInput").value;
+    if (tagValue != "choose") {
+        var tag = document.createElement("button");
+        tag.setAttribute("class", "btn btn-primary mt-3 mr-3 rounded-pill");
+        tag.setAttribute("onclick", "this.parentNode.removeChild(this)");
+        tag.innerHTML = tagValue;
+        document.getElementById("tagList").appendChild(tag);
+    }
+
+
+}
 
 //Shortcuts to Document Elements
 //var userPicElement = document.getElementById('user-pic');
