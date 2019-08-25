@@ -19,25 +19,13 @@ window.onload = function() {
         total = list.size;
         var i = 0;
         console.log(list.docs[0]);
-        for(x = 0; x < 30; x++){
-            if (x < 10) {
+        for(x = 0; x <= 30; x++){
+            if (x <= 10) {
                 await addDocument(list.docs[x].id, true, x + 1)
             } else {
                 await addDocument(list.docs[x].id, false, x + 1)
             }
         }
-        /*
-        list.forEach(function (doc) {
-            i++;
-            if (i <= 30) {
-                if (i <= 10) {
-                    addDocument(doc.id, true, i)
-                } else {
-                    addDocument(doc.id, false, i)
-                }
-            }
-        });
-        */
     });
 };
 
