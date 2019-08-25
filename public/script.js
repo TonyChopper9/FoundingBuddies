@@ -31,7 +31,7 @@ async function loadPage(list) {
     }
 }
 
-function addDocument(docId, visibility, number) {
+async function addDocument(docId, visibility, number) {
     const docRef = firestore.collection("posts").doc(docId);
     var mainDocData = null;
     docRef.get().then(function (doc) {
@@ -111,9 +111,7 @@ function addDocument(docId, visibility, number) {
                     if (getUserId() == mainDocData.user) {
                         header1.appendChild(closeBtn);
                     }
-
                     console.log(number);
-
                 }).catch(function (error) {
                     console.log("Error: ", error);
                 });
@@ -122,7 +120,6 @@ function addDocument(docId, visibility, number) {
     }).catch(function (error) {
         console.log("Error: ", error);
     });
-
     return number + 1;
 }
 
@@ -332,7 +329,8 @@ function sendMessage(postId) {
     authorMessages.doc().set({
         content: document.getElementById("emailContentInput").value,
         header: document.getElementById("emailSubjectInput").value,
-        sender: firebase.auth().currentUser.uid
+        sender: firebase.auth().currentUser.uid,
+        timestamp: firebase.firestore.Timestamp.fromDate(new Date())
     })
 }
 
