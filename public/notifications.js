@@ -80,6 +80,15 @@ function signOut() {
   firebase.auth().signOut();
 }
 
+function getProfilePicUrl() {
+    return firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png';
+}
+
+// Returns the signed-in user's display name.
+function getUserName() {
+    return firebase.auth().currentUser.displayName;
+}
+
 function initFirebaseAuth() {
   // Listen to auth state changes.
   firebase.auth().onAuthStateChanged(authStateObserver);
