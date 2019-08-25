@@ -384,9 +384,14 @@ function openDeleteModal(docId) {
     document.getElementById("deleteButton").setAttribute("data-postid", docId);
 }
 
+function isAuthorizedToDeletDoc(documentId) { //returns true if currentUser==documentId.author
+  //TODO
+}
+
 function deletePost(docId) {
     console.log(docId);
     //TODO: delete docId
+    //isAuthorizedToDeleteDoc(docId);    <--- if yes -> continue
     /*firestore.collection("posts").doc(docId).delete().then(function() {
         console.log("Post deleted");
     }).catch(function(error) {
