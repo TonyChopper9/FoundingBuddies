@@ -22,100 +22,100 @@ window.onload = function () {
 };
 
 function addDocument(docs, visibility, number) {
-        const doc = docs[number];
-        var mainDocData = null;
-        if (doc && doc.exists) {
-            mainDocData = doc.data();
-            if (mainDocData != null) {
-                var element = document.createElement("div");
-                element.setAttribute("class", "card mb-3 w-100");
-                element.setAttribute("id", docs[number].id);
-                element.setAttribute("id2", number);
-                if (!visibility) {
-                    element.setAttribute("style", "display: none;")
+    const doc = docs[number];
+    var mainDocData = null;
+    if (doc && doc.exists) {
+        mainDocData = doc.data();
+        if (mainDocData != null) {
+            var element = document.createElement("div");
+            element.setAttribute("class", "card mb-3 w-100");
+            element.setAttribute("id", docs[number].id);
+            element.setAttribute("id2", number);
+            if (!visibility) {
+                element.setAttribute("style", "display: none;")
+            }
+
+            var innerElement = document.createElement("div");
+            innerElement.setAttribute("class", "card-body");
+
+            //HEADER
+            var header1 = document.createElement("h5");
+            header1.setAttribute("class", "mb-0 card-title");
+            header1.innerHTML = mainDocData.header;
+            innerElement.appendChild(header1);
+
+            //CLOSE BUTTON
+            var closeBtn = document.createElement("button");
+            closeBtn.setAttribute("type", "button");
+            closeBtn.setAttribute("class", "close");
+            closeBtn.setAttribute("data-toggle", "modal");
+            closeBtn.setAttribute("data-target", "#deleteModal");
+            closeBtn.setAttribute("onclick", "openDeleteModal('" + docs[number].id + "')");
+            var closeBtnText = document.createElement("span");
+            closeBtnText.innerHTML = "&times;";
+            closeBtn.appendChild(closeBtnText);
+
+            //AUTHORING
+            const userRef = firestore.collection("users").doc(mainDocData.user);
+            var user = null;
+
+            userRef.get().then(function (smh) {
+
+                var metaStuff = document.createElement("p");
+                metaStuff.setAttribute("class", "mb-2 card-text");
+                var small = document.createElement("small");
+                small.setAttribute("class", "text-muted");
+
+                //User
+                user = smh.data();
+                var dateDate = mainDocData.Date.toDate();
+                small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear() + " by " + user.Username;
+                metaStuff.appendChild(small);
+                innerElement.appendChild(metaStuff);
+
+                //INHALT
+                var inhalt = document.createElement("p");
+                inhalt.setAttribute("class", "text-brake card-text");
+                inhalt.innerHTML = mainDocData.content;
+                innerElement.appendChild(inhalt);
+
+                //MAIL ZEILE
+                var mailZeile = document.createElement("div");
+                mailZeile.setAttribute("class", "row justify-content-end");
+                var contactB = document.createElement("button");
+                contactB.setAttribute("class", "mr-3 btn btn-primary");
+                contactB.setAttribute("data-toggle", "modal");
+                contactB.setAttribute("data-target", "#messageModal");
+                contactB.setAttribute("onclick", "contact('" + mainDocData.user + "')");
+                contactB.innerHTML = "Contact";
+                mailZeile.appendChild(contactB);
+                innerElement.appendChild(mailZeile);
+
+                element.appendChild(innerElement);
+
+                var theDiv = document.getElementById("output");
+                theDiv.appendChild(element);
+
+                //add close Button if user is authorized
+                if (getUserId() == mainDocData.user) {
+                    header1.appendChild(closeBtn);
+                }
+                console.log(number);
+
+                if (number < 29) {
+                    if (number < 9) {
+                        addDocument(docs, true, number + 1)
+                    } else {
+                        addDocument(docs, false, number + 1)
+                    }
                 }
 
-                var innerElement = document.createElement("div");
-                innerElement.setAttribute("class", "card-body");
 
-                //HEADER
-                var header1 = document.createElement("h5");
-                header1.setAttribute("class", "mb-0 card-title");
-                header1.innerHTML = mainDocData.header;
-                innerElement.appendChild(header1);
-
-                //CLOSE BUTTON
-                var closeBtn = document.createElement("button");
-                closeBtn.setAttribute("type", "button");
-                closeBtn.setAttribute("class", "close");
-                closeBtn.setAttribute("data-toggle", "modal");
-                closeBtn.setAttribute("data-target", "#deleteModal");
-                closeBtn.setAttribute("onclick", "openDeleteModal('" + docs[number].id + "')");
-                var closeBtnText = document.createElement("span");
-                closeBtnText.innerHTML = "&times;";
-                closeBtn.appendChild(closeBtnText);
-
-                //AUTHORING
-                const userRef = firestore.collection("users").doc(mainDocData.user);
-                var user = null;
-
-                userRef.get().then(function (smh) {
-
-                    var metaStuff = document.createElement("p");
-                    metaStuff.setAttribute("class", "mb-2 card-text");
-                    var small = document.createElement("small");
-                    small.setAttribute("class", "text-muted");
-
-                    //User
-                    user = smh.data();
-                    var dateDate = mainDocData.Date.toDate();
-                    small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear() + " by " + user.Username;
-                    metaStuff.appendChild(small);
-                    innerElement.appendChild(metaStuff);
-
-                    //INHALT
-                    var inhalt = document.createElement("p");
-                    inhalt.setAttribute("class", "text-brake card-text");
-                    inhalt.innerHTML = mainDocData.content;
-                    innerElement.appendChild(inhalt);
-
-                    //MAIL ZEILE
-                    var mailZeile = document.createElement("div");
-                    mailZeile.setAttribute("class", "row justify-content-end");
-                    var contactB = document.createElement("button");
-                    contactB.setAttribute("class", "mr-3 btn btn-primary");
-                    contactB.setAttribute("data-toggle", "modal");
-                    contactB.setAttribute("data-target", "#messageModal");
-                    contactB.setAttribute("onclick", "contact('" + mainDocData.user + "')");
-                    contactB.innerHTML = "Contact";
-                    mailZeile.appendChild(contactB);
-                    innerElement.appendChild(mailZeile);
-
-                    element.appendChild(innerElement);
-
-                    var theDiv = document.getElementById("output");
-                    theDiv.appendChild(element);
-
-                    //add close Button if user is authorized
-                    if (getUserId() == mainDocData.user) {
-                        header1.appendChild(closeBtn);
-                    }
-                    console.log(number);
-
-                    if(number < 30){
-                        if (number < 10){
-                            addDocument(docs,true, number + 1)
-                        } else {
-                            addDocument(docs,false, number + 1)
-                        }
-                    }
-
-
-                }).catch(function (error) {
-                    console.log("Error: ", error);
-                });
-            }
+            }).catch(function (error) {
+                console.log("Error: ", error);
+            });
         }
+    }
 }
 
 function nextPage() {
@@ -380,7 +380,7 @@ function openDeleteModal(docId) {
 }
 
 function isAuthorizedToDeletDoc(documentId) { //returns true if currentUser==documentId.author
-  //TODO
+                                              //TODO
 }
 
 function deletePost(docId) {
