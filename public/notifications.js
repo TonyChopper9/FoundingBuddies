@@ -33,7 +33,7 @@ function loadMessages() {
                 if (thisCounter % 2 == 0){
                   col.setAttribute("class", "bg-light row text-center card-header");
                 } else {
-                  col.setAttribute("class", "row text-center card-header");
+                  col.setAttribute("class", "bg-dark text-white row text-center card-header");
                 }
 
                 col.setAttribute("id", "heading" + thisCounter);
