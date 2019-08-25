@@ -111,7 +111,9 @@ async function addDocument(callback, docId, visibility, number) {
                     if (getUserId() == mainDocData.user) {
                         header1.appendChild(closeBtn);
                     }
+                    //callback();
                     console.log(number);
+                    return;
                 }).catch(function (error) {
                     console.log("Error: ", error);
                 });
@@ -120,8 +122,6 @@ async function addDocument(callback, docId, visibility, number) {
     }).catch(function (error) {
         console.log("Error: ", error);
     });
-    callback();
-    return;
 }
 
 function nextPage() {
