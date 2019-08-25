@@ -63,30 +63,30 @@ function authStateObserver(user) {
     //}
 
     // Set the user's profile pic and name.
-    userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
-    userNameElement.textContent = userName;
+   // userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
+    //userNameElement.textContent = userName;
 
     // Show user's profile and sign-out button.
-    userNameElement.removeAttribute('hidden');
-    userPicElement.style.display = "";
+    //userNameElement.removeAttribute('hidden');
+    //userPicElement.style.display = "";
 
     // Hide sign-in button.
     //loginPageButton.style.display = "none";
     // Show sign-out button.
-    menuButtonElement.style.display = "";
+    //menuButtonElement.style.display = "";
     //uploadBtn.style.display = "";
 
     // We save the Firebase Messaging Device token and enable notifications.
     //saveMessagingDeviceToken();
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
-    userNameElement.setAttribute('hidden', 'true');
-    userPicElement.style.display = "none";
+    //userNameElement.setAttribute('hidden', 'true');
+    //userPicElement.style.display = "none";
 
     // Show sign-in button.
     //loginPageButton.style.display = "";
     //Hide sign-out Button
-    menuButtonElement.style.display = "none";
+    //menuButtonElement.style.display = "none";
     //uploadBtn.style.display = "none";
   }
 }
@@ -131,13 +131,9 @@ function homepage() {
   window.location.href = "index.html";
 }
 
-window.onclick = function(event) {
-  openDropdown.classList.remove('show');
-}
-
 //Shortcuts to Document Elements
-var userPicElement = document.getElementById('user-pic');
-var userNameElement = document.getElementById('user-name');
+//var userPicElement = document.getElementById('user-pic');
+//var userNameElement = document.getElementById('user-name');
 //var menuButtonElement = document.getElementById('menu');
 var signOutButtonElement = document.getElementById("sign-out");
 
