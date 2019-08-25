@@ -13,19 +13,18 @@ var functions = firebase.functions();
 var page = 0;
 var total = 0;
 
-window.onload = function () {
+window.onload = function() {
     total = 0;
     firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
         total = list.size;
-        var postNo = 1;
         var i = 0;
-        list.forEach((doc) => {
+        list.forEach(async function (doc) {
             i++;
-            if (i <= 30 && postNo == i) {
+            if (i <= 30) {
                 if (i <= 10) {
-                    postNo = addDocument(doc.id, true, i)
+                    await addDocument(doc.id, true, i)
                 } else {
-                    postNo = addDocument(doc.id, false, i)
+                    await addDocument(doc.id, false, i)
                 }
             }
         });
