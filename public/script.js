@@ -22,9 +22,11 @@ window.onload = function () {
             i++;
             if (i <= 30) {
                 if (i <= 10) {
-                    const post = new Promise((s) => {addDocument(doc.id, true, i)}).then()
+                    const post = new Promise((s) => {addDocument(doc.id, true, i)});
+                    post.then().catch((error) => {console.log(error)})
                 } else {
-                    const post = new Promise((s) => {addDocument(doc.id, false, i)}).then()
+                    const post = new Promise((s) => {addDocument(doc.id, false, i)});
+                    post.then().catch((error) => {console.log(error)})
                 }
             }
         });
