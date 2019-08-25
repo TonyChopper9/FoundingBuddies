@@ -234,7 +234,7 @@ function getProfilePicUrl() {
 function getUserName() {
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.get().then(function (user) {
-        return firebase.auth().currentUser.displayName;
+        return user.Username;
     }).catch(function (error) {console.log(error)});
 }
 
