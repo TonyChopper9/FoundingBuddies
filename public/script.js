@@ -212,6 +212,7 @@ function upload() {
         user: getUserId()
     };
     postRef.doc().set(inpData);
+    clearUploadModal();
 }
 
 function clearUploadModal() {
