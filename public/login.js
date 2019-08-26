@@ -95,7 +95,7 @@ function signInWithGoogle() {
         console.log(user.displayName);
         console.log(user.uid);
 
-        console.log(firestore.collection("users").doc(user.uid)._key);
+        console.log(firestore.collection("users").doc(user.uid)._key.toString());
 
         firestore.collection("users").doc(user.uid).set({
             Username: user.displayName,
