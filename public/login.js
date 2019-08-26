@@ -92,11 +92,6 @@ function signInWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function (result) {
         var user = result.user;
-        console.log(user.displayName);
-        console.log(user.uid);
-
-        console.log(firestore.collection("users").doc(user.uid)._key.toString());
-
         firestore.collection("users").doc(user.uid).get().then(entry => {
             if (entry.exists) {
                 flag1 = true;
