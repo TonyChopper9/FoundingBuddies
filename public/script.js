@@ -146,7 +146,7 @@ function nextPage() {
                     document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
                 }
             }
-        });
+        }).catch(error => {console.log(error)});
     }
 }
 
