@@ -244,19 +244,43 @@ function getUserMail() {
     return firebase.auth().currentUser.email;
 }
 
+function addSendEmailVerifyButton() {
+    var emailVerifyBtn = document.createElement("button");
+    emailVerifyBtn.setAttribute("class", "btn btn-warning btn-block");
+    emailVerifyBtn.setAttribute("type", "button");
+    emailVerifyBtn.setAttribute("onclick", "sendVerificationEmail()");
+    emailVerifyBtn.innerHTML = "Send Verification-Email";
+    profileDiv.appendChild(emailVerifyBtn);
+}
+
+function sendVerificationEmail() {
+  firebase.auth().currentUser.sendEmailVerification().then(function() {
+    // Email sent.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
 function authStateObserver(user) {
     if (user) { // User is signed in!
         // Get the signed-in user's profile pic and name.
-
         var profilePicUrl = getProfilePicUrl();
         var userName = getUserName();
         var userMail = getUserMail();
+        var emailVerify = user.emailVerified;
 
         // Set the user's profile pic and name and mail and show.
         //userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
+        profileDiv.style.display = "";
         userNameElement.innerHTML = userName;
         userNameElement.style.display = "";
-        userMailElement.innerHTML = userMail;
+        if (emailVerify) {
+          userMailElement.innerHTML = userMail;
+        } else {
+          userMailElement.innerHTML = userMail + "<br>(not verified yet)";
+          addSendEmailVerifyButton();
+        }
+
         userMailElement.style.display = "";
         //userPicElement.style.display = "";
 
@@ -274,6 +298,7 @@ function authStateObserver(user) {
         // We save the Firebase Messaging Device token and enable notifications.
     } else { // User is signed out!
         //Hide user's profile and sign-out button.
+        profileDiv.style.display = "none";
         userNameElement.style.display = "none";
         userMailElement.style.display = "none";
         //userPicElement.style.display = "none";
