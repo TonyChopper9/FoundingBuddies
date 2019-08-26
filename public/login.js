@@ -140,7 +140,7 @@ function resetPassword() {
     if (error.code == "auth/user-not-found") {
       alert("There exists no user with Email: " + emailAddress);
     } else {
-          console.log(error.message);
+        console.log(error.message);
     }
   });
 }
