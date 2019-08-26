@@ -19,10 +19,10 @@ function signUp() {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
-            user.updateProfile({
+            user.user.updateProfile({
                 displayName: username
             }).catch(function(error) {
-                user.updateProfile({
+                user.user.updateProfile({
                     displayName: "nameError"
                 });
             });
