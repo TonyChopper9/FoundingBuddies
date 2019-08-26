@@ -21,9 +21,11 @@ function signUp() {
         .then((user) => {
             user.updateProfile({
                 displayName: username
-                }).catch(function(error) {
-                // An error happened.
+            }).catch(function(error) {
+                user.updateProfile({
+                    displayName: username
                 });
+            });
             //Send Verification Email
             user.user.sendEmailVerification().then(function () {
                 // Email sent.
