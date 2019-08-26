@@ -261,6 +261,16 @@ function sendVerificationEmail() {
   });
 }
 
+function deleteUser() {
+  alert("Delete is not unlocked yet!");
+  /*
+  firebase.auth().currentUser.delete().then(function() {
+    alert("Your account has been deleted!");
+  }).catch(function(error) {
+    console.error(error);
+  });*/
+}
+
 function authStateObserver(user) {
     if (user) { // User is signed in!
         // Get the signed-in user's profile pic and name.
