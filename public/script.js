@@ -121,6 +121,7 @@ function nextPage() {
     if (page < Math.floor(total / 10)) {
         page++;
         const something = new Promise(function(){
+            console.log("Reached 4");
             if (page == 3) {
                 firestore.collection("posts").get().then(function (list) {
                     var i = 0;
