@@ -308,7 +308,10 @@ function authStateObserver(user) {
           userMailElement.innerHTML = userMail + "<br>(not verified yet)";
           addSendEmailVerifyButton();
         }
-
+        if (user.providerData != "firebase") {
+          changeEmailBtn.style.display = "none";
+          resetPasswordBtn.style.display = "none";
+        }
         userMailElement.style.display = "";
         //userPicElement.style.display = "";
 
@@ -459,7 +462,8 @@ var tagList = document.getElementById("tagList");
 var dropDownMenu = document.getElementById("sf");
 var profileDiv = document.getElementById("profileDiv");
 var profileData = document.getElementById("profileData");
-
+var changeEmailBtn = document.getElementById("changeEmailBtn");
+var resetPasswordBtn = document.getElementById("resetPasswordBtn");
 var notificationsPageBtnDrpMenu = document.getElementById("NotificationsPageBtnDrpMenu");
 var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
 var uploadBtnDrpMenu = document.getElementById("uploadBtnDrpMenu");
