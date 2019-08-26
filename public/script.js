@@ -120,29 +120,36 @@ function addDocument(docs, visibility, number) {
 function nextPage() {
     if (page < Math.floor(total / 10)) {
         page++;
-        if (page % 3 == 0) {
-            firestore.collection("posts").get().then(function (list) {
-                var i = 0;
-                list.forEach((doc) => {
-                    i++;
-                    if (i > page * 10) {
-                        addDocument(doc.id, false, i)
-                    }
-                })
-            });
-        }
-        for (x = 0; x < 10; x++) {
-            var id2a = ((page - 1) * 10) + x;
-            if (id2a <= total) {
-                document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+        const something = new Promise(function(){
+            if (page == 3) {
+                firestore.collection("posts").get().then(function (list) {
+                    var i = 0;
+                    list.forEach((doc) => {
+                        i++;
+                        if (i > page * 10) {
+                            addDocument(doc.id, false, i)
+                        }
+                    })
+                });
             }
-        }
-        for (y = 0; y < 10; y++) {
-            var id2n = (page * 10) + y;
-            if (id2n <= total) {
-                document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
+        });
+        console.log("Reached 1");
+        something.then(function(){
+            console.log("Reached 2");
+            for (x = 0; x < 10; x++) {
+                var id2a = ((page - 1) * 10) + x;
+                if (id2a <= total) {
+                    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+                }
             }
-        }
+            console.log("Reached 3");
+            for (y = 0; y < 10; y++) {
+                var id2n = (page * 10) + y;
+                if (id2n <= total) {
+                    document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
+                }
+            }
+        }).catch(error => {console.log(error)});
     }
 }
 
