@@ -21,14 +21,14 @@ function signUp() {
         .then((user) => {
             user.user.updateProfile({
                 displayName: username
-            }).then(function(){
-              //Send Verification Email
-              user.user.sendEmailVerification().then(function () {
-                  alert("A Verification-Email has been sent to " + user.user.email + ".");
-              }).catch(function (error) {
-                  // An error happened.
-              });
-            }).catch(function(error) {
+            }).then(function () {
+                //Send Verification Email
+                user.user.sendEmailVerification().then(function () {
+                    alert("A Verification-Email has been sent to " + user.user.email + ".");
+                }).catch(function (error) {
+                    // An error happened.
+                });
+            }).catch(function (error) {
                 user.user.updateProfile({
                     displayName: "nameError"
                 });
@@ -97,25 +97,33 @@ function signInWithGoogle() {
 
         console.log(firestore.collection("users").doc(user.uid)._key.toString());
 
-        firestore.collection("users").doc(user.uid).set({
-            Username: user.displayName,
-            mail: user.email
-        }).then(function () {
-            firestore.collection("users").doc(user.uid).collection("ReceivedMessages").doc().set({
-                content: "This will be your personal message Space!!",
-                header: "Welcome to FoundingBuddies!",
-                sender: "9p78wKqLdoSgyHMG6uG5GHtObm33",
-                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-            }).then(function () {
+        firestore.collection("users").doc(user.uid).get().then(entry => {
+            if (entry.exists) {
                 flag1 = true;
-                console.log("Added User!!!");
-                redirectHome();
-            });
-        }).catch(function (error) {
-            console.error("G: Error writing doc: ", error);
+                flag2 = true;
+                redirectHome()
+            } else {
+                firestore.collection("users").doc(user.uid).set({
+                    Username: user.displayName,
+                    mail: user.email
+                }).then(function () {
+                    firestore.collection("users").doc(user.uid).collection("ReceivedMessages").doc().set({
+                        content: "This will be your personal message Space!!",
+                        header: "Welcome to FoundingBuddies!",
+                        sender: "9p78wKqLdoSgyHMG6uG5GHtObm33",
+                        timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+                    }).then(function () {
+                        flag1 = true;
+                        console.log("Added User!!!");
+                        redirectHome();
+                    });
+                }).catch(function (error) {
+                    console.error("G: Error writing doc: ", error);
+                });
+                flag2 = true;
+                redirectHome()
+            }
         });
-        flag2 = true;
-        redirectHome()
     });
 }
 
@@ -129,13 +137,13 @@ function redirectHome() {
 }
 
 function resetPassword() {
-  var emailAddress = document.getElementById("inputLoginEmail").value;
-  //TODO: check emailAddress on syntax, no stackoverflow etc.
-  firebase.auth().sendPasswordResetEmail(emailAddress).then(function() {
-    alert("A Password-Reset-Email has been sent to " + emailAddress + "!");
-  }).catch(function(error) {
-    console.error(error);
-  });
+    var emailAddress = document.getElementById("inputLoginEmail").value;
+    //TODO: check emailAddress on syntax, no stackoverflow etc.
+    firebase.auth().sendPasswordResetEmail(emailAddress).then(function () {
+        alert("A Password-Reset-Email has been sent to " + emailAddress + "!");
+    }).catch(function (error) {
+        console.error(error);
+    });
 }
 
 firebase.auth().onAuthStateChanged(function (user) {
