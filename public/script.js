@@ -271,7 +271,7 @@ function sendVerificationEmail() {
   });
 }
 
-function changeEmail(newEmail) {
+function changeEmail() {
   var newEmail = document.getElementById("newEmailInput").value;
   //TODO: check new email on syntax, no stackoverflow etc.
   firebase.auth().currentUser.updateEmail(newEmail).then(function() {
@@ -282,7 +282,8 @@ function changeEmail(newEmail) {
   });
 }
 
-function changePassword(newPassword) {
+function changePassword() {
+  var newEmail = document.getElementById("").value;
   //TODO: check new password on syntax, no stackoverflow etc.
   firebase.auth().currentUser.updatePassword(newPassword).then(function() {
     alert("Your password has beend changed!");
@@ -320,7 +321,7 @@ function authStateObserver(user) {
           userMailElement.innerHTML = userMail + "<br>(not verified yet)";
           addSendEmailVerifyButton();
         }
-        if (user.providerData != "firebase") {
+        if (user.providerId != "firebase") {
           changeEmailBtn.style.display = "none";
           resetPasswordBtn.style.display = "none";
         }
