@@ -36,8 +36,7 @@ function signUp() {
 
             firestore.collection("users").doc(user.user.uid).set({
                 Username: username,
-                mail: email,
-                confirmed: false
+                mail: email
             }).then(function () {
                 firestore.collection("users").doc(user.user.uid).collection("ReceivedMessages").doc().set({
                     content: "This will be your personal message Space!!",
@@ -95,7 +94,26 @@ function signInWithGoogle() {
         var user = result.user;
         console.log(user.displayName);
         console.log(user.uid);
-        flag1 = true;
+
+
+
+        firestore.collection("users").doc(user.uid).add({
+            Username: user.displayName,
+            mail: user.email
+        }).then(function () {
+            firestore.collection("users").doc(user.uid).collection("ReceivedMessages").doc().set({
+                content: "This will be your personal message Space!!",
+                header: "Welcome to FoundingBuddies!",
+                sender: "9p78wKqLdoSgyHMG6uG5GHtObm33",
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+            }).then(function () {
+                flag1 = true;
+                console.log("Added User!!!");
+                redirectHome();
+            });
+        }).catch(function (error) {
+            console.error("G: Error writing doc: ", error);
+        });
         flag2 = true;
         redirectHome()
     });
