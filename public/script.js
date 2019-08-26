@@ -133,13 +133,16 @@ function nextPage() {
                 });
             }
         });
+        console.log("Reached 1");
         something.then(function(){
+            console.log("Reached 2");
             for (x = 0; x < 10; x++) {
                 var id2a = ((page - 1) * 10) + x;
                 if (id2a <= total) {
                     document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
                 }
             }
+            console.log("Reached 3");
             for (y = 0; y < 10; y++) {
                 var id2n = (page * 10) + y;
                 if (id2n <= total) {
