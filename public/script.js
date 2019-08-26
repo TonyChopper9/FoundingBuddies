@@ -98,6 +98,7 @@ function addDocument(docs, visibility, number) {
 
                 //add close Button if user is authorized
                 if (getUserId() == mainDocData.user) {
+                    contactB.setAttribute("style", "display: none");
                     header1.appendChild(closeBtn);
                 }
                 console.log(number);
@@ -119,26 +120,24 @@ function addDocument(docs, visibility, number) {
 function nextPage() {
     if (page < Math.floor(total / 10)) {
         page++;
-        if (page >= 3) {
+        if (page % 3 == 0) {
             firestore.collection("posts").get().then(function (list) {
                 var i = 0;
                 list.forEach((doc) => {
                     i++;
-                    if (i > 30) {
+                    if (i > page * 10) {
                         addDocument(doc.id, false, i)
                     }
                 })
             });
         }
-        var x = 1;
-        for (x = 1; x <= 10; x++) {
+        for (x = 0; x < 10; x++) {
             var id2a = ((page - 1) * 10) + x;
             if (id2a <= total) {
                 document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
             }
         }
-        var y = 1;
-        for (y = 1; y <= 10; y++) {
+        for (y = 0; y < 10; y++) {
             var id2n = (page * 10) + y;
             if (id2n <= total) {
                 document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
