@@ -255,7 +255,25 @@ function addSendEmailVerifyButton() {
 
 function sendVerificationEmail() {
   firebase.auth().currentUser.sendEmailVerification().then(function() {
-    // Email sent.
+    alert("A Verification-Email has been sent to: " + firebase.auth().currentUser.email);
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
+function changeEmail(newEmail) {
+  //TODO: check new email on syntax, no stackoverflow etc.
+  firebase.auth().currentUser.updateEmail(newEmail).then(function() {
+    alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
+function changePassword(newPassword) {
+  //TODO: check new password on syntax, no stackoverflow etc.
+  firebase.auth().currentUser.updatePassword(newPassword).then(function() {
+    alert("Your password has beend changed!");
   }).catch(function(error) {
     // An error happened.
   });
