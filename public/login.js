@@ -23,7 +23,7 @@ function signUp() {
                 displayName: username
             }).catch(function(error) {
                 user.updateProfile({
-                    displayName: username
+                    displayName: "nameError"
                 });
             });
             //Send Verification Email
