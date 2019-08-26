@@ -19,11 +19,21 @@ function signUp() {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
-            user.user.sendEmailVerification().then(function () {
-                // Email sent.
-            }).catch(function (error) {
-                // An error happened.
+            user.user.updateProfile({
+                displayName: username
+            }).then(function(){
+              //Send Verification Email
+              user.user.sendEmailVerification().then(function () {
+                  alert("A Verification-Email has been sent to " + user.user.email + ".");
+              }).catch(function (error) {
+                  // An error happened.
+              });
+            }).catch(function(error) {
+                user.user.updateProfile({
+                    displayName: "nameError"
+                });
             });
+
             firestore.collection("users").doc(user.user.uid).set({
                 Username: username,
                 mail: email,
@@ -98,6 +108,16 @@ function redirectHome() {
         flag2 = false;
         window.location.href = "index.html";
     }
+}
+
+function resetPassword() {
+  var emailAddress = document.getElementById("inputLoginEmail").value;
+  //TODO: check emailAddress on syntax, no stackoverflow etc.
+  firebase.auth().sendPasswordResetEmail(emailAddress).then(function() {
+    alert("A Password-Reset-Email has been sent to " + emailAddress + "!");
+  }).catch(function(error) {
+    console.error(error);
+  });
 }
 
 firebase.auth().onAuthStateChanged(function (user) {
