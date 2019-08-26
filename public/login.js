@@ -134,7 +134,11 @@ function resetPassword() {
   firebase.auth().sendPasswordResetEmail(emailAddress).then(function() {
     alert("A Password-Reset-Email has been sent to " + emailAddress + "!");
   }).catch(function(error) {
-    console.error(error);
+    if (error.code == "auth/user-not-found") {
+      alert("There exists no user with Email: " + emailAddress);
+    } else {
+          console.log(error.message);
+    }
   });
 }
 
