@@ -268,7 +268,7 @@ function sendVerificationEmail() {
   });
 }
 
-function changeEmail(newEmail) {
+function changeEmail() {
   var newEmail = document.getElementById("newEmailInput").value;
   //TODO: check new email on syntax, no stackoverflow etc.
   firebase.auth().currentUser.updateEmail(newEmail).then(function() {
@@ -279,7 +279,8 @@ function changeEmail(newEmail) {
   });
 }
 
-function changePassword(newPassword) {
+function changePassword() {
+  var newEmail = document.getElementById("").value;
   //TODO: check new password on syntax, no stackoverflow etc.
   firebase.auth().currentUser.updatePassword(newPassword).then(function() {
     alert("Your password has beend changed!");
