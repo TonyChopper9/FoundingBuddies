@@ -24,7 +24,7 @@ function signUp() {
             }).then(function(){
               //Send Verification Email
               user.user.sendEmailVerification().then(function () {
-                  // Email sent.
+                  alert("A Verification-Email has been sent to " + user.user.email + ".");
               }).catch(function (error) {
                   // An error happened.
               });
