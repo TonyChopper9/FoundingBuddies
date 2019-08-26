@@ -127,6 +127,67 @@
         </div>
     </div>
 </div>
+<!-- changeEmail Modal -->
+<div class="modal fade" id="changeEmailModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change your Email</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="newEmailInput">Your new Email:</label>
+                        <input maxlength="30" type="text" class="form-control" id="newEmailInput" placeholder="Enter new Email">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        <button type="button" data-dismiss="modal" class="btn btn-success" onclick="changeEmail()" id="changeEmailButtonModal">Change</button>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- resetPassword Modal -->
+<div class="modal fade" id="resetPasswordModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact the author</h5>
+                <input id="refPostEmail" style="display: none">
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="uploadTitleInput">Subject</label>
+                        <input maxlength="30" type="text" class="form-control" id="emailSubjectInput" placeholder="Enter Subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="uploadContentInput">What do you want to say?</label>
+                        <textarea maxlength="240" value="" class="form-control" id="emailContentInput" placeholder="Enter the description here" rows="5"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse bd-highlight">
+                    <div class="p-2 bd-highlight" id="buttonInput">
+                        <button type="button" data-dismiss="modal" class="btn btn-success" onclick="sendMessage()" id="messageSendButton">Send</button>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="sticky-top container" style="background-color: white">
     <header class="border-bottom pt-3 pb-3">
         <div class="row justify-content-between align-items-center">

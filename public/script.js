@@ -261,8 +261,10 @@ function sendVerificationEmail() {
 }
 
 function changeEmail(newEmail) {
+  var newEmail = document.getElementById("newEmailInput").value;
   //TODO: check new email on syntax, no stackoverflow etc.
   firebase.auth().currentUser.updateEmail(newEmail).then(function() {
+    document.getElementById("newEmailInput").value = ""; //clear modal
     alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
   }).catch(function(error) {
     // An error happened.
@@ -467,5 +469,6 @@ var notificationsPageBtnDrpMenu = document.getElementById("NotificationsPageBtnD
 var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
 var uploadBtnDrpMenu = document.getElementById("uploadBtnDrpMenu");
 var loginPageButtonDrpMenu = document.getElementById("LoginPageBtnDrpMenu");
+//var changeEmailButtonModal = document.getElementById("changeEmailButtonModal");
 
 initFirebaseAuth();
