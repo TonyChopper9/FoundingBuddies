@@ -19,6 +19,12 @@ function signUp() {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
+            user.updateProfile({
+                displayName: username
+                }).catch(function(error) {
+                // An error happened.
+                });
+            //Send Verification Email
             user.user.sendEmailVerification().then(function () {
                 // Email sent.
             }).catch(function (error) {
