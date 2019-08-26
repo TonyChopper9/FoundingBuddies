@@ -120,7 +120,7 @@ function addDocument(docs, visibility, number) {
 function nextPage() {
     if (page < Math.floor(total / 10)) {
         page++;
-        const something = new Promise(function(){
+        const something = new Promise(function(resolve, reject){
             console.log("Reached 4");
             if (page == 3) {
                 firestore.collection("posts").get().then(function (list) {
@@ -130,12 +130,15 @@ function nextPage() {
                         if (i > page * 10) {
                             addDocument(doc.id, false, i)
                         }
+                        if (i == total - 1){
+                            resolve();
+                        }
                     })
                 });
             }
         });
         console.log("Reached 1");
-        something.then(function(){
+        something.then(function(what){
             console.log("Reached 2");
             for (x = 0; x < 10; x++) {
                 var id2a = ((page - 1) * 10) + x;
