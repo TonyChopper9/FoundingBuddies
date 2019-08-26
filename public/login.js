@@ -109,7 +109,7 @@ function resetPassword() {
   var emailAddress = document.getElementById("inputLoginEmail").value;
   //TODO: check emailAddress on syntax, no stackoverflow etc.
   firebase.auth.sendPasswordResetEmail(emailAddress).then(function() {
-    alert("A Password-Reset-Email has been sent to " + emailAddress + "!");.
+    alert("A Password-Reset-Email has been sent to " + emailAddress + "!");
   }).catch(function(error) {
     console.error(error);
   });
