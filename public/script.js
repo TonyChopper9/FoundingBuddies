@@ -135,7 +135,7 @@ function nextPage() {
                         }
                     })
                 });
-            }
+            } else {resolve()}
         });
         console.log("Reached 1");
         something.then(function(what){
