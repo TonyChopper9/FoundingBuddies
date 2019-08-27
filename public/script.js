@@ -103,7 +103,7 @@ function addDocument(docs, visibility, number) {
                 }
                 console.log(number);
 
-                if (number < 29) {
+                if (number < total) {
                     if (number < 9) {
                         addDocument(docs, true, number + 1)
                     } else {
@@ -120,57 +120,31 @@ function addDocument(docs, visibility, number) {
 function nextPage() {
     if (page < Math.floor(total / 10)) {
         page++;
-        console.log(page + "page");
-        const something = new Promise(function(resolve, reject){
-            console.log("Reached 4");
-            if (page == 4) {
-                firestore.collection("posts").get().then(function (list) {
-                    var i = 0;
-                    list.forEach((doc) => {
-                        i++;
-                        if (i >= page * 10) {
-                            addDocument(doc.id, false, i)
-                        }
-                        console.log(i + "/" + total);
-                        if (i == total - 1){
-                            resolve();
-                        }
-                    })
-                });
-            } else {resolve()}
-        });
-        console.log("Reached 1");
-        something.then(function(what){
-            console.log("Reached 2");
-            for (x = 0; x < 10; x++) {
-                var id2a = ((page - 1) * 10) + x;
-                if (id2a <= total) {
-                    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
-                }
+        for (x = 0; x < 10; x++) {
+            var id2a = ((page - 1) * 10) + x;
+            if (id2a <= total) {
+                document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
             }
-            console.log("Reached 3");
-            for (y = 0; y < 10; y++) {
-                var id2n = (page * 10) + y;
-                if (id2n <= total) {
-                    document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
-                }
+        }
+        for (y = 0; y < 10; y++) {
+            var id2n = (page * 10) + y;
+            if (id2n <= total) {
+                document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
             }
-        }).catch(error => {console.log(error)});
+        }
     }
 }
 
 function prevPage() {
     if (page > 0) {
         page--;
-        var x2 = 1;
-        for (x2 = 1; x2 <= 10; x2++) {
+        for (x2 = 0; x2 < 10; x2++) {
             var id2a = ((page + 1) * 10) + x2;
             if (id2a <= total) {
                 document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
             }
         }
-        var y2 = 1;
-        for (y2 = 1; y2 <= 10; y2++) {
+        for (y2 = 0; y2 < 10; y2++) {
             var id2n = (page * 10) + y2;
             if (id2n <= total) {
                 document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
@@ -266,42 +240,42 @@ function addSendEmailVerifyButton() {
 }
 
 function sendVerificationEmail() {
-  firebase.auth().currentUser.sendEmailVerification().then(function() {
-    alert("A Verification-Email has been sent to: " + firebase.auth().currentUser.email);
-  }).catch(function(error) {
-    // An error happened.
-  });
+    firebase.auth().currentUser.sendEmailVerification().then(function () {
+        alert("A Verification-Email has been sent to: " + firebase.auth().currentUser.email);
+    }).catch(function (error) {
+        // An error happened.
+    });
 }
 
 function changeEmail() {
-  var newEmail = document.getElementById("newEmailInput").value;
-  //TODO: check new email on syntax, no stackoverflow etc.
-  firebase.auth().currentUser.updateEmail(newEmail).then(function() {
-    document.getElementById("newEmailInput").value = ""; //clear modal
-    alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
-  }).catch(function(error) {
-    // An error happened.
-  });
+    var newEmail = document.getElementById("newEmailInput").value;
+    //TODO: check new email on syntax, no stackoverflow etc.
+    firebase.auth().currentUser.updateEmail(newEmail).then(function () {
+        document.getElementById("newEmailInput").value = ""; //clear modal
+        alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
+    }).catch(function (error) {
+        // An error happened.
+    });
 }
 
 function changePassword() {
-  var newEmail = document.getElementById("").value;
-  //TODO: check new password on syntax, no stackoverflow etc.
-  firebase.auth().currentUser.updatePassword(newPassword).then(function() {
-    alert("Your password has beend changed!");
-  }).catch(function(error) {
-    // An error happened.
-  });
+    var newEmail = document.getElementById("").value;
+    //TODO: check new password on syntax, no stackoverflow etc.
+    firebase.auth().currentUser.updatePassword(newPassword).then(function () {
+        alert("Your password has beend changed!");
+    }).catch(function (error) {
+        // An error happened.
+    });
 }
 
 function deleteUser() {
-  alert("Delete is not unlocked yet!");
-  /*
-  firebase.auth().currentUser.delete().then(function() {
-    alert("Your account has been deleted!");
-  }).catch(function(error) {
-    console.error(error);
-  });*/
+    alert("Delete is not unlocked yet!");
+    /*
+    firebase.auth().currentUser.delete().then(function() {
+      alert("Your account has been deleted!");
+    }).catch(function(error) {
+      console.error(error);
+    });*/
 }
 
 function authStateObserver(user) {
@@ -318,14 +292,14 @@ function authStateObserver(user) {
         userNameElement.innerHTML = userName;
         userNameElement.style.display = "";
         if (emailVerify) {
-          userMailElement.innerHTML = userMail;
+            userMailElement.innerHTML = userMail;
         } else {
-          userMailElement.innerHTML = userMail + "<br>(not verified yet)";
-          addSendEmailVerifyButton();
+            userMailElement.innerHTML = userMail + "<br>(not verified yet)";
+            addSendEmailVerifyButton();
         }
         if (user.providerId != "firebase") {
-          changeEmailBtn.style.display = "none";
-          resetPasswordBtn.style.display = "none";
+            changeEmailBtn.style.display = "none";
+            resetPasswordBtn.style.display = "none";
         }
         userMailElement.style.display = "";
         //userPicElement.style.display = "";
@@ -448,7 +422,7 @@ function openDeleteModal(docId) {
 }
 
 function isAuthorizedToDeletDoc(documentId) { //returns true if currentUser==documentId.author
-                                              //TODO
+    //TODO
 }
 
 function deletePost(docId) {
