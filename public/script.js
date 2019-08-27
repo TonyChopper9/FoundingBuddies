@@ -120,6 +120,7 @@ function addDocument(docs, visibility, number) {
 function nextPage() {
     if (page < Math.floor(total / 10)) {
         page++;
+        console.log(page + "page");
         const something = new Promise(function(resolve, reject){
             console.log("Reached 4");
             if (page == 4) {
@@ -127,9 +128,10 @@ function nextPage() {
                     var i = 0;
                     list.forEach((doc) => {
                         i++;
-                        if (i > page * 10) {
+                        if (i >= page * 10) {
                             addDocument(doc.id, false, i)
                         }
+                        console.log(i + "/" + total);
                         if (i == total - 1){
                             resolve();
                         }
