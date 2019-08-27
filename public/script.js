@@ -118,7 +118,7 @@ function addDocument(docs, visibility, number) {
 }
 
 function nextPage() {
-    if (page < Math.floor(total / 10)) {
+    if (page < Math.floor(total / 10) - 1) {
         page++;
         for (x = 0; x < 10; x++) {
             var id2a = ((page - 1) * 10) + x;
