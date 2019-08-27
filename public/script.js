@@ -122,7 +122,7 @@ function nextPage() {
         page++;
         const something = new Promise(function(resolve, reject){
             console.log("Reached 4");
-            if (page == 3) {
+            if (page == 4) {
                 firestore.collection("posts").get().then(function (list) {
                     var i = 0;
                     list.forEach((doc) => {
