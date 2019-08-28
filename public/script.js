@@ -275,7 +275,6 @@ function notificationsPage() {
 }
 
 function contact(postId) {
-    if (firebase.auth().currentUser.emailVerified) {
 
         if (document.getElementById("messageSendButton") != null) {
             document.getElementById("messageSendButton").remove()
@@ -290,9 +289,7 @@ function contact(postId) {
 
         var insert = document.getElementById("buttonInput");
         insert.appendChild(but1);
-    } else {
-        alert("Your email must be confirmed in order to be able to send messages!")
-    }
+
 }
 
 function sendMessage(postId) {

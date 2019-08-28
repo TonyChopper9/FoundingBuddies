@@ -70,6 +70,8 @@ function loadMessages() {
                 var repBtn = document.createElement("button");
                 repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-primary");
                 repBtn.setAttribute("onclick", "changeReplyModal('" + message.id + "')");
+                repBtn.setAttribute("data-toggle", "modal");
+                repBtn.setAttribute("data-target", "#replyModal");
                 //TODO: message id
                 repBtn.innerHTML = "Reply";
                 colla.appendChild(repBtn);
@@ -88,6 +90,10 @@ function loadMessages() {
 }
 
 function changeReplyModal(messageID) {
+    document.getElementById("messageSendButton").setAttribute("onclick", "sendReply('" + messageID + "')");
+}
+
+function sendReply(messageID){
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").doc(messageID).get().then(function (message) {
         const mData = message.data();
@@ -100,8 +106,6 @@ function changeReplyModal(messageID) {
         });
         clearReplyModal();
     });
-
-    console.log(messageID)
 }
 
 function signOut() {
