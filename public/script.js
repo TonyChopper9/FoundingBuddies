@@ -168,7 +168,7 @@ function upload() {
         postRef.doc().set(inpData);
         clearUploadModal()
     } else {
-        alert("You must be signed in to upload!")
+        alert("Your email must be confirmed in order to be able to upload!")
     }
 }
 
@@ -291,7 +291,7 @@ function contact(postId) {
         var insert = document.getElementById("buttonInput");
         insert.appendChild(but1);
     } else {
-        alert("You must be logged in to send messages!")
+        alert("Your email must be confirmed in order to be able to send messages!")
     }
 }
 
