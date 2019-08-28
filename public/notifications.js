@@ -70,7 +70,7 @@ function loadMessages() {
                 var repBtn = document.createElement("button");
                 repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-primary");
                 repBtn.setAttribute("onclick", "changeReplyModal(" + message.id + ")");
-                //TODO: message id);
+                //TODO: message id
                 repBtn.innerHTML = "Reply";
                 colla.appendChild(repBtn);
 
