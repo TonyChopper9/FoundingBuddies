@@ -83,7 +83,7 @@ function addDocument(docs, visibility, number) {
                 var mailZeile = document.createElement("div");
                 mailZeile.setAttribute("class", "row justify-content-end");
                 var contactB = document.createElement("button");
-                contactB.setAttribute("class", "mr-3 btn btn-j1");
+                contactB.setAttribute("class", "mr-3 btn btn-primary");
                 contactB.setAttribute("data-toggle", "modal");
                 contactB.setAttribute("data-target", "#messageModal");
                 contactB.setAttribute("onclick", "contact('" + mainDocData.user + "')");
@@ -226,65 +226,15 @@ function addSizeToGoogleProfilePic(url) {
     return url;
 }
 
-function getUserMail() {
-    return firebase.auth().currentUser.email;
-}
 
-function addSendEmailVerifyButton() {
-    var emailVerifyBtn = document.createElement("button");
-    emailVerifyBtn.setAttribute("class", "btn btn-warning btn-block");
-    emailVerifyBtn.setAttribute("type", "button");
-    emailVerifyBtn.setAttribute("onclick", "sendVerificationEmail()");
-    emailVerifyBtn.innerHTML = "Send Verification-Email";
-    profileDiv.appendChild(emailVerifyBtn);
-}
-
-function sendVerificationEmail() {
-    firebase.auth().currentUser.sendEmailVerification().then(function () {
-        alert("A Verification-Email has been sent to: " + firebase.auth().currentUser.email);
-    }).catch(function (error) {
-        // An error happened.
-    });
-}
-
-function changeEmail() {
-    var newEmail = document.getElementById("newEmailInput").value;
-    //TODO: check new email on syntax, no stackoverflow etc.
-    firebase.auth().currentUser.updateEmail(newEmail).then(function () {
-        document.getElementById("newEmailInput").value = ""; //clear modal
-        alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
-    }).catch(function (error) {
-        // An error happened.
-    });
-}
-
-function changePassword() {
-    var newEmail = document.getElementById("").value;
-    //TODO: check new password on syntax, no stackoverflow etc.
-    firebase.auth().currentUser.updatePassword(newPassword).then(function () {
-        alert("Your password has beend changed!");
-    }).catch(function (error) {
-        // An error happened.
-    });
-}
-
-function deleteUser() {
-    alert("Delete is not unlocked yet!");
-    /*
-    firebase.auth().currentUser.delete().then(function() {
-      alert("Your account has been deleted!");
-    }).catch(function(error) {
-      console.error(error);
-    });*/
-}
 
 function authStateObserver(user) {
     if (user) { // User is signed in!
         // Get the signed-in user's profile pic and name.
-        var profilePicUrl = getProfilePicUrl();
-        var userName = user.displayName;
-        var userMail = getUserMail();
-        var emailVerify = user.emailVerified;
+        //var profilePicUrl = getProfilePicUrl();
+        //var userName = user.displayName;
+        //var userMail = getUserMail();
+        //var emailVerify = user.emailVerified;
 
         // Set the user's profile pic and name and mail and show.
         //userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
@@ -442,8 +392,7 @@ function deletePost(docId) {
 
 //Shortcuts to Document Elements
 //var userPicElement = document.getElementById('user-pic');
-var userNameElement = document.getElementById('user-name');
-var userMailElement = document.getElementById('user-mail');
+
 var loginPageButton = document.getElementById("LoginPageBtn");
 var menuButtonElement = document.getElementById('smallMenu');
 var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
@@ -451,10 +400,7 @@ var logoutButtonElement = document.getElementById("sign-out");
 var uploadBtn = document.getElementById("uploadBtn");
 var tagList = document.getElementById("tagList");
 var dropDownMenu = document.getElementById("sf");
-var profileDiv = document.getElementById("profileDiv");
-var profileData = document.getElementById("profileData");
-var changeEmailBtn = document.getElementById("changeEmailBtn");
-var resetPasswordBtn = document.getElementById("resetPasswordBtn");
+
 var notificationsPageBtnDrpMenu = document.getElementById("NotificationsPageBtnDrpMenu");
 var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
 var uploadBtnDrpMenu = document.getElementById("uploadBtnDrpMenu");
