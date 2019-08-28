@@ -275,21 +275,19 @@ function notificationsPage() {
 }
 
 function contact(postId) {
+    if (document.getElementById("messageSendButton") != null) {
+        document.getElementById("messageSendButton").remove()
+    }
+    var but1 = document.createElement("button");
+    but1.setAttribute("type", "button");
+    but1.setAttribute("data-dismiss", "modal");
+    but1.setAttribute("class", "btn btn-success");
+    but1.setAttribute("onclick", "sendMessage('" + postId + "')");
+    but1.setAttribute("id", "messageSendButton");
+    but1.innerHTML = "Send";
 
-        if (document.getElementById("messageSendButton") != null) {
-            document.getElementById("messageSendButton").remove()
-        }
-        var but1 = document.createElement("button");
-        but1.setAttribute("type", "button");
-        but1.setAttribute("data-dismiss", "modal");
-        but1.setAttribute("class", "btn btn-success");
-        but1.setAttribute("onclick", "sendMessage('" + postId + "')");
-        but1.setAttribute("id", "messageSendButton");
-        but1.innerHTML = "Send";
-
-        var insert = document.getElementById("buttonInput");
-        insert.appendChild(but1);
-
+    var insert = document.getElementById("buttonInput");
+    insert.appendChild(but1);
 }
 
 function sendMessage(postId) {
