@@ -65,3 +65,10 @@ aside {
 	box-shadow: 2px 2px 3px #999;
   padding: 8px;
 }
+
+#plus:hover {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+          transition: 0.70s;
+          -webkit-transition: 0.70s;
+}
