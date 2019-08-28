@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!--Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="form.css" rel="stylesheet">
     <script defer src="https://www.gstatic.com/firebasejs/6.4.0/firebase.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
@@ -21,6 +23,85 @@
 </head>
 <body>
 <script defer src="notifications.js"></script>
+<!-- changeEmail Modal -->
+<div class="modal fade" id="changeEmailModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change your Email</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="newEmailInput">Your new Email:</label>
+                        <input maxlength="30" type="text" class="form-control" id="newEmailInput" placeholder="Enter new Email">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        <button type="button" data-dismiss="modal" class="btn btn-success" onclick="changeEmail()" id="changeEmailButtonModal">Change</button>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- changePassword Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change your password</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="newPasswordInput">New Password:</label>
+                        <input maxlength="30" type="password" class="form-control" id="newPasswordInput" placeholder="Enter new password">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        <button type="button" data-dismiss="modal" class="btn btn-success" onclick="changePassword()" id="changePasswordButtonModal">Change</button>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- deleteAcc Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete your Account</h5>
+            </div>
+            <div class="modal-body">
+                <p> Are you sure you want to delete your Account?<br>This will delete also remove all of your posts</p>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        <button type="button" data-dismiss="modal" class="btn btn-danger" onclick="deleteUser()">Delete</button>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="sticky-top container" style="background-color: white">
     <header class="border-bottom pt-3 pb-3">
         <div class="row justify-content-between align-items-center">
