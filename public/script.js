@@ -292,20 +292,22 @@ function contact(postId) {
         insert.appendChild(but1);
     } else {
         alert("Your email must be confirmed in order to be able to send messages!")
-        clearMessageModal();
     }
 }
 
 function sendMessage(postId) {
-    console.log(postId + "<-- postId");
-    const authorMessages = firestore.collection("users").doc(postId).collection("ReceivedMessages");
-    authorMessages.doc().set({
-        content: document.getElementById("emailContentInput").value,
-        header: document.getElementById("emailSubjectInput").value,
-        sender: firebase.auth().currentUser.uid,
-        timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    });
-    clearMessageModal();
+    if (firebase.auth().currentUser.emailVerified) {
+        const authorMessages = firestore.collection("users").doc(postId).collection("ReceivedMessages");
+        authorMessages.doc().set({
+            content: document.getElementById("emailContentInput").value,
+            header: document.getElementById("emailSubjectInput").value,
+            sender: firebase.auth().currentUser.uid,
+            timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+        });
+        clearMessageModal();
+    } else {
+        alert("Your email must be confirmed in order to be able to send messages!")
+    }
 }
 
 /*
