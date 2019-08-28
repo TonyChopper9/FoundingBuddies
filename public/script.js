@@ -154,18 +154,22 @@ function prevPage() {
 }
 
 function upload() {
-    const postRef = firestore.collection("posts");
-    const inputHeader = document.querySelector("#uploadTitleInput");
-    const inputContent = document.querySelector("#uploadContentInput");
-    //const inputButton = document.querySelector("#createButton");
-    const inpData = {
-        Date: firebase.firestore.Timestamp.fromDate(new Date()),
-        content: inputContent.value,
-        header: inputHeader.value,
-        user: getUserId()
-    };
-    postRef.doc().set(inpData);
-    clearUploadModal();
+    if (firebase.auth().currentUser.emailVerified) {
+        const postRef = firestore.collection("posts");
+        const inputHeader = document.querySelector("#uploadTitleInput");
+        const inputContent = document.querySelector("#uploadContentInput");
+        //const inputButton = document.querySelector("#createButton");
+        const inpData = {
+            Date: firebase.firestore.Timestamp.fromDate(new Date()),
+            content: inputContent.value,
+            header: inputHeader.value,
+            user: getUserId()
+        };
+        postRef.doc().set(inpData);
+        clearUploadModal()
+    } else {
+        alert("Your email must be confirmed in order to be able to upload!")
+    }
 }
 
 function clearUploadModal() {
@@ -232,7 +236,6 @@ function addSizeToGoogleProfilePic(url) {
 }
 
 
-
 function authStateObserver(user) {
     if (user) { // User is signed in!
         // Hide sign-in button.
@@ -272,19 +275,24 @@ function notificationsPage() {
 }
 
 function contact(postId) {
-    if (document.getElementById("messageSendButton") != null) {
-        document.getElementById("messageSendButton").remove()
-    }
-    var but1 = document.createElement("button");
-    but1.setAttribute("type", "button");
-    but1.setAttribute("data-dismiss", "modal");
-    but1.setAttribute("class", "btn btn-success");
-    but1.setAttribute("onclick", "sendMessage('" + postId + "')");
-    but1.setAttribute("id", "messageSendButton");
-    but1.innerHTML = "Send";
+    if (firebase.auth().currentUser.emailVerified) {
 
-    var insert = document.getElementById("buttonInput");
-    insert.appendChild(but1);
+        if (document.getElementById("messageSendButton") != null) {
+            document.getElementById("messageSendButton").remove()
+        }
+        var but1 = document.createElement("button");
+        but1.setAttribute("type", "button");
+        but1.setAttribute("data-dismiss", "modal");
+        but1.setAttribute("class", "btn btn-success");
+        but1.setAttribute("onclick", "sendMessage('" + postId + "')");
+        but1.setAttribute("id", "messageSendButton");
+        but1.innerHTML = "Send";
+
+        var insert = document.getElementById("buttonInput");
+        insert.appendChild(but1);
+    } else {
+        alert("Your email must be confirmed in order to be able to send messages!")
+    }
 }
 
 function sendMessage(postId) {
@@ -295,7 +303,7 @@ function sendMessage(postId) {
         header: document.getElementById("emailSubjectInput").value,
         sender: firebase.auth().currentUser.uid,
         timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    })
+    });
     clearMessageModal();
 }
 

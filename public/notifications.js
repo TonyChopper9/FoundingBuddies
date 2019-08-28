@@ -69,7 +69,8 @@ function loadMessages() {
                 //Add reply Button
                 var repBtn = document.createElement("button");
                 repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-primary");
-                repBtn.setAttribute("data-replyto", senderU.data().mail);
+                repBtn.setAttribute("onclick", "changeReplyModal('" + message.id + "')");
+                //TODO: message id
                 repBtn.innerHTML = "Reply";
                 colla.appendChild(repBtn);
 
@@ -84,6 +85,12 @@ function loadMessages() {
     }).catch(function (error) {
         console.log(error)
     })
+}
+
+function changeReplyModal(messageID) {
+
+
+    console.log(messageID)
 }
 
 function signOut() {
