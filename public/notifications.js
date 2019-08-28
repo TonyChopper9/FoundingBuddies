@@ -221,7 +221,7 @@ function getUserMail() {
 
 function addSendEmailVerifyButton() {
     var emailVerifyBtn = document.createElement("button");
-    emailVerifyBtn.setAttribute("class", "btn btn-warning btn-block");
+    emailVerifyBtn.setAttribute("class", "btn btn-j1 btn-block");
     emailVerifyBtn.setAttribute("type", "button");
     emailVerifyBtn.setAttribute("onclick", "sendVerificationEmail()");
     emailVerifyBtn.innerHTML = "Send Verification-Email";
