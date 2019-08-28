@@ -109,10 +109,10 @@ function authStateObserver(user) {
     if (user) { // User is signed in!
         // Get the signed-in user's profile pic and name.
 
-        //var profilePicUrl = getProfilePicUrl();
-        //var userName = user.displayName;
-        //var userMail = getUserMail();
-        //var emailVerify = user.emailVerified;
+        var profilePicUrl = getProfilePicUrl();
+        var userName = user.displayName;
+        var userMail = getUserMail();
+        var emailVerify = user.emailVerified;
 
         // Set the user's profile pic and name and mail and show.
         //userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
