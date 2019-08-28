@@ -6,4 +6,6 @@ x mobile menu kante
   farben msg
   profil msg
   margin buttons + home statt homepage
- 
+  mobile menu
+  mobile karten breiter
+  posten nur mit verified email

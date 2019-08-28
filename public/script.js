@@ -154,18 +154,22 @@ function prevPage() {
 }
 
 function upload() {
-    const postRef = firestore.collection("posts");
-    const inputHeader = document.querySelector("#uploadTitleInput");
-    const inputContent = document.querySelector("#uploadContentInput");
-    //const inputButton = document.querySelector("#createButton");
-    const inpData = {
-        Date: firebase.firestore.Timestamp.fromDate(new Date()),
-        content: inputContent.value,
-        header: inputHeader.value,
-        user: getUserId()
-    };
-    postRef.doc().set(inpData);
-    clearUploadModal();
+    if (firebase.auth().currentUser.emailVerified) {
+        const postRef = firestore.collection("posts");
+        const inputHeader = document.querySelector("#uploadTitleInput");
+        const inputContent = document.querySelector("#uploadContentInput");
+        //const inputButton = document.querySelector("#createButton");
+        const inpData = {
+            Date: firebase.firestore.Timestamp.fromDate(new Date()),
+            content: inputContent.value,
+            header: inputHeader.value,
+            user: getUserId()
+        };
+        postRef.doc().set(inpData);
+        clearUploadModal()
+    } else {
+        alert("You must be signed in to upload!")
+    }
 }
 
 function clearUploadModal() {
@@ -230,7 +234,6 @@ function addSizeToGoogleProfilePic(url) {
     }
     return url;
 }
-
 
 
 function authStateObserver(user) {
