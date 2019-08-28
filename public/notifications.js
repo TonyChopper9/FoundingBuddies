@@ -110,42 +110,32 @@ function authStateObserver(user) {
         // Get the signed-in user's profile pic and name.
 
         var profilePicUrl = getProfilePicUrl();
-        var userName = getUserName();
+        var userName = user.displayName;
+        var userMail = getUserMail();
+        var emailVerify = user.emailVerified;
 
-        //load chat Messages
-        loadMessages();
-
-        //if (profilePicUrl == "") {
-        //  profilePicUrl = "media/usericon.png";
-        //}
-
-        // Set the user's profile pic and name.
-        userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
-        userNameElement.textContent = userName;
-
-        // Show user's profile and sign-out button.
+        // Set the user's profile pic and name and mail and show.
+        //userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
+        profileDiv.style.display = "";
+        userNameElement.innerHTML = userName;
         userNameElement.style.display = "";
-        userPicElement.style.display = "";
-
-        // Hide sign-in button.
-        //loginPageButton.style.display = "none";
+        if (emailVerify) {
+            userMailElement.innerHTML = userMail;
+        } else {
+            userMailElement.innerHTML = userMail + "<br>(not verified yet)";
+            addSendEmailVerifyButton();
+        }
+        if (user.providerId != "firebase") {
+            changeEmailBtn.style.display = "none";
+            resetPasswordBtn.style.display = "none";
+        }
+        userMailElement.style.display = "";
+        //userPicElement.style.display = "";
         // Show sign-out button.
-        //menuButtonElement.style.display = "";
-        //uploadBtn.style.display = "";
-
-        // We save the Firebase Messaging Device token and enable notifications.
-        //saveMessagingDeviceToken();
+        logoutButtonElement.style.display = "";
+        loadMessages();
     } else { // User is signed out!
         window.location.href = "index.html";
-        // Hide user's profile and sign-out button.
-        //userNameElement.setAttribute('hidden', 'true');
-        //userPicElement.style.display = "none";
-
-        // Show sign-in button.
-        //loginPageButton.style.display = "";
-        //Hide sign-out Button
-        //menuButtonElement.style.display = "none";
-        //uploadBtn.style.display = "none";
     }
 }
 
@@ -204,11 +194,68 @@ function addSizeToGoogleProfilePic(url) {
     return url;
 }
 
+function getUserMail() {
+    return firebase.auth().currentUser.email;
+}
+
+function addSendEmailVerifyButton() {
+    var emailVerifyBtn = document.createElement("button");
+    emailVerifyBtn.setAttribute("class", "btn btn-warning btn-block");
+    emailVerifyBtn.setAttribute("type", "button");
+    emailVerifyBtn.setAttribute("onclick", "sendVerificationEmail()");
+    emailVerifyBtn.innerHTML = "Send Verification-Email";
+    profileDiv.appendChild(emailVerifyBtn);
+}
+
+function sendVerificationEmail() {
+    firebase.auth().currentUser.sendEmailVerification().then(function () {
+        alert("A Verification-Email has been sent to: " + firebase.auth().currentUser.email);
+    }).catch(function (error) {
+        // An error happened.
+    });
+}
+
+function changeEmail() {
+    var newEmail = document.getElementById("newEmailInput").value;
+    //TODO: check new email on syntax, no stackoverflow etc.
+    firebase.auth().currentUser.updateEmail(newEmail).then(function () {
+        document.getElementById("newEmailInput").value = ""; //clear modal
+        alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
+    }).catch(function (error) {
+        // An error happened.
+    });
+}
+
+function changePassword() {
+    var newEmail = document.getElementById("").value;
+    //TODO: check new password on syntax, no stackoverflow etc.
+    firebase.auth().currentUser.updatePassword(newPassword).then(function () {
+        alert("Your password has beend changed!");
+    }).catch(function (error) {
+        // An error happened.
+    });
+}
+
+function deleteUser() {
+    alert("Delete is not unlocked yet!");
+    /*
+    firebase.auth().currentUser.delete().then(function() {
+      alert("Your account has been deleted!");
+    }).catch(function(error) {
+      console.error(error);
+    });*/
+}
+
 //Shortcuts to Document Elements
 var userPicElement = document.getElementById('user-pic');
-var userNameElement = document.getElementById('user-name');
-//var menuButtonElement = document.getElementById('menu');
 var signOutButtonElement = document.getElementById("sign-out");
+var userNameElement = document.getElementById('user-name');
+var userMailElement = document.getElementById('user-mail');
+var profileDiv = document.getElementById("profileDiv");
+var profileData = document.getElementById("profileData");
+var changeEmailBtn = document.getElementById("changeEmailBtn");
+var resetPasswordBtn = document.getElementById("resetPasswordBtn");
+
 
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
