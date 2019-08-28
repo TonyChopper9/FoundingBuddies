@@ -2925,6 +2925,18 @@ fieldset:disabled a.btn {
     border-color: #dc3545;
 }
 
+.btn-j1 {
+    color: #00FFFF;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-j2 {
+    color: #00A3A3;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
 .btn-danger:hover {
     color: #fff;
     background-color: #c82333;

@@ -83,7 +83,7 @@ function addDocument(docs, visibility, number) {
                 var mailZeile = document.createElement("div");
                 mailZeile.setAttribute("class", "row justify-content-end");
                 var contactB = document.createElement("button");
-                contactB.setAttribute("class", "mr-3 btn btn-primary");
+                contactB.setAttribute("class", "mr-3 btn btn-j1");
                 contactB.setAttribute("data-toggle", "modal");
                 contactB.setAttribute("data-target", "#messageModal");
                 contactB.setAttribute("onclick", "contact('" + mainDocData.user + "')");
