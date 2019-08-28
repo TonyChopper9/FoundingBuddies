@@ -459,7 +459,7 @@ var notificationsPageBtnDrpMenu = document.getElementById("NotificationsPageBtnD
 var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
 var uploadBtnDrpMenu = document.getElementById("uploadBtnDrpMenu");
 var loginPageButtonDrpMenu = document.getElementById("LoginPageBtnDrpMenu");
-var divider = document.getElementId("divider");
+var divider = document.getElementById("divider");
 //var changeEmailButtonModal = document.getElementById("changeEmailButtonModal");
 
 initFirebaseAuth();
