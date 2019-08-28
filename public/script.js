@@ -230,30 +230,6 @@ function addSizeToGoogleProfilePic(url) {
 
 function authStateObserver(user) {
     if (user) { // User is signed in!
-        // Get the signed-in user's profile pic and name.
-        //var profilePicUrl = getProfilePicUrl();
-        //var userName = user.displayName;
-        //var userMail = getUserMail();
-        //var emailVerify = user.emailVerified;
-
-        // Set the user's profile pic and name and mail and show.
-        //userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
-        profileDiv.style.display = "";
-        userNameElement.innerHTML = userName;
-        userNameElement.style.display = "";
-        if (emailVerify) {
-            userMailElement.innerHTML = userMail;
-        } else {
-            userMailElement.innerHTML = userMail + "<br>(not verified yet)";
-            addSendEmailVerifyButton();
-        }
-        if (user.providerId != "firebase") {
-            changeEmailBtn.style.display = "none";
-            resetPasswordBtn.style.display = "none";
-        }
-        userMailElement.style.display = "";
-        //userPicElement.style.display = "";
-
         // Hide sign-in button.
         loginPageButton.style.display = "none";
         loginPageButtonDrpMenu.style.display = "none";
@@ -268,12 +244,6 @@ function authStateObserver(user) {
 
         // We save the Firebase Messaging Device token and enable notifications.
     } else { // User is signed out!
-        //Hide user's profile and sign-out button.
-        profileDiv.style.display = "none";
-        userNameElement.style.display = "none";
-        userMailElement.style.display = "none";
-        //userPicElement.style.display = "none";
-
         // Show sign-in button.
         loginPageButton.style.display = "";
         loginPageButtonDrpMenu.style.display = "";
