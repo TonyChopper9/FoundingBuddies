@@ -88,7 +88,18 @@ function loadMessages() {
 }
 
 function changeReplyModal(messageID) {
-
+    const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
+    userRef.collection("ReceivedMessages").doc(messageID).get().then(function (message) {
+        const mData = message.data();
+        const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
+        receiverMessages.doc().set({
+            content: document.getElementById("emailContentInput").value,
+            header: document.getElementById("emailSubjectInput").value,
+            sender: firebase.auth().currentUser.uid,
+            timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+        });
+        clearReplyModal();
+    });
 
     console.log(messageID)
 }
@@ -138,17 +149,6 @@ function authStateObserver(user) {
     } else { // User is signed out!
         window.location.href = "index.html";
     }
-}
-
-function sendReply(ReplyId) {
-    const recieverMessages = firestore.collection("users").doc(ReplyId).collection("ReceivedMessages");
-    recieverMessages.doc().set({
-        content: document.getElementById("emailContentInput").value,
-        header: document.getElementById("emailSubjectInput").value,
-        sender: firebase.auth().currentUser.uid,
-        timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    })
-    clearReplyModal();
 }
 
 function clearReplyModal() {
