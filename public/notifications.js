@@ -116,9 +116,7 @@ function authStateObserver(user) {
 
         // Set the user's profile pic and name and mail and show.
         //userPicElement.src = addSizeToGoogleProfilePic(profilePicUrl);
-        profileDiv.style.display = "";
         userNameElement.innerHTML = userName;
-        userNameElement.style.display = "";
         if (emailVerify) {
             userMailElement.innerHTML = userMail;
         } else {
@@ -129,10 +127,6 @@ function authStateObserver(user) {
             changeEmailBtn.style.display = "none";
             resetPasswordBtn.style.display = "none";
         }
-        userMailElement.style.display = "";
-        //userPicElement.style.display = "";
-        // Show sign-out button.
-        logoutButtonElement.style.display = "";
         loadMessages();
     } else { // User is signed out!
         window.location.href = "index.html";
