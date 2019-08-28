@@ -246,7 +246,7 @@ function authStateObserver(user) {
         uploadBtn.style.display = "";
         notificationsPageBtn.style.display = "";
         logoutButtonElementDrpMenu.style.display = "";
-        uploadBtnDrpMenu.style.display = "";
+        //uploadBtnDrpMenu.style.display = "";
         divider.style.display = "";
         notificationsPageBtnDrpMenu.style.display = "";
 
@@ -260,7 +260,7 @@ function authStateObserver(user) {
         uploadBtn.style.display = "none";
         notificationsPageBtn.style.display = "none";
         logoutButtonElementDrpMenu.style.display = "none";
-        uploadBtnDrpMenu.style.display = "none";
+        //uploadBtnDrpMenu.style.display = "none";
         divider.style.display = "none";
         notificationsPageBtnDrpMenu.style.display = "none";
     }
@@ -387,7 +387,7 @@ var dropDownMenu = document.getElementById("sf");
 
 var notificationsPageBtnDrpMenu = document.getElementById("NotificationsPageBtnDrpMenu");
 var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
-var uploadBtnDrpMenu = document.getElementById("uploadBtnDrpMenu");
+//var uploadBtnDrpMenu = document.getElementById("uploadBtnDrpMenu");
 var loginPageButtonDrpMenu = document.getElementById("LoginPageBtnDrpMenu");
 var divider = document.getElementById("divider");
 //var changeEmailButtonModal = document.getElementById("changeEmailButtonModal");
