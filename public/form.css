@@ -29,7 +29,7 @@ aside {
 
 .btn-j1 {
   color: #0C9;
-  background-color: lightgrey;
+  background-color: #f8f9fa;
   border-color: #0C9;
 }
 
@@ -60,7 +60,7 @@ aside {
     line-height: 1.25;
     color: #0C9;
     background-color: #fff;
-    border: 1px solid darkgrey;
+    border: 1px solid #dee2e6;
 }
 
 .plusButton {
