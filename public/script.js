@@ -101,8 +101,7 @@ function addDocument(docs, visibility, number) {
                     contactB.setAttribute("style", "display: none");
                     header1.appendChild(closeBtn);
                 }
-                console.log(number);
-
+                
                 if (number < total) {
                     if (number < 9) {
                         addDocument(docs, true, number + 1)
