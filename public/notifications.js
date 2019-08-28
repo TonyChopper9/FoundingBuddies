@@ -133,6 +133,22 @@ function authStateObserver(user) {
     }
 }
 
+function sendReply(ReplyId) {
+    const recieverMessages = firestore.collection("users").doc(ReplyId).collection("ReceivedMessages");
+    recieverMessages.doc().set({
+        content: document.getElementById("emailContentInput").value,
+        header: document.getElementById("emailSubjectInput").value,
+        sender: firebase.auth().currentUser.uid,
+        timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+    })
+    clearReplyModal();
+}
+
+function clearReplyModal() {
+    document.getElementById("emailSubjectInput").value = "";
+    document.getElementById("emailContentInput").value = "";
+}
+
 /*
 function sendEmail() {
   var sendTestMail = firebase.functions().httpsCallable('sendMail');

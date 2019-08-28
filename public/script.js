@@ -180,6 +180,11 @@ function clearUploadModal() {
 
 }
 
+function clearMessageModal() {
+    document.getElementById("emailSubjectInput").value = "";
+    document.getElementById("emailContentInput").value = "";
+}
+
 function signOut() {
     // Sign out of Firebase.
     firebase.auth().signOut();
@@ -291,6 +296,7 @@ function sendMessage(postId) {
         sender: firebase.auth().currentUser.uid,
         timestamp: firebase.firestore.Timestamp.fromDate(new Date())
     })
+    clearMessageModal();
 }
 
 /*

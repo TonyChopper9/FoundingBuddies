@@ -66,7 +66,7 @@
                         <button type="button" data-dismiss="modal" class="btn btn-success" onclick="upload()" id="createButton">Create</button>
                     </div>
                     <div class="p-2 bd-highlight">
-                        <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary" onclick="clearUploadModal()">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Contact the author</h5>
-                <input id="refPostEmail" style="display: none">
             </div>
             <div class="modal-body">
                 <form>
@@ -99,7 +98,7 @@
                         <button type="button" data-dismiss="modal" class="btn btn-success" onclick="sendMessage()" id="messageSendButton">Send</button>
                     </div>
                     <div class="p-2 bd-highlight">
-                        <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary" onclick="clearMessageModal()">Cancel</button>
                     </div>
                 </div>
             </div>
