@@ -83,7 +83,7 @@ function addDocument(docs, visibility, number) {
                 var mailZeile = document.createElement("div");
                 mailZeile.setAttribute("class", "row justify-content-end");
                 var contactB = document.createElement("button");
-                contactB.setAttribute("class", "mr-3 btn btn-primary");
+                contactB.setAttribute("class", "mr-3 btn btn-j3");
                 contactB.setAttribute("data-toggle", "modal");
                 contactB.setAttribute("data-target", "#messageModal");
                 contactB.setAttribute("onclick", "contact('" + mainDocData.user + "')");
@@ -101,7 +101,6 @@ function addDocument(docs, visibility, number) {
                     contactB.setAttribute("style", "display: none");
                     header1.appendChild(closeBtn);
                 }
-                console.log(number);
 
                 if (number < total) {
                     if (number < 9) {
@@ -275,36 +274,34 @@ function notificationsPage() {
 }
 
 function contact(postId) {
-    if (firebase.auth().currentUser.emailVerified) {
-
-        if (document.getElementById("messageSendButton") != null) {
-            document.getElementById("messageSendButton").remove()
-        }
-        var but1 = document.createElement("button");
-        but1.setAttribute("type", "button");
-        but1.setAttribute("data-dismiss", "modal");
-        but1.setAttribute("class", "btn btn-success");
-        but1.setAttribute("onclick", "sendMessage('" + postId + "')");
-        but1.setAttribute("id", "messageSendButton");
-        but1.innerHTML = "Send";
-
-        var insert = document.getElementById("buttonInput");
-        insert.appendChild(but1);
-    } else {
-        alert("Your email must be confirmed in order to be able to send messages!")
+    if (document.getElementById("messageSendButton") != null) {
+        document.getElementById("messageSendButton").remove()
     }
+    var but1 = document.createElement("button");
+    but1.setAttribute("type", "button");
+    but1.setAttribute("data-dismiss", "modal");
+    but1.setAttribute("class", "btn btn-success");
+    but1.setAttribute("onclick", "sendMessage('" + postId + "')");
+    but1.setAttribute("id", "messageSendButton");
+    but1.innerHTML = "Send";
+
+    var insert = document.getElementById("buttonInput");
+    insert.appendChild(but1);
 }
 
 function sendMessage(postId) {
-    console.log(postId + "<-- postId");
-    const authorMessages = firestore.collection("users").doc(postId).collection("ReceivedMessages");
-    authorMessages.doc().set({
-        content: document.getElementById("emailContentInput").value,
-        header: document.getElementById("emailSubjectInput").value,
-        sender: firebase.auth().currentUser.uid,
-        timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-    });
-    clearMessageModal();
+    if (firebase.auth().currentUser.emailVerified) {
+        const authorMessages = firestore.collection("users").doc(postId).collection("ReceivedMessages");
+        authorMessages.doc().set({
+            content: document.getElementById("emailContentInput").value,
+            header: document.getElementById("emailSubjectInput").value,
+            sender: firebase.auth().currentUser.uid,
+            timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+        });
+        clearMessageModal();
+    } else {
+        alert("Your email must be confirmed in order to be able to send messages!")
+    }
 }
 
 /*

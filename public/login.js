@@ -109,7 +109,6 @@ function signInWithGoogle() {
                         timestamp: firebase.firestore.Timestamp.fromDate(new Date())
                     }).then(function () {
                         flag1 = true;
-                        console.log("Added User!!!");
                         redirectHome();
                     });
                 }).catch(function (error) {
@@ -123,7 +122,6 @@ function signInWithGoogle() {
 }
 
 function redirectHome() {
-    console.log("aiaiai dios mio!");
     if (flag1 && flag2) {
         flag1 = false;
         flag2 = false;
