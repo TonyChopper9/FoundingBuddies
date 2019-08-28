@@ -38,3 +38,9 @@ aside {
   background-color: #009999;
   border-color: #009999;
 }
+
+.btn-light {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
