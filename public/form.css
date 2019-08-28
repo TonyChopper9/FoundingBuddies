@@ -52,8 +52,13 @@ aside {
   border-color: #f8f9fa;
 }
 
+.bg-light {
+    background-color: #f8f9fa !important;
+    border-color: darkgrey;
+}
+
 .page-link-j1 {
-    position: center;
+    position: relative;
     display: block;
     padding: 0.5rem 0.75rem;
     margin-left: -1px;
