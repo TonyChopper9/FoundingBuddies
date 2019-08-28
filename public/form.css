@@ -26,3 +26,15 @@
 aside {
   min-width: 250px;
 }
+
+.btn-j1 {
+  color: #fff;
+  background-color: #00FFFF;
+  border-color: #00FFFF;
+}
+
+.btn-j2 {
+  color: #fff;
+  background-color: #009999;
+  border-color: #009999;
+}
