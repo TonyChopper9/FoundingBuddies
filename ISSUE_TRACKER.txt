@@ -8,5 +8,5 @@ x mobile menu kante
   margin buttons + home statt homepage
   mobile menu
   mobile karten breiter
-  posten nur mit verified email
+x posten nur mit verified email
   pages
