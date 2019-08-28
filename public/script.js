@@ -292,6 +292,7 @@ function contact(postId) {
         insert.appendChild(but1);
     } else {
         alert("Your email must be confirmed in order to be able to send messages!")
+        clearMessageModal();
     }
 }
 
