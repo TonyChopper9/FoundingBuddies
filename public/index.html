@@ -26,7 +26,7 @@
 <body>
 <script defer src="script.js"></script>
 <!-- Upload Modal -->
-<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="uploadModal" tabindex="-1" data-easein="bounceUpIn" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -74,7 +74,7 @@
     </div>
 </div>
 <!-- Message form Modal -->
-<div class="modal fade" id="messageModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="messageModal" tabindex="-1" data-easein="bounceLeftIn" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -138,9 +138,6 @@
             <div id="sf" class="col d-flex flex-row-reverse align-items-center dropleft">
                 <ul id="bigMenu" class="nav">
                     <li class="m-2 nav-item">
-                        <button id="uploadBtn" style="display: none" class="btn btn-j1 nav-link" data-toggle="modal" data-target="#uploadModal">Upload</button>
-                    </li>
-                    <li class="m-2 nav-item">
                         <button id="NotificationsPageBtn" style="display: none" class="btn btn-primary nav-link" onclick="notificationsPage()">Messages</button>
                     </li>
                     <li class="m-2 nav-item">
@@ -157,7 +154,6 @@
                     <div class="bar3"></div>
                 </div>
                 <div class="dropdown-menu" id="drpMenu">
-                    <button id="uploadBtnDrpMenu" type="button" data-toggle="modal" data-target="#uploadModal" class="dropdown-item">Upload</button>
                     <button id="NotificationsPageBtnDrpMenu" type="button" class="dropdown-item" onclick="notificationsPage()">Notifications</button>
                     <div id="divider" class="dropdown-divider"></div>
                     <button id="sign-outDrpMenu" class="dropdown-item" onclick="signOut()">Logout</button>
@@ -207,7 +203,7 @@
     </ul>
 </nav>
 
-<div class="plusButton"><i class="material-icons">add</i></div>
+<div class="plusButton" id="uploadBtn" style="display: none" data-toggle="modal" data-target="#uploadModal"><i id="plus" class="material-icons">add</i></div>
 
 <div class="container bg-white">
     <footer class="border-top pt-3 pb-3">

@@ -63,5 +63,12 @@ aside {
 	border-radius:50px;
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
-  margin: auto;
+  padding: 8px;
+}
+
+#plus:hover {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+          transition: 0.70s;
+          -webkit-transition: 0.70s;
 }
