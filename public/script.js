@@ -313,6 +313,7 @@ function authStateObserver(user) {
         notificationsPageBtn.style.display = "";
         logoutButtonElementDrpMenu.style.display = "";
         uploadBtnDrpMenu.style.display = "";
+        divider.style.display = "";
         notificationsPageBtnDrpMenu.style.display = "";
 
         // We save the Firebase Messaging Device token and enable notifications.
@@ -332,6 +333,7 @@ function authStateObserver(user) {
         notificationsPageBtn.style.display = "none";
         logoutButtonElementDrpMenu.style.display = "none";
         uploadBtnDrpMenu.style.display = "none";
+        divider.style.display = "none";
         notificationsPageBtnDrpMenu.style.display = "none";
     }
 }
@@ -457,6 +459,7 @@ var notificationsPageBtnDrpMenu = document.getElementById("NotificationsPageBtnD
 var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
 var uploadBtnDrpMenu = document.getElementById("uploadBtnDrpMenu");
 var loginPageButtonDrpMenu = document.getElementById("LoginPageBtnDrpMenu");
+var divider = document.getElementId("divider");
 //var changeEmailButtonModal = document.getElementById("changeEmailButtonModal");
 
 initFirebaseAuth();
