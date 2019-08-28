@@ -26,7 +26,7 @@
 <body>
 <script defer src="script.js"></script>
 <!-- Upload Modal -->
-<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="uploadModal" tabindex="-1" data-easein="bounceUpIn" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -74,7 +74,7 @@
     </div>
 </div>
 <!-- Message form Modal -->
-<div class="modal fade" id="messageModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="messageModal" tabindex="-1" data-easein="bounceLeftIn" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -207,7 +207,7 @@
     </ul>
 </nav>
 
-<div class="plusButton"><i class="material-icons">add</i></div>
+<div class="plusButton" id="uploadBtn" style="display: none" data-toggle="modal" data-target="#uploadModal"><i class="material-icons">add</i></div>
 
 <div class="container bg-white">
     <footer class="border-top pt-3 pb-3">
