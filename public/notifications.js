@@ -68,7 +68,7 @@ function loadMessages() {
 
                 //Add reply Button
                 var repBtn = document.createElement("button");
-                repBtn.setAttribute("class", "float-right mr-3 mb-3 btn-j3");
+                repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-j3");
                 repBtn.setAttribute("onclick", "changeReplyModal('" + message.id + "')");
                 repBtn.setAttribute("data-toggle", "modal");
                 repBtn.setAttribute("data-target", "#replyModal");
