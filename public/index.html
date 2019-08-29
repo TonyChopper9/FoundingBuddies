@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,6 +24,26 @@
     <script defer src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/6.4.0/firebase-functions.js"></script>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+        "palette": {
+            "popup": {
+                "background": "#efefef",
+                "text": "#404040"
+            },
+            "button": {
+                "background": "#8ec760",
+                "text": "#ffffff"
+            }
+        },
+        "content": {
+            "message": "We use cookies to ensure the best experience on our website.",
+            "href": "www.foundingbuddies.com/privacy.html"
+        }
+    });
+</script>
 <body>
 <script defer src="script.js"></script>
 <!-- Upload Modal -->
