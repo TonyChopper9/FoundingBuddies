@@ -1,3 +1,9 @@
+:root {
+    --mainblue: #007bff;
+    --maingreen: #0C9;
+    --maincolor: #0C9;
+}
+
 .menuicon {
   display: inline-block;
   cursor: pointer;
