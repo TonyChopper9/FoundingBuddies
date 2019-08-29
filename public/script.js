@@ -135,15 +135,17 @@ function nextPage() {
     if (page == Math.floor(total / 10) - 1) {
         page++;
         for (x = 0; x < total % 10; x++) {
-            var id2a = ((page - 1) * 10) + x;
-            if (id2a <= total) {
-                document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+            var id3a = ((page - 1) * 10) + x;
+            if (id3a <= total) {
+                console.log(id3a);
+                document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
             }
         }
         for (y = 0; y < total % 10; y++) {
-            var id2n = (page * 10) + y;
-            if (id2n <= total) {
-                document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
+            var id3n = (page * 10) + y;
+            if (id3n <= total) {
+                console.log(id3n);
+                document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
             }
         }
     }
