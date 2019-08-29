@@ -54,7 +54,7 @@ aside {
 
 .bg-light-j1 {
     background-color: #f8f9fa !important;
-    border-color: #212529;
+    border: 1px #212529;
 }
 
 .page-link-j1 {
