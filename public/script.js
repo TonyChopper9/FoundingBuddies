@@ -138,14 +138,12 @@ function nextPage() {
         for (x = 0; x < 10; x++) {
             var id3a = ((page - 1) * 10) + x;
             if (id3a <= total) {
-                console.log(id3a + "<-raus");
                 document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
             }
         }
         for (y = 0; y < total % 10; y++) {
             var id3n = (page * 10) + y;
             if (id3n <= total) {
-                console.log(id3n + "<-rein");
                 document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
             }
         }
@@ -172,14 +170,12 @@ function prevPage() {
         page--;
         for (x2 = 0; x2 < total % 10; x2++) {
             var id3a = ((page + 1) * 10) + x2;
-            console.log(id3a + "<-raus");
             if (id3a <= total) {
                 document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
             }
         }
         for (y2 = 0; y2 < 10; y2++) {
             var id3n = (page * 10) + y2;
-            console.log(id3a + "<-rein");
             if (id3n <= total) {
                 document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
             }
