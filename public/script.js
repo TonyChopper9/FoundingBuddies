@@ -135,7 +135,7 @@ function nextPage() {
     }
     if (page == Math.floor(total / 10) - 1) {
         page++;
-        for (x = 0; x < total % 10; x++) {
+        for (x = 0; x < 10; x++) {
             var id3a = ((page - 1) * 10) + x;
             if (id3a <= total) {
                 console.log(id3a + "<-raus");
@@ -170,7 +170,7 @@ function prevPage() {
         }
     } else if (page == Math.floor(total / 10)) {
         page--;
-        for (x2 = 0; x2 < total % 10; x2++) {
+        for (x2 = 0; x2 < 10; x2++) {
             var id3a = ((page + 1) * 10) + x2;
             console.log(id3a + "<-raus");
             if (id3a <= total) {
