@@ -94,6 +94,7 @@ function signInWithGoogle() {
         var user = result.user;
         firestore.collection("users").doc(user.uid).get().then(entry => {
             if (entry.exists) {
+                console.log("AIII KARAMBA!");
                 flag1 = true;
                 flag2 = true;
                 redirectHome()
