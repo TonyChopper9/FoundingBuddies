@@ -174,14 +174,14 @@ function prevPage() {
             var id3a = ((page + 1) * 10) + x2;
             console.log(id3a + "<-raus");
             if (id3a <= total) {
-                document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+                document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
             }
         }
         for (y2 = 0; y2 < total % 10; y2++) {
             var id3n = (page * 10) + y2;
             console.log(id3a + "<-rein");
             if (id3n <= total) {
-                document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
+                document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
             }
         }
     }
