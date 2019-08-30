@@ -25,9 +25,7 @@ function signUp() {
                 //Send Verification Email
                 user.user.sendEmailVerification().then(function () {
                     alert("A Verification-Email has been sent to " + user.user.email + ".");
-                }).catch(function (error) {
-                    // An error happened.
-                });
+                }).catch(error => {console.log(error)});
             }).catch(function (error) {
                 user.user.updateProfile({
                     displayName: "nameError"
@@ -67,8 +65,6 @@ function signUp() {
             console.log(error);
             // [END_EXCLUDE]
         });
-
-    console.log("ende");
 }
 
 function signInWithEmail() {
@@ -78,13 +74,7 @@ function signInWithEmail() {
         flag1 = true;
         flag2 = true;
         redirectHome()
-    }).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // log error
-        console.console.log(error);
-    });
+    }).catch(error => {console.log(error)});
 }
 
 function signInWithGoogle() {

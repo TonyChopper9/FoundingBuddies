@@ -333,45 +333,12 @@ function sendMessage(postId) {
     }
 }
 
-/*
-function sendEmail() {
-  var sendTestMail = firebase.functions().httpsCallable('sendMail');
-  const docRef = firestore.collection("posts").doc(refPost.value);
-  var mainDocData = null;
-  docRef.get().then(function (doc) {
-    if (doc && doc.exists){
-      mainDocData = doc.data();
-
-      if (mainDocData != null) {
-        const userRef = firestore.collection("users").doc(mainDocData.user);
-        var user = null;
-        userRef.get().then(function (smh) {
-          user = smh.data();
-          var sendUserName = user.Username;
-          var sendUserEmail = user.mail;
-        });
-    }
-  }
-  var data = {
-    fromName: getUserName,
-    to: sendUserEmail,
-    subject: emailSubjectInput,
-    content: emailContentInput
-  }
-  sendTestMail(data).then(function(result) {
-    // Read result of the Cloud Function.
-    console.log(result);
-    // ...
-  });
-}
-*/
-
 function openDeleteModal(docId, number) {
     document.getElementById("deleteButton").setAttribute("data-postid", docId);
     document.getElementById("deleteButton").setAttribute("postno", number)
 }
 
-function isAuthorizedToDeleteDoc(documentId) { //returns true if currentUser==documentId.author
+function isAuthorizedToDeleteDoc(documentId) {
     const docRef = firestore.collection("posts").doc(documentId);
     docRef.get().then(function(doc){
         console.log(doc.data());
