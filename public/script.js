@@ -50,7 +50,7 @@ function addDocument(docs, visibility, number) {
             closeBtn.setAttribute("class", "close");
             closeBtn.setAttribute("data-toggle", "modal");
             closeBtn.setAttribute("data-target", "#deleteModal");
-            closeBtn.setAttribute("onclick", "openDeleteModal('" + docs[number].id + "')");
+            closeBtn.setAttribute("onclick", "openDeleteModal('" + docs[number].id + ", " + number + "')");
             var closeBtnText = document.createElement("span");
             closeBtnText.innerHTML = "&times;";
             closeBtn.appendChild(closeBtnText);
@@ -265,7 +265,6 @@ function addSizeToGoogleProfilePic(url) {
     return url;
 }
 
-
 function authStateObserver(user) {
     if (user) { // User is signed in!
         // Hide sign-in button.
@@ -377,29 +376,29 @@ function addTag() {
         tag.innerHTML = tagValue;
         document.getElementById("tagList").appendChild(tag);
     }
-
-
 }
 
-function openDeleteModal(docId) {
+function openDeleteModal(docId, number) {
     document.getElementById("deleteButton").setAttribute("data-postid", docId);
+    document.getElementById("deleteButton").setAttribute("postno", number)
 }
 
-function isAuthorizedToDeletDoc(documentId) { //returns true if currentUser==documentId.author
-    //TODO
+function isAuthorizedToDeleteDoc(documentId) { //returns true if currentUser==documentId.author
+    const docRef = firestore.collection("posts").doc(documentId);
+    docRef.get().then(doc => {return (firebase.auth().currentUser.uid == doc.data().user)})
+
 }
 
-function deletePost(docId) {
-    console.log(docId);
-    //TODO: delete docId
-    //isAuthorizedToDeleteDoc(docId);    <--- if yes -> continue
-    /*firestore.collection("posts").doc(docId).delete().then(function() {
-        console.log("Post deleted");
-    }).catch(function(error) {
-        console.error("Error deleting post: " + error);
-    });*/
-    //clear Modal
-    document.getElementById("deleteButton").setAttribute("data-postid", "");
+function deletePost(docId, number) {
+    const docRef = firestore.collection("posts").doc(docId);
+    if(isAuthorizedToDeleteDoc(docId)){
+        docRef.delete().then(function () {
+            total--;
+            document.querySelector('[id2="' + number + '"]').remove();
+            document.getElementById("deleteButton").setAttribute("data-postid", "");
+            window.location.href = "index.html"
+        }).catch(error => {console.log(error)})
+    } else {alert("You are not authorized to delete this post!")}
 }
 
 //Shortcuts to Document Elements
