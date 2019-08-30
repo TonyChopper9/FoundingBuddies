@@ -34,7 +34,9 @@ function signUp() {
 
             firestore.collection("users").doc(user.user.uid).set({
                 Username: username,
-                mail: email
+                mail: email,
+                confirmed: false,
+                newMessage: true
             }).then(function () {
                 firestore.collection("users").doc(user.user.uid).collection("ReceivedMessages").doc().set({
                     content: "This will be your personal message Space!!",
@@ -43,7 +45,6 @@ function signUp() {
                     timestamp: firebase.firestore.Timestamp.fromDate(new Date())
                 }).then(function () {
                     flag1 = true;
-                    console.log("Added User!!!");
                     redirectHome();
                 });
             }).catch(function (error) {

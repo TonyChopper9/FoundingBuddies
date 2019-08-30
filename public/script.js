@@ -16,6 +16,7 @@ unis.set("TUM","Technische Universität München");
 unis.set("LMU","Ludwig-Maximilians-Universität");
 unis.set("UNIBW","Universität der Bundeswehr München");
 unis.set("HM","Hochschule München");
+unis.set("MBS","Munich Business School");
 
 window.onload = function () {
     total = 0;
