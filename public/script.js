@@ -11,6 +11,11 @@ firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 var page = 0;
 var total = 0;
+var unis = new Map();
+unis.set("TUM","Technische Universität München");
+unis.set("LMU","Ludwig Maximilians Universität");
+unis.set("UNIBW","Universität der Bundeswehr");
+unis.set("HM","Hochschule München");
 
 window.onload = function () {
     total = 0;
@@ -40,7 +45,7 @@ function addDocument(docs, visibility, number) {
             //HEADER
             var header1 = document.createElement("h5");
             header1.setAttribute("class", "mb-0 card-title");
-            header1.innerHTML = mainDocData.header + " - " + mainDocData.uni;
+            header1.innerHTML = mainDocData.header + " - " + unis.get(mainDocData.uni);
             innerElement.appendChild(header1);
 
             //CLOSE BUTTON
