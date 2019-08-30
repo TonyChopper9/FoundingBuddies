@@ -12,9 +12,11 @@ var firestore = firebase.firestore();
 var functions = firebase.functions();
 
 function loadMessages() {
+
     const goal = document.getElementById("output");
 
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
+    userRef.set({newMessage: false});
     userRef.collection("ReceivedMessages").get().then(function (userColl) {
         var counter = 0;
         userColl.forEach(message => {
@@ -97,6 +99,7 @@ function sendReply(messageID){
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").doc(messageID).get().then(function (message) {
         const mData = message.data();
+        firestore.collection("users").doc(mData.sender).set({newMessage: true});
         const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
         receiverMessages.doc().set({
             content: document.getElementById("emailContentInput").value,

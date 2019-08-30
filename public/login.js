@@ -92,7 +92,9 @@ function signInWithGoogle() {
             } else {
                 firestore.collection("users").doc(user.uid).set({
                     Username: user.displayName,
-                    mail: user.email
+                    mail: user.email,
+                    confirmed: true,
+                    newMessage: true
                 }).then(function () {
                     firestore.collection("users").doc(user.uid).collection("ReceivedMessages").doc().set({
                         content: "This will be your personal message Space!!",

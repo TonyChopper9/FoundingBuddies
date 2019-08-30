@@ -308,7 +308,7 @@ function notificationsPage() {
     window.location.href = "notifications.html";
 }
 
-function contact(postId) {
+function contact(userId) {
     if (document.getElementById("messageSendButton") != null) {
         document.getElementById("messageSendButton").remove()
     }
@@ -316,7 +316,7 @@ function contact(postId) {
     but1.setAttribute("type", "button");
     but1.setAttribute("data-dismiss", "modal");
     but1.setAttribute("class", "btn btn-j2");
-    but1.setAttribute("onclick", "sendMessage('" + postId + "')");
+    but1.setAttribute("onclick", "sendMessage('" + userId + "')");
     but1.setAttribute("id", "messageSendButton");
     but1.innerHTML = "Send";
 
@@ -324,9 +324,10 @@ function contact(postId) {
     insert.appendChild(but1);
 }
 
-function sendMessage(postId) {
+function sendMessage(userId) {
     if (firebase.auth().currentUser.emailVerified) {
-        const authorMessages = firestore.collection("users").doc(postId).collection("ReceivedMessages");
+        firestore.collection("users").doc(userId).set({newMessage: true});
+        const authorMessages = firestore.collection("users").doc(userId).collection("ReceivedMessages");
         authorMessages.doc().set({
             content: document.getElementById("emailContentInput").value,
             header: document.getElementById("emailSubjectInput").value,
