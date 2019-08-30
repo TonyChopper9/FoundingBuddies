@@ -13,8 +13,8 @@ var page = 0;
 var total = 0;
 var unis = new Map();
 unis.set("TUM","Technische Universität München");
-unis.set("LMU","Ludwig Maximilians Universität");
-unis.set("UNIBW","Universität der Bundeswehr");
+unis.set("LMU","Ludwig-Maximilians-Universität");
+unis.set("UNIBW","Universität der Bundeswehr München");
 unis.set("HM","Hochschule München");
 
 window.onload = function () {
