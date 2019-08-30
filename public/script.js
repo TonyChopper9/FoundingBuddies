@@ -390,7 +390,22 @@ function isAuthorizedToDeleteDoc(documentId) { //returns true if currentUser==do
         console.log(doc.data().user);
         return (firebase.auth().currentUser.uid == doc.data().user)
     })
+}
 
+function deletePostsWithoutUsers(){
+    const docRef = firestore.collection("posts");
+    const userRef = firestore.collection("users");
+
+    userRef.get().then(function (uColl) {
+        docRef.get().then(function(coll){
+            console.log(doc.data().user);
+            coll.forEach(doc => {
+                if(!uColl.docs.includes(doc.data().user)){
+                    firestore.collection("posts").doc(doc.data().id).delete()
+                }
+            })
+        })
+    })
 }
 
 function deletePost(docId, number) {
