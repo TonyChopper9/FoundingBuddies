@@ -405,7 +405,7 @@ function deletePostsWithoutUsers(){
                     console.log(doc);
                     console.log(doc.data());
                     console.log(doc.data().id);
-                    firestore.collection("posts").doc(doc.data().id).delete()
+                    firestore.collection("posts").doc(doc.id).delete()
                 }
             })
         }).catch(error => {console.log(error)})
