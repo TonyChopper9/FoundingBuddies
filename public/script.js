@@ -40,7 +40,7 @@ function addDocument(docs, visibility, number) {
             //HEADER
             var header1 = document.createElement("h5");
             header1.setAttribute("class", "mb-0 card-title");
-            header1.innerHTML = mainDocData.header + " - " + uni.innerHTML = mainDocData.uni;
+            header1.innerHTML = mainDocData.header + " - " + mainDocData.uni;
             innerElement.appendChild(header1);
 
             //CLOSE BUTTON
