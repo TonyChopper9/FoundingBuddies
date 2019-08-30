@@ -385,7 +385,11 @@ function openDeleteModal(docId, number) {
 
 function isAuthorizedToDeleteDoc(documentId) { //returns true if currentUser==documentId.author
     const docRef = firestore.collection("posts").doc(documentId);
-    docRef.get().then(doc => {return (firebase.auth().currentUser.uid == doc.data().user)})
+    docRef.get().then(doc => {
+        console.log(doc.data());
+        console.log(doc.data().user);
+        return (firebase.auth().currentUser.uid == doc.data().user)
+    })
 
 }
 
