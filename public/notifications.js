@@ -150,9 +150,9 @@ function authStateObserver(user) {
         }
         //console.log(user.providerData.providerId);
         user.providerData.forEach(function (x) {
-            console.log(x.providerId);
+            console.log(x);
         }) ;
-        if (user.providerId != "firebase") {
+        if (user.providerId == "google.com") {
             changeEmailBtn.style.display = "none";
             resetPasswordBtn.style.display = "none";
         }
