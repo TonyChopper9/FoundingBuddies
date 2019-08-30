@@ -346,11 +346,11 @@ function openDeleteModal(docId, number) {
 }
 
 function isAuthorizedToDeleteDoc(documentId) {
+    console.log(documentId + "<-- docId");
     const docRef = firestore.collection("posts").doc(documentId);
     docRef.get().then(function(doc){
         console.log(doc);
-        console.log(doc.data());
-        console.log(doc.data().user);
+        console.log(doc.id);
         return (firebase.auth().currentUser.uid == doc.data().user)
     })
 }
