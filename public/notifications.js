@@ -149,9 +149,9 @@ function authStateObserver(user) {
             addSendEmailVerifyButton();
         }
         //console.log(user.providerData.providerId);
-        for (x : user.providerData) {
-          console.log(x.providerId);
-        }
+        user.providerData.forEach(function (x) {
+            console.log(x.providerId);
+        }) ;
         if (user.providerId != "firebase") {
             changeEmailBtn.style.display = "none";
             resetPasswordBtn.style.display = "none";
