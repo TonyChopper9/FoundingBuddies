@@ -188,12 +188,15 @@ function upload() {
         const postRef = firestore.collection("posts");
         const inputHeader = document.querySelector("#uploadTitleInput");
         const inputContent = document.querySelector("#uploadContentInput");
+        var options = document.getElementById("uploadTagInput");
+        var uni = options.options[options.selectedIndex].value;
         //const inputButton = document.querySelector("#createButton");
         const inpData = {
             Date: firebase.firestore.Timestamp.fromDate(new Date()),
             content: inputContent.value,
             header: inputHeader.value,
-            user: getUserId()
+            user: getUserId(),
+            uni: uni
         };
         postRef.doc().set(inpData);
         clearUploadModal()
@@ -205,9 +208,6 @@ function upload() {
 function clearUploadModal() {
     document.getElementById("uploadTitleInput").value = "";
     document.getElementById("uploadContentInput").value = "";
-    while (tagList.firstChild) {
-        tagList.removeChild(tagList.firstChild);
-    }
     var e = document.getElementById("uploadTagInput");
     e.options[e.selectedIndex].removeAttribute("selected");
     e.options[0].selected = true;
@@ -367,17 +367,6 @@ function sendEmail() {
 }
 */
 
-function addTag() {
-    var tagValue = document.getElementById("uploadTagInput").value;
-    if (tagValue != "choose") {
-        var tag = document.createElement("button");
-        tag.setAttribute("class", "btn btn-primary mt-3 mr-3 rounded-pill");
-        tag.setAttribute("onclick", "this.parentNode.removeChild(this)");
-        tag.innerHTML = tagValue;
-        document.getElementById("tagList").appendChild(tag);
-    }
-}
-
 function openDeleteModal(docId, number) {
     document.getElementById("deleteButton").setAttribute("data-postid", docId);
     document.getElementById("deleteButton").setAttribute("postno", number)
@@ -412,7 +401,6 @@ var menuButtonElement = document.getElementById('smallMenu');
 var notificationsPageBtn = document.getElementById("NotificationsPageBtn");
 var logoutButtonElement = document.getElementById("sign-out");
 var uploadBtn = document.getElementById("uploadBtn");
-var tagList = document.getElementById("tagList");
 var dropDownMenu = document.getElementById("sf");
 
 var notificationsPageBtnDrpMenu = document.getElementById("NotificationsPageBtnDrpMenu");

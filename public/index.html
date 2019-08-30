@@ -72,20 +72,15 @@
                         <textarea maxlength="140" class="form-control" id="uploadContentInput" placeholder="Enter the description here" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="uploadTagInput">Add Tags</label>
-                        <div class="input-group">
-                            <select class="custom-select" id="uploadTagInput">
-                                <option value="choose" selected>Choose Tag</option>
-                                <option>Engineering</option>
-                                <option>Management</option>
-                                <option>IT</option>
-                            </select>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button" onclick="addTag()">Add</button>
-                            </div>
-                        </div>
-                        <div id="tagList">
-                        </div>
+                        <label for="uploadTagInput">Your University:</label>
+                        <select class="form-control" id="uploadTagInput">
+                          <option value="All" selected>Choose here</option>
+                          <option value="TUM">TUM</option>
+                          <option value="LMU">LMU</option>
+                          <option value="HM">HM</option>
+                          <option value="UNIBW">UNIBW</option>
+                          <option value="MBS">MBS</option>
+                        </select>
                     </div>
                 </form>
             </div>

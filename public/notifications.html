@@ -125,7 +125,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
+        <div style="min-width: 450px;" class="col mb-5">
             <div class="accordion" id="output">
                 <div class="card">
                     <div class="row text-center bg-white card-header">
@@ -136,24 +136,27 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
-          <div id="profileDiv" class="p-3 mb-5 text-dark rounded bg-light-j1">
-            <h5>Your Profile:</h5>
-            <div id="profileData">
-              <p id="user-name"></p>
-              <p id="user-mail"></p>
-            </div>
-            <button id="changeEmailBtn" data-toggle="modal" data-target="#changeEmailModal" type="button" class="mt-3 btn btn-j2 btn-block">Change your E-mail</button>
-            <button id="changePasswordBtn" data-toggle="modal" data-target="#changePasswordModal" type="button" class="mt-3 btn btn-j2 btn-block">Change your password</button>
-            <button type="button" data-toggle="modal" data-target="#deleteAccountModal" class="mt-3 btn btn-j3 btn-block">Delete your account</button>
+        <aside class="justify-content-center">
+          <div class="">
+            <div id="profileDiv" class="p-3 mb-5 text-dark rounded bg-light-j1">
+              <h5>Your Profile:</h5>
+              <div id="profileData">
+                <p id="user-name"></p>
+                <p id="user-mail"></p>
+              </div>
+              <button id="changeEmailBtn" data-toggle="modal" data-target="#changeEmailModal" type="button" class="mt-3 btn btn-j2 btn-block">Change your E-mail</button>
+              <button id="changePasswordBtn" data-toggle="modal" data-target="#changePasswordModal" type="button" class="mt-3 btn btn-j2 btn-block">Change your password</button>
+              <button type="button" data-toggle="modal" data-target="#deleteAccountModal" class="mt-3 btn btn-j3 btn-block">Delete your account</button>
 
+            </div>
           </div>
-        </div>
+        </aside>
         <!-- /.blog-main -->
 
         <!-- /.blog-sidebar -->
 
     </div>
+
     <!-- /.row -->
 
 </main>
