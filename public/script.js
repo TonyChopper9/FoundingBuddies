@@ -399,8 +399,8 @@ function deletePostsWithoutUsers(){
 
     userRef.get().then(function (uColl) {
         docRef.get().then(function(coll){
-            console.log(doc.data().user);
             coll.forEach(doc => {
+                console.log(doc.data().user);
                 if(!uColl.docs.includes(doc.data().user)){
                     firestore.collection("posts").doc(doc.data().id).delete()
                 }
