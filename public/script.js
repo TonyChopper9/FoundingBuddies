@@ -342,7 +342,7 @@ function sendMessage(userId) {
 
 function openDeleteModal(docId, number) {
     document.getElementById("deleteButton").setAttribute("data-postid", docId);
-    document.getElementById("deleteButton").setAttribute("postno", number)
+    document.getElementById("deleteButton").setAttribute("data-postno", number)
 }
 
 function isAuthorizedToDeleteDoc(documentId) {
@@ -362,6 +362,7 @@ function deletePost(docId, number) {
             total--;
             document.querySelector('[id2="' + number + '"]').remove();
             document.getElementById("deleteButton").setAttribute("data-postid", "");
+            document.getElementById("deleteButton").setAttribute("data-postno", "");
             window.location.href = "index.html"
         }).catch(error => {console.log(error)})
     } else {alert("You are not authorized to delete this post!")}
