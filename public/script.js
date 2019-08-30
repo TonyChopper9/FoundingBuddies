@@ -393,8 +393,8 @@ function isAuthorizedToDeleteDoc(documentId) { //returns true if currentUser==do
 }
 
 function deletePosts(){
-    const docRef = firestore.collection("posts");
-    const userRef = firestore.collection("users");
+    //const docRef = firestore.collection("posts");
+    //const userRef = firestore.collection("users");
 
     userRef.get().then(function (uColl) {
         docRef.get().then(function(coll){
