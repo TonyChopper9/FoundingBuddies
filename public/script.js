@@ -40,7 +40,7 @@ function addDocument(docs, visibility, number) {
             //HEADER
             var header1 = document.createElement("h5");
             header1.setAttribute("class", "mb-0 card-title");
-            header1.innerHTML = mainDocData.header;
+            header1.innerHTML = mainDocData.header + " - " + uni.innerHTML = mainDocData.uni;
             innerElement.appendChild(header1);
 
             //CLOSE BUTTON
@@ -81,10 +81,6 @@ function addDocument(docs, visibility, number) {
                 //MAIL ZEILE
                 var mailZeile = document.createElement("div");
                 mailZeile.setAttribute("class", "row justify-content-end");
-                var uni = document.createElement("button");
-                uni.setAttribute("class", "ml-3 btn btn-j3");
-                uni.innerHTML = mainDocData.uni;
-                mailZeile.appendChild(uni);
                 var contactB = document.createElement("button");
                 contactB.setAttribute("class", "mr-3 btn btn-j3");
                 contactB.setAttribute("data-toggle", "modal");
