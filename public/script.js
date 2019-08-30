@@ -402,7 +402,9 @@ function deletePostsWithoutUsers(){
             coll.forEach(doc => {
                 console.log(doc.data().user);
                 if(!uColl.docs.includes(doc.data().user)){
-                    firestore.collection("posts").doc(doc.data().user).delete()
+                    console.log(doc);
+                    console.log(doc.data().id);
+                    firestore.collection("posts").doc(doc.data().id).delete()
                 }
             })
         }).catch(error => {console.log(error)})
