@@ -385,25 +385,6 @@ function isAuthorizedToDeleteDoc(documentId) { //returns true if currentUser==do
     })
 }
 
-function deletePosts(){
-    //const docRef = firestore.collection("posts");
-    //const userRef = firestore.collection("users");
-
-    userRef.get().then(function (uColl) {
-        docRef.get().then(function(coll){
-            coll.forEach(doc => {
-                console.log(doc.data().user);
-                if(!uColl.docs.includes(doc.data().user)){
-                    console.log(doc);
-                    console.log(doc.data());
-                    console.log(doc.data().id);
-                    firestore.collection("posts").doc(doc.id).delete()
-                }
-            })
-        }).catch(error => {console.log(error)})
-    }).catch(error => {console.log(error)})
-}
-
 function deletePost(docId, number) {
     const docRef = firestore.collection("posts").doc(docId);
     if(isAuthorizedToDeleteDoc(docId)){
