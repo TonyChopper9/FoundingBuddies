@@ -14,11 +14,10 @@ var page = 0;
 var total = 0;
 
 window.onload = function () {
-    deletePostsWithoutUsers();
     total = 0;
     firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
         total = list.size;
-        //addDocument(list.docs, true, 0);
+        addDocument(list.docs, true, 0);
     });
 };
 
@@ -393,7 +392,7 @@ function isAuthorizedToDeleteDoc(documentId) { //returns true if currentUser==do
     })
 }
 
-function deletePostsWithoutUsers(){
+function deletePosts(){
     const docRef = firestore.collection("posts");
     const userRef = firestore.collection("users");
 
