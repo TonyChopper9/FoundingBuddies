@@ -313,7 +313,7 @@ function contact(postId) {
     var but1 = document.createElement("button");
     but1.setAttribute("type", "button");
     but1.setAttribute("data-dismiss", "modal");
-    but1.setAttribute("class", "btn btn-success");
+    but1.setAttribute("class", "btn btn-j2");
     but1.setAttribute("onclick", "sendMessage('" + postId + "')");
     but1.setAttribute("id", "messageSendButton");
     but1.innerHTML = "Send";
