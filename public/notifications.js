@@ -145,6 +145,7 @@ function authStateObserver(user) {
             userMailElement.innerHTML = userMail + "<br>(not verified yet)";
             addSendEmailVerifyButton();
         }
+        console.log(user.providerId);
         if (user.providerId != "firebase") {
             changeEmailBtn.style.display = "none";
             resetPasswordBtn.style.display = "none";
