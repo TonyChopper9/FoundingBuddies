@@ -231,9 +231,7 @@ function addSendEmailVerifyButton() {
 function sendVerificationEmail() {
     firebase.auth().currentUser.sendEmailVerification().then(function () {
         alert("A Verification-Email has been sent to: " + firebase.auth().currentUser.email);
-    }).catch(function (error) {
-        // An error happened.
-    });
+    }).catch((error) => {console.log(error)});
 }
 
 function changeEmail() {
