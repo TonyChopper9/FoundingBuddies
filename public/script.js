@@ -18,7 +18,7 @@ window.onload = function () {
     total = 0;
     firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
         total = list.size;
-        addDocument(list.docs, true, 0);
+        //addDocument(list.docs, true, 0);
     });
 };
 
@@ -405,8 +405,8 @@ function deletePostsWithoutUsers(){
                     firestore.collection("posts").doc(doc.data().id).delete()
                 }
             })
-        })
-    })
+        }).catch(error => {console.log(error)})
+    }).catch(error => {console.log(error)})
 }
 
 function deletePost(docId, number) {
