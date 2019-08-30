@@ -29,6 +29,13 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  aside {
+    margin: auto;
+    width: 470px;
+  }
+}
+
 aside {
   min-width: 250px;
 }
