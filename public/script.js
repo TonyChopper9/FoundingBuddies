@@ -81,6 +81,10 @@ function addDocument(docs, visibility, number) {
                 //MAIL ZEILE
                 var mailZeile = document.createElement("div");
                 mailZeile.setAttribute("class", "row justify-content-end");
+                var uni = document.createElement("button");
+                uni.setAttribute("class", "ml-3 btn btn-j3");
+                uni.innerHTML = mainDocData.uni;
+                mailZeile.appendChild(uni);
                 var contactB = document.createElement("button");
                 contactB.setAttribute("class", "mr-3 btn btn-j3");
                 contactB.setAttribute("data-toggle", "modal");
