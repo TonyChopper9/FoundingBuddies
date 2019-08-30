@@ -1,9 +1,9 @@
 x mobile menu kante
   tutorial
-  asside/profile & about in menu
-  settings seite?
-  (-) dsgvo + impressum seite
-  farben msg
+x asside/profile & about in menu
+- settings seite?
+x (-) dsgvo + impressum seite
+x farben msg
   profil msg
   margin buttons + home statt homepage
   mobile menu

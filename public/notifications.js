@@ -238,7 +238,7 @@ function sendVerificationEmail() {
 
 function changeEmail() {
     var newEmail = document.getElementById("newEmailInput").value;
-    //TODO: check new email on syntax, no stackoverflow etc.
+    //TODO: check new email on syntax, no stack overflow etc.
     firebase.auth().currentUser.updateEmail(newEmail).then(function () {
         document.getElementById("newEmailInput").value = ""; //clear modal
         alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
@@ -249,22 +249,20 @@ function changeEmail() {
 
 function changePassword() {
     var newEmail = document.getElementById("").value;
-    //TODO: check new password on syntax, no stackoverflow etc.
+    //TODO: check new password on syntax, no stack overflow etc.
     firebase.auth().currentUser.updatePassword(newPassword).then(function () {
-        alert("Your password has beend changed!");
+        alert("Your password has been changed!");
     }).catch(function (error) {
         // An error happened.
     });
 }
 
 function deleteUser() {
-    alert("Delete is not unlocked yet!");
-    /*
     firebase.auth().currentUser.delete().then(function() {
-      alert("Your account has been deleted!");
-    }).catch(function(error) {
-      console.error(error);
-    });*/
+        firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
+            alert("Your account has been deleted!");
+        });
+    }).catch((error) => {console.error(error)});
 }
 
 //Shortcuts to Document Elements
