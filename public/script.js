@@ -349,9 +349,6 @@ function isAuthorizedToDeleteDoc(documentId) {
     console.log(documentId + "<-- docId");
     const docRef = firestore.collection("posts").doc(documentId);
     docRef.get().then(function(doc){
-        console.log(doc.data().user);
-        console.log(firebase.auth().currentUser.uid == doc.data().user);
-        console.log(firebase.auth().currentUser.uid === doc.data().user);
         return (firebase.auth().currentUser.uid === doc.data().user)
     })
 }
@@ -361,6 +358,7 @@ function deletePost(docIdNo) {
     const docId = StringArray[0];
     const number = StringArray[1];
     const docRef = firestore.collection("posts").doc(docId);
+    console.log(isAuthorizedToDeleteDoc(docId));
     if(isAuthorizedToDeleteDoc(docId)){
         docRef.delete().then(function () {
             total--;
