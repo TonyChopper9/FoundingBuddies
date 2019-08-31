@@ -350,6 +350,8 @@ function isAuthorizedToDeleteDoc(documentId) {
     const docRef = firestore.collection("posts").doc(documentId);
     docRef.get().then(function(doc){
         console.log(doc.data().user);
+        console.log(firebase.auth().currentUser.uid == doc.data().user);
+        console.log(firebase.auth().currentUser.uid === doc.data().user);
         return (firebase.auth().currentUser.uid === doc.data().user)
     })
 }
