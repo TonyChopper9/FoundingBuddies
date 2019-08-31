@@ -355,7 +355,10 @@ function isAuthorizedToDeleteDoc(documentId) {
     })
 }
 
-function deletePost(docId, number) {
+function deletePost(docIdNo) {
+    const StringArray = docIdNo.split(",");
+    const docId = StringArray[0];
+    const number = StringArray[1];
     const docRef = firestore.collection("posts").doc(docId);
     if(isAuthorizedToDeleteDoc(docId)){
         docRef.delete().then(function () {
