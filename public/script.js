@@ -349,6 +349,7 @@ function deletePost(docIdNo) {
     const StringArray = docIdNo.split(",");
     const docId = StringArray[0];
     const number = StringArray[1];
+    console.log(number);
     const docRef = firestore.collection("posts").doc(docId);
     docRef.get().then(function(doc){
         if(firebase.auth().currentUser.uid == doc.data().user){
