@@ -12,11 +12,11 @@ var firestore = firebase.firestore();
 var page = 0;
 var total = 0;
 var unis = new Map();
-unis.set("TUM","Technische Universität München");
-unis.set("LMU","Ludwig-Maximilians-Universität");
-unis.set("UNIBW","Universität der Bundeswehr München");
-unis.set("HM","Hochschule München");
-unis.set("MBS","Munich Business School");
+unis.set("TUM", "Technische Universität München");
+unis.set("LMU", "Ludwig-Maximilians-Universität");
+unis.set("UNIBW", "Universität der Bundeswehr München");
+unis.set("HM", "Hochschule München");
+unis.set("MBS", "Munich Business School");
 
 window.onload = function () {
     total = 0;
@@ -122,67 +122,69 @@ function addDocument(docs, visibility, number) {
 }
 
 function nextPage() {
-    console.log(total + "<- total");
-    if (page < Math.floor(total / 10) - 1) {
-        page++;
-        for (x = 0; x < 10; x++) {
-            var id2a = ((page - 1) * 10) + x;
-            if (id2a <= total) {
-                document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+    if (total > 1) {
+        if (page < Math.floor(total / 10) - 1) {
+            page++;
+            for (x = 0; x < 10; x++) {
+                var id2a = ((page - 1) * 10) + x;
+                if (id2a <= total) {
+                    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+                }
+            }
+            for (y = 0; y < 10; y++) {
+                var id2n = (page * 10) + y;
+                if (id2n <= total) {
+                    document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
+                }
             }
         }
-        for (y = 0; y < 10; y++) {
-            var id2n = (page * 10) + y;
-            if (id2n <= total) {
-                document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
+        if (page == Math.floor(total / 10) - 1) {
+            page++;
+            for (x = 0; x < 10; x++) {
+                var id3a = ((page - 1) * 10) + x;
+                if (id3a <= total) {
+                    document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
+                }
             }
-        }
-    }
-    if (page == Math.floor(total / 10) - 1) {
-        page++;
-        for (x = 0; x < 10; x++) {
-            var id3a = ((page - 1) * 10) + x;
-            if (id3a <= total) {
-                document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
-            }
-        }
-        for (y = 0; y < total % 10; y++) {
-            var id3n = (page * 10) + y;
-            if (id3n <= total) {
-                document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
+            for (y = 0; y < total % 10; y++) {
+                var id3n = (page * 10) + y;
+                if (id3n <= total) {
+                    document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
+                }
             }
         }
     }
 }
 
 function prevPage() {
-    console.log(total + "<- total");
-    if (page > 0 && page != Math.floor(total / 10)) {
-        page--;
-        for (x2 = 0; x2 < 10; x2++) {
-            var id2a = ((page + 1) * 10) + x2;
-            if (id2a <= total) {
-                document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+    if (total > 1) {
+        if (page > 0 && page != Math.floor(total / 10)) {
+            page--;
+            for (x2 = 0; x2 < 10; x2++) {
+                var id2a = ((page + 1) * 10) + x2;
+                if (id2a <= total) {
+                    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
+                }
             }
-        }
-        for (y2 = 0; y2 < 10; y2++) {
-            var id2n = (page * 10) + y2;
-            if (id2n <= total) {
-                document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
+            for (y2 = 0; y2 < 10; y2++) {
+                var id2n = (page * 10) + y2;
+                if (id2n <= total) {
+                    document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
+                }
             }
-        }
-    } else if (page == Math.floor(total / 10)) {
-        page--;
-        for (x2 = 0; x2 < total % 10; x2++) {
-            var id3a = ((page + 1) * 10) + x2;
-            if (id3a <= total) {
-                document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
+        } else if (page == Math.floor(total / 10)) {
+            page--;
+            for (x2 = 0; x2 < total % 10; x2++) {
+                var id3a = ((page + 1) * 10) + x2;
+                if (id3a <= total) {
+                    document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
+                }
             }
-        }
-        for (y2 = 0; y2 < 10; y2++) {
-            var id3n = (page * 10) + y2;
-            if (id3n <= total) {
-                document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
+            for (y2 = 0; y2 < 10; y2++) {
+                var id3n = (page * 10) + y2;
+                if (id3n <= total) {
+                    document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
+                }
             }
         }
     }
@@ -351,15 +353,19 @@ function deletePost(docIdNo) {
     const number = StringArray[1];
     console.log(number);
     const docRef = firestore.collection("posts").doc(docId);
-    docRef.get().then(function(doc){
-        if(firebase.auth().currentUser.uid == doc.data().user){
+    docRef.get().then(function (doc) {
+        if (firebase.auth().currentUser.uid == doc.data().user) {
             docRef.delete().then(function () {
                 total--;
                 document.getElementById("deleteButton").setAttribute("data-postid", "");
                 document.getElementById("deleteButton").setAttribute("data-postno", "");
                 document.location.reload();
-            }).catch(error => {console.log(error)})
-        } else {alert("You are not authorized to delete this post!")}
+            }).catch(error => {
+                console.log(error)
+            })
+        } else {
+            alert("You are not authorized to delete this post!")
+        }
     });
 }
 
