@@ -152,7 +152,8 @@ function authStateObserver(user) {
         user.providerData.forEach(function (x) {
             console.log(x);
         }) ;
-        console.log(user.providerData.values().return(0));
+        console.log(user.providerData.entries());
+        console.log(user.providerData.entries()[0]);
         if (user.providerId == "google.com") {
             changeEmailBtn.style.display = "none";
             resetPasswordBtn.style.display = "none";
