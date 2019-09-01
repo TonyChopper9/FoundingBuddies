@@ -16,7 +16,15 @@ function loadMessages() {
     const goal = document.getElementById("output");
 
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
-    userRef.add({newMessage: false});
+    userRef.get().then(user => {
+        const uData = user.data();
+        userRef.set({
+            Username: uData.Username,
+            confirmed: uData.confirmed,
+            mail: uData.mail,
+            newMessage: false
+        })
+    });
     userRef.collection("ReceivedMessages").get().then(function (userColl) {
         var counter = 0;
         userColl.forEach(message => {
