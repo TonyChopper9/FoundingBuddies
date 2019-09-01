@@ -345,21 +345,13 @@ function openDeleteModal(docId, number) {
     document.getElementById("deleteButton").setAttribute("data-postno", number)
 }
 
-var authPromise = new Promise(function (docId) {
-    console.log(docId);
-    const docRef = firestore.collection("posts").doc(docId);
-    docRef.get().then(function(doc){
-        return (firebase.auth().currentUser.uid === doc.data().user)
-    })
-});
-
 function deletePost(docIdNo) {
     const StringArray = docIdNo.split(",");
     const docId = StringArray[0];
     const number = StringArray[1];
     const docRef = firestore.collection("posts").doc(docId);
-    authPromise.then(authBool => {
-        if(authBool){
+    docRef.get().then(function(doc){
+        if(firebase.auth().currentUser.uid == doc.data().user){
             docRef.delete().then(function () {
                 total--;
                 document.querySelector('[id2="' + number + '"]').remove();
@@ -368,8 +360,7 @@ function deletePost(docIdNo) {
                 window.location.href = "index.html"
             }).catch(error => {console.log(error)})
         } else {alert("You are not authorized to delete this post!")}
-    })
-
+    });
 }
 
 //Shortcuts to Document Elements
