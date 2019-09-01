@@ -345,14 +345,6 @@ function openDeleteModal(docId, number) {
     document.getElementById("deleteButton").setAttribute("data-postno", number)
 }
 
-var isAuthorizedToDeleteDoc =(documentId) {
-    console.log(documentId + "<-- docId");
-    const docRef = firestore.collection("posts").doc(documentId);
-    docRef.get().then(function(doc){
-        return (firebase.auth().currentUser.uid === doc.data().user)
-    })
-}
-
 var authPromise = new Promise(function (docId) {
     console.log(docId);
     const docRef = firestore.collection("posts").doc(docId);
