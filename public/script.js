@@ -355,10 +355,9 @@ function deletePost(docIdNo) {
         if(firebase.auth().currentUser.uid == doc.data().user){
             docRef.delete().then(function () {
                 total--;
-                document.querySelector('[id2="' + number + '"]').remove();
                 document.getElementById("deleteButton").setAttribute("data-postid", "");
                 document.getElementById("deleteButton").setAttribute("data-postno", "");
-                window.location.href = "index.html"
+                document.location.reload();
             }).catch(error => {console.log(error)})
         } else {alert("You are not authorized to delete this post!")}
     });
