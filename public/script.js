@@ -345,7 +345,7 @@ function openDeleteModal(docId, number) {
     document.getElementById("deleteButton").setAttribute("data-postno", number)
 }
 
-function isAuthorizedToDeleteDoc(documentId) {
+var isAuthorizedToDeleteDoc =(documentId) {
     console.log(documentId + "<-- docId");
     const docRef = firestore.collection("posts").doc(documentId);
     docRef.get().then(function(doc){
@@ -353,21 +353,31 @@ function isAuthorizedToDeleteDoc(documentId) {
     })
 }
 
+var authPromise = new Promise(function (docId) {
+    console.log(docId);
+    const docRef = firestore.collection("posts").doc(docId);
+    docRef.get().then(function(doc){
+        return (firebase.auth().currentUser.uid === doc.data().user)
+    })
+});
+
 function deletePost(docIdNo) {
     const StringArray = docIdNo.split(",");
     const docId = StringArray[0];
     const number = StringArray[1];
     const docRef = firestore.collection("posts").doc(docId);
-    console.log(isAuthorizedToDeleteDoc(docId));
-    if(isAuthorizedToDeleteDoc(docId)){
-        docRef.delete().then(function () {
-            total--;
-            document.querySelector('[id2="' + number + '"]').remove();
-            document.getElementById("deleteButton").setAttribute("data-postid", "");
-            document.getElementById("deleteButton").setAttribute("data-postno", "");
-            window.location.href = "index.html"
-        }).catch(error => {console.log(error)})
-    } else {alert("You are not authorized to delete this post!")}
+    authPromise.then(authBool => {
+        if(authBool){
+            docRef.delete().then(function () {
+                total--;
+                document.querySelector('[id2="' + number + '"]').remove();
+                document.getElementById("deleteButton").setAttribute("data-postid", "");
+                document.getElementById("deleteButton").setAttribute("data-postno", "");
+                window.location.href = "index.html"
+            }).catch(error => {console.log(error)})
+        } else {alert("You are not authorized to delete this post!")}
+    })
+
 }
 
 //Shortcuts to Document Elements
