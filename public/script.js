@@ -206,7 +206,8 @@ function upload() {
             uni: uni
         };
         postRef.doc().set(inpData);
-        clearUploadModal()
+        clearUploadModal();
+        document.location.reload();
     } else {
         alert("Your email must be confirmed in order to be able to upload!")
     }
