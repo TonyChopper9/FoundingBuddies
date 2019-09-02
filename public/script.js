@@ -286,19 +286,19 @@ function authStateObserver(user) {
         divider.style.display = "";
         notificationsPageBtnDrpMenu.style.display = "";
         //add pulse if new notifications
-        var newM = false;
         firestore.collection("users").doc(user.uid).get().then(function (userdata) {
-          newM = userdata.data().newMessage;
+          var newM = userdata.data().newMessage;
           console.log("newM updated");
+          console.log("newM: " + newM);
+          if (newM) {
+            console.log("Added pulseClass");
+            document.getElementById("NotificationsPageBtn").className += " pulseClass";
+            document.getElementById("notifiyDot").style.display = "";
+          }
         }).catch(function (error) {
           console.error(error);
         });
-        console.log("newM: " + newM);
-        if (newM == true) {
-          console.log("Added pulseClass");
-          document.getElementById("NotificationsPageBtn").className += " pulseClass";
-          document.getElementById("notifiyDot").style.display = "";
-        }
+
 
         // We save the Firebase Messaging Device token and enable notifications.
     } else { // User is signed out!
