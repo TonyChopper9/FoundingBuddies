@@ -38,16 +38,16 @@ function loadMessages() {
                 card.setAttribute("class", "card");
                 var col = document.createElement("div");
                 if (thisCounter % 2 == 0){
-                  col.setAttribute("class", "bg-light row text-center card-header");
+                  col.setAttribute("class", "bg-light row text-center card-header collapsed");
                 } else {
-                  col.setAttribute("class", "bg-white row text-center card-header");
+                  col.setAttribute("class", "bg-white row text-center card-header collapsed");
                 }
 
                 col.setAttribute("id", "heading" + thisCounter);
+                col.setAttribute("data-toggle", "collapse");
+                col.setAttribute("data-target", "#collapse" + thisCounter);
                 var colI = document.createElement("div");
-                colI.setAttribute("class", "col-4 collapsed");
-                colI.setAttribute("data-toggle", "collapse");
-                colI.setAttribute("data-target", "#collapse" + thisCounter);
+                colI.setAttribute("class", "col-4");
                 colI.innerHTML = header;
                 var colII = document.createElement("div");
                 colII.setAttribute("class", "col-4");
