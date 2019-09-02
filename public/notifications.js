@@ -47,13 +47,11 @@ function loadMessages() {
 
                 col.setAttribute("id", "heading" + thisCounter);
                 var colI = document.createElement("div");
-                colI.setAttribute("class", "col-4");
-                var but = document.createElement("button");
-                but.setAttribute("class", "btn collapsed");
-                but.setAttribute("type", "button");
-                but.setAttribute("data-toggle", "collapse");
-                but.setAttribute("data-target", "#collapse" + thisCounter);
-                but.innerHTML = header;
+                colI.setAttribute("class", "col-4 collapsed");
+                colI.setAttribute("type", "button");
+                colI.setAttribute("data-toggle", "collapse");
+                colI.setAttribute("data-target", "#collapse" + thisCounter);
+                colI.innerHTML = header;
                 var colII = document.createElement("div");
                 colII.setAttribute("class", "col-4");
                 colII.innerHTML = sender;
@@ -61,7 +59,6 @@ function loadMessages() {
                 colIII.setAttribute("class", "col-4");
                 var dateDate = tmstmp.toDate();
                 colIII.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear();
-                colI.appendChild(but);
                 col.appendChild(colI);
                 col.appendChild(colII);
                 col.appendChild(colIII);
