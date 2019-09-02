@@ -288,7 +288,7 @@ function authStateObserver(user) {
         //add pulse if new notifications
         var newM = false;
         firestore.collection("users").doc(user.uid).get().then(function (userdata) {
-          var newM = user.data().newMessage;
+          var newM = userdata.data().newMessage;
         }).catch(function (error) {
           console.error(error);
         });
