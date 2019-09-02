@@ -153,7 +153,7 @@ function authStateObserver(user) {
         }
         if (user.providerData.entries().next().value[1].providerId == "google.com") {
             changeEmailBtn.style.display = "none";
-            resetPasswordBtn.style.display = "none";
+            changePasswordBtn.style.display = "none";
         }
         loadMessages();
     } else { // User is signed out!
@@ -275,7 +275,7 @@ var userMailElement = document.getElementById('user-mail');
 var profileDiv = document.getElementById("profileDiv");
 var profileData = document.getElementById("profileData");
 var changeEmailBtn = document.getElementById("changeEmailBtn");
-var resetPasswordBtn = document.getElementById("resetPasswordBtn");
+var changePasswordBtn = document.getElementById("changePasswordBtn");
 
 
 // Add Listener
