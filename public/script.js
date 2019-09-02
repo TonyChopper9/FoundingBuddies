@@ -288,10 +288,7 @@ function authStateObserver(user) {
         //add pulse if new notifications
         firestore.collection("users").doc(user.uid).get().then(function (userdata) {
           var newM = userdata.data().newMessage;
-          console.log("newM updated");
-          console.log("newM: " + newM);
           if (newM) {
-            console.log("Added pulseClass");
             document.getElementById("NotificationsPageBtn").className += " pulseClass";
             document.getElementById("notifiyDot").style.display = "";
           }
