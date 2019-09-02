@@ -151,7 +151,7 @@ function authStateObserver(user) {
             userMailElement.innerHTML = userMail + "<br>(not verified yet)";
             addSendEmailVerifyButton();
         }
-        console.log(user.providerData.entries().next().value[1] + "<-- supplier");
+        console.log(user.providerData.entries().next().value[1].providerId + "<-- supplier");
         if (user.providerData.entries().next().value[1] == "google.com") {
             changeEmailBtn.style.display = "none";
             resetPasswordBtn.style.display = "none";
@@ -243,30 +243,28 @@ function sendVerificationEmail() {
 
 function changeEmail() {
     var newEmail = document.getElementById("newEmailInput").value;
-    //TODO: check new email on syntax, no stack overflow etc.
     firebase.auth().currentUser.updateEmail(newEmail).then(function () {
         document.getElementById("newEmailInput").value = ""; //clear modal
         alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
-    }).catch(function (error) {
-        // An error happened.
-    });
+    }).catch((error) => {console.error(error)});
 }
 
 function changePassword() {
     var newEmail = document.getElementById("").value;
-    //TODO: check new password on syntax, no stack overflow etc.
     firebase.auth().currentUser.updatePassword(newPassword).then(function () {
         alert("Your password has been changed!");
-    }).catch(function (error) {
-        // An error happened.
-    });
+    }).catch((error) => {console.error(error)});
 }
 
 function deleteUser() {
     firebase.auth().currentUser.delete().then(function() {
         firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
-            alert("Your account has been deleted!");
-        });
+            firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot){
+                snapshot.forEach(doc => {
+                    firestore.collection("posts").doc(doc.id).delete().then(na => {alert("Your account has been deleted!")}).catch((error) => {console.error(error)})
+                })
+            }).catch((error) => {console.error(error)});
+        }).catch((error) => {console.error(error)});
     }).catch((error) => {console.error(error)});
 }
 
