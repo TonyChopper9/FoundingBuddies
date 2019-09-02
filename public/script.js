@@ -294,6 +294,7 @@ function authStateObserver(user) {
         });
         if (newM == true) {
           document.getElementById("NotificationsPageBtn").className += " pulseClass";
+          //<span class="badge badge-notify">3</span>
         }
 
         // We save the Firebase Messaging Device token and enable notifications.

@@ -102,17 +102,22 @@ aside {
           -webkit-transition: 0.70s;
 }
 
-.pulseClass
-{
+.pulseClass {
      animation: shadow-pulse 1s 5;
 }
 
-@keyframes shadow-pulse
-{
+@keyframes shadow-pulse {
      0% {
           box-shadow: 0 0 0 0px rgba(0, 204, 153, 0.2);
      }
      100% {
           box-shadow: 0 0 0 15px rgba(0, 204, 153, 0);
      }
+}
+
+.badge-notify{
+   background:red;
+   position:relative;
+   top: -20px;
+   left: -35px;
 }
