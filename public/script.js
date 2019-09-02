@@ -287,7 +287,7 @@ function authStateObserver(user) {
         notificationsPageBtnDrpMenu.style.display = "";
         //add pulse if new notifications
         var newM = false;
-        firestore.collection("users").doc(user.id).get().then(function (userdata) {
+        firestore.collection("users").doc(user.uid).get().then(function (userdata) {
           var newM = user.data().newMessage;
         }).catch(function (error) {
           console.error(error);
