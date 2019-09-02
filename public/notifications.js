@@ -14,19 +14,15 @@ var functions = firebase.functions();
 function loadMessages() {
     const goal = document.getElementById("output");
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
-    console.log("1");
     userRef.get().then(user => {
-        console.log("2");
         const uData = user.data();
         userRef.set({
             Username: uData.Username,
             mail: uData.mail,
             newMessage: false
         });
-        console.log("3");
     });
     userRef.collection("ReceivedMessages").get().then(function (userColl) {
-        console.log("4");
         var counter = 0;
         userColl.forEach(message => {
             const thisCounter = counter++;
@@ -87,13 +83,9 @@ function loadMessages() {
                 card.appendChild(colla);
 
                 goal.appendChild(card);
-            }).catch(function (error){
-                console.error(error);
-            })
+            }).catch(error => {console.log(error)});
         })
-    }).catch(function (error) {
-        console.error(error)
-    })
+    }).catch(error => {console.log(error)});
 }
 
 function changeReplyModal(messageID) {
