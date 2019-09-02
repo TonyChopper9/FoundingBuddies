@@ -293,6 +293,7 @@ function authStateObserver(user) {
           console.error(error);
         });
         if (newM == true) {
+          console.log("Added pulseClass");
           document.getElementById("NotificationsPageBtn").className += " pulseClass";
           //<span class="badge badge-notify">3</span>
         }
