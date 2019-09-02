@@ -115,9 +115,13 @@ aside {
      }
 }
 
-.badge-notify{
-   background:red;
+.notifiyDot{
+   background: #0C9;
    position:relative;
-   top: -20px;
-   left: -35px;
+   top: -50px;
+   left: 35px;
+   height: 10px;
+   width: 10px;
+   border-radius: 50%;
+   display: inline-block;
 }
