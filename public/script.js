@@ -327,18 +327,22 @@ function contact(userId) {
 }
 
 function sendMessage(userId) {
-    if (firebase.auth().currentUser.emailVerified) {
-        firestore.collection("users").doc(userId).set({newMessage: true});
-        const authorMessages = firestore.collection("users").doc(userId).collection("ReceivedMessages");
-        authorMessages.doc().set({
-            content: document.getElementById("emailContentInput").value,
-            header: document.getElementById("emailSubjectInput").value,
-            sender: firebase.auth().currentUser.uid,
-            timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-        });
-        clearMessageModal();
+    if (firebase.auth().currentUser != null) {
+        if (firebase.auth().currentUser.emailVerified) {
+            firestore.collection("users").doc(userId).set({newMessage: true});
+            const authorMessages = firestore.collection("users").doc(userId).collection("ReceivedMessages");
+            authorMessages.doc().set({
+                content: document.getElementById("emailContentInput").value,
+                header: document.getElementById("emailSubjectInput").value,
+                sender: firebase.auth().currentUser.uid,
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+            });
+            clearMessageModal();
+        } else {
+            alert("Your email must be confirmed in order to be able to send messages!")
+        }
     } else {
-        alert("Your email must be confirmed in order to be able to send messages!")
+        alert("You have to be logged in, in order to be able to send messages!")
     }
 }
 
