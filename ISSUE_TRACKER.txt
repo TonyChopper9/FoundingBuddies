@@ -10,3 +10,8 @@ x farben msg
   mobile karten breiter
 x posten nur mit verified email
   pages
+
+
+  BUGS USER TESTING:
+  email verification not working (eventuell cookie blocker)
+  userDB verification doesnt set confirmed = true
