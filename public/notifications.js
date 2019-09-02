@@ -48,7 +48,6 @@ function loadMessages() {
                 col.setAttribute("id", "heading" + thisCounter);
                 var colI = document.createElement("div");
                 colI.setAttribute("class", "col-4 collapsed");
-                colI.setAttribute("type", "button");
                 colI.setAttribute("data-toggle", "collapse");
                 colI.setAttribute("data-target", "#collapse" + thisCounter);
                 colI.innerHTML = header;
