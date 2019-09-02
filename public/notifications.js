@@ -247,23 +247,17 @@ function sendVerificationEmail() {
 
 function changeEmail() {
     var newEmail = document.getElementById("newEmailInput").value;
-    //TODO: check new email on syntax, no stack overflow etc.
     firebase.auth().currentUser.updateEmail(newEmail).then(function () {
         document.getElementById("newEmailInput").value = ""; //clear modal
         alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
-    }).catch(function (error) {
-        // An error happened.
-    });
+    }).catch((error) => {console.error(error)});
 }
 
 function changePassword() {
     var newEmail = document.getElementById("").value;
-    //TODO: check new password on syntax, no stack overflow etc.
     firebase.auth().currentUser.updatePassword(newPassword).then(function () {
         alert("Your password has been changed!");
-    }).catch(function (error) {
-        // An error happened.
-    });
+    }).catch((error) => {console.error(error)});
 }
 
 function deleteUser() {
