@@ -292,8 +292,11 @@ function authStateObserver(user) {
         }).catch(function (error) {
           console.error(error);
         });
+        console.log("newM: " + newM);
         if (newM == true) {
+          console.log("Added pulseClass");
           document.getElementById("NotificationsPageBtn").className += " pulseClass";
+          document.getElementById("notifiyDot").style.display = "";
         }
 
         // We save the Firebase Messaging Device token and enable notifications.
