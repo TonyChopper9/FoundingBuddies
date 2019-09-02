@@ -261,7 +261,7 @@ function getUserName() {
     userRef.get().then(function (user) {
         return user.data().Username;
     }).catch(function (error) {
-        console.log(error)
+        console.error(error);
     });
 }
 
@@ -285,6 +285,16 @@ function authStateObserver(user) {
         //uploadBtnDrpMenu.style.display = "";
         divider.style.display = "";
         notificationsPageBtnDrpMenu.style.display = "";
+        //add pulse if new notifications
+        var newM = false;
+        firestore.collection("users").doc(user.user.id).get().then(function (userdata) {
+          var newM = user.data().newMessage;
+        }).catch(function (error) {
+          console.error(error);
+        });
+        if (newM == true) {
+          document.getElementById("NotificationsPageBtn").className += " pulseClass";
+        }
 
         // We save the Firebase Messaging Device token and enable notifications.
     } else { // User is signed out!

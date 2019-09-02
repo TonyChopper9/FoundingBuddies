@@ -101,3 +101,18 @@ aside {
           transition: 0.70s;
           -webkit-transition: 0.70s;
 }
+
+.pulseClass
+{
+     animation: shadow-pulse 1s 3;
+}
+
+@keyframes shadow-pulse
+{
+     0% {
+          box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+     }
+     100% {
+          box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
+     }
+}
