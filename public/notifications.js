@@ -48,7 +48,6 @@ function loadMessages() {
                 col.setAttribute("id", "heading" + thisCounter);
                 var colI = document.createElement("div");
                 colI.setAttribute("class", "col-4 collapsed");
-                colI.setAttribute("type", "button");
                 colI.setAttribute("data-toggle", "collapse");
                 colI.setAttribute("data-target", "#collapse" + thisCounter);
                 colI.innerHTML = header;
@@ -87,11 +86,11 @@ function loadMessages() {
 
                 goal.appendChild(card);
             }).catch(function (error){
-                console.log(error);
+                console.error(error);
             })
         })
     }).catch(function (error) {
-        console.log(error)
+        console.error(error)
     })
 }
 
@@ -238,7 +237,7 @@ function addSendEmailVerifyButton() {
 function sendVerificationEmail() {
     firebase.auth().currentUser.sendEmailVerification().then(function () {
         alert("A Verification-Email has been sent to: " + firebase.auth().currentUser.email);
-    }).catch((error) => {console.log(error)});
+    }).catch((error) => {console.error(error)});
 }
 
 function changeEmail() {
