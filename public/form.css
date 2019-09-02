@@ -103,7 +103,7 @@ aside {
 }
 
 .pulseClass {
-     animation: shadow-pulse 1s 5;
+     animation: shadow-pulse 3s infinite;
 }
 
 @keyframes shadow-pulse {
