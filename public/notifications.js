@@ -152,8 +152,7 @@ function authStateObserver(user) {
             userMailElement.innerHTML = userMail + "<br>(not verified yet)";
             addSendEmailVerifyButton();
         }
-        console.log(user.providerData.entries().next().value[1].providerId + "<-- supplier");
-        if (user.providerData.entries().next().value[1] == "google.com") {
+        if (user.providerData.entries().next().value[1].providerId == "google.com") {
             changeEmailBtn.style.display = "none";
             resetPasswordBtn.style.display = "none";
         }
