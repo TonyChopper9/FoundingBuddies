@@ -35,7 +35,6 @@ function signUp() {
             firestore.collection("users").doc(user.user.uid).set({
                 Username: username,
                 mail: email,
-                confirmed: false,
                 newMessage: true
             }).then(function () {
                 firestore.collection("users").doc(user.user.uid).collection("ReceivedMessages").doc().set({
@@ -93,7 +92,6 @@ function signInWithGoogle() {
                 firestore.collection("users").doc(user.uid).set({
                     Username: user.displayName,
                     mail: user.email,
-                    confirmed: true,
                     newMessage: true
                 }).then(function () {
                     firestore.collection("users").doc(user.uid).collection("ReceivedMessages").doc().set({

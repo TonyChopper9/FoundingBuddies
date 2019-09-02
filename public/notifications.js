@@ -20,7 +20,6 @@ function loadMessages() {
         const uData = user.data();
         userRef.set({
             Username: uData.Username,
-            confirmed: uData.confirmed,
             mail: uData.mail,
             newMessage: false
         })

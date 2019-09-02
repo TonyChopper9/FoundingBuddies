@@ -13,5 +13,5 @@ x posten nur mit verified email
 
 
   BUGS USER TESTING:
-  email verification not working (eventuell cookie blocker)
-  userDB verification doesnt set confirmed = true
+[solved] email verification not working (eventuell cookie blocker)
+[solved] userDB verification doesnt set confirmed = true
