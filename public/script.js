@@ -375,9 +375,7 @@ function deletePost(docIdNo) {
                 document.getElementById("deleteButton").setAttribute("data-postid", "");
                 document.getElementById("deleteButton").setAttribute("data-postno", "");
                 document.location.reload();
-            }).catch(error => {
-                console.log(error)
-            })
+            }).catch(error => {console.log(error)})
         } else {
             alert("You are not authorized to delete this post!")
         }
