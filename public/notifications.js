@@ -38,16 +38,16 @@ function loadMessages() {
                 card.setAttribute("class", "card");
                 var col = document.createElement("div");
                 if (thisCounter % 2 == 0){
-                  col.setAttribute("class", "bg-light row text-center card-header");
+                  col.setAttribute("class", "bg-light row text-center card-header collapsed");
                 } else {
-                  col.setAttribute("class", "bg-white row text-center card-header");
+                  col.setAttribute("class", "bg-white row text-center card-header collapsed");
                 }
 
                 col.setAttribute("id", "heading" + thisCounter);
+                col.setAttribute("data-toggle", "collapse");
+                col.setAttribute("data-target", "#collapse" + thisCounter);
                 var colI = document.createElement("div");
-                colI.setAttribute("class", "col-4 collapsed");
-                colI.setAttribute("data-toggle", "collapse");
-                colI.setAttribute("data-target", "#collapse" + thisCounter);
+                colI.setAttribute("class", "col-4");
                 colI.innerHTML = header;
                 var colII = document.createElement("div");
                 colII.setAttribute("class", "col-4");
@@ -96,14 +96,15 @@ function sendReply(messageID){
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").doc(messageID).get().then(function (message) {
         const mData = message.data();
-        firestore.collection("users").doc(mData.sender).set({newMessage: true});
-        const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
-        receiverMessages.doc().set({
-            content: document.getElementById("emailContentInput").value,
-            header: document.getElementById("emailSubjectInput").value,
-            sender: firebase.auth().currentUser.uid,
-            timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-        });
+        firestore.collection("users").doc(mData.sender).set({newMessage: true}).then(na => {
+          const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
+          receiverMessages.doc().set({
+              content: document.getElementById("emailContentInput").value,
+              header: document.getElementById("emailSubjectInput").value,
+              sender: firebase.auth().currentUser.uid,
+              timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+          });
+        }).catch(na => {window.alert("User does not exist anymore.")});
         clearReplyModal();
     });
 }
