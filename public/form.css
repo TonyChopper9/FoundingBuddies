@@ -95,7 +95,7 @@ aside {
   padding: 8px;
 }
 
-#plus:hover {
+#uploadBtn:hover > #plus {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
           transition: 0.70s;
