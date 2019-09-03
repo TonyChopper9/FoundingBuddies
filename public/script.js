@@ -197,7 +197,6 @@ function upload() {
         const inputContent = document.querySelector("#uploadContentInput");
         var options = document.getElementById("uploadTagInput");
         var uni = options.options[options.selectedIndex].value;
-        //const inputButton = document.querySelector("#createButton");
         const inpData = {
             Date: firebase.firestore.Timestamp.fromDate(new Date()),
             content: inputContent.value,
@@ -205,8 +204,8 @@ function upload() {
             user: getUserId(),
             uni: uni
         };
-        postRef.doc().set(inpData);
         clearUploadModal();
+        postRef.doc().set(inpData).then(na => {document.location.reload()});
     } else {
         alert("Your email must be confirmed in order to be able to upload!")
     }
