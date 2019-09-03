@@ -96,14 +96,15 @@ function sendReply(messageID){
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").doc(messageID).get().then(function (message) {
         const mData = message.data();
-        firestore.collection("users").doc(mData.sender).set({newMessage: true});
-        const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
-        receiverMessages.doc().set({
-            content: document.getElementById("emailContentInput").value,
-            header: document.getElementById("emailSubjectInput").value,
-            sender: firebase.auth().currentUser.uid,
-            timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-        });
+        firestore.collection("users").doc(mData.sender).set({newMessage: true}).then(na => {
+          const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
+          receiverMessages.doc().set({
+              content: document.getElementById("emailContentInput").value,
+              header: document.getElementById("emailSubjectInput").value,
+              sender: firebase.auth().currentUser.uid,
+              timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+          });
+        }).catch(na => {window.alert("User does not exist anymore.")});
         clearReplyModal();
     });
 }
