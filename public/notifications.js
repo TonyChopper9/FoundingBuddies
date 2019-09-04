@@ -96,7 +96,10 @@ function sendReply(messageID){
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").doc(messageID).get().then(function (message) {
         const mData = message.data();
-        firestore.collection("users").doc(mData.sender).set({newMessage: true}).then(na => {
+        firestore.collection("users").doc(mData.sender).set({
+            newMessage: true,
+
+        }).then(na => {
           const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
           receiverMessages.doc().set({
               content: document.getElementById("emailContentInput").value,

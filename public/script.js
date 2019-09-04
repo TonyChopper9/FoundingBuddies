@@ -339,7 +339,10 @@ function contact(userId) {
 function sendMessage(userId) {
     if (firebase.auth().currentUser != null) {
         if (firebase.auth().currentUser.emailVerified) {
-            firestore.collection("users").doc(userId).set({newMessage: true});
+            firestore.collection("users").doc(userId).set({
+                newMessage: true,
+
+            });
             const authorMessages = firestore.collection("users").doc(userId).collection("ReceivedMessages");
             authorMessages.doc().set({
                 content: document.getElementById("emailContentInput").value,
