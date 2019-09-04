@@ -11,6 +11,9 @@ x farben msg
 x posten nur mit verified email
   pages
 ! message from the void
+  empty contact content
+  empty upload content
+  empty Username
 
   BUGS USER TESTING:
 [solved] email verification not working (eventuell cookie blocker)
