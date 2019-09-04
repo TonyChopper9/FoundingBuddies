@@ -96,9 +96,13 @@ function sendReply(messageID){
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").doc(messageID).get().then(function (message) {
         const mData = message.data();
-        firestore.collection("users").doc(mData.sender).set({
-            newMessage: true,
-
+        firestore.collection("users").doc(mData.sender).get().then(user => {
+            const userData = user.data();
+            firestore.collection("users").doc(mData.sender).set({
+                newMessage: true,
+                Username: userData.Username,
+                mail: userData.mail
+            });
         }).then(na => {
           const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
           receiverMessages.doc().set({
