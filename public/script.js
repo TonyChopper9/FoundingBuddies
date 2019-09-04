@@ -227,7 +227,7 @@ function clearMessageModal() {
 
 function signOut() {
     // Sign out of Firebase.
-    firebase.auth().signOut();
+    firebase.auth().signOut().then(na => {document.location.reload()});
 }
 
 function initFirebaseAuth() {
