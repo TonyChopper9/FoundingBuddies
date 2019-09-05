@@ -252,7 +252,6 @@ var profileData = document.getElementById("profileData");
 var changeEmailBtn = document.getElementById("changeEmailBtn");
 var changePasswordBtn = document.getElementById("changePasswordBtn");
 
-
 // Add Listener
 signOutButtonElement.addEventListener('click', signOut);
 

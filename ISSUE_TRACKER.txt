@@ -4,13 +4,13 @@ x asside/profile & about in menu
 - settings seite?
 x (-) dsgvo + impressum seite
 x farben msg
-  profil msg
+x profil msg
   margin buttons + home statt homepage
   mobile menu
   mobile karten breiter
 x posten nur mit verified email
   pages
-! message from the void
+x message from the void
   empty contact content
   empty upload content
   empty Username
