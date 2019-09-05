@@ -32,7 +32,7 @@ function loadMessages() {
             const tmstmp = mData.timestamp;
             var sender = "";
             firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
-                console.log(senderU);
+                console.log(senderU.data());
                 sender = senderU.data().Username;
 
                 var card = document.createElement("div");
