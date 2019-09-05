@@ -33,6 +33,7 @@ function loadMessages() {
             var sender = "";
             firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
                 console.log(senderU.data());
+                if(senderU.data() == undefined){console.log("yep")}
                 sender = senderU.data().Username;
 
                 var card = document.createElement("div");
