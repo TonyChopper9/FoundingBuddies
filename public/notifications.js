@@ -33,8 +33,9 @@ function loadMessages() {
             var sender = "";
             firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
                 console.log(senderU.data());
-                if(senderU.data() == undefined){console.log("yep")}
-                sender = senderU.data().Username;
+                if(senderU.data() != undefined){
+                    sender = senderU.data().Username;
+                }
 
                 var card = document.createElement("div");
                 card.setAttribute("class", "card");
@@ -53,7 +54,9 @@ function loadMessages() {
                 colI.innerHTML = header;
                 var colII = document.createElement("div");
                 colII.setAttribute("class", "col-4");
-                colII.innerHTML = sender;
+                if(senderU.data() != undefined){
+                    colII.innerHTML = sender;
+                } else {colII.innerHTML = "[deleted]";}
                 var colIII = document.createElement("div");
                 colIII.setAttribute("class", "col-4");
                 var dateDate = tmstmp.toDate();
@@ -71,15 +74,17 @@ function loadMessages() {
                 collab.innerHTML = content;
                 colla.appendChild(collab);
 
-                //Add reply Button
-                var repBtn = document.createElement("button");
-                repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-j3");
-                repBtn.setAttribute("onclick", "changeReplyModal('" + message.id + "')");
-                repBtn.setAttribute("data-toggle", "modal");
-                repBtn.setAttribute("data-target", "#replyModal");
-                //TODO: message id
-                repBtn.innerHTML = "Reply";
-                colla.appendChild(repBtn);
+                if(senderU.data() != undefined) {
+                    //Add reply Button
+                    var repBtn = document.createElement("button");
+                    repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-j3");
+                    repBtn.setAttribute("onclick", "changeReplyModal('" + message.id + "')");
+                    repBtn.setAttribute("data-toggle", "modal");
+                    repBtn.setAttribute("data-target", "#replyModal");
+                    //TODO: message id
+                    repBtn.innerHTML = "Reply";
+                    colla.appendChild(repBtn);
+                }
 
                 card.appendChild(col);
                 card.appendChild(colla);
