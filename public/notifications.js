@@ -110,9 +110,8 @@ function sendReply(messageID){
               header: document.getElementById("emailSubjectInput").value,
               sender: firebase.auth().currentUser.uid,
               timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-          });
+          }).then(na2 => {clearReplyModal();});
         }).catch(na => {window.alert("User does not exist anymore.")});
-        clearReplyModal();
     });
 }
 
