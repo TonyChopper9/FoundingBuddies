@@ -32,7 +32,6 @@ function loadMessages() {
             const tmstmp = mData.timestamp;
             var sender = "";
             firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
-                console.log(senderU.data());
                 if(senderU.data() != undefined){
                     sender = senderU.data().Username;
                 }
@@ -174,38 +173,6 @@ function clearReplyModal() {
     document.getElementById("emailContentInput").value = "";
 }
 
-/*
-function sendEmail() {
-  var sendTestMail = firebase.functions().httpsCallable('sendMail');
-  const docRef = firestore.collection("posts").doc(refPost.value);
-  var mainDocData = null;
-  docRef.get().then(function (doc) {
-    if (doc && doc.exists){
-      mainDocData = doc.data();
-
-      if (mainDocData != null) {
-        const userRef = firestore.collection("users").doc(mainDocData.user);
-        var user = null;
-        userRef.get().then(function (smh) {
-          user = smh.data();
-          var sendUserName = user.Username;
-          var sendUserEmail = user.mail;
-        });
-    }
-  }
-  var data = {
-    fromName: getUserName,
-    to: sendUserEmail,
-    subject: emailSubjectInput,
-    content: emailContentInput
-  }
-  sendTestMail(data).then(function(result) {
-    // Read result of the Cloud Function.
-    console.log(result);
-    // ...
-  });
-}
-*/
 function menuicon(x) {
     x.classList.toggle("change");
 }
