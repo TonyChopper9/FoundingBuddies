@@ -246,18 +246,27 @@ function changePassword() {
     });
 }
 
-function deleteUser() {
-
-    firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot) {
+function deletePosts(snapshot) {
+    return new Promise((resolve, reject) => {
         snapshot.forEach(doc => {
-            firestore.collection("posts").doc(doc.id).delete().then(na => {
-                firebase.auth().currentUser.delete().then(function () {
-                    firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
-                        alert("Your account has been deleted!");
-                    }).catch((error) => {console.error(error)});
-                }).catch((error) => {console.error(error)})
-            }).catch((error) => {console.error(error)});
-        })
+            firestore.collection("posts").doc(doc.id).delete().then(na => {}).catch((error) => {
+                console.error(error);
+                reject(error)
+            });
+        });
+        resolve()
+    })
+}
+
+function deleteUser() {
+    firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot) {
+        deletePosts(snapshot).then(na => {
+            firebase.auth().currentUser.delete().then(function () {
+                firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
+                    alert("Your account has been deleted!");
+                }).catch((error) => {console.error(error);});
+            }).catch((error) => {console.error(error);})
+        }).catch((error) => {console.error(error)});
     }).catch((error) => {console.error(error)});
 }
 
