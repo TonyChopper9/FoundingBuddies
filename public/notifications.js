@@ -267,19 +267,19 @@ function deleteUser() {
         console.log("4");
         deletePosts(snapshot).then(na => {
             console.log("5");
-            firebase.auth().currentUser.delete().then(function () {
+            firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
                 console.log("6");
-                firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
+                firebase.auth().currentUser.delete().then(function () {
                     console.log("7");
                     alert("Your account has been deleted!");
-                }).catch((error) => {console.error(error);});
-            }).catch((error) => {
-                if(error.code == "auth/requires-recent-login"){
-                    alert("To delete your account you have to have logged in recently. Log out and back in and try again.")
-                } else {
-                    console.error(error)
-                }
-            })
+                }).catch((error) => {
+                    if(error.code == "auth/requires-recent-login"){
+                        alert("To delete your account you have to have logged in recently. Log out and back in and try again.")
+                    } else {
+                        console.error(error)
+                    }
+                })
+            }).catch((error) => {console.error(error)});
         }).catch((error) => {console.error(error)});
     }).catch((error) => {
         console.error(error)
