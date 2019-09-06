@@ -247,16 +247,17 @@ function changePassword() {
 }
 
 function deleteUser() {
-    firebase.auth().currentUser.delete().then(function () {
-        firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot) {
-            snapshot.forEach(doc => {
-                firestore.collection("posts").doc(doc.id).delete().then(na => {
+
+    firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot) {
+        snapshot.forEach(doc => {
+            firestore.collection("posts").doc(doc.id).delete().then(na => {
+                firebase.auth().currentUser.delete().then(function () {
                     firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
                         alert("Your account has been deleted!");
                     }).catch((error) => {console.error(error)});
                 }).catch((error) => {console.error(error)})
-            })
-        }).catch((error) => {console.error(error)});
+            }).catch((error) => {console.error(error)});
+        })
     }).catch((error) => {console.error(error)});
 }
 
