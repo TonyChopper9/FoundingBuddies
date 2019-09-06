@@ -238,7 +238,7 @@ function changeEmail() {
 }
 
 function changePassword() {
-    var newEmail = document.getElementById("").value;
+    var newPassword = document.getElementById("").value;
     firebase.auth().currentUser.updatePassword(newPassword).then(function () {
         alert("Your password has been changed!");
     }).catch((error) => {
