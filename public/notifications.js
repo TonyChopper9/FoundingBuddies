@@ -211,7 +211,7 @@ function getUserMail() {
 }
 
 function addSendEmailVerifyButton() {
-    var emailVerifyBtn = document.createElement("button");
+    const emailVerifyBtn = document.createElement("button");
     emailVerifyBtn.setAttribute("class", "btn btn-j1 btn-block");
     emailVerifyBtn.setAttribute("type", "button");
     emailVerifyBtn.setAttribute("onclick", "sendVerificationEmail()");
@@ -228,7 +228,7 @@ function sendVerificationEmail() {
 }
 
 function changeEmail() {
-    var newEmail = document.getElementById("newEmailInput").value;
+    const newEmail = document.getElementById("newEmailInput").value;
     firebase.auth().currentUser.updateEmail(newEmail).then(function () {
         document.getElementById("newEmailInput").value = ""; //clear modal
         alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
@@ -238,7 +238,7 @@ function changeEmail() {
 }
 
 function changePassword() {
-    var newPassword = document.getElementById("").value;
+    const newPassword = document.getElementById("").value;
     firebase.auth().currentUser.updatePassword(newPassword).then(function () {
         alert("Your password has been changed!");
     }).catch((error) => {
