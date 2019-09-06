@@ -262,6 +262,7 @@ function deletePosts(snapshot) {
 }
 
 function deleteUser() {
+    console.log("start");
     firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot) {
         console.log("4");
         deletePosts(snapshot).then(na => {
