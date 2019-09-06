@@ -248,21 +248,28 @@ function changePassword() {
 
 function deletePosts(snapshot) {
     return new Promise((resolve, reject) => {
+        console.log("1");
         snapshot.forEach(doc => {
             firestore.collection("posts").doc(doc.id).delete().then(na => {}).catch((error) => {
                 console.error(error);
                 reject(error)
             });
+            console.log("2");
         });
+        console.log("3");
         resolve()
     })
 }
 
 function deleteUser() {
     firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot) {
+        console.log("4");
         deletePosts(snapshot).then(na => {
+            console.log("5");
             firebase.auth().currentUser.delete().then(function () {
+                console.log("6");
                 firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
+                    console.log("7");
                     alert("Your account has been deleted!");
                 }).catch((error) => {console.error(error);});
             }).catch((error) => {console.error(error);})
