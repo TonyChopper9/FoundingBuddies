@@ -273,9 +273,17 @@ function deleteUser() {
                     console.log("7");
                     alert("Your account has been deleted!");
                 }).catch((error) => {console.error(error);});
-            }).catch((error) => {console.error(error);})
+            }).catch((error) => {
+                if(error.code == "auth/requires-recent-login"){
+                    alert("To delete your account you have to have logged in recently. Log out and back in and try again.")
+                } else {
+                    console.error(error)
+                }
+            })
         }).catch((error) => {console.error(error)});
-    }).catch((error) => {console.error(error)});
+    }).catch((error) => {
+        console.error(error)
+    });
 }
 
 //Shortcuts to Document Elements
