@@ -32,17 +32,17 @@ function loadMessages() {
             const tmstmp = mData.timestamp;
             var sender = "";
             firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
-                if(senderU.data() != undefined){
+                if (senderU.data() != undefined) {
                     sender = senderU.data().Username;
                 }
 
                 var card = document.createElement("div");
                 card.setAttribute("class", "card");
                 var col = document.createElement("div");
-                if (thisCounter % 2 == 0){
-                  col.setAttribute("class", "bg-light row text-center card-header collapsed");
+                if (thisCounter % 2 == 0) {
+                    col.setAttribute("class", "bg-light row text-center card-header collapsed");
                 } else {
-                  col.setAttribute("class", "bg-white row text-center card-header collapsed");
+                    col.setAttribute("class", "bg-white row text-center card-header collapsed");
                 }
 
                 col.setAttribute("id", "heading" + thisCounter);
@@ -53,9 +53,11 @@ function loadMessages() {
                 colI.innerHTML = header;
                 var colII = document.createElement("div");
                 colII.setAttribute("class", "col-4");
-                if(senderU.data() != undefined){
+                if (senderU.data() != undefined) {
                     colII.innerHTML = sender;
-                } else {colII.innerHTML = "[deleted]";}
+                } else {
+                    colII.innerHTML = "[deleted]";
+                }
                 var colIII = document.createElement("div");
                 colIII.setAttribute("class", "col-4");
                 var dateDate = tmstmp.toDate();
@@ -73,7 +75,7 @@ function loadMessages() {
                 collab.innerHTML = content;
                 colla.appendChild(collab);
 
-                if(senderU.data() != undefined) {
+                if (senderU.data() != undefined) {
                     //Add reply Button
                     var repBtn = document.createElement("button");
                     repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-j3");
@@ -89,16 +91,20 @@ function loadMessages() {
                 card.appendChild(colla);
 
                 goal.appendChild(card);
-            }).catch(error => {console.log(error)});
+            }).catch(error => {
+                console.log(error)
+            });
         })
-    }).catch(error => {console.log(error)});
+    }).catch(error => {
+        console.log(error)
+    });
 }
 
 function changeReplyModal(messageID) {
     document.getElementById("messageSendButton").setAttribute("onclick", "sendReply('" + messageID + "')");
 }
 
-function sendReply(messageID){
+function sendReply(messageID) {
     const userRef = firestore.collection("users").doc(firebase.auth().currentUser.uid);
     userRef.collection("ReceivedMessages").doc(messageID).get().then(function (message) {
         const mData = message.data();
@@ -110,14 +116,18 @@ function sendReply(messageID){
                 mail: userData.mail
             });
         }).then(na => {
-          const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
-          receiverMessages.doc().set({
-              content: document.getElementById("emailContentInput").value,
-              header: document.getElementById("emailSubjectInput").value,
-              sender: firebase.auth().currentUser.uid,
-              timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-          }).then(na2 => {clearReplyModal();});
-        }).catch(na => {window.alert("User does not exist anymore.")});
+            const receiverMessages = firestore.collection("users").doc(mData.sender).collection("ReceivedMessages");
+            receiverMessages.doc().set({
+                content: document.getElementById("emailContentInput").value,
+                header: document.getElementById("emailSubjectInput").value,
+                sender: firebase.auth().currentUser.uid,
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+            }).then(na2 => {
+                clearReplyModal();
+            });
+        }).catch(na => {
+            window.alert("User does not exist anymore.")
+        });
     });
 }
 
@@ -212,7 +222,9 @@ function addSendEmailVerifyButton() {
 function sendVerificationEmail() {
     firebase.auth().currentUser.sendEmailVerification().then(function () {
         alert("A Verification-Email has been sent to: " + firebase.auth().currentUser.email);
-    }).catch((error) => {console.error(error)});
+    }).catch((error) => {
+        console.error(error)
+    });
 }
 
 function changeEmail() {
@@ -220,24 +232,30 @@ function changeEmail() {
     firebase.auth().currentUser.updateEmail(newEmail).then(function () {
         document.getElementById("newEmailInput").value = ""; //clear modal
         alert("Your Email has been changed to " + firebase.auth().currentUser.email + ".");
-    }).catch((error) => {console.error(error)});
+    }).catch((error) => {
+        console.error(error)
+    });
 }
 
 function changePassword() {
     var newEmail = document.getElementById("").value;
     firebase.auth().currentUser.updatePassword(newPassword).then(function () {
         alert("Your password has been changed!");
-    }).catch((error) => {console.error(error)});
+    }).catch((error) => {
+        console.error(error)
+    });
 }
 
 function deleteUser() {
-    firebase.auth().currentUser.delete().then(function() {
-        firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
-            firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot){
-                snapshot.forEach(doc => {
-                    firestore.collection("posts").doc(doc.id).delete().then(na => {alert("Your account has been deleted!")}).catch((error) => {console.error(error)})
-                })
-            }).catch((error) => {console.error(error)});
+    firebase.auth().currentUser.delete().then(function () {
+        firestore.collection("posts").where("user", "==", firebase.auth().currentUser.uid).get().then(function (snapshot) {
+            snapshot.forEach(doc => {
+                firestore.collection("posts").doc(doc.id).delete().then(na => {
+                    firestore.collection("users").doc(firebase.auth().currentUser.uid).delete().then(function () {
+                        alert("Your account has been deleted!");
+                    }).catch((error) => {console.error(error)});
+                }).catch((error) => {console.error(error)})
+            })
         }).catch((error) => {console.error(error)});
     }).catch((error) => {console.error(error)});
 }
