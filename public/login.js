@@ -21,10 +21,6 @@ function checkInput(username, password) {
     alert("Your Username has to contain more than 5 letters!");
     return false;
   }
-  if (password.match(/\s/)) {
-    alert("Your password cannot contain any spaces!")
-    return false;
-  }
   if (password.length < 6) {
     alert("Your password has to contain at least 6 characters!")
     return false;
