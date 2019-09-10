@@ -190,11 +190,26 @@ function prevPage() {
     }
 }
 
+function checkIfEmpty(string) {
+  if (string.replace(/\s/,"").length < 1) {
+    return true;
+  }
+  return false;
+}
+
 function upload() {
     if (firebase.auth().currentUser.emailVerified) {
         const postRef = firestore.collection("posts");
         const inputHeader = document.querySelector("#uploadTitleInput");
         const inputContent = document.querySelector("#uploadContentInput");
+        if (checkIfEmpty(inputHeader.value)) {
+          alert("Your Header is empty");
+          return;
+        }
+        if (checkIfEmpty(inputContent.value)) {
+          alert("Your description is empty");
+          return;
+        }
         var options = document.getElementById("uploadTagInput");
         var uni = options.options[options.selectedIndex].value;
         const inpData = {

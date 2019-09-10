@@ -13,7 +13,7 @@ var flag1 = false;
 var flag2 = false;
 
 function checkInput(username, password) {
-  if (username.match(/\s/)) {
+  if (username.test(/\s/)) {
     alert("Your Username cannot contain any spaces!");
     return false;
   }
