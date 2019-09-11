@@ -14,6 +14,7 @@ x message from the void
   empty contact content
   empty upload content
 x empty Username
+  Messages werden in falscher Reihenfolge geladen
 
   BUGS USER TESTING:
 [solved] email verification not working (eventuell cookie blocker)
