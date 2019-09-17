@@ -22,7 +22,7 @@ function loadMessages() {
             newMessage: false
         });
     });
-    userRef.collection("ReceivedMessages").get().then(function (userColl) {
+    userRef.collection("ReceivedMessages").orderBy("timestamp", "desc").get().then(function (userColl) {
         var counter = 0;
         userColl.forEach(message => {
             const thisCounter = counter++;
