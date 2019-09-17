@@ -12,10 +12,30 @@ var firestore = firebase.firestore();
 var flag1 = false;
 var flag2 = false;
 
+function checkInput(username, password) {
+  if ((/\s/).test(username)) {
+    alert("Your Username cannot contain any spaces!");
+    return false;
+  }
+  if (username.length < 6) {
+    alert("Your Username has to contain more than 5 letters!");
+    return false;
+  }
+  if (password.length < 6) {
+    alert("Your password has to contain at least 6 characters!")
+    return false;
+  }
+  return true;
+}
+
 function signUp() {
     const username = document.getElementById("inputSignUpUsername").value;
     const email = document.getElementById("inputSignUpEmail").value;
     const password = document.getElementById("inputSignUpPassword").value;
+
+    if (checkInput(username, password) == false) {
+      return;
+    }
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
@@ -84,7 +104,6 @@ function signInWithGoogle() {
         var user = result.user;
         firestore.collection("users").doc(user.uid).get().then(entry => {
             if (entry.exists) {
-                console.log("AIII KARAMBA!");
                 flag1 = true;
                 flag2 = true;
                 redirectHome()

@@ -5,15 +5,16 @@ x asside/profile & about in menu
 x (-) dsgvo + impressum seite
 x farben msg
 x profil msg
-  margin buttons + home statt homepage
-  mobile menu
+x margin buttons + home statt homepage
+x mobile menu
   mobile karten breiter
 x posten nur mit verified email
   pages
 x message from the void
   empty contact content
   empty upload content
-  empty Username
+x empty Username
+  Messages werden in falscher Reihenfolge geladen
 
   BUGS USER TESTING:
 [solved] email verification not working (eventuell cookie blocker)
