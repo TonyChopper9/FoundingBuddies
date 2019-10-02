@@ -15,6 +15,9 @@ x message from the void
   empty upload content
 x empty Username
   Messages werden in falscher Reihenfolge geladen
+  eigene post übersicht
+  email bei ungelesenen notifications
+
 
   BUGS USER TESTING:
 [solved] email verification not working (eventuell cookie blocker)
