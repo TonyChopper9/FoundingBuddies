@@ -135,10 +135,15 @@ function loadMyPosts(){
             closeBtn.appendChild(closeBtnText);
             title.appendChild(closeBtn);
 
+            var metaStuff = document.createElement("p");
+            metaStuff.setAttribute("class", "mb-2 card-text");
             var small = document.createElement("small");
             small.setAttribute("class", "text-muted");
             var dateDate = data.Date.toDate();
             small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear();
+            metaStuff.appendChild(small);
+            card.appendChild(metaStuff);
+
 
             var inhalt = document.createElement("p");
             inhalt.setAttribute("class", "text-brake card-text");
