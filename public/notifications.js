@@ -10,6 +10,11 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 var functions = firebase.functions();
+unis.set("TUM", "Technische Universität München");
+unis.set("LMU", "Ludwig-Maximilians-Universität");
+unis.set("UNIBW", "Universität der Bundeswehr München");
+unis.set("HM", "Hochschule München");
+unis.set("MBS", "Munich Business School");
 
 function loadMessages() {
     const goal = document.getElementById("output");
@@ -105,7 +110,45 @@ function loadMyPosts(){
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+            //console.log(doc.id, " => ", doc.data());
+            var data = doc.data();
+            var card = document.createElement("div");
+            card.setAttribute("class", "card mb-3 w-100");
+            card.setAttribute("id", doc.id);
+
+            var body = document.createElement("div");
+            body.setAttribute("class", "card-body");
+
+            var title = document.createElement("h5");
+            title.setAttribute("class", "mb-0 card-title");
+            title.innerHTML = data.header + " - " + unis.get(data.uni);
+            body.appendChild(title);
+
+            var closeBtn = document.createElement("button");
+            closeBtn.setAttribute("type", "button");
+            closeBtn.setAttribute("class", "close");
+            closeBtn.setAttribute("data-toggle", "modal");
+            closeBtn.setAttribute("data-target", "#deleteModal");
+            closeBtn.setAttribute("onclick", "openDeleteModal('" + docs[number].id + ", " + number + "')");
+            var closeBtnText = document.createElement("span");
+            closeBtnText.innerHTML = "&times;";
+            closeBtn.appendChild(closeBtnText);
+            title.appendChild(closeBtn);
+
+            var small = document.createElement("small");
+            small.setAttribute("class", "text-muted");
+            var dateDate = data.Date.toDate();
+            small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear();
+
+            var inhalt = document.createElement("p");
+            inhalt.setAttribute("class", "text-brake card-text");
+            inhalt.innerHTML = data.content;
+            body.appendChild(inhalt);
+
+            card.appendChild(body);
+            var postOutput = document.getElementById("postOutput");
+            postOutput.appendChild(card);
+
         });
     })
     .catch(function(error) {
