@@ -127,7 +127,7 @@ function loadMyPosts(){
 
             var closeBtn = document.createElement("button");
             closeBtn.setAttribute("type", "button");
-            closeBtn.setAttribute("class", "close");
+            closeBtn.setAttribute("class", "ml-1 close");
             closeBtn.setAttribute("data-toggle", "modal");
             closeBtn.setAttribute("data-target", "#deletePostModal");
             var closeBtnText = document.createElement("span");
