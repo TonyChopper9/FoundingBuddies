@@ -137,6 +137,48 @@
         </div>
     </div>
 </div>
+<!-- edit Modal-->
+<div class="modal fade" id="editModal" tabindex="-1" data-easein="bounceUpIn" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit your post</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="uploadTitleInput">Title</label>
+                        <input maxlength="30" type="text" class="form-control" id="uploadTitleInput" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label for="uploadContentInput">Description</label>
+                        <textarea maxlength="140" class="form-control" id="uploadContentInput" placeholder="Enter the description here" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="uploadTagInput">Your University:</label>
+                        <select class="form-control" id="uploadTagInput">
+                          <option value="TUM" selected>TUM</option>
+                          <option value="LMU">LMU</option>
+                          <option value="HM">Hochschule München</option>
+                          <option value="UNIBW">Universität der Bundeswehr München</option>
+                          <option value="MBS">Munich Business School</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        <button type="button" data-dismiss="modal" class="btn btn-success" onclick="" id="editButton">Edit</button>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary" onclick="">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="sticky-top container" style="background-color: white">
     <header class="border-bottom pt-3 pb-3">

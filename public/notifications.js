@@ -139,7 +139,7 @@ function loadMyPosts(){
             editBtn.setAttribute("type", "button");
             editBtn.setAttribute("class", "close material-icons");
             editBtn.setAttribute("data-toggle", "modal");
-            editBtn.setAttribute("data-target", "#deletePostModal");
+            editBtn.setAttribute("data-target", "#editModal");
             var editBtnText = document.createElement("span");
             editBtnText.innerHTML = "edit";
             editBtn.appendChild(editBtnText);
