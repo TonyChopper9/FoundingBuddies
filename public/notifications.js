@@ -140,6 +140,8 @@ function loadMyPosts(){
             editBtn.setAttribute("class", "close material-icons");
             editBtn.setAttribute("data-toggle", "modal");
             editBtn.setAttribute("data-target", "#editModal");
+            editBtn.setAttribute("data-postid", )
+            editBtn.setAttribute("onclick", "openEditModal(" + doc.id + ")");
             var editBtnText = document.createElement("span");
             editBtnText.innerHTML = "edit";
             editBtn.appendChild(editBtnText);
@@ -356,6 +358,19 @@ function deleteUser() {
     }).catch((error) => {
         console.error(error)
     });
+}
+
+function openEditModal(id) {
+  firestore.collection("posts").doc(id).get().then(function(doc){
+    if(doc.exists){
+        document.getElementById("editTitleInput").value = doc.data().header;
+        document.getElementById("editContentInput").value = doc.data().content;
+        var e = document.getElementById("editTagInput");
+        e.options[e.selectedIndex].removeAttribute("selected");
+        var select = e.options.indexOf(doc.data().uni);
+        e.options[select].selected = true;
+    }
+  });
 }
 
 //Shortcuts to Document Elements
