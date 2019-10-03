@@ -17,6 +17,7 @@ x empty Username
   Messages werden in falscher Reihenfolge geladen
   eigene post übersicht
   email bei ungelesenen notifications
+  add max posts (ca. 10)
 
 
   BUGS USER TESTING:
