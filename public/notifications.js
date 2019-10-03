@@ -152,7 +152,7 @@ function loadMyPosts(){
             var dateDate = data.Date.toDate();
             small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear();
             metaStuff.appendChild(small);
-            card.appendChild(metaStuff);
+            body.appendChild(metaStuff);
 
 
             var inhalt = document.createElement("p");
