@@ -186,6 +186,7 @@ function authStateObserver(user) {
             changePasswordBtn.style.display = "none";
         }
         loadMessages();
+        loadMyPosts();
     } else { // User is signed out!
         window.location.href = "index.html";
     }
