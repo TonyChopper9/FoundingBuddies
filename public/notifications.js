@@ -10,6 +10,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
 var functions = firebase.functions();
+var unis = new Map();
 unis.set("TUM", "Technische Universität München");
 unis.set("LMU", "Ludwig-Maximilians-Universität");
 unis.set("UNIBW", "Universität der Bundeswehr München");
