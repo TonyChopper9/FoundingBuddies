@@ -127,11 +127,11 @@ function loadMyPosts(){
 
             var closeBtn = document.createElement("button");
             closeBtn.setAttribute("type", "button");
-            closeBtn.setAttribute("class", "ml-1 close");
+            closeBtn.setAttribute("class", "ml-1 close material-icons");
             closeBtn.setAttribute("data-toggle", "modal");
             closeBtn.setAttribute("data-target", "#deletePostModal");
             var closeBtnText = document.createElement("span");
-            closeBtnText.innerHTML = "&times;";
+            closeBtnText.innerHTML = "close";
             closeBtn.appendChild(closeBtnText);
             title.appendChild(closeBtn);
 
