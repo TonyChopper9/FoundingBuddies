@@ -140,7 +140,7 @@ function loadMyPosts(){
             editBtn.setAttribute("class", "close material-icons");
             editBtn.setAttribute("data-toggle", "modal");
             editBtn.setAttribute("data-target", "#editModal");
-            editBtn.setAttribute("onclick", "openEditModal(" + doc.id + ")");
+            editBtn.setAttribute("onclick", "openEditModal('" + doc.id + "')");
             var editBtnText = document.createElement("span");
             editBtnText.innerHTML = "edit";
             editBtn.appendChild(editBtnText);
