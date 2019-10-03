@@ -129,8 +129,7 @@ function loadMyPosts(){
             closeBtn.setAttribute("type", "button");
             closeBtn.setAttribute("class", "close");
             closeBtn.setAttribute("data-toggle", "modal");
-            closeBtn.setAttribute("data-target", "#deleteModal");
-            //closeBtn.setAttribute("onclick", "openDeleteModal('" + docs[number].id + ", " + number + "')");
+            closeBtn.setAttribute("data-target", "#deletePostModal");
             var closeBtnText = document.createElement("span");
             closeBtnText.innerHTML = "&times;";
             closeBtn.appendChild(closeBtnText);
