@@ -366,7 +366,7 @@ function openEditModal(id) {
         document.getElementById("editContentInput").value = doc.data().content;
         var e = document.getElementById("editTagInput");
         e.options[e.selectedIndex].removeAttribute("selected");
-        var select = e.options.indexOf(doc.data().uni);
+        var select = e.options[].indexOf(doc.data().uni);
         e.options[select].selected = true;
     }
   });
