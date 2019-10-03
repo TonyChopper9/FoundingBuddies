@@ -125,16 +125,6 @@ function loadMyPosts(){
             title.innerHTML = data.header + " - " + unis.get(data.uni);
             body.appendChild(title);
 
-            var editBtn = document.createElement("button");
-            editBtn.setAttribute("type", "button");
-            editBtn.setAttribute("class", "material-icons");
-            editBtn.setAttribute("data-toggle", "modal");
-            editBtn.setAttribute("data-target", "#deletePostModal");
-            var editBtnText = document.createElement("span");
-            editBtnText.innerHTML = "edit;";
-            editBtn.appendChild(editBtnText);
-            title.appendChild(editBtn);
-
             var closeBtn = document.createElement("button");
             closeBtn.setAttribute("type", "button");
             closeBtn.setAttribute("class", "close");
@@ -144,6 +134,16 @@ function loadMyPosts(){
             closeBtnText.innerHTML = "&times;";
             closeBtn.appendChild(closeBtnText);
             title.appendChild(closeBtn);
+
+            var editBtn = document.createElement("button");
+            editBtn.setAttribute("type", "button");
+            editBtn.setAttribute("class", "close material-icons");
+            editBtn.setAttribute("data-toggle", "modal");
+            editBtn.setAttribute("data-target", "#deletePostModal");
+            var editBtnText = document.createElement("span");
+            editBtnText.innerHTML = "edit";
+            editBtn.appendChild(editBtnText);
+            title.appendChild(editBtn);
 
             var metaStuff = document.createElement("p");
             metaStuff.setAttribute("class", "mb-2 card-text");
