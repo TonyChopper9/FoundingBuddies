@@ -100,6 +100,19 @@ function loadMessages() {
     });
 }
 
+function loadMyPosts(){
+  firestore.collection("posts").where("user", "==", getUserId()).orderBy("Date", "desc").get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+}
+
 function changeReplyModal(messageID) {
     document.getElementById("messageSendButton").setAttribute("onclick", "sendReply('" + messageID + "')");
 }
