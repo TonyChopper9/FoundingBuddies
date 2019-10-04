@@ -368,8 +368,22 @@ function openEditModal(id) {
         e.options[e.selectedIndex].removeAttribute("selected");
         //var select = e.options.indexOf(doc.data().uni); TODO
         //e.options[select].selected = true;
+        for (var i = 0; i < e.options.length; i++) {
+        	if (e.options[i] == doc.data().uni) {
+        		e.options[i].selected = true;
+        	}
+        }
     }
   });
+}
+
+function editPost(id) {
+	var e = getElementById("editTagInput");
+	firestore.collection("posts").doc(id).set(
+	header: document.getElementById("editTitleInput").value,
+	content: document.getElementById("editContentInput").value,
+	uni: e.options[e.selectedIndex].value
+	)
 }
 
 //Shortcuts to Document Elements
