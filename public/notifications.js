@@ -364,6 +364,7 @@ function openEditModal(id) {
     if(doc.exists){
         document.getElementById("editTitleInput").value = doc.data().header;
         document.getElementById("editContentInput").value = doc.data().content;
+        document.getElementById("editButton").setAttribute("onclick", "editPost('" + id + "')");
         var e = document.getElementById("editTagInput");
         e.options[e.selectedIndex].removeAttribute("selected");
         //var select = e.options.indexOf(doc.data().uni); TODO
@@ -379,11 +380,14 @@ function openEditModal(id) {
 
 function editPost(id) {
 	var e = getElementById("editTagInput");
-	firestore.collection("posts").doc(id).set(
-	header: document.getElementById("editTitleInput").value,
-	content: document.getElementById("editContentInput").value,
-	uni: e.options[e.selectedIndex].value
-	)
+  var inpData = {
+    header: document.getElementById("editTitleInput").value,
+  	content: document.getElementById("editContentInput").value,
+  	uni: e.options[e.selectedIndex].value
+  }
+	firestore.collection("posts").doc(id).set(inpData).catch(function(error) {
+    console.error(error);
+  });
 }
 
 //Shortcuts to Document Elements
