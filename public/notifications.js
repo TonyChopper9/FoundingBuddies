@@ -369,7 +369,9 @@ function openEditModal(id) {
         e.options[e.selectedIndex].removeAttribute("selected");
         //var select = e.options.indexOf(doc.data().uni); TODO
         //e.options[select].selected = true;
+        console.log(doc.data().uni);
         for (var i = 0; i < e.options.length; i++) {
+          console.log(e.options[i]);
         	if (e.options[i] == doc.data().uni) {
         		e.options[i].selected = true;
         	}
@@ -379,14 +381,21 @@ function openEditModal(id) {
 }
 
 function editPost(id) {
-	var e = getElementById("editTagInput");
-  var inpData = {
-    header: document.getElementById("editTitleInput").value,
-  	content: document.getElementById("editContentInput").value,
-  	uni: e.options[e.selectedIndex].value
-  }
-	firestore.collection("posts").doc(id).set(inpData).catch(function(error) {
-    console.error(error);
+  firestore.collection("posts").doc(id).get().then(function(doc){
+    if (doc.data().user == getUserId()) {
+      var e = document.getElementById("editTagInput");
+      var inpData = {
+        header: document.getElementById("editTitleInput").value,
+      	content: document.getElementById("editContentInput").value,
+      	uni: e.options[e.selectedIndex].value
+      }
+    	firestore.collection("posts").doc(id).set(inpData).catch(function(error) {
+        console.error(error);
+      });
+    }
+    else {
+      console.error("You don't have the permission to edit this post!");
+    }
   });
 }
 
