@@ -370,6 +370,7 @@ function sendMessage(userId) {
                 timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             });
             clearMessageModal();
+            alert("Your message has been sent!");
         } else {
             alert("Your email must be confirmed in order to be able to send messages!")
         }
