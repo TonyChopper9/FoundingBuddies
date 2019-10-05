@@ -15,7 +15,7 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-exports.sendMail = functions.https.onCall((data, context) => {
+exports.sendTestMail = functions.https.onCall((data, context) => {
 
         // getting dest email by query string
         const fromName = data.fromName;
@@ -43,4 +43,25 @@ exports.sendMail = functions.https.onCall((data, context) => {
             }
 
         });
+});
+
+exports.sendNotificationMail = functions.firestore.document("users/{userID}").onUpdate((change, context) => {
+  if (change.after.data().newMessage == true) {
+    const mail = change.after.data().mail;
+    const mailOptions = {
+        from: 'FoundingBuddies@gmail.com',
+        to: change.after.data().mail,
+        subject: 'You have unread messages!',
+        html: "<p>Hey " + change.after.data().Username + "</p><br><p>There are new Messages in your Inbox at <a src='www.FoundingBuddies.com'>FoundingBuddies</a>.</p>"
+    };
+    transporter.sendMail(mailOptions, (erro, info) => {
+        if(erro){
+          return res.send(erro.toString());
+        }
+        else {
+          return res.send('Sended');
+        }
+
+    });
+  }
 });
