@@ -1,7 +1,7 @@
 x mobile menu kante
   tutorial
 x asside/profile & about in menu
-- settings seite?
+x settings seite?
 x (-) dsgvo + impressum seite
 x farben msg
 x profil msg
@@ -11,11 +11,11 @@ x mobile menu
 x posten nur mit verified email
   pages
 x message from the void
-  empty contact content
-  empty upload content
+x empty contact content
+x empty upload content
 x empty Username
   Messages werden in falscher Reihenfolge geladen
-  eigene post übersicht
+x eigene post übersicht
   email bei ungelesenen notifications
   add max posts (ca. 10)
 
