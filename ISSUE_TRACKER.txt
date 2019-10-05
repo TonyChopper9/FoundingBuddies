@@ -17,7 +17,7 @@ x empty Username
   Messages werden in falscher Reihenfolge geladen
 x eigene post übersicht
 x email bei ungelesenen notifications
-  add max posts (ca. 10)
+  add max posts (ca. 10) / Vorzugsweise ohne alle User löschen zu müssen, aber das wird tricky wenn mans trotzdem gescheit machen möchte; möglicherweise über firebase functions die bestehenden User updaten?
 
 
   BUGS USER TESTING:
