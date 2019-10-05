@@ -390,7 +390,7 @@ function editPost(id) {
       	content: document.getElementById("editContentInput").value,
       	uni: e.options[e.selectedIndex].value
       }
-    	firestore.collection("posts").doc(id).set(inpData).catch(function(error) {
+    	firestore.collection("posts").doc(id).update(inpData).catch(function(error) {
         console.error(error);
       });
     }
