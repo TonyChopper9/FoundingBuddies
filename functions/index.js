@@ -22,7 +22,7 @@ exports.sendNotificationMail = functions.firestore.document("users/{userID}").on
         from: 'FoundingBuddies@gmail.com',
         to: change.after.data().mail,
         subject: 'You have unread messages!',
-        text: "Hey " + change.after.data().Username + ",\nThere are new Messages in your Inbox at www.FoundingBuddies.com.\nCheck it out!"
+        text: "Hey " + change.after.data().Username + ",\nThere are new messages in your inbox at www.FoundingBuddies.com.\nCheck it out!"
     };
     transporter.sendMail(mailOptions, (erro, info) => {
         if(erro){
