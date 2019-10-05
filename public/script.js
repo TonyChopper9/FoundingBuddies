@@ -393,7 +393,7 @@ function deletePost(docIdNo) {
     docRef.get().then(function (doc) {
         if (firebase.auth().currentUser.uid == doc.data().user) {
             docRef.delete().then(function () {
-                total--;
+                total--; //TODO: Das sieht mir nicht ganz richtig aus; das fliegt uns noch um die Ohren
                 document.getElementById("deleteButton").setAttribute("data-postid", "");
                 document.getElementById("deleteButton").setAttribute("data-postno", "");
                 document.location.reload();
