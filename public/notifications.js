@@ -367,14 +367,9 @@ function openEditModal(id) {
         document.getElementById("editButton").setAttribute("onclick", "editPost('" + id + "')");
         var e = document.getElementById("editTagInput");
         e.options[e.selectedIndex].removeAttribute("selected");
-        //var select = e.options.indexOf(doc.data().uni); TODO
-        //e.options[select].selected = true;
-        console.log(doc.data().uni);
         for (var i = 0; i < e.options.length; i++) {
-          console.log(e.options[i].value);
         	if (e.options[i].value == doc.data().uni) {
         		e.options[i].selected = true;
-            console.log("Hurra");
         	}
         }
     }
@@ -390,7 +385,9 @@ function editPost(id) {
       	content: document.getElementById("editContentInput").value,
       	uni: e.options[e.selectedIndex].value
       }
-    	firestore.collection("posts").doc(id).update(inpData).catch(function(error) {
+    	firestore.collection("posts").doc(id).update(inpData).then(function(){
+        location.reload();
+      }).catch(function(error) {
         console.error(error);
       });
     }
