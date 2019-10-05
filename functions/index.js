@@ -34,4 +34,7 @@ exports.sendNotificationMail = functions.firestore.document("users/{userID}").on
 
     });
   }
+  else {
+    return 1;
+  }
 });
