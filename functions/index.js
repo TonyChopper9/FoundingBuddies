@@ -26,10 +26,10 @@ exports.sendNotificationMail = functions.firestore.document("users/{userID}").on
     };
     transporter.sendMail(mailOptions, (erro, info) => {
         if(erro){
-          return res.send(erro.toString());
+          return erro.toString();
         }
         else {
-          return res.send('Sended');
+          return 1;
         }
 
     });
