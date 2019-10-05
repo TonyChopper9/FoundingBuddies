@@ -371,7 +371,7 @@ function openEditModal(id) {
         //e.options[select].selected = true;
         console.log(doc.data().uni);
         for (var i = 0; i < e.options.length; i++) {
-          console.log(e.options[i]);
+          console.log(e.options[i].value);
         	if (e.options[i] == doc.data().uni) {
         		e.options[i].selected = true;
         	}
