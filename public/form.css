@@ -123,3 +123,48 @@
    border-radius: 50%;
    display: inline-block;
 }
+
+.parallax {
+  /* Set a specific height */
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+body, html {
+  height: 100%;
+}
+
+.img1 {
+  background-image: url("images/test.jpg");
+}
+
+.img2 {
+  background-image: url("images/test2.jpg");
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  background-color: #0C9;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+.caption2 {
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  color: #0C9;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
