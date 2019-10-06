@@ -29,6 +29,12 @@
   }
 }
 
+@media screen and (max-width: 450px){
+  h1 {
+    font-size: 2rem;
+  }
+}
+
 .btn-j1 {
   color: #0C9;
   background-color: #f8f9fa;
