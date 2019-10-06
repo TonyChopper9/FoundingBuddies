@@ -54,6 +54,7 @@ function loadMessages() {
                 col.setAttribute("id", "heading" + thisCounter);
                 col.setAttribute("data-toggle", "collapse");
                 col.setAttribute("data-target", "#collapse" + thisCounter);
+                col.setAttribute("style", "cursor: pointer");
                 var colI = document.createElement("div");
                 colI.setAttribute("class", "col-4");
                 colI.innerHTML = header;
