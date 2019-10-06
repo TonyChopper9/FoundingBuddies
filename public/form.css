@@ -131,7 +131,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
 }
 
 body, html {
@@ -140,11 +139,19 @@ body, html {
 
 .img1 {
   background-image: url("images/test.jpg");
+  height: 100%;
 }
 
 .img2 {
   background-image: url("images/test2.jpg");
+  height: 20%;
 }
+
+.img3 {
+  background-image: url("images/test.jpg");
+  height: 50%;
+}
+
 
 .caption {
   position: absolute;
@@ -162,9 +169,14 @@ body, html {
 .caption2 {
   width: 100%;
   text-align: center;
-  background-color: white;
-  color: #0C9;
+  background-color: #0C9;
+  color: white;
   padding: 18px;
   font-size: 25px;
   letter-spacing: 10px;
+}
+
+#partners {
+  margin-top: 10px;
+  font-weight: 800;
 }
