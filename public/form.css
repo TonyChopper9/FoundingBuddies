@@ -79,6 +79,11 @@
     border: 1px solid #dee2e6;
 }
 
+#aboutBtn {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .plusButton {
   position:fixed;
 	width:40px;

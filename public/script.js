@@ -335,6 +335,10 @@ function notificationsPage() {
     window.location.href = "notifications.html";
 }
 
+function aboutPage() {
+    window.location.href = "about.html";
+}
+
 function contact(userId) {
     if (document.getElementById("messageSendButton") != null) {
         document.getElementById("messageSendButton").remove()
