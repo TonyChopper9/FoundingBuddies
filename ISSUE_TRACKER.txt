@@ -24,3 +24,7 @@ x email bei ungelesenen notifications
 [solved] email verification not working (eventuell cookie blocker)
 [solved] userDB verification doesnt set confirmed = true
 previous button lässt posts verschwinden
+
+  PLANNED FEATURES:
+  search function
+  Algolia for instant search?
