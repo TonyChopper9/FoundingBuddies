@@ -52,6 +52,11 @@
           <label class="label">Password:</label>
           <input id="inputSignUpPassword" type="password" placeholder="Type your password here" required class="form-control">
         </div>
+        <div class="form-group">
+          <label class="label">Repeat your Password:</label>
+          <input id="inputSignUpPasswordRepeat" type="password" placeholder="Type your password here" required class="form-control">
+        </div>
+        <input id="signUpBtn" type="submit" class="btn btn-j2 btn-block" value="Sign Up">
 
       </div>
       <div class="form col-6">
@@ -62,22 +67,14 @@
         <div class="form-group">
           <label class="label">Password:</label>
           <input id="inputLoginPassword" type="password" placeholder="Type your password here" required class="form-control">
-          <small id="passwordReset" class="form-text text-muted">Forgot your password? <a onclick="resetPassword()">Click here!</a></small>
+          <small id="passwordReset" class="form-text text-muted">Forgot your password? <a style="cursor: pointer; color: #0C9" onclick="resetPassword()">Click here!</a></small>
         </div>
         <div class="form-group">
           <input id="signInWithEmailBtn" type="submit" class="btn btn-j2 btn-block" value="Login">
         </div>
-        <h5 class="m-3" align="center">or</h5>
       </div>
     </div>
-    <div class="row mb-3">
-      <div class="col-6">
-        <input id="signUpBtn" type="submit" class="btn btn-j2 btn-block" value="Sign Up">
-      </div>
-      <div class="col-6">
-        <button id="signInWithGoogleBtn" type="button" class="btn btn-j2 btn-block">Login with Google</button>
-      </div>
-    </div>
+    <button id="signInWithGoogleBtn" type="button" class="btn btn-j2 btn-block mt-3 mb-3">Use Google Authentification</button>
   </div>
 
   <div class="container bg-white">

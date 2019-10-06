@@ -142,7 +142,10 @@ function redirectHome() {
 
 function resetPassword() {
   var emailAddress = document.getElementById("inputLoginEmail").value;
-  //TODO: check emailAddress on syntax, no stackoverflow etc.
+  if (emailAddress == "") {
+    alert("Please put in an Email-Address first!")
+    document.getElementById("inputLoginEmail").setAttribute("style", "border-color: red");
+  }
   firebase.auth().sendPasswordResetEmail(emailAddress).then(function() {
     alert("A Password-Reset-Email has been sent to " + emailAddress + "!");
   }).catch(function(error) {
