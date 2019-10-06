@@ -68,6 +68,10 @@
     border: 1px #212529;
 }
 
+.material-icons.mainColor {
+  color: #0C9;
+}
+
 .page-link-j1 {
     position: relative;
     display: block;
