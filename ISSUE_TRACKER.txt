@@ -7,7 +7,7 @@ x farben msg
 x profil msg
 x margin buttons + home statt homepage
 x mobile menu
-  mobile karten breiter
+x mobile karten breiter
 x posten nur mit verified email
   pages
 x message from the void
