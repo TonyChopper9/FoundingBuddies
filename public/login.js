@@ -12,17 +12,25 @@ var firestore = firebase.firestore();
 var flag1 = false;
 var flag2 = false;
 
-function checkInput(username, password) {
+function checkInput(username, password, passwordRepeat) {
   if ((/\s/).test(username)) {
     alert("Your Username cannot contain any spaces!");
+    document.getElementById("inputSignUpUsername").setAttribute("style", "border-color: red");
     return false;
   }
   if (username.length < 6) {
     alert("Your Username has to contain more than 5 letters!");
+    document.getElementById("inputSignUpUsername").setAttribute("style", "border-color: red");
     return false;
   }
   if (password.length < 6) {
-    alert("Your password has to contain at least 6 characters!")
+    alert("Your password has to contain at least 6 characters!");
+    document.getElementById("inputSignUpPassword").setAttribute("style", "border-color: red");
+    return false;
+  }
+  if (password != passwordRepeat) {
+    alert("Your passwords don't match!");
+    document.getElementById("inputSignUpPasswordRepeat").setAttribute("style", "border-color: red");
     return false;
   }
   return true;
@@ -32,8 +40,9 @@ function signUp() {
     const username = document.getElementById("inputSignUpUsername").value;
     const email = document.getElementById("inputSignUpEmail").value;
     const password = document.getElementById("inputSignUpPassword").value;
+    const passwordRepeat = document.getElementById("inputSignUpPasswordRepeat").value;
 
-    if (checkInput(username, password) == false) {
+    if (checkInput(username, password, passwordRepeat) == false) {
       return;
     }
 
@@ -94,7 +103,14 @@ function signInWithEmail() {
         flag1 = true;
         flag2 = true;
         redirectHome()
-    }).catch(error => {console.log(error)});
+    }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        alert(errorMessage);
+        // [END_EXCLUDE]
+    });
 }
 
 function signInWithGoogle() {
