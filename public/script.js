@@ -26,6 +26,32 @@ window.onload = function () {
     });
 };
 
+function loadPosts(keyword = "", filter = "") {
+  if (filter == "") {
+    //load all docs
+  }
+  else {
+    //load only docs with filter
+    firestore.collection("posts").where("uni", "==", filter).orderBy("Date", "desc").get()..then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            //console.log(doc.id, " => ", doc.data());
+            firestore.collection("user").doc(doc.data().user).get().then(function (user) {
+              buildPost(doc.data(), user.data());
+            });
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+  }
+}
+
+function buildPost(postData, userData) {
+  console.log("POSTDATA: " + postData);
+  console.log("USERDATA: " + userData);
+}
+
 function addDocument(docs, visibility, number) {
     const doc = docs[number];
     var mainDocData = null;
