@@ -440,6 +440,12 @@ var loginPageButtonDrpMenu = document.getElementById("LoginPageBtnDrpMenu");
 var divider = document.getElementById("divider");
 //var changeEmailButtonModal = document.getElementById("changeEmailButtonModal");
 
+document.getElementById('uniFilter').onchange = function() {
+  var index = this.selectedIndex;
+  var value = this.children[index].value;
+  console.log(value);
+}
+
 initFirebaseAuth();
 
 //00FFFF 00A3A3 2EF4F4 5BF7F7 FFFFFF
