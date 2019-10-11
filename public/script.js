@@ -26,30 +26,112 @@ window.onload = function () {
     });
 };
 
-function loadPosts(keyword = "", filter = "") {
-  if (filter == "") {
-    //load all docs
+function loadPosts(lastEl = "", keyword = "", filter = "") {
+  if (filter == "") {     //then load all docs
+    if (lastEl == "") {   //then load the first page
+      var first = firestore.collection("posts").orderBy("Date", "desc").limit(10);
+      first.get().then(function (snap) {
+        for (const post of snap.docs) {
+          //console.log(post.data().header);
+          firestore.collection("user").doc(post.data().user).get().then(function(user) {
+            buildPost(post.data(), user.data());
+          });
+        }
+      });
+    }
+    else {    //load since lastEl
+      var next = firestore.collection("posts").orderBy("Date", "desc").startAfter(lastEl).limit(10);
+      next.get().then(function (snap) {
+        for (const post of snap.docs) {
+          //console.log(post.data().header);
+          firestore.collection("user").doc(post.data().user).get().then(function(user) {
+            buildPost(post.data(), user.data());
+          });
+        }
+      });
+    }
   }
   else {
     //load only docs with filter
-    firestore.collection("posts").where("uni", "==", filter).orderBy("Date", "desc").get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            //console.log(doc.id, " => ", doc.data());
-            firestore.collection("user").doc(doc.data().user).get().then(function (user) {
-              buildPost(doc.data(), user.data());
-            });
-        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
+    if (lastEl == "") {   //then load the first page
+      var first = firestore.collection("posts").where("uni", "==", filter).orderBy("Date", "desc").limit(10);
+      first.get().then(function (snap) {
+        for (const post of snap.docs) {
+          //console.log(post.data().header);
+          firestore.collection("user").doc(post.data().user).get().then(function(user) {
+            buildPost(post.data(), user.data());
+          });
+        }
+      });
+    }
+    else {    //load since lastEl
+      var next = firestore.collection("posts").where("uni", "==", filter).orderBy("Date", "desc").startAfter(lastEl).limit(10);
+      next.get().then(function (snap) {
+        for (const post of snap.docs) {
+          //console.log(post.data().header);
+          firestore.collection("user").doc(post.data().user).get().then(function(user) {
+            buildPost(post.data(), user.data());
+          });
+        }
+      });
+    }
   }
 }
 
 function buildPost(postData, userData) {
   console.log("POSTDATA: " + postData);
   console.log("USERDATA: " + userData);
+
+  //postData == post.data()
+  //postDATA == post
+
+  var element = document.createElement("div");
+  element.setAttribute("class", "card mb-3 w-100");
+  element.setAttribute("id", postDATA.id); // probably the post object needed for id
+
+  var innerElement = document.createElement("div");
+  innerElement.setAttribute("class", "card-body");
+
+  //HEADER
+  var header1 = document.createElement("h5");
+  header1.setAttribute("class", "mb-0 card-title");
+  header1.innerHTML = postData.header + " - " + unis.get(postData.uni);
+  innerElement.appendChild(header1);
+
+  //AUTHORING
+  var metaStuff = document.createElement("p");
+  metaStuff.setAttribute("class", "mb-2 card-text");
+  var small = document.createElement("small");
+  small.setAttribute("class", "text-muted");
+
+  //User
+  var dateDate = postData.Date.toDate();
+  small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear() + " by " + userData.Username;
+  metaStuff.appendChild(small);
+  innerElement.appendChild(metaStuff);
+
+  //INHALT
+  var inhalt = document.createElement("p");
+  inhalt.setAttribute("class", "text-brake card-text");
+  inhalt.innerHTML = postData.content;
+  innerElement.appendChild(inhalt);
+
+  //MAIL ZEILE
+  var mailZeile = document.createElement("div");
+  mailZeile.setAttribute("class", "row justify-content-end");
+  var contactB = document.createElement("button");
+  contactB.setAttribute("class", "mr-3 btn btn-j3");
+  contactB.setAttribute("data-toggle", "modal");
+  contactB.setAttribute("data-target", "#messageModal");
+  contactB.setAttribute("onclick", "contact('" + postData.user + "')");
+  contactB.innerHTML = "Contact";
+  mailZeile.appendChild(contactB);
+  innerElement.appendChild(mailZeile);
+
+  element.appendChild(innerElement);
+
+  var theDiv = document.getElementById("output");
+  theDiv.appendChild(element);
 }
 
 function addDocument(docs, visibility, number) {
@@ -434,7 +516,7 @@ function deletePost(docIdNo) {
     });
 }
 
-function search() {searchInput
+function search(searchInput) {
   const term = document.getElementById("searchInput").value;
   firestore.collection("posts").where("header", "==", term)
     .get()
