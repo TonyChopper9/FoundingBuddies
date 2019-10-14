@@ -31,6 +31,7 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
   console.log("Arguments are: "  + lastEl + " ; " + keyword + " ; " + filter);
   if (filter == "") {     //then load all docs
     if (lastEl == "") {   //then load the first page
+      console.log("Loading all posts...");
       var first = firestore.collection("posts").orderBy("Date", "desc").limit(10);
       first.get().then(function (snap) {
         for (const post of snap.docs) {
@@ -42,6 +43,7 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
       });
     }
     else {    //load since lastEl
+      console.log("Loading since lastEl, no filter posts...");
       var next = firestore.collection("posts").orderBy("Date", "desc").startAfter(lastEl).limit(10);
       next.get().then(function (snap) {
         for (const post of snap.docs) {
@@ -55,6 +57,7 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
   }
   else {
     //load only docs with filter
+    console.log("Loading docs with filter posts...");
     if (lastEl == "") {   //then load the first page
       var first = firestore.collection("posts").where("uni", "==", filter).orderBy("Date", "desc").limit(10);
       first.get().then(function (snap) {
