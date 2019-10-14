@@ -37,7 +37,7 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
         for (const post of snap.docs) {
           console.log("In for loop");
           console.log(post.data().header);
-          firestore.collection("user").doc(post.data().user).get().then(function(user) {
+          firestore.collection("users").doc(post.data().user).get().then(function(user) {
             console.log("call Build()");
             buildPost(post.data(), user.data());
           });
@@ -50,7 +50,7 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
       next.get().then(function (snap) {
         for (const post of snap.docs) {
           //console.log(post.data().header);
-          firestore.collection("user").doc(post.data().user).get().then(function(user) {
+          firestore.collection("users").doc(post.data().user).get().then(function(user) {
             buildPost(post.data(), user.data());
           });
         }
@@ -65,7 +65,7 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
       first.get().then(function (snap) {
         for (const post of snap.docs) {
           //console.log(post.data().header);
-          firestore.collection("user").doc(post.data().user).get().then(function(user) {
+          firestore.collection("users").doc(post.data().user).get().then(function(user) {
             buildPost(post.data(), user.data());
           });
         }
@@ -76,7 +76,7 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
       next.get().then(function (snap) {
         for (const post of snap.docs) {
           //console.log(post.data().header);
-          firestore.collection("user").doc(post.data().user).get().then(function(user) {
+          firestore.collection("users").doc(post.data().user).get().then(function(user) {
             buildPost(post.data(), user.data());
           });
         }
