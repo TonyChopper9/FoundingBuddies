@@ -27,6 +27,8 @@ window.onload = function () {
 };
 
 function loadPosts(lastEl = "", keyword = "", filter = "") {
+  console.log("loadPosts started");
+  console.log("Arguments are: "  + lastEl + " ; " + keyword + " ; " + filter);
   if (filter == "") {     //then load all docs
     if (lastEl == "") {   //then load the first page
       var first = firestore.collection("posts").orderBy("Date", "desc").limit(10);
