@@ -94,7 +94,7 @@ function buildPost(postData, userData) {
 
   var element = document.createElement("div");
   element.setAttribute("class", "card mb-3 w-100");
-  element.setAttribute("id", postDATA.id); // probably the post object needed for id
+  //element.setAttribute("id", postDATA.id); // probably the post object needed for id
 
   var innerElement = document.createElement("div");
   innerElement.setAttribute("class", "card-body");
