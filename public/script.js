@@ -35,8 +35,10 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
       var first = firestore.collection("posts").orderBy("Date", "desc").limit(10);
       first.get().then(function (snap) {
         for (const post of snap.docs) {
-          //console.log(post.data().header);
+          console.log("In for loop");
+          console.log(post.data().header);
           firestore.collection("user").doc(post.data().user).get().then(function(user) {
+            console.log("call Build()");
             buildPost(post.data(), user.data());
           });
         }
