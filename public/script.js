@@ -9,8 +9,8 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
-var page = 0;
-var total = 0;
+var page = 1;
+var pages = [];
 var unis = new Map();
 unis.set("TUM", "Technische Universität München");
 unis.set("LMU", "Ludwig-Maximilians-Universität");
@@ -30,46 +30,31 @@ window.onload = function () {
     //    addDocument(list.docs, true, 0);
     //});
     params = getParams(params);
-    console.log(params);
-    loadPosts(params.get("lastEl"),params.get("keyword"),params.get("filter"),params.get("uni"));
+    setWebsitefromParams(params);
+    pages.push(loadPosts(params.get("lastEl"),params.get("keyword"),params.get("filter"),params.get("uni")));
 };
 
 function loadPosts(lastEl = "", keyword = "", filter = "", uni = "") {
   console.log("loadPosts started");
+  clearOutput();
+  console.log("Cleared Output");
   console.log("Arguments are: "  + lastEl + " ; " + keyword + " ; " + filter + " , " + uni);
   if (uni == "") {     //then load all docs
-    if (lastEl == "") {   //then load the first page
       console.log("Loading all posts...");
-      var first = firestore.collection("posts").orderBy("Date", "desc").limit(10);
+      var first = firestore.collection("posts").orderBy("Date", "desc").startAfter(lastEl).limit(10);
       first.get().then(function (snap) {
         for (const post of snap.docs) {
-          console.log("In for loop");
-          console.log(post.data().header);
-          firestore.collection("users").doc(post.data().user).get().then(function(user) {
-            console.log("call Build()");
-            buildPost(post.data(), user.data());
-          });
-        }
-      });
-    }
-    else {    //load since lastEl
-      console.log("Loading since lastEl, no filter posts...");
-      var next = firestore.collection("posts").orderBy("Date", "desc").startAfter(lastEl).limit(10);
-      next.get().then(function (snap) {
-        for (const post of snap.docs) {
-          //console.log(post.data().header);
           firestore.collection("users").doc(post.data().user).get().then(function(user) {
             buildPost(post.data(), user.data());
           });
         }
+        params.set("lastEl", snap.docs[snap.docs.length-1]);
       });
-    }
   }
   else {
     //load only docs with filter
-    console.log("Loading docs with uni: " + uni);
-    if (lastEl == "") {   //then load the first page
-      var first = firestore.collection("posts").where("uni", "==", uni).orderBy("Date", "desc").limit(10);
+      console.log("Loading docs with uni: " + uni);
+      var first = firestore.collection("posts").where("uni", "==", uni).orderBy("Date", "desc").startAfter(lastEl).limit(10);
       first.get().then(function (snap) {
         for (const post of snap.docs) {
           //console.log(post.data().header);
@@ -78,27 +63,22 @@ function loadPosts(lastEl = "", keyword = "", filter = "", uni = "") {
           });
         }
       });
-    }
-    else {    //load since lastEl
-      var next = firestore.collection("posts").where("uni", "==", filter).orderBy("Date", "desc").startAfter(lastEl).limit(10);
-      next.get().then(function (snap) {
-        for (const post of snap.docs) {
-          //console.log(post.data().header);
-          firestore.collection("users").doc(post.data().user).get().then(function(user) {
-            buildPost(post.data(), user.data());
-          });
-        }
-      });
-    }
   }
+  return first;
+}
+
+function loadOldPosts(query) {
+    clearOutput();
+    query.get().then(function (snap) {
+      for (const post of snap.docs) {
+        firestore.collection("users").doc(post.data().user).get().then(function(user) {
+          buildPost(post.data(), user.data());
+        });
+      }
+    });
 }
 
 function buildPost(postData, userData) {
-  console.log("POSTDATA: " + postData);
-  console.log("USERDATA: " + userData);
-
-  //postData == post.data()
-  //postDATA == post
 
   var element = document.createElement("div");
   element.setAttribute("class", "card mb-3 w-100");
@@ -151,7 +131,7 @@ function buildPost(postData, userData) {
 
 function insertParam(key, value)
 {
-    key = encodeURI(key); value = encodeURI(value);
+    //key = encodeURI(key); value = encodeURI(value);
 
     var kvp = document.location.search.substr(1).split('&');
 
@@ -161,31 +141,29 @@ function insertParam(key, value)
 
         if (x[0]==key)
         {
+            if (value==""){
+                kvp.splice(i,1);
+                break;
+            }
             x[1] = value;
             kvp[i] = x.join('=');
             break;
         }
     }
-    console.log(kvp);
     if(i<0) {
       kvp.push([key,value].join('='));
     }
-    console.log(kvp);
     if(kvp[0] == "") {
       kvp.shift();
     }
-    console.log(kvp);
     document.location.search = kvp.join('&');
 }
 
 function getParams(params){
-    console.log("param search...");
     var kvp = document.location.search.substr(1).split('&');
     params.forEach(function(value, key) {
-        console.log("Param: " + key);
         kvp.forEach(function(item) {
             var pair = item.split("=");
-            console.log("Pair: " + pair[0]);
             if (key == pair[0]) {
                 params.set(key, pair[1]);
             }
@@ -194,7 +172,11 @@ function getParams(params){
     return params;
 }
 
-function addDocument(docs, visibility, number) {
+function setWebsitefromParams(params){
+    document.getElementById("uniFilter").value = params.get("uni");
+}
+
+/*function addDocument(docs, visibility, number) {
     const doc = docs[number];
     var mainDocData = null;
     if (doc && doc.exists) {
@@ -288,73 +270,31 @@ function addDocument(docs, visibility, number) {
         }
     }
 }
-
+*/
 function nextPage() {
-    if (total > 1) {
-        if (page < Math.floor(total / 10) - 1) {
-            page++;
-            for (x = 0; x < 10; x++) {
-                var id2a = ((page - 1) * 10) + x;
-                if (id2a <= total) {
-                    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
-                }
-            }
-            for (y = 0; y < 10; y++) {
-                var id2n = (page * 10) + y;
-                if (id2n <= total) {
-                    document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
-                }
-            }
-        }
-        if (page == Math.floor(total / 10) - 1) {
-            page++;
-            for (x = 0; x < 10; x++) {
-                var id3a = ((page - 1) * 10) + x;
-                if (id3a <= total) {
-                    document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
-                }
-            }
-            for (y = 0; y < total % 10; y++) {
-                var id3n = (page * 10) + y;
-                if (id3n <= total) {
-                    document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
-                }
-            }
-        }
+    page++;
+    if (page > pages.length) {
+        loadPosts(params);
+    }
+    else {
+        loadOldPosts(pages[page-1]);
     }
 }
 
 function prevPage() {
-    if (total > 1) {
-        if (page > 0 && page != Math.floor(total / 10)) {
-            page--;
-            for (x2 = 0; x2 < 10; x2++) {
-                var id2a = ((page + 1) * 10) + x2;
-                if (id2a <= total) {
-                    document.querySelector('[id2="' + id2a + '"]').setAttribute("style", "display: none;")
-                }
-            }
-            for (y2 = 0; y2 < 10; y2++) {
-                var id2n = (page * 10) + y2;
-                if (id2n <= total) {
-                    document.querySelector('[id2="' + id2n + '"]').removeAttribute("style")
-                }
-            }
-        } else if (page == Math.floor(total / 10)) {
-            page--;
-            for (x2 = 0; x2 < total % 10; x2++) {
-                var id3a = ((page + 1) * 10) + x2;
-                if (id3a <= total) {
-                    document.querySelector('[id2="' + id3a + '"]').setAttribute("style", "display: none;")
-                }
-            }
-            for (y2 = 0; y2 < 10; y2++) {
-                var id3n = (page * 10) + y2;
-                if (id3n <= total) {
-                    document.querySelector('[id2="' + id3n + '"]').removeAttribute("style")
-                }
-            }
-        }
+    if (page < 2) {
+        return;
+    }
+    else {
+        page--;
+        loadOldPosts(pages[page-1]);
+    }
+}
+
+function clearOutput(){
+    const myNode = document.getElementById("output");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
     }
 }
 
