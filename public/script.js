@@ -17,19 +17,27 @@ unis.set("LMU", "Ludwig-Maximilians-Universität");
 unis.set("UNIBW", "Universität der Bundeswehr München");
 unis.set("HM", "Hochschule München");
 unis.set("MBS", "Munich Business School");
+var params = new Map();
+params.set("lastEl", "");
+params.set("keyword", "");
+params.set("filter", "");
+params.set("uni", "");
 
 window.onload = function () {
-    total = 0;
-    firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
-        total = list.size;
-        addDocument(list.docs, true, 0);
-    });
+    //total = 0;
+    //firestore.collection("posts").orderBy("Date", "desc").get().then(function (list) {
+    //    total = list.size;
+    //    addDocument(list.docs, true, 0);
+    //});
+    params = getParams(params);
+    console.log(params);
+    loadPosts(params.get("lastEl"),params.get("keyword"),params.get("filter"),params.get("uni"));
 };
 
-function loadPosts(lastEl = "", keyword = "", filter = "") {
+function loadPosts(lastEl = "", keyword = "", filter = "", uni = "") {
   console.log("loadPosts started");
-  console.log("Arguments are: "  + lastEl + " ; " + keyword + " ; " + filter);
-  if (filter == "") {     //then load all docs
+  console.log("Arguments are: "  + lastEl + " ; " + keyword + " ; " + filter + " , " + uni);
+  if (uni == "") {     //then load all docs
     if (lastEl == "") {   //then load the first page
       console.log("Loading all posts...");
       var first = firestore.collection("posts").orderBy("Date", "desc").limit(10);
@@ -59,9 +67,9 @@ function loadPosts(lastEl = "", keyword = "", filter = "") {
   }
   else {
     //load only docs with filter
-    console.log("Loading docs with filter posts...");
+    console.log("Loading docs with uni: " + uni);
     if (lastEl == "") {   //then load the first page
-      var first = firestore.collection("posts").where("uni", "==", filter).orderBy("Date", "desc").limit(10);
+      var first = firestore.collection("posts").where("uni", "==", uni).orderBy("Date", "desc").limit(10);
       first.get().then(function (snap) {
         for (const post of snap.docs) {
           //console.log(post.data().header);
@@ -139,6 +147,51 @@ function buildPost(postData, userData) {
 
   var theDiv = document.getElementById("output");
   theDiv.appendChild(element);
+}
+
+function insertParam(key, value)
+{
+    key = encodeURI(key); value = encodeURI(value);
+
+    var kvp = document.location.search.substr(1).split('&');
+
+    var i=kvp.length; var x; while(i--)
+    {
+        x = kvp[i].split('=');
+
+        if (x[0]==key)
+        {
+            x[1] = value;
+            kvp[i] = x.join('=');
+            break;
+        }
+    }
+    console.log(kvp);
+    if(i<0) {
+      kvp.push([key,value].join('='));
+    }
+    console.log(kvp);
+    if(kvp[0] == "") {
+      kvp.shift();
+    }
+    console.log(kvp);
+    document.location.search = kvp.join('&');
+}
+
+function getParams(params){
+    console.log("param search...");
+    var kvp = document.location.search.substr(1).split('&');
+    params.forEach(function(value, key) {
+        console.log("Param: " + key);
+        kvp.forEach(function(item) {
+            var pair = item.split("=");
+            console.log("Pair: " + pair[0]);
+            if (key == pair[0]) {
+                params.set(key, pair[1]);
+            }
+        });
+    });
+    return params;
 }
 
 function addDocument(docs, visibility, number) {

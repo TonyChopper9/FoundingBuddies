@@ -205,8 +205,8 @@
     </div>
     <div class="row">
       <div class="col-md-9">
-        <select id="uniFilter" class="form-control">
-          <option>Any University</option>
+        <select id="uniFilter" class="form-control" onchange="insertParam('uni', this.options[this.selectedIndex].value)">
+          <option value = "">Any University</option>
           <option value="TUM">TUM</option>
           <option value="LMU">LMU</option>
           <option value="HM">Hochschule München</option>
