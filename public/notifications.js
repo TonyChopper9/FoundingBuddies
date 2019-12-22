@@ -103,7 +103,7 @@ function loadMessages() {
                     console.log(error)
                 });
             }
-        });
+        }); 
     });
 }
 
