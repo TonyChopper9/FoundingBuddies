@@ -17,7 +17,6 @@ let transporter = nodemailer.createTransport({
 
 exports.sendNotificationMail = functions.firestore.document("users/{userID}").onUpdate((change, context) => {
   if (change.after.data().newMessage == true) {
-    const mail = change.after.data().mail;
     const mailOptions = {
         from: 'FoundingBuddies@gmail.com',
         to: change.after.data().mail,
@@ -29,6 +28,7 @@ exports.sendNotificationMail = functions.firestore.document("users/{userID}").on
           return erro.toString();
         }
         else {
+          console.log("Email send to " + change.after.data().mail);
           return 1;
         }
 

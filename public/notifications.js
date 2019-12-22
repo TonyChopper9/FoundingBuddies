@@ -28,82 +28,82 @@ function loadMessages() {
             newMessage: false
         });
     });
-    userRef.collection("ReceivedMessages").orderBy("timestamp", "desc").get().then(function (userColl) {
-        var counter = 0;
-        userColl.forEach(message => {
-            const thisCounter = counter++;
-            const mData = message.data();
-            const header = mData.header;
-            const content = mData.content;
-            const tmstmp = mData.timestamp;
-            var sender = "";
-            firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
-                if (senderU.data() != undefined) {
-                    sender = senderU.data().Username;
-                }
+    var counter = 0;
+    userRef.collection("ReceivedMessages").orderBy("timestamp", "desc").onSnapshot(function (snap) {
+        snap.docChanges().forEach(function(change) {
+            if (change.type === "added") {
+                const mData = change.doc.data();
+                const thisCounter = counter++;
+                const header = mData.header;
+                const content = mData.content;
+                const tmstmp = mData.timestamp;
+                var sender = "";
+                firestore.collection("users").doc(mData.sender).get().then(function (senderU) {
+                    if (senderU.data() != undefined) {
+                        sender = senderU.data().Username;
+                    }
 
-                var card = document.createElement("div");
-                card.setAttribute("class", "card");
-                var col = document.createElement("div");
-                if (thisCounter % 2 == 0) {
-                    col.setAttribute("class", "bg-light row text-center card-header collapsed");
-                } else {
-                    col.setAttribute("class", "bg-white row text-center card-header collapsed");
-                }
+                    var card = document.createElement("div");
+                    card.setAttribute("class", "card");
+                    var col = document.createElement("div");
+                    if (thisCounter % 2 == 0) {
+                        col.setAttribute("class", "bg-light row text-center card-header collapsed");
+                    } else {
+                        col.setAttribute("class", "bg-white row text-center card-header collapsed");
+                    }
 
-                col.setAttribute("id", "heading" + thisCounter);
-                col.setAttribute("data-toggle", "collapse");
-                col.setAttribute("data-target", "#collapse" + thisCounter);
-                col.setAttribute("style", "cursor: pointer");
-                var colI = document.createElement("div");
-                colI.setAttribute("class", "col-4");
-                colI.innerHTML = header;
-                var colII = document.createElement("div");
-                colII.setAttribute("class", "col-4");
-                if (senderU.data() != undefined) {
-                    colII.innerHTML = sender;
-                } else {
-                    colII.innerHTML = "[deleted]";
-                }
-                var colIII = document.createElement("div");
-                colIII.setAttribute("class", "col-4");
-                var dateDate = tmstmp.toDate();
-                colIII.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear();
-                col.appendChild(colI);
-                col.appendChild(colII);
-                col.appendChild(colIII);
+                    col.setAttribute("id", "heading" + thisCounter);
+                    col.setAttribute("data-toggle", "collapse");
+                    col.setAttribute("data-target", "#collapse" + thisCounter);
+                    col.setAttribute("style", "cursor: pointer");
+                    var colI = document.createElement("div");
+                    colI.setAttribute("class", "col-4");
+                    colI.innerHTML = header;
+                    var colII = document.createElement("div");
+                    colII.setAttribute("class", "col-4");
+                    if (senderU.data() != undefined) {
+                        colII.innerHTML = sender;
+                    } else {
+                        colII.innerHTML = "[deleted]";
+                    }
+                    var colIII = document.createElement("div");
+                    colIII.setAttribute("class", "col-4");
+                    var dateDate = tmstmp.toDate();
+                    colIII.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear();
+                    col.appendChild(colI);
+                    col.appendChild(colII);
+                    col.appendChild(colIII);
 
-                var colla = document.createElement("div");
-                colla.setAttribute("class", "collapse");
-                colla.setAttribute("id", "collapse" + thisCounter);
-                colla.setAttribute("data-parent", "#output");
-                var collab = document.createElement("div");
-                collab.setAttribute("class", "card-body");
-                collab.innerHTML = content;
-                colla.appendChild(collab);
+                    var colla = document.createElement("div");
+                    colla.setAttribute("class", "collapse");
+                    colla.setAttribute("id", "collapse" + thisCounter);
+                    colla.setAttribute("data-parent", "#output");
+                    var collab = document.createElement("div");
+                    collab.setAttribute("class", "card-body");
+                    collab.innerHTML = content;
+                    colla.appendChild(collab);
 
-                if (senderU.data() != undefined) {
-                    //Add reply Button
-                    var repBtn = document.createElement("button");
-                    repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-j3");
-                    repBtn.setAttribute("onclick", "changeReplyModal('" + message.id + "')");
-                    repBtn.setAttribute("data-toggle", "modal");
-                    repBtn.setAttribute("data-target", "#replyModal");
-                    //TODO: message id
-                    repBtn.innerHTML = "Reply";
-                    colla.appendChild(repBtn);
-                }
+                    if (senderU.data() != undefined) {
+                        //Add reply Button
+                        var repBtn = document.createElement("button");
+                        repBtn.setAttribute("class", "float-right mr-3 mb-3 btn btn-j3");
+                        repBtn.setAttribute("onclick", "changeReplyModal('" + change.doc.id + "')");
+                        repBtn.setAttribute("data-toggle", "modal");
+                        repBtn.setAttribute("data-target", "#replyModal");
+                        //TODO: message id
+                        repBtn.innerHTML = "Reply";
+                        colla.appendChild(repBtn);
+                    }
 
-                card.appendChild(col);
-                card.appendChild(colla);
+                    card.appendChild(col);
+                    card.appendChild(colla);
 
-                goal.appendChild(card);
-            }).catch(error => {
-                console.log(error)
-            });
-        })
-    }).catch(error => {
-        console.log(error)
+                    goal.appendChild(card);
+                }).catch(error => {
+                    console.log(error)
+                });
+            }
+        });
     });
 }
 
