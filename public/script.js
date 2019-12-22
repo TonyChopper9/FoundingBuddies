@@ -455,6 +455,7 @@ function addSizeToGoogleProfilePic(url) {
 
 function authStateObserver(user) {
     if (user) { // User is signed in!
+        console.log(user);
         // Hide sign-in button.
         loginPageButton.style.display = "none";
         loginPageButtonDrpMenu.style.display = "none";
