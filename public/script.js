@@ -467,7 +467,7 @@ function authStateObserver(user) {
         divider.style.display = "";
         notificationsPageBtnDrpMenu.style.display = "";
 
-        firestore.collection("users").doc(user.id).onSnapshot(function(doc) {
+        firestore.collection("users").doc(user.UserId).onSnapshot(function(doc) {
             if (doc.data().newMessage) {
                 document.getElementById("NotificationsPageBtn").className += " pulseClass";
                 document.getElementById("notifiyDot").style.display = "";
