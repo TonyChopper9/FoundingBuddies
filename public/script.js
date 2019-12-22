@@ -466,19 +466,7 @@ function authStateObserver(user) {
         //uploadBtnDrpMenu.style.display = "";
         divider.style.display = "";
         notificationsPageBtnDrpMenu.style.display = "";
-        //add pulse if new notifications
-        firestore.collection("users").doc(user.uid).get().then(function (userdata) {
-            var newM = userdata.data().newMessage;
-            if (newM) {
-                document.getElementById("NotificationsPageBtn").className += " pulseClass";
-                document.getElementById("notifiyDot").style.display = "";
-            }
-        }).catch(function (error) {
-            console.error(error);
-        });
-
-
-        // We save the Firebase Messaging Device token and enable notifications.
+        
     } else { // User is signed out!
         // Show sign-in button.
         loginPageButton.style.display = "";
@@ -608,6 +596,18 @@ var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
 var loginPageButtonDrpMenu = document.getElementById("LoginPageBtnDrpMenu");
 var divider = document.getElementById("divider");
 //var changeEmailButtonModal = document.getElementById("changeEmailButtonModal");
+
+//Listener for newMessages
+firestore.collection("users").doc(getUserId()).onSnapshot(function(doc) {
+    if (doc.data().newMessage) {
+        document.getElementById("NotificationsPageBtn").className += " pulseClass";
+        document.getElementById("notifiyDot").style.display = "";
+    }
+    else {
+        document.getElementById("NotificationsPageBtn").className -= " pulseClass";
+        document.getElementById("notifiyDot").style.display = "none";
+    }
+});
 
 /*document.getElementById('uniFilter').onchange = function() {
   var index = this.selectedIndex;
