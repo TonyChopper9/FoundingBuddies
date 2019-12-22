@@ -474,7 +474,7 @@ function authStateObserver(user) {
                 document.getElementById("notifiyDot").style.display = "";
             }
             else {
-                document.getElementById("NotificationsPageBtn").className -= " pulseClass";
+                document.getElementById("NotificationsPageBtn").classList.remove("pulseClass");
                 document.getElementById("notifiyDot").style.display = "none";
             }
         });
