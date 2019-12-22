@@ -9,8 +9,6 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
-var page = 1;
-var pages = [];
 var unis = new Map();
 unis.set("TUM", "Technische Universität München");
 unis.set("LMU", "Ludwig-Maximilians-Universität");
@@ -22,6 +20,7 @@ params.set("lastEl", "");
 params.set("keyword", "");
 params.set("filter", "");
 params.set("uni", "");
+var pageSize = 2;
 
 window.onload = function () {
     //total = 0;
@@ -30,119 +29,194 @@ window.onload = function () {
     //    addDocument(list.docs, true, 0);
     //});
     params = getParams(params);
+    console.log(params);
     setWebsitefromParams(params);
-    pages.push(loadPosts(params.get("lastEl"),params.get("keyword"),params.get("filter"),params.get("uni")));
+    nextPage(params.get("lastEl"), params.get("uni"));
 };
 
-function loadPosts(lastEl = "", keyword = "", filter = "", uni = "") {
-  console.log("loadPosts started");
-  clearOutput();
-  console.log("Cleared Output");
-  console.log("Arguments are: "  + lastEl + " ; " + keyword + " ; " + filter + " , " + uni);
-  if (uni == "") {     //then load all docs
-      console.log("Loading all posts...");
-      var first = firestore.collection("posts").orderBy("Date", "desc").startAfter(lastEl).limit(10);
-      first.get().then(function (snap) {
-        for (const post of snap.docs) {
-          firestore.collection("users").doc(post.data().user).get().then(function(user) {
-            buildPost(post.data(), user.data());
-          });
-        }
-        params.set("lastEl", snap.docs[snap.docs.length-1]);
-      });
-  }
-  else {
-    //load only docs with filter
-      console.log("Loading docs with uni: " + uni);
-      var first = firestore.collection("posts").where("uni", "==", uni).orderBy("Date", "desc").startAfter(lastEl).limit(10);
-      first.get().then(function (snap) {
-        for (const post of snap.docs) {
-          //console.log(post.data().header);
-          firestore.collection("users").doc(post.data().user).get().then(function(user) {
-            buildPost(post.data(), user.data());
-          });
-        }
-      });
-  }
-  return first;
+function debug() {
+    console.log(params);
 }
 
-function loadOldPosts(query) {
-    clearOutput();
-    query.get().then(function (snap) {
-      for (const post of snap.docs) {
-        firestore.collection("users").doc(post.data().user).get().then(function(user) {
-          buildPost(post.data(), user.data());
-        });
-      }
-    });
+function nextPage(lastEl, uni) {
+    if (uni == "") {
+        if (lastEl == "") {
+            var first = firestore.collection("posts").orderBy("Date", "desc").limit(pageSize);
+            first.get().then(function (snap) {
+                if (snap.size == 0) {
+                    console.log("snap empty");
+                    return;
+                }
+                clearOutput();
+                for (const post of snap.docs) {
+                    firestore.collection("users").doc(post.data().user).get().then(function (user) {
+                        buildPost(post.data(), user.data());
+                    });
+                }
+                params.set("lastEl", snap.docs[snap.docs.length - 1]);
+                params.set("firstEl", snap.docs[0]);
+            });
+        } else {    //then load all docs
+            console.log("Loading all posts...");
+            var first = firestore.collection("posts").orderBy("Date", "desc").startAfter(lastEl).limit(pageSize);
+            first.get().then(function (snap) {
+                if (snap.size == 0) {
+                    console.log("snap empty");
+                    return;
+                }
+                clearOutput();
+                for (const post of snap.docs) {
+                    firestore.collection("users").doc(post.data().user).get().then(function (user) {
+                        buildPost(post.data(), user.data());
+                    });
+                }
+                params.set("lastEl", snap.docs[snap.docs.length - 1]);
+                params.set("firstEl", snap.docs[0]);
+            });
+        }
+    } else {
+        if (lastEl == "") {
+            var first = firestore.collection("posts").where("uni", "==", uni).orderBy("Date", "desc").limit(pageSize);
+            first.get().then(function (snap) {
+                if (snap.size == 0) {
+                    console.log("snap empty");
+                    return;
+                }
+                clearOutput();
+                for (const post of snap.docs) {
+                    firestore.collection("users").doc(post.data().user).get().then(function (user) {
+                        buildPost(post.data(), user.data());
+                    });
+                }
+                params.set("lastEl", snap.docs[snap.docs.length - 1]);
+                params.set("firstEl", snap.docs[0]);
+            });
+        } else {    //then load all docs
+            console.log("Loading all posts...");
+            var first = firestore.collection("posts").where("uni", "==", uni).orderBy("Date", "desc").startAfter(lastEl).limit(pageSize);
+            first.get().then(function (snap) {
+                if (snap.size == 0) {
+                    console.log("snap empty");
+                    return;
+                }
+                clearOutput();
+                for (const post of snap.docs) {
+                    firestore.collection("users").doc(post.data().user).get().then(function (user) {
+                        buildPost(post.data(), user.data());
+                    });
+                }
+                params.set("lastEl", snap.docs[snap.docs.length - 1]);
+                params.set("firstEl", snap.docs[0]);
+            });
+        }
+    }
+}
+
+function prevPage(firstEl, uni) {
+    if (firstEl == "") {
+        return;
+    } else {
+        if (uni == "") {
+            var first = firestore.collection("posts").orderBy("Date", "asc").startAfter(firstEl).limit(pageSize);
+            first.get().then(function (snap) {
+                if (snap.size == 0) {
+                    console.log("snap empty");
+                    return;
+                }
+                clearOutput();
+                for (const post of snap.docs) {
+                    firestore.collection("users").doc(post.data().user).get().then(function (user) {
+                        buildPost(post.data(), user.data());
+                    });
+                }
+                params.set("lastEl", snap.docs[0]);
+                params.set("firstEl", snap.docs[snap.docs.length - 1]);
+            });
+        } else {    //then load all docs
+            console.log("Loading all posts...");
+            var first = firestore.collection("posts").where("uni", "==", uni).orderBy("Date", "asc").startAfter(firstEl).limit(pageSize);
+            first.get().then(function (snap) {
+                if (snap.size == 0) {
+                    console.log("snap empty");
+                    return;
+                }
+                clearOutput();
+                for (const post of snap.docs) {
+                    firestore.collection("users").doc(post.data().user).get().then(function (user) {
+                        buildPost(post.data(), user.data());
+                    });
+                }
+                params.set("lastEl", snap.docs[0]);
+                params.set("firstEl", snap.docs[snap.docs.length - 1]);
+            });
+        }
+    }
 }
 
 function buildPost(postData, userData) {
 
-  var element = document.createElement("div");
-  element.setAttribute("class", "card mb-3 w-100");
-  //element.setAttribute("id", postDATA.id); // probably the post object needed for id
+    var element = document.createElement("div");
+    element.setAttribute("class", "card mb-3 w-100");
+    //element.setAttribute("id", postDATA.id); // probably the post object needed for id
 
-  var innerElement = document.createElement("div");
-  innerElement.setAttribute("class", "card-body");
+    var innerElement = document.createElement("div");
+    innerElement.setAttribute("class", "card-body");
 
-  //HEADER
-  var header1 = document.createElement("h5");
-  header1.setAttribute("class", "mb-0 card-title");
-  header1.innerHTML = postData.header + " - " + unis.get(postData.uni);
-  innerElement.appendChild(header1);
+    //HEADER
+    var header1 = document.createElement("h5");
+    header1.setAttribute("class", "mb-0 card-title");
+    header1.innerHTML = postData.header + " - " + unis.get(postData.uni);
+    innerElement.appendChild(header1);
 
-  //AUTHORING
-  var metaStuff = document.createElement("p");
-  metaStuff.setAttribute("class", "mb-2 card-text");
-  var small = document.createElement("small");
-  small.setAttribute("class", "text-muted");
+    //AUTHORING
+    var metaStuff = document.createElement("p");
+    metaStuff.setAttribute("class", "mb-2 card-text");
+    var small = document.createElement("small");
+    small.setAttribute("class", "text-muted");
 
-  //User
-  var dateDate = postData.Date.toDate();
-  small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear() + " by " + userData.Username;
-  metaStuff.appendChild(small);
-  innerElement.appendChild(metaStuff);
+    //User
+    var dateDate = postData.Date.toDate();
+    small.innerHTML = dateDate.getDate() + "." + (dateDate.getMonth() + 1) + "." + dateDate.getFullYear() + " by " + userData.Username;
+    metaStuff.appendChild(small);
+    innerElement.appendChild(metaStuff);
 
-  //INHALT
-  var inhalt = document.createElement("p");
-  inhalt.setAttribute("class", "text-brake card-text");
-  inhalt.innerHTML = postData.content;
-  innerElement.appendChild(inhalt);
+    //INHALT
+    var inhalt = document.createElement("p");
+    inhalt.setAttribute("class", "text-brake card-text");
+    inhalt.innerHTML = postData.content;
+    innerElement.appendChild(inhalt);
 
-  //MAIL ZEILE
-  var mailZeile = document.createElement("div");
-  mailZeile.setAttribute("class", "row justify-content-end");
-  var contactB = document.createElement("button");
-  contactB.setAttribute("class", "mr-3 btn btn-j3");
-  contactB.setAttribute("data-toggle", "modal");
-  contactB.setAttribute("data-target", "#messageModal");
-  contactB.setAttribute("onclick", "contact('" + postData.user + "')");
-  contactB.innerHTML = "Contact";
-  mailZeile.appendChild(contactB);
-  innerElement.appendChild(mailZeile);
+    //MAIL ZEILE
+    var mailZeile = document.createElement("div");
+    mailZeile.setAttribute("class", "row justify-content-end");
+    var contactB = document.createElement("button");
+    contactB.setAttribute("class", "mr-3 btn btn-j3");
+    contactB.setAttribute("data-toggle", "modal");
+    contactB.setAttribute("data-target", "#messageModal");
+    contactB.setAttribute("onclick", "contact('" + postData.user + "')");
+    contactB.innerHTML = "Contact";
+    mailZeile.appendChild(contactB);
+    innerElement.appendChild(mailZeile);
 
-  element.appendChild(innerElement);
+    element.appendChild(innerElement);
 
-  var theDiv = document.getElementById("output");
-  theDiv.appendChild(element);
+    var theDiv = document.getElementById("output");
+    theDiv.appendChild(element);
 }
 
-function insertParam(key, value)
-{
+function insertParam(key, value) {
     //key = encodeURI(key); value = encodeURI(value);
 
     var kvp = document.location.search.substr(1).split('&');
 
-    var i=kvp.length; var x; while(i--)
-    {
+    var i = kvp.length;
+    var x;
+    while (i--) {
         x = kvp[i].split('=');
 
-        if (x[0]==key)
-        {
-            if (value==""){
-                kvp.splice(i,1);
+        if (x[0] == key) {
+            if (value == "") {
+                kvp.splice(i, 1);
                 break;
             }
             x[1] = value;
@@ -150,19 +224,19 @@ function insertParam(key, value)
             break;
         }
     }
-    if(i<0) {
-      kvp.push([key,value].join('='));
+    if (i < 0) {
+        kvp.push([key, value].join('='));
     }
-    if(kvp[0] == "") {
-      kvp.shift();
+    if (kvp[0] == "") {
+        kvp.shift();
     }
     document.location.search = kvp.join('&');
 }
 
-function getParams(params){
+function getParams(params) {
     var kvp = document.location.search.substr(1).split('&');
-    params.forEach(function(value, key) {
-        kvp.forEach(function(item) {
+    params.forEach(function (value, key) {
+        kvp.forEach(function (item) {
             var pair = item.split("=");
             if (key == pair[0]) {
                 params.set(key, pair[1]);
@@ -172,7 +246,7 @@ function getParams(params){
     return params;
 }
 
-function setWebsitefromParams(params){
+function setWebsitefromParams(params) {
     document.getElementById("uniFilter").value = params.get("uni");
 }
 
@@ -271,27 +345,8 @@ function setWebsitefromParams(params){
     }
 }
 */
-function nextPage() {
-    page++;
-    if (page > pages.length) {
-        loadPosts(params);
-    }
-    else {
-        loadOldPosts(pages[page-1]);
-    }
-}
 
-function prevPage() {
-    if (page < 2) {
-        return;
-    }
-    else {
-        page--;
-        loadOldPosts(pages[page-1]);
-    }
-}
-
-function clearOutput(){
+function clearOutput() {
     const myNode = document.getElementById("output");
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
@@ -299,10 +354,10 @@ function clearOutput(){
 }
 
 function checkIfEmpty(string) {
-  if (string.replace(/\s/,"").length < 1) {
-    return true;
-  }
-  return false;
+    if (string.replace(/\s/, "").length < 1) {
+        return true;
+    }
+    return false;
 }
 
 function upload() {
@@ -311,12 +366,12 @@ function upload() {
         const inputHeader = document.querySelector("#uploadTitleInput");
         const inputContent = document.querySelector("#uploadContentInput");
         if (checkIfEmpty(inputHeader.value)) {
-          alert("Your Header is empty");
-          return;
+            alert("Your Header is empty");
+            return;
         }
         if (checkIfEmpty(inputContent.value)) {
-          alert("Your description is empty");
-          return;
+            alert("Your description is empty");
+            return;
         }
         var options = document.getElementById("uploadTagInput");
         var uni = options.options[options.selectedIndex].value;
@@ -328,7 +383,9 @@ function upload() {
             uni: uni
         };
         clearUploadModal();
-        postRef.doc().set(inpData).then(na => {document.location.reload()});
+        postRef.doc().set(inpData).then(na => {
+            document.location.reload()
+        });
     } else {
         alert("Your email must be confirmed in order to be able to upload!")
     }
@@ -350,7 +407,9 @@ function clearMessageModal() {
 
 function signOut() {
     // Sign out of Firebase.
-    firebase.auth().signOut().then(na => {document.location.reload()});
+    firebase.auth().signOut().then(na => {
+        document.location.reload()
+    });
 }
 
 function initFirebaseAuth() {
@@ -409,13 +468,13 @@ function authStateObserver(user) {
         notificationsPageBtnDrpMenu.style.display = "";
         //add pulse if new notifications
         firestore.collection("users").doc(user.uid).get().then(function (userdata) {
-          var newM = userdata.data().newMessage;
-          if (newM) {
-            document.getElementById("NotificationsPageBtn").className += " pulseClass";
-            document.getElementById("notifiyDot").style.display = "";
-          }
+            var newM = userdata.data().newMessage;
+            if (newM) {
+                document.getElementById("NotificationsPageBtn").className += " pulseClass";
+                document.getElementById("notifiyDot").style.display = "";
+            }
         }).catch(function (error) {
-          console.error(error);
+            console.error(error);
         });
 
 
@@ -509,7 +568,9 @@ function deletePost(docIdNo) {
                 document.getElementById("deleteButton").setAttribute("data-postid", "");
                 document.getElementById("deleteButton").setAttribute("data-postno", "");
                 document.location.reload();
-            }).catch(error => {console.log(error)})
+            }).catch(error => {
+                console.log(error)
+            })
         } else {
             alert("You are not authorized to delete this post!")
         }
@@ -517,18 +578,18 @@ function deletePost(docIdNo) {
 }
 
 function search(searchInput) {
-  const term = document.getElementById("searchInput").value;
-  firestore.collection("posts").where("header", "==", term)
-    .get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+    const term = document.getElementById("searchInput").value;
+    firestore.collection("posts").where("header", "==", term)
+        .get()
+        .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+            });
+        })
+        .catch(function (error) {
+            console.log("Error getting documents: ", error);
         });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
 }
 
 //Shortcuts to Document Elements
