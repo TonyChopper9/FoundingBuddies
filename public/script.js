@@ -466,7 +466,18 @@ function authStateObserver(user) {
         //uploadBtnDrpMenu.style.display = "";
         divider.style.display = "";
         notificationsPageBtnDrpMenu.style.display = "";
-        
+
+        firestore.collection("users").doc(user.id).onSnapshot(function(doc) {
+            if (doc.data().newMessage) {
+                document.getElementById("NotificationsPageBtn").className += " pulseClass";
+                document.getElementById("notifiyDot").style.display = "";
+            }
+            else {
+                document.getElementById("NotificationsPageBtn").className -= " pulseClass";
+                document.getElementById("notifiyDot").style.display = "none";
+            }
+        });
+
     } else { // User is signed out!
         // Show sign-in button.
         loginPageButton.style.display = "";
@@ -596,18 +607,6 @@ var logoutButtonElementDrpMenu = document.getElementById("sign-outDrpMenu");
 var loginPageButtonDrpMenu = document.getElementById("LoginPageBtnDrpMenu");
 var divider = document.getElementById("divider");
 //var changeEmailButtonModal = document.getElementById("changeEmailButtonModal");
-
-//Listener for newMessages
-firestore.collection("users").doc(getUserId()).onSnapshot(function(doc) {
-    if (doc.data().newMessage) {
-        document.getElementById("NotificationsPageBtn").className += " pulseClass";
-        document.getElementById("notifiyDot").style.display = "";
-    }
-    else {
-        document.getElementById("NotificationsPageBtn").className -= " pulseClass";
-        document.getElementById("notifiyDot").style.display = "none";
-    }
-});
 
 /*document.getElementById('uniFilter').onchange = function() {
   var index = this.selectedIndex;
